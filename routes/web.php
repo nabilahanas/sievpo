@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\NavController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,5 +21,7 @@ Route::get('/', function () {
 
 Route::get('/register', [AuthController::class, 'register'])->name('register')->middleware('guest');
 Route::get('/login', [AuthController::class, 'login'])->name('login')->middleware('guest');
+Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::post('/ceklogin', [AuthController::class, 'ceklogin'])->name('ceklogin')->middleware('guest');
 Route::post('/registered', [AuthController::class, 'registered'])->name('registered')->middleware('guest');
+Route::get('/home', [NavController::class, 'home'])->name('home')->middleware('home');

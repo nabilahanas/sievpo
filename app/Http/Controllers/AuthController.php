@@ -43,17 +43,18 @@ class AuthController extends Controller
             return redirect('/login');
         }
         else{
-            return redirect("Berhasil Login");
+            return redirect('/home');
         }
     }
-    // public function handle($request, $next)
-    // {
-    //     return Auth::onceBasic() ?: $next($request);
-    // }
+    public function handle($request, $next)
+    {
+        return Auth::onceBasic() ?: $next($request);
+    }
 
-    // public function logout()
-    // {
-    //     Auth::logout();
-    //     return redirect('/');
-    // }
+    public function logout()
+    {
+        Auth::logout();
+        return redirect('/');
+    }
+
 }

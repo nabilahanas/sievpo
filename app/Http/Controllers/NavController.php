@@ -6,8 +6,8 @@ use App\Http\Controllers\Controller;
 
 class NavController extends Controller
 {
-    public function home()
+    public function dashboard()
     {
-        return view ('layouts/home');
-    }
+        return view('layouts.dashboard', ['key'=>'dashboard']);
+    } 
 }

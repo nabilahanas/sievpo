@@ -24,4 +24,5 @@ Route::get('/login', [AuthController::class, 'login'])->name('login')->middlewar
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::post('/ceklogin', [AuthController::class, 'ceklogin'])->name('ceklogin')->middleware('guest');
 Route::post('/registered', [AuthController::class, 'registered'])->name('registered')->middleware('guest');
-Route::get('/home', [NavController::class, 'home'])->name('home')->middleware('home');
+// Route::get('/home', [NavController::class, 'home'])->name('home')->middleware('home');
+Route::get('/home', [NavController::class, 'dashboard'])->name('dashboard');

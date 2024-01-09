@@ -36,8 +36,8 @@ class AuthController extends Controller
     public function ceklogin(Request $request)
     {
         if (!Auth::attempt([
-            'nip' => $request -> nip , 
-            'password' => $request -> password
+            'nip' => $request -> nip, 
+            'password' => $request -> password,
         ]))
         {
             return redirect('/login');

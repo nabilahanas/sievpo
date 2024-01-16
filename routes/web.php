@@ -3,7 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\NavController;
-use App\Http\Controllers\WIlayahController;
+use App\Http\Controllers\WilayahController;
+use App\Http\Controllers\JabatanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,13 +29,20 @@ Route::post('/registered', [AuthController::class, 'registered'])->name('registe
 // Route::get('/home', [NavController::class, 'home'])->name('home')->middleware('home');
 Route::get('/home', [NavController::class, 'dashboard'])->name('dashboard');
 
-Route ::prefix("wilayah")->group(function(){
-    Route::get('/', [WilayahController::class, 'index'])->name('wilayah.index');
-    Route::get('add/{id}', [WilayahController::class, 'add'])->name('wilayah.add');
+Route::prefix("wilayah")->group(function () {
+    Route::get('add', [WilayahController::class, 'create'])->name('wilayah.add');
     Route::post('store', [WilayahController::class, 'store'])->name('wilayah.store');
+    Route::get('/', [WilayahController::class, 'index'])->name('wilayah.index');
     Route::get('edit/{id}', [WilayahController::class, 'edit'])->name('wilayah.edit');
     Route::post('update/{id}', [WilayahController::class, 'update'])->name('wilayah.update');
-    Route::post('delete/{id}', [WilayahController::class, 'delete'])->name('wiayah.delete');
-    Route::post('recycle/{id}', [WilayahController::class, 'recycle'])->name('wilayah.recycle');
-    Route::get('restore/{id}', [WilayahController::class, 'restore'])->name('wilayah.restore');
-    });
+    Route::post('delete/{id}', [WilayahController::class, 'delete'])->name('wilayah.delete');
+});
+
+Route::prefix("jabatan")->group(function () {
+    Route::get('add', [JabatanController::class, 'create'])->name('jabatan.add');
+    Route::post('store', [JabatanController::class, 'store'])->name('jabatan.store');
+    Route::get('/', [JabatanController::class, 'index'])->name('jabatan.index');
+    Route::get('edit/{id}', [JabatanController::class, 'edit'])->name('jabatan.edit');
+    Route::post('update/{id}', [JabatanController::class, 'update'])->name('jabatan.update');
+    Route::post('delete/{id}', [JabatanController::class, 'delete'])->name('jabatan.delete');
+});

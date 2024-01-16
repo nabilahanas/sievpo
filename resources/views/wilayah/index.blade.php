@@ -1,56 +1,54 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.page')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Data Wilayah</title>
+@section('content')
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-rHyoN1iRsVXV4nD0Jut5XuOVfdIoA01fSkzB7ti7ihFdaLl5+qXaVi0B2A2vcybp"
-        crossorigin="anonymous">
-</head>
+<h4 class="mt-5">Data Wilayah</h4>
 
-<body>
+<a href="{{ route('wilayah.add') }}" type="button" class="btn btn-success rounded-3">Tambah Data</a>
 
-    <div class="container mt-4">
-        <h1>Data Wilayah</h1>
-
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Nama Wilayah</th>
-                    <th>Latitude</th>
-                    <th>Longitude</th>
-                    <th>Deskripsi</th>
-                    <th>Aksi</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach($wilayahs as $wilayah)
-                    <tr>
-                        <td>{{ $wilayah->nama_wilayah }}</td>
-                        <td>{{ $wilayah->latitude }}</td>
-                        <td>{{ $wilayah->longitude }}</td>
-                        <td>{{ $wilayah->deskripsi }}</td>
-                        <td>
-                            <!-- Tambahkan tombol-tombol aksi sesuai kebutuhan -->
-                            <button class="btn btn-sm btn-info">Detail</button>
-                            <button class="btn btn-sm btn-warning">Edit</button>
-                            <button class="btn btn-sm btn-danger">Hapus</button>
-                        </td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
+@if($message = Session::get('success'))
+    <div class="alert alert-success mt-3" role="alert">
+        {{ $message }}
     </div>
+@endif
 
-    <!-- Bootstrap JavaScript (optional) -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-rHyoN1iRsVXV4nD0Jut5XuOVfdIoA01fSkzB7ti7ihFdaLl5+qXaVi0B2A2vcybp"
-        crossorigin="anonymous"></script>
+<table class="table table-hover mt-2">
+    <thead>
+      <tr>
+        <th>Nama Wilayah</th>
+        <th>Latitude</th>
+        <th>Longitude</th>
+        <th>Deskripsi</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+        @foreach ($wilayah as $wilayah)
+            <tr>
+                <td>{{ $wilayah->nama_wilayah }}</td>
+                <td>{{ $wilayah->latitude }}</td>
+                <td>{{ $wilayah->longitude }}</td>
+                <td>{{ $wilayah->deskripsi }}</td>
+                <td>
+                    <a href="{{ route('wilayah.edit', $wilayah->id_wilayah) }}" type="button" class="btn btn-warning rounded-3">Ubah</a>
 
-</body>
-</html>
+                    <!-- Button trigger modal -->
+                    {{-- <button type="button" class="btn btn-danger" Mhs-bs-toggle="modal" Mhs-bs-target="#hapusModal{{ $mhs->nim }}">
+                        Hapus
+                    </button> --}}
 
+                    <!-- Modal -->
+
+                    <form action="{{route('wilayah.delete', $wilayah->id_wilayah)}}" method="post" class="d-inline">
+                        @csrf
+                        @method('POST')
+                        <button class="btn btn-danger">
+                            Hapus
+                        </button>
+                    </form>
+                </td>
+            </tr>
+        @endforeach
+    </tbody>
+</table>
+@endsection

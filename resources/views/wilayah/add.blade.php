@@ -1,46 +1,47 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.page')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tambah Data Wilayah</title>
+@section('content')
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-rHyoN1iRsVXV4nD0Jut5XuOVfdIoA01fSkzB7ti7ihFdaLl5+qXaVi0B2A2vcybp"
-        crossorigin="anonymous">
-</head>
+@if($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+        @foreach($errors->all() as $error)
 
-<body>
+            <li>{{ $error }}</li>
 
-    <div class="container mt-4">
-        <h1>Form Tambah Data Wilayah</h1>
+        @endforeach
+        </ul>
+    </div>
+@endif
 
-        <form action="{{ route('wilayah.store') }}" method="POST">
+<div class="card mt-4">
+    <div class="card-body">
+
+        <h5 class="card-title fw-bolder mb-3">Tambah Wilayah</h5>
+
+        <form method="post" action="{{ route('wilayah.store') }}">
             @csrf
             <div class="mb-3">
-                <label for="nama_wilayah" class="form-label">Nama Wilayah:</label>
+                <label for="nama_wilayah" class="form-label">Nama Wilayah</label>
                 <input type="text" class="form-control" name="nama_wilayah" required>
             </div>
             <div class="mb-3">
-                <label for="latitude" class="form-label">Latitude:</label>
+                <label for="latitude" class="form-label">Latitude</label>
                 <input type="text" class="form-control" name="latitude" required>
             </div>
             <div class="mb-3">
-                <label for="longitude" class="form-label">Longitude:</label>
+                <label for="longitude" class="form-label">Longitude</label>
                 <input type="text" class="form-control" name="longitude" required>
             </div>
-            <button type="submit" class="btn btn-primary">Tambah Data</button>
+            <div class="mb-3">
+                <label for="deskripsi" class="form-label">Deskripsi</label>
+                <input type="text" class="form-control" name="longitude" required>
+            </div>
+            <div class="text-center">
+                <input type="submit" class="btn btn-primary" value="Tambah" />
+            </div>
         </form>
-
-        <a href="{{ route('wilayah.index') }}" class="btn btn-secondary mt-3">Kembali ke Daftar Wilayah</a>
     </div>
+</div>
 
-    <!-- Bootstrap JavaScript (optional) -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-rHyoN1iRsVXV4nD0Jut5XuOVfdIoA01fSkzB7ti7ihFdaLl5+qXaVi0B2A2vcybp"
-        crossorigin="anonymous"></script>
-</body>
-
-</html>
+@endsection

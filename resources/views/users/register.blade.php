@@ -32,6 +32,10 @@
                                 <input type="text" name="nip" class="form-control" Required autocomplete="off">
                             </div>
                             <div class="mb-3">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" name="email" class="form-control" Required autocomplete="off">
+                            </div>
+                            <div class="mb-3">
                                 <label for="role" class="form-label">Role</label>
                                 <select name="role" class="form-control mb-3" id="role" Required
                                     autocomplete="off">

@@ -5,6 +5,8 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\NavController;
 use App\Http\Controllers\WilayahController;
 use App\Http\Controllers\JabatanController;
+use App\Http\Controllers\BeritaController;
+use App\Http\Controllers\PengumumanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,4 +47,22 @@ Route::prefix("jabatan")->group(function () {
     Route::get('edit/{id}', [JabatanController::class, 'edit'])->name('jabatan.edit');
     Route::post('update/{id}', [JabatanController::class, 'update'])->name('jabatan.update');
     Route::post('delete/{id}', [JabatanController::class, 'delete'])->name('jabatan.delete');
+});
+
+Route::prefix("berita")->group(function () {
+    Route::get('add', [BeritaController::class, 'create'])->name('berita.add');
+    Route::post('store', [BeritaController::class, 'store'])->name('berita.store');
+    Route::get('/', [BeritaController::class, 'index'])->name('berita.index');
+    Route::get('edit/{id}', [BeritaController::class, 'edit'])->name('berita.edit');
+    Route::post('update/{id}', [BeritaController::class, 'update'])->name('berita.update');
+    Route::post('delete/{id}', [BeritaController::class, 'delete'])->name('berita.delete');
+});
+
+Route::prefix("pengumuman")->group(function () {
+    Route::get('add', [PengumumanController::class, 'create'])->name('pengumuman.add');
+    Route::post('store', [PengumumanController::class, 'store'])->name('pengumuman.store');
+    Route::get('/', [PengumumanController::class, 'index'])->name('pengumuman.index');
+    Route::get('edit/{id}', [PengumumanController::class, 'edit'])->name('pengumuman.edit');
+    Route::post('update/{id}', [PengumumanController::class, 'update'])->name('pengumuman.update');
+    Route::post('delete/{id}', [PengumumanController::class, 'delete'])->name('pengumuman.delete');
 });

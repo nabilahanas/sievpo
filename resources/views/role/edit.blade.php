@@ -17,13 +17,17 @@
 <div class="card mt-4">
     <div class="card-body">
 
-        <h5 class="card-title fw-bolder mb-3">Ubah Data Jabatan</h5>
+        <h5 class="card-title fw-bolder mb-3">Ubah Data Role</h5>
 
-        <form method="post" action="{{ route('jabatan.update', $jabatan->id_jabatan) }}">
+        <form method="post" action="{{ route('role.update', $role->id_role) }}">
             @csrf
             <div class="mb-3">
-                <label for="nama_jabatan" class="form-label">Nama Jabatan</label>
-                <input type="text" class="form-control" id="nama_jabatan" name="nama_jabatan" value="{{ $jabatan->nama_jabatan }}" required>
+                <label for="nama_role" class="form-label">Nama Role</label>
+                <input type="text" class="form-control" id="nama_role" name="nama_role" value="{{ $role->nama_role }}" required>
+            </div>
+            <div class="mb-3">
+                <label for="deskripsi" class="form-label">Deskripsi</label>
+                <input type="text" class="form-control" id="deskripsi" name="deskripsi" value="{{ $role->deskripsi }}" required>
             </div>
             <div class="text-center">
                 <input type="submit" class="btn btn-primary" value="Ubah" />

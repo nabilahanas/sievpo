@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>CRUD Laravel Eloquent</title>
+        <title>SIEVPO</title>
 
         <!-- Fonts -->
         <link href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
@@ -22,7 +22,7 @@
 
         <nav class="navbar bg-light">
             <div class="container-fluid">
-              <a class="navbar-brand" href="{{ route('wilayah.index') }}">CRUD Laravel Eloquent
+              <a class="navbar-brand" href="{{ route('wilayah.index') }}">SIEVPO Eloquent
               </a>
             </div>
         </nav>

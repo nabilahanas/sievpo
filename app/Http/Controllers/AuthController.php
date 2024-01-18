@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Role;
+use App\Models\Jabatan;
 use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
@@ -16,18 +18,20 @@ class AuthController extends Controller
 
     public function registered(Request $request)
     {
-        $user = User::create([
-            'nama_user' => $request -> nama_user,
-            'nip' => $request -> nip,
-            'email' => $request -> email,
-            'role' => $request -> role,
-            'password' => bcrypt ($request -> password),
-            'id_jabatan' => $request -> id_jabatan,
-            'id_wilayah' => $request -> id_wilayah,
+        $users = User::create([
+            'nama_user' => $request->nama_user,
+            'nip' => $request->nip,
+            'no_hp' => $request->no_hp,
+            'id_role' => $request->input('role'),
+            'id_jabatan' => $request->input('jabatan'),
+            // 'role' => $request -> role,
+            'password' => bcrypt($request->password),
+            // 'id_jabatan' => $request -> id_jabatan,
+            // 'id_wilayah' => $request -> id_wilayah,
         ]);
+
         return redirect('/login')->with('success', 'Data user berhasil ditambahkan');
     }
-
 
     public function login()
     {
@@ -36,14 +40,14 @@ class AuthController extends Controller
 
     public function ceklogin(Request $request)
     {
-        if (!Auth::attempt([
-            'nip' => $request -> nip, 
-            'password' => $request -> password,
-        ]))
-        {
+        if (
+            !Auth::attempt([
+                'nip' => $request->nip,
+                'password' => $request->password,
+            ])
+        ) {
             return redirect('/login');
-        }
-        else{
+        } else {
             return redirect('/home');
         }
     }

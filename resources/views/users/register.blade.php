@@ -25,24 +25,23 @@
                             @csrf
                             <div class="mb-3">
                                 <label for="nama_user" class="form-label">Nama</label>
-                                <input type="text" name="nama_user" class="form-control" autofocus Required autocomplete="off">
+                                <input type="text" name="nama_user" class="form-control" autofocus Required
+                                    autocomplete="off">
                             </div>
                             <div class="mb-3">
                                 <label for="nip" class="form-label">NIP</label>
                                 <input type="text" name="nip" class="form-control" Required autocomplete="off">
                             </div>
                             <div class="mb-3">
-                                <label for="email" class="form-label">Email</label>
-                                <input type="email" name="email" class="form-control" Required autocomplete="off">
+                                <label for="no_hp" class="form-label">No HP</label>
+                                <input type="text" name="no_hp" class="form-control" Required autocomplete="off">
                             </div>
                             <div class="mb-3">
-                                <label for="role" class="form-label">Role</label>
-                                <select name="role" class="form-control mb-3" id="role" Required
-                                    autocomplete="off">
-                                    <option value="">Pilih Role</option>
-                                    <option value="Pimpinan">Pimpinan</option>
-                                    <option value="Admin">Admin</option>
-                                    <option value="Karyawan">Karyawan</option>
+                                <label for="role">Role:</label>
+                                <select name="role" id="role">
+                                    @foreach ($role as $role)
+                                        <option value="{{ $role->id_role }}">{{ $role->nama_role }}</option>
+                                    @endforeach
                                 </select>
                             </div>
                             <div class="mb-3">
@@ -50,20 +49,24 @@
                                 <input type="password" name="password" class="form-control" Required autocomplete="off">
                             </div>
                             <div class="mb-3">
-                                <label for="id_jabatan" class="form-label">Jabatan</label>
-                                <input type="text" name="id_jabatan" class="form-control" Required autocomplete="off">
+                                <label for="jabatan">Jabatan:</label>
+                                <select name="jabatan" id="jabatan">
+                                    @foreach ($jabatans as $jabatan)
+                                        <option value="{{ $jabatan->id_jabatan }}">{{ $jabatan->nama_jabatan }}</option>
+                                    @endforeach
+                                </select>
                             </div>
-                            <div class="mb-3">
+                            {{-- <div class="mb-3">
                                 <label for="id_wilayah" class="form-label">Wilayah</label>
                                 <input type="text" name="id_wilayah" class="form-control" Required autocomplete="off">
-                            </div>
-                            
-                        </div>
-                        <div class="card-footer">
-                            <input name="" id="" class="btn btn-primary" type="submit" value="Tambah">
-                            <button onclick="window.location='/login'" class="btn btn-danger" type="button"
-                                aria-pressed="true">Kembali</button>
-                        </div>
+                            </div> --}}
+
+                    </div>
+                    <div class="card-footer">
+                        <input name="" id="" class="btn btn-primary" type="submit" value="Tambah">
+                        <button onclick="window.location='/login'" class="btn btn-danger" type="button"
+                            aria-pressed="true">Kembali</button>
+                    </div>
                     </form>
                 </div>
             </div>
@@ -72,7 +75,8 @@
 
     <!-- Bootstrap JavaScript (optional) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-rHyoN1iRsVXV4nD0Jut5XuOVfdIoA01fSkzB7ti7ihFdaLl5+qXaVi0B2A2vcybp" crossorigin="anonymous"></script>
+        integrity="sha384-rHyoN1iRsVXV4nD0Jut5XuOVfdIoA01fSkzB7ti7ihFdaLl5+qXaVi0B2A2vcybp" crossorigin="anonymous">
+    </script>
 
 </body>
 

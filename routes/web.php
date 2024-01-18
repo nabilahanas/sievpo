@@ -7,6 +7,7 @@ use App\Http\Controllers\WilayahController;
 use App\Http\Controllers\JabatanController;
 use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\PengumumanController;
+use App\Http\Controllers\RoleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -65,4 +66,13 @@ Route::prefix("pengumuman")->group(function () {
     Route::get('edit/{id}', [PengumumanController::class, 'edit'])->name('pengumuman.edit');
     Route::post('update/{id}', [PengumumanController::class, 'update'])->name('pengumuman.update');
     Route::post('delete/{id}', [PengumumanController::class, 'delete'])->name('pengumuman.delete');
+});
+
+Route::prefix("role")->group(function () {
+    Route::get('add', [RoleController::class, 'create'])->name('role.add');
+    Route::post('store', [RoleController::class, 'store'])->name('role.store');
+    Route::get('/', [RoleController::class, 'index'])->name('role.index');
+    Route::get('edit/{id}', [RoleController::class, 'edit'])->name('role.edit');
+    Route::post('update/{id}', [RoleController::class, 'update'])->name('role.update');
+    Route::post('delete/{id}', [RoleController::class, 'delete'])->name('role.delete');
 });

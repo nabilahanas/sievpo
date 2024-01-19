@@ -13,8 +13,12 @@ class AuthController extends Controller
 {
     public function register()
     {
-        return view('users/register');
+        $role = Role::all();
+        $jabatan = Jabatan::all();
+        return view('users/register', ['role' => $role, 'jabatan' => $jabatan]);
     }
+
+    //return view('user.edit', ['user' => $user, 'clubs' => $clubs, 'roles' => $roles]);
 
     public function registered(Request $request)
     {

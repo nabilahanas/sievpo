@@ -1,6 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 
+@if($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+        @foreach($errors->all() as $error)
+
+            <li>{{ $error }}</li>
+
+        @endforeach
+        </ul>
+    </div>
+@endif
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">

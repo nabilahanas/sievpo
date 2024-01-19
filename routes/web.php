@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\NavController;
@@ -75,4 +76,9 @@ Route::prefix("role")->group(function () {
     Route::get('edit/{id}', [RoleController::class, 'edit'])->name('role.edit');
     Route::post('update/{id}', [RoleController::class, 'update'])->name('role.update');
     Route::post('delete/{id}', [RoleController::class, 'delete'])->name('role.delete');
+});
+
+Route::prefix("users")->group(function(){
+    Route::get('/', [UserController::class, 'index'])->name('users.index');
+    Route::post('delete/{id', [UserController::class, 'delete'])->name('users.delete');
 });

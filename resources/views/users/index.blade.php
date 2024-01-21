@@ -28,9 +28,13 @@
                 <td>{{ $user->nama_user }}</td>
                 <td>{{ $user->nip }}</td>
                 <td>{{ $user->no_hp }}</td>
-                <td>{{ $user->id_role }}</td>
-                <td>{{ $user->id_jabatan }}</td>
-                <td>{{ $user->id_wilayah }}</td>
+                <td>{{ $user->role->nama_role }}</td>
+                <td>{{ $user->jabatan->nama_jabatan}}</td>
+                <td>
+                    @if($user->jabatan->wilayah == 0) Wilayah Timur
+                    @elseif($user->jabatan->wilayah == 1) Wilayah Barat
+                    @endif
+                </td>
                 <td>
 
                     <form action="{{route('users.delete', $user->id_user)}}" method="post" class="d-inline">

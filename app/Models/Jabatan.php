@@ -14,6 +14,7 @@ class Jabatan extends Model
     
     protected $fillable = [
         'nama_jabatan',
+        'wilayah',
     ];
 
     public $timestamps = true;

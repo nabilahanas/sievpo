@@ -15,23 +15,20 @@ class AuthController extends Controller
     {
         $role = Role::all();
         $jabatan = Jabatan::all();
-        return view('users/register', ['role' => $role, 'jabatan' => $jabatan]);
+
+        return view('users/register', ['role' => $role, 'jabatan' => $jabatan,]);
     }
 
-    //return view('user.edit', ['user' => $user, 'clubs' => $clubs, 'roles' => $roles]);
 
     public function registered(Request $request)
-    {
+    {        
         $users = User::create([
             'nama_user' => $request->nama_user,
             'nip' => $request->nip,
             'no_hp' => $request->no_hp,
             'id_role' => $request->input('role'),
             'id_jabatan' => $request->input('jabatan'),
-            // 'role' => $request -> role,
             'password' => bcrypt($request->password),
-            // 'id_jabatan' => $request -> id_jabatan,
-            // 'id_wilayah' => $request -> id_wilayah,
         ]);
 
         return redirect('/login')->with('success', 'Data user berhasil ditambahkan');

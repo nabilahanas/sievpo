@@ -17,6 +17,7 @@
       <tr>
         <th>No.</th>
         <th>Nama Jabatan</th>
+        <th>Wilayah</th>
         <th>Action</th>
       </tr>
     </thead>
@@ -25,6 +26,11 @@
             <tr>
                 <td>{{ $loop->iteration }}.</td>
                 <td>{{ $jabatan->nama_jabatan }}</td>
+                <td>
+                        @if($jabatan->wilayah == 0) Wilayah Timur
+                        @elseif($jabatan->wilayah == 1) Wilayah Barat
+                        @endif
+                </td>
                 <td>
                     <a href="{{ route('jabatan.edit', $jabatan->id_jabatan) }}" type="button" class="btn btn-warning rounded-3">Ubah</a>
 

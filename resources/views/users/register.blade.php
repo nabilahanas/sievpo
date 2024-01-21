@@ -38,8 +38,9 @@
                                 <input type="text" name="no_hp" class="form-control" Required autocomplete="off">
                             </div>
                             <div class="mb-3">
-                                <label for="role">Role:</label>
-                                <select name="role" id="role">
+                                <label for="role">Role</label>
+                                <select name="role" id="role" class="form-control">
+                                    <option value="" disabled selected></option>
                                     @foreach ($role as $role)
                                         <option value="{{ $role->id_role }}">{{ $role->nama_role }}</option>
                                     @endforeach
@@ -50,16 +51,20 @@
                                 <input type="password" name="password" class="form-control" Required autocomplete="off">
                             </div>
                             <div class="mb-3">
-                                <label for="jabatan">Jabatan:</label>
-                                <select name="jabatan" id="jabatan">
+                                <label for="jabatan">Jabatan</label>
+                                <select name="jabatan" id="jabatan" class="form-control">
+                                    <option value="" disabled selected></option>
                                     @foreach ($jabatan as $jabatan)
                                         <option value="{{ $jabatan->id_jabatan }}">{{ $jabatan->nama_jabatan }}</option>
                                     @endforeach
                                 </select>
                             </div>
                             {{-- <div class="mb-3">
-                                <label for="id_wilayah" class="form-label">Wilayah</label>
-                                <input type="text" name="id_wilayah" class="form-control" Required autocomplete="off">
+                                <label for="wilayah" class="form-label">Wilayah</label>
+                                <input name="wilayah" id="wilayah" class="form-control">
+                                @foreach ($jabatan as $jabatan)
+                                        <div value="{{ $jabatan->wilayah}}">{{ $jabatan->wilayah }}</div>
+                                    @endforeach
                             </div> --}}
 
                     </div>

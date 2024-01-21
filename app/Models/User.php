@@ -24,7 +24,7 @@ class User extends Authenticatable
         'id_role',
         'password',
         'id_jabatan',
-        'id_wilayah',
+        // 'id_wilayah',
     ];
 
     /**
@@ -46,4 +46,20 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    /**
+     * Get the role that owns the user.
+     */
+    public function role()
+    {
+        return $this->belongsTo(Role::class, 'id_role');
+    }
+
+    /**
+     * Get the jabatan that owns the user.
+     */
+    public function jabatan()
+    {
+        return $this->belongsTo(Jabatan::class, 'id_jabatan');
+    }
 }

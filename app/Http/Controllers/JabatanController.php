@@ -25,6 +25,7 @@ class JabatanController extends Controller
     {
         $this->validate($request, [
             'nama_jabatan' => 'required',
+            'wilayah' => 'required|boolean',
         ]);
 
         $data = $request->all();
@@ -44,10 +45,12 @@ class JabatanController extends Controller
     {
         $request->validate([
             'nama_jabatan' => 'required',
+            'wilayah' => 'required|boolean',
         ]);
         $jabatan = Jabatan::find($id);
         $jabatan->update([
             'nama_jabatan' => $request -> nama_jabatan,
+            'wilayah' => $request -> wilayah,
         ]);
         
         return redirect()->route('jabatan.index');

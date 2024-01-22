@@ -1,5 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Log in</title>
+    
+        <!-- Google Font: Source Sans Pro -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="{{ asset('/') }}plugins/fontawesome-free/css/all.min.css">
+        <!-- icheck bootstrap -->
+        <link rel="stylesheet" href="{{ asset('/') }}plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+        <!-- Theme style -->
+        <link rel="stylesheet" href="{{ asset('/') }}dist/css/adminlte.css">
+    </head>
 
 @if($errors->any())
     <div class="alert alert-danger">
@@ -39,14 +53,14 @@
             <div class="row justify-content-center">
                 <div class="col-lg-4">
                     <div class="p-1">
-                        <div class="card rounded-lg mt-5 card-primary">
+                        <div class="card card-outline rounded-lg mt-5 card-primary">
                             <div class="card-body">
                                 <form action="/ceklogin" method="POST">
                                     @csrf
                                     <div class="card-header text-center">
-                                        <a href="/login" class="h1"><b>Eviden</b>Poin</a>
+                                        <a href="/login" class="h1"><b>SIEVPO</b></a>
                                     </div>
-                                    <p class="login-box-msg" style="font-size: 14px">Perum Perhutani KPH Semarang</p>
+                                    <p class="login-box-msg" style="font-size: 14px">Sistem Informasi Eviden Poin</p>
 
                                     <div class="input-group mb-3">
                                         <input type="text" name="nip" class="form-control" placeholder="NIP" required
@@ -67,7 +81,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group col-12">
-                                        <input name="" id="" class="btn btn-success btn-block" type="submit"
+                                        <input name="" id="" class="btn btn-successv2 btn-block" type="submit"
                                             value="Login">
                                     </div>
                                 </form>

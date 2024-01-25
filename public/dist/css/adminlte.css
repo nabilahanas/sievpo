@@ -5387,13 +5387,29 @@ input[type="button"].btn-block {
 }
 
 .left {
-  background-image: url('public/dist/img/Rectangle-555.jpg');
-  background-size: cover;
-  background-position: center;
   left: 0;
-  fill: #016237;
+  background-color: #016237;
   box-shadow: -150px 0px 250px 0px rgba(140, 213, 11, 0.35) inset;
   flex-shrink: 0;
+}
+
+@media (max-width: 991px) {
+  .intro-section {
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+}
+
+@media (max-width: 767px) {
+  .intro-section {
+    padding: 28px;
+  }
+}
+
+@media (max-width: 575px) {
+  .intro-section {
+    min-height: auto;
+  }
 }
 
 .right {
@@ -5409,29 +5425,26 @@ input[type="button"].btn-block {
 }
 
 .intro-content-wrapper {
-  max-width: 400px;
+  max-width: 600px;
   margin: 0 auto;
 }
 
 .intro-title {
   margin-bottom: 16px;
-  font-family: "Poppins", Helvetica;
+  font-family: "Poppins", sans-serif;
   color: #8CD50B;
   text-align: center;
-  font-size: 42px;
-  font-style: normal;
-  font-weight: 700;
+  font-size: 38px;
   line-height: 50px;
 }
 
 .intro-text {
   margin-bottom: 16px;
-  /* color: #E9ECEF; */
+  color: #E9ECEF;
   text-align: center;
-  font-family: "Poppins", Helvetica;
+  font-family: "Poppins", sans-serif;
   font-size: 16px;
-  font-style: normal;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .card {
@@ -37053,75 +37066,6 @@ a.disabled.mailbox-attachment-close {
 
 .dark-mode .lockscreen-image {
   background-color: #6c757d;
-}
-
-.login-view {
-  background-color: #e9ecef;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  width: 100%;
-}
-
-.login-view .div {
-  background-color: #e9ecef;
-  width: 1366px;
-  height: 768px;
-  position: relative;
-}
-
-.login-view .overlap {
-  position: absolute;
-  width: 683px;
-  height: 768px;
-  top: 0;
-  left: 0;
-  background-image: url(./img/rectangle-666.svg);
-  background-size: 100% 100%;
-}
-
-.login-view .text-wrapper {
-  position: absolute;
-  width: 515px;
-  top: 252px;
-  left: 84px;
-  font-family: "Poppins-Bold", Helvetica;
-  font-weight: 700;
-  color: #8cd50b;
-  font-size: 42px;
-  text-align: center;
-  letter-spacing: 0;
-  line-height: 50px;
-}
-
-.login-view .login-form {
-  position: absolute;
-  width: 403px;
-  height: 596px;
-  top: 86px;
-  left: 827px;
-}
-
-.login-view .overlap-group {
-  position: relative;
-  width: 407px;
-  height: 596px;
-}
-
-.login-view .group {
-  position: absolute;
-  width: 407px;
-  height: 596px;
-  top: 0;
-  left: 0;
-}
-
-.login-view .overlap-group-2 {
-  position: absolute;
-  width: 403px;
-  height: 351px;
-  top: 245px;
-  left: 0;
 }
 
 .login-logo,

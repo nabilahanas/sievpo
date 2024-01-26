@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BidangController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
@@ -81,4 +82,13 @@ Route::prefix("role")->group(function () {
 Route::prefix("users")->group(function(){
     Route::get('/', [UserController::class, 'index'])->name('users.index');
     Route::post('delete/{id', [UserController::class, 'delete'])->name('users.delete');
+});
+
+Route::prefix("bidang")->group(function(){
+    Route::get('add', [BidangController::class, 'create'])->name('bidang.add');
+    Route::post('store', [BidangController::class, 'store'])->name('bidang.store');
+    Route::get('/', [BidangController::class, 'index'])->name('bidang.index');
+    Route::get('edit/{id}', [BidangController::class, 'edit'])->name('bidang.edit');
+    Route::post('update/{id}', [BidangController::class, 'update'])->name('bidang.update');
+    Route::post('delete/{id}', [BidangController::class, 'delete'])->name('bidang.delete');
 });

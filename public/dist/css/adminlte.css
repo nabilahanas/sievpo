@@ -14554,13 +14554,13 @@ body:not(.layout-fixed) .main-sidebar .sidebar {
 
 .sidebar-dark-success .nav-sidebar>.nav-item>.nav-link.active,
 .sidebar-light-success .nav-sidebar>.nav-item>.nav-link.active {
-  background-color: #28a745;
+  background-color: #006342;
   color: #fff;
 }
 
 .sidebar-dark-success .nav-sidebar.nav-legacy>.nav-item>.nav-link.active,
 .sidebar-light-success .nav-sidebar.nav-legacy>.nav-item>.nav-link.active {
-  border-color: #28a745;
+  border-color: #006342;
 }
 
 .sidebar-dark-info .nav-sidebar>.nav-item>.nav-link.active,
@@ -50439,7 +50439,7 @@ a.text-muted:hover {
 .accent-primary .btn-link,
 .accent-primary a:not(.dropdown-item):not(.btn-app):not(.nav-link):not(.brand-link):not(.page-link):not(.badge):not(.btn),
 .accent-primary .nav-tabs .nav-link {
-  color: #007bff;
+  color: #006342;
 }
 
 .accent-primary .btn-link:hover,
@@ -50450,7 +50450,7 @@ a.text-muted:hover {
 
 .accent-primary .dropdown-item:active,
 .accent-primary .dropdown-item.active {
-  background-color: #007bff;
+  background-color: #006342;
   color: #fff;
 }
 

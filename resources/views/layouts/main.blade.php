@@ -34,19 +34,16 @@
 
     <!-- Right navbar links -->
     <div class="navbar-nav ml-auto">
-      <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{Auth::user()->nama ?? ''}}
-      </button>
-      <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-          <a class="dropdown-item" href="/profile">
           <div class="media">
               <img class="align-self-center img-circle mr-3" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png" height="30" width="30" alt="Generic placeholder image">
               <div class="media-body">
-                  <h5 class="mt-0"> {{ Auth::user()->nama ?? ''}} </h5>
-                  
-                  <small><p class="mb-0">KPH Semarang</p></small>
+                  <span class="mt-0">(Nama)</span>
+                  <small><p class="mb-0">(Level)</p></small>
               </div>
           </div>
-          </a>
+      <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{Auth::user()->nama ?? ''}}
+      </button>
+      <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
           <a class="dropdown-item" href="/profile">Profil</a>
           <a class="dropdown-item" href="/logout">Logout</a>
       </div>
@@ -87,11 +84,9 @@
 
     <!-- Main content -->
     <section class="content">
-
       <!-- Default box -->
       @yield('content')
       <!-- /.card -->
-
     </section>
     <!-- /.content -->
   </div>

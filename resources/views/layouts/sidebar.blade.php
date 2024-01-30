@@ -8,6 +8,14 @@
                 </p>
             </a>
         </li>
+        <li class="nav-item">
+            <a href="#" class="nav-link {{ $key == 'evdata' ? 'active' : '' }}">
+                <i class="nav-icon far fa-edit"></i>
+                <p>
+                    Data Eviden Poin
+                </p>
+            </a>
+        </li>
         <li
             class="nav-item {{ $key == 'harian' || $key == 'bulanan' || $key == 'total' ? 'menu-is-opening menu-open' : '' }}">
             <a href="{{ url('#') }}"

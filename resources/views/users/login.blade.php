@@ -29,7 +29,7 @@
 <body class="hold-transition login-page">
     <div class="split left">
         <div class="centered">
-            <div class="intro-content-wrapper">
+            <div class="intro-wrapper">
                 <h1 class="intro-title"><b>Selamat Datang Pengguna SIEVPO</b></h1>
                 <p class="intro-text">SIEVPO hanya bisa dimasuki oleh pengguna yang sudah didaftarkan oleh Admin SIEVPO.
                     Terima kasih!</p>

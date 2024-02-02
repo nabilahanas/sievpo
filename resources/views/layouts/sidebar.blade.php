@@ -67,19 +67,19 @@
             </a>
             <ul class="nav nav-treeview">
                 <li class="nav-item">
-                    <a href="#" class="nav-link {{ $key == 'jabatan' ? 'active' : '' }}">
+                    <a href="/jabatan" class="nav-link {{ $key == 'jabatan' ? 'active' : '' }}">
                         <i class="far fa-circle nav-icon"></i>
                         <p>Jabatan</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link {{ $key == 'bidang' ? 'active' : '' }}">
+                    <a href="/bidang" class="nav-link {{ $key == 'bidang' ? 'active' : '' }}">
                         <i class="far fa-circle nav-icon"></i>
                         <p>Bidang</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link {{ $key == 'wilayah' ? 'active' : '' }}">
+                    <a href="/wilayah" class="nav-link {{ $key == 'wilayah' ? 'active' : '' }}">
                         <i class="far fa-circle nav-icon"></i>
                         <p>Wilayah</p>
                     </a>
@@ -110,13 +110,13 @@
             </a>
             <ul class="nav nav-treeview">
                 <li class="nav-item">
-                    <a href="#" class="nav-link {{ $key == 'berita' ? 'active' : '' }}">
+                    <a href="/berita" class="nav-link {{ $key == 'berita' ? 'active' : '' }}">
                         <i class="far fa-circle nav-icon"></i>
                         <p>Berita</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link {{ $key == 'pengumuman' ? 'active' : '' }}">
+                    <a href="/pengumuman" class="nav-link {{ $key == 'pengumuman' ? 'active' : '' }}">
                         <i class="far fa-circle nav-icon"></i>
                         <p>Pengumuman</p>
                     </a>
@@ -124,7 +124,7 @@
             </ul>
         </li>
         <li class="nav-item">
-            <a href="#" class="nav-link {{ $key == 'user' ? 'active' : '' }}">
+            <a href="/user" class="nav-link {{ $key == 'user' ? 'active' : '' }}">
                 <i class="nav-icon fas fa-users"></i>
                 <p>
                     User

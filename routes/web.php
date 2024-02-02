@@ -10,6 +10,7 @@ use App\Http\Controllers\JabatanController;
 use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\PengumumanController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -91,4 +92,8 @@ Route::prefix("bidang")->group(function(){
     Route::get('edit/{id}', [BidangController::class, 'edit'])->name('bidang.edit');
     Route::post('update/{id}', [BidangController::class, 'update'])->name('bidang.update');
     Route::post('delete/{id}', [BidangController::class, 'delete'])->name('bidang.delete');
+});
+
+Route ::prefix("profile")->group(function(){
+    Route::get('/', [ProfileController::class, 'index'])->name('profile.index');
 });

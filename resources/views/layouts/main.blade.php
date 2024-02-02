@@ -37,8 +37,8 @@
           <div class="media">
               <img class="align-self-center img-circle mr-3" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png" height="30" width="30" alt="Generic placeholder image">
               <div class="media-body">
-                  <span class="mt-0">(Nama)</span>
-                  <small><p class="mb-0">(Level)</p></small>
+                  <span class="mt-3 mb-1">{{ Auth::user()->nama_user ?? '' }}</span>
+                  <small><p class="mb-0">{{ Auth::user()->jabatan ?? '' }}</p></small>
               </div>
           </div>
       <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{Auth::user()->nama ?? ''}}

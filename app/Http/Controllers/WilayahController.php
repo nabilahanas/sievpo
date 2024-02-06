@@ -14,14 +14,14 @@ class WilayahController extends Controller
     public function index()
     {
         $wilayah = Wilayah::all();
-        return view('wilayah.index', compact('wilayah'));
+        return view('wilayah.index', compact('wilayah'), ['key'=>'wilayah']);
     }
 
 
     // Menampilkan form untuk menambahkan data wilayah
     public function create()
     {
-        return view('wilayah.add');
+        return view('wilayah.add', ['key'=>'wilayah']);
     }
 
     // Menyimpan data wilayah yang baru ditambahkan
@@ -51,7 +51,7 @@ class WilayahController extends Controller
     public function edit($id)
     {
         $wilayah = Wilayah::find($id);
-        return view('wilayah.edit', compact('wilayah'));
+        return view('wilayah.edit', compact('wilayah'), ['key'=>'wilayah']);
     }
 
     // Menyimpan perubahan pada data wilayah yang diedit

@@ -13,12 +13,12 @@ class BeritaController extends Controller
     public function index()
     {
         $berita = Berita::all();
-        return view('berita.index', compact('berita'));
+        return view('berita.index', compact('berita'), ['key'=>'berita']);
     }
 
     public function create()
     {
-        return view('berita.add');
+        return view('berita.add', ['key'=>'berita']);
     }
 
     public function store(Request $request)
@@ -40,7 +40,7 @@ class BeritaController extends Controller
     public function edit($id)
     {
         $berita = Berita::find($id);
-        return view('berita.edit', compact('berita'));
+        return view('berita.edit', compact('berita'), ['key'=>'berita']);
     }
 
     public function update(Request $request, $id)

@@ -13,12 +13,12 @@ class JabatanController extends Controller
     public function index()
     {
         $jabatan = Jabatan::all();
-        return view('jabatan.index', compact('jabatan'));
+        return view('jabatan.index', compact('jabatan'), ['key'=>'jabatan']);
     }
 
     public function create()
     {
-        return view('jabatan.add');
+        return view('jabatan.add', ['key'=>'jabatan']);
     }
 
     public function store(Request $request)
@@ -38,7 +38,7 @@ class JabatanController extends Controller
     public function edit($id)
     {
         $jabatan = Jabatan::find($id);
-        return view('jabatan.edit', compact('jabatan'));
+        return view('jabatan.edit', compact('jabatan'), ['key'=>'jabatan']);
     }
 
     public function update(Request $request, $id)

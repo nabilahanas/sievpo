@@ -85,13 +85,13 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link {{ $key == 'lokasi' ? 'active' : '' }}">
+                    <a href="/lokasi" class="nav-link {{ $key == 'lokasi' ? 'active' : '' }}">
                         <i class="far fa-circle nav-icon"></i>
                         <p>Lokasi</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link {{ $key == 'shift' ? 'active' : '' }}">
+                    <a href="/shift" class="nav-link {{ $key == 'shift' ? 'active' : '' }}">
                         <i class="far fa-circle nav-icon"></i>
                         <p>Shift</p>
                     </a>
@@ -124,7 +124,7 @@
             </ul>
         </li>
         <li class="nav-item">
-            <a href="/user" class="nav-link {{ $key == 'user' ? 'active' : '' }}">
+            <a href="/users" class="nav-link {{ $key == 'users' ? 'active' : '' }}">
                 <i class="nav-icon fas fa-users"></i>
                 <p>
                     User

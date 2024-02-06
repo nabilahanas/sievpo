@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\BidangController;
+use App\Http\Controllers\LokasiController;
+use App\Http\Controllers\ShiftController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
@@ -96,4 +98,22 @@ Route::prefix("bidang")->group(function(){
 
 Route ::prefix("profile")->group(function(){
     Route::get('/', [ProfileController::class, 'index'])->name('profile.index');
+});
+
+Route::prefix("shift")->group(function(){
+    Route::get('add', [ShiftController::class, 'create'])->name('shift.add');
+    Route::post('store', [ShiftController::class, 'store'])->name('shift.store');
+    Route::get('/', [ShiftController::class, 'index'])->name('shift.index');
+    Route::get('edit/{id}', [ShiftController::class, 'edit'])->name('shift.edit');
+    Route::post('update/{id}', [ShiftController::class, 'update'])->name('shift.update');
+    Route::post('delete/{id}', [ShiftController::class, 'delete'])->name('shift.delete');
+});
+
+Route::prefix("lokasi")->group(function(){
+    Route::get('add', [LokasiController::class, 'create'])->name('lokasi.add');
+    Route::post('store', [LokasiController::class, 'store'])->name('lokasi.store');
+    Route::get('/', [LokasiController::class, 'index'])->name('lokasi.index');
+    Route::get('edit/{id}', [LokasiController::class, 'edit'])->name('lokasi.edit');
+    Route::post('update/{id}', [LokasiController::class, 'update'])->name('lokasi.update');
+    Route::post('delete/{id}', [LokasiController::class, 'delete'])->name('lokasi.delete');
 });

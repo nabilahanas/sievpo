@@ -13,12 +13,12 @@ class PengumumanController extends Controller
     public function index()
     {
         $pengumuman = Pengumuman::all();
-        return view('pengumuman.index', compact('pengumuman'));
+        return view('pengumuman.index', compact('pengumuman'), ['key'=>'pengumuman']);
     }
 
     public function create()
     {
-        return view('pengumuman.add');
+        return view('pengumuman.add', ['key'=>'pengumuman']);
     }
 
     public function store(Request $request)
@@ -40,7 +40,7 @@ class PengumumanController extends Controller
     public function edit($id)
     {
         $pengumuman = Pengumuman::find($id);
-        return view('pengumuman.edit', compact('pengumuman'));
+        return view('pengumuman.edit', compact('pengumuman'), ['key'=>'pengumuman']);
     }
 
     public function update(Request $request, $id)

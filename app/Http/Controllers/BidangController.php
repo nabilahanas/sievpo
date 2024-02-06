@@ -13,12 +13,12 @@ class BidangController extends Controller
     public function index()
     {
         $bidang = Bidang::all();
-        return view('bidang.index', compact('bidang'));
+        return view('bidang.index', compact('bidang'), ['key'=>'bidang']);
     }
 
     public function create()
     {
-        return view('bidang.add');
+        return view('bidang.add', ['key'=>'bidang']);
     }
 
     public function store(Request $request)
@@ -38,7 +38,7 @@ class BidangController extends Controller
     public function edit ($id)
     {
         $bidang = Bidang::find($id);
-        return view('bidang.edit', compact('bidang'));
+        return view('bidang.edit', compact('bidang'), ['key'=>'bidang']);
     }
 
     public function update(Request $request, $id)

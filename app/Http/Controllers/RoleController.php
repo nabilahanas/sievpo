@@ -13,12 +13,12 @@ class RoleController extends Controller
     public function index()
     {
         $role = Role::all();
-        return view('role.index', compact('role'));
+        return view('role.index', compact('role'), ['key'=>'role']);
     }
 
     public function create()
     {
-        return view('role.add');
+        return view('role.add', ['key'=>'role']);
     }
 
     public function store(Request $request)
@@ -38,7 +38,7 @@ class RoleController extends Controller
     public function edit($id)
     {
         $role = Role::find($id);
-        return view('role.edit', compact('role'));
+        return view('role.edit', compact('role'), ['key'=>'role']);
     }
 
     public function update(Request $request, $id)

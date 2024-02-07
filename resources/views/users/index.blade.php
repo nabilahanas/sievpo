@@ -2,7 +2,9 @@
 
 @section('content')
 
-<h4 class="mt-5">Data User</h4>
+<h4 class="mt-0">Data User</h4>
+
+<a href="{{ route('register') }}" type="button" class="btn btn-success rounded-3">Register New User</a>
 
 @if($message = Session::get('success'))
     <div class="alert alert-success mt-3" role="alert">

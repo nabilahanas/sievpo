@@ -2,7 +2,7 @@
 
 @section('content')
 
-<h4 class="mt-5">Data Jabatan</h4>
+<h4 class="mt-0">Data Jabatan</h4>
 
 <a href="{{ route('jabatan.add') }}" type="button" class="btn btn-success rounded-3">Tambah Data</a>
 

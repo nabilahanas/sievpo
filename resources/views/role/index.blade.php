@@ -2,7 +2,7 @@
 
 @section('content')
 
-<h4 class="mt-5">Data Role</h4>
+<h4 class="mt-0">Data Role</h4>
 
 <a href="{{ route('role.add') }}" type="button" class="btn btn-success rounded-3">Tambah Data</a>
 

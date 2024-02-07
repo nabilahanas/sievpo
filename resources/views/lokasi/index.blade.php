@@ -2,7 +2,7 @@
 
 @section('content')
 
-<h4 class="mt-5">Data Lokasi</h4>
+<h4 class="mt-0">Data Lokasi</h4>
 
 <a href="{{ route('lokasi.add') }}" type="button" class="btn btn-success rounded-3">Tambah Data</a>
 

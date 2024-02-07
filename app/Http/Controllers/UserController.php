@@ -16,6 +16,11 @@ class UserController extends Controller
         return view('users.index', compact('users'), ['key'=>'users']);
     }
 
+    public function create()
+    {
+        return view('users.register', ['key'=>'users']);
+    }
+
     public function delete($id)
     {
         $users = User::find($id);

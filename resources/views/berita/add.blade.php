@@ -1,7 +1,5 @@
 @extends('layouts.main')
 
-@section('title', 'Tambah Berita')
-
 @section('content')
 
     @if ($errors->any())

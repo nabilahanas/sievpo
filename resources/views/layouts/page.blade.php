@@ -20,13 +20,6 @@
     </head>
     <body class="antialiased">
 
-        {{-- <nav class="navbar bg-light">
-            <div class="container-fluid">
-              <a class="navbar-brand" href="{{ route('mahasiswa.index') }}">Tugas PBD CRUD Laravel Eloquent
-              </a>
-            </div>
-        </nav> --}}
-
         <div class="container">
             @yield('content')
         </div>

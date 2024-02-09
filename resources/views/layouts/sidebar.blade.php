@@ -98,8 +98,7 @@
                 </li>
             </ul>
         </li>
-        <li
-            class="nav-item {{ $key == 'berita' || $key == 'pengumuman' ? 'menu-is-opening menu-open' : '' }}">
+        <li class="nav-item {{ $key == 'berita' || $key == 'pengumuman' ? 'menu-is-opening menu-open' : '' }}">
             <a href="{{ url('#') }}"
                 class="nav-link {{ $key == 'berita' || $key == 'pengumuman' ? 'active' : '' }}">
                 <i class="nav-icon fas fa-newspaper"></i>

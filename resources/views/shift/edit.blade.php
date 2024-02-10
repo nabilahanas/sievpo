@@ -1,6 +1,7 @@
 @extends('layouts.main')
 
 @section('content')
+    <title>Data Shift</title>
 
     @if ($errors->any())
         <div class="alert alert-danger">
@@ -12,34 +13,43 @@
         </div>
     @endif
 
-    <div class="card mt-4">
-        <div class="card-body">
-
-            <h5 class="card-title fw-bolder mb-3">Ubah Data Shift</h5>
-
-            <form method="post" action="{{ route('shift.update', $shift->id_shift) }}">
-                @csrf
-                <div class="mb-3">
-                    <label for="nama_shift" class="form-label">Nama Shift</label>
-                    <input type="text" class="form-control" id="nama_shift" name="nama_shift"
-                        value="{{ $shift->nama_shift }}" required>
+    <div class="card card-successv2">
+        <div class="card-header">
+            <i class="fas fa-pen"></i> Ubah Data Shift
+        </div>
+        <form method="post" action="{{ route('shift.update', $shift->id_shift) }}">
+            @csrf
+            <div class="card-body">
+                <div class="form-group row col-12 col-md-10">
+                    <label for="nama_shift" class="col-sm-2 col-form-label">Nama Shift</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="nama_shift" name="nama_shift"
+                            value="{{ $shift->nama_shift }}" required>
+                    </div>
                 </div>
-                <div class="mb-3">
-                    <label for="jam_mulai" class="form-label">Jam Mulai</label>
-                    <input type="text" class="form-control" id="jam_mulai" name="jam_mulai"
-                        value="{{ $shift->jam_mulai }}" required>
+                <div class="form-group row col-12 col-md-10">
+                    <label for="jam_mulai" class="col-sm-2 col-form-label">Jam Mulai</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="jam_mulai" name="jam_mulai"
+                            value="{{ $shift->jam_mulai }}" required>
+                    </div>
                 </div>
-                <div class="mb-3">
-                    <label for="jam_akhir" class="form-label">Jam Akhir</label>
-                    <input type="text" class="form-control" id="jam_akhir" name="jam_akhir"
-                        value="{{ $shift->jam_akhir }}" required>
+                <div class="form-group row col-12 col-md-10">
+                    <label for="jam_akhir" class="col-sm-2 col-form-label">Jam Akhir</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="jam_akhir" name="jam_akhir"
+                            value="{{ $shift->jam_akhir }}" required>
+                    </div>
                 </div>
                 <div class="text-center">
-                    <input type="submit" class="btn btn-primary" value="Ubah" />
-                    <a type="button" class="btn btn-danger" href="/shift">Kembali</a>
+                    <button type="sumbit" class="btn btn-primary"><i class="fas fa-save"></i>
+                        Simpan</button>
+                    <button type="reset" class="btn btn-secondary"><i class="fas fa-redo"></i>
+                        Reset</button>
+                    <button type="button" class="btn btn-danger" onclick="window.location='/shift'"><i
+                            class="fas fa-reply"></i> Kembali</button>
                 </div>
-            </form>
-        </div>
+            </div>
+        </form>
     </div>
-
 @endsection

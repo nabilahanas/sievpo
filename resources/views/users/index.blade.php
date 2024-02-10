@@ -17,8 +17,8 @@
             @endif
 
             <div class="card-body table-responsive">
-                <table id="user" class="table table-sm text-nowrap table-hover" style="width: 100%">
-                    <thead>
+                <table id="user" class="table table-sm text-nowrap table-hover table-striped" style="width: 100%">
+                    <thead class="thead-successv2">
                         <tr>
                             <th>Nama</th>
                             <th>NIP</th>

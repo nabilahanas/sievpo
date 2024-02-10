@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('content')
-    <title>Tambah Berita</title>
+    <title>Data Berita</title>
 
     @if ($errors->any())
         <div class="alert alert-danger">
@@ -15,7 +15,7 @@
 
     <div class="card card-successv2">
         <div class="card-header">
-            <h3 class="card-title"><i class="fas fa-plus"></i> Tambah Data Berita</h3>
+            <i class="fas fa-plus"></i> Tambah Data Berita
         </div>
         <form class="form-horizontal" method="post" action="{{ route('berita.store') }}">
             @csrf
@@ -29,25 +29,27 @@
                             <option>option 3</option>
                             <option>option 4</option>
                             <option>option 5</option>
-                          </select>
+                        </select>
                     </div>
                 </div>
                 <div class="form-group row col-12 col-md-10">
                     <label for="judul" class="col-sm-2 col-form-label">Judul</label>
                     <div class="col-sm-10" name="id_berita" id="id_berita">
-                        <input type="text" class="form-control" name="id_berita" placeholder="Masukkan Judul Berita" required>
+                        <input type="text" class="form-control" name="id_berita" placeholder="Masukkan Judul Berita"
+                            required>
                     </div>
                 </div>
                 <div class="form-group row col-12 col-md-10">
                     <label class="col-sm-2 col-form-label">Gambar</label>
                     <div class="col-sm-10">
-                        <input type="file" class="form-control" id="fileInput" name="fileInput" accept="image/*" required>
+                        <input type="file" class="form-control" id="fileInput" name="fileInput" accept="image/*"
+                            required>
                     </div>
                 </div>
                 <div class="form-group row col-12 col-md-10">
                     <label for="deskripsi" class="col-sm-2 col-form-label">Deskripsi</label>
                     <div class="col-sm-10">
-                        <input type="textarea" class="form-control" name="deskripsi" placeholder="Masukkan Deskripsi Berita" required>
+                        <textarea class="form-control" name="deskripsi" placeholder="Masukkan Deskripsi Berita" required></textarea>
                     </div>
                 </div>
                 <div class="form-group row col-12 col-md-10">
@@ -57,11 +59,12 @@
                     </div>
                 </div>
                 <div class="text-center">
-                    <button type="submit" class="btn btn-primary" value="Tambah"><i class="fas fa-save"></i>
+                    <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i>
                         Simpan</button>
-                    <button type="submit" class="btn btn-secondary" value="Tambah"><i class="fas fa-redo"></i>
+                    <button type="reset" class="btn btn-secondary"><i class="fas fa-redo"></i>
                         Reset</button>
-                    <button type="submit" class="btn btn-danger" value="Tambah"><i class="fas fa-reply"></i>
+                    <button type="button" class="btn btn-danger" onclick="window.location='/berita'"><i
+                            class="fas fa-reply"></i>
                         Kembali</button>
                 </div>
             </div>

@@ -1,6 +1,7 @@
 @extends('layouts.main')
 
 @section('content')
+    <title>Data Jabatan</title>
 
     @if ($errors->any())
         <div class="alert alert-danger">
@@ -12,31 +13,38 @@
         </div>
     @endif
 
-    <div class="card mt-4">
-        <div class="card-body">
-
-            <h5 class="card-title fw-bolder mb-3">Ubah Data Jabatan</h5>
-
-            <form method="post" action="{{ route('jabatan.update', $jabatan->id_jabatan) }}">
-                @csrf
-                <div class="mb-3">
-                    <label for="nama_jabatan" class="form-label">Nama Jabatan</label>
-                    <input type="text" class="form-control" id="nama_jabatan" name="nama_jabatan"
-                        value="{{ $jabatan->nama_jabatan }}" required>
-                </div>
-                <div class="mb-3">
-                <label for="wilayah">Pilih Wilayah</label>
-                <select name="wilayah" id="wilayah" class="form-control">
-                    <option value="1" {{ $jabatan->wilayah ? 'selected' : '' }}>Wilayah Barat</option>
-                    <option value="0" {{ !$jabatan->wilayah ? 'selected' : '' }}>Wilayah Timur</option>
-                </select>
-            </div>
-                <div class="text-center">
-                    <input type="submit" class="btn btn-primary" value="Ubah" />
-                    <a type="button" class="btn btn-danger" href="/jabatan">Kembali</a>
-                </div>
-            </form>
+    <div class="card card-successv2">
+        <div class="card-header">
+            <i class="fas fa-pen"></i> Ubah Data Jabatan
         </div>
+        <form method="post" action="{{ route('jabatan.update', $jabatan->id_jabatan) }}">
+            @csrf
+            <div class="card-body">
+                <div class="form-group row col-12 col-md-10">
+                    <label for="nama_jabatan" class="col-sm-2 col-form-label">Nama Jabatan</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="nama_jabatan" name="nama_jabatan"
+                            value="{{ $jabatan->nama_jabatan }}" required>
+                    </div>
+                </div>
+                <div class="form-group row col-12 col-md-10">
+                    <label for="wilayah" class="col-sm-2 col-form-label">Pilih Wilayah</label>
+                    <div class="col-sm-10">
+                        <select name="wilayah" id="wilayah" class="form-control">
+                            <option value="1" {{ $jabatan->wilayah ? 'selected' : '' }}>Wilayah Barat</option>
+                            <option value="0" {{ !$jabatan->wilayah ? 'selected' : '' }}>Wilayah Timur</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <button type="sumbit" class="btn btn-primary"><i class="fas fa-save"></i>
+                        Simpan</button>
+                    <button type="reset" class="btn btn-secondary"><i class="fas fa-redo"></i>
+                        Reset</button>
+                    <button type="button" class="btn btn-danger" onclick="window.location='/jabatan'"><i
+                            class="fas fa-reply"></i> Kembali</button>
+                </div>
+            </div>
+        </form>
     </div>
-
 @endsection

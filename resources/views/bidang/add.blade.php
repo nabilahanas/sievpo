@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('content')
-    <title>Tambah Bidang</title>
+    <title>Data Bidang</title>
 
     @if ($errors->any())
         <div class="alert alert-danger">
@@ -15,7 +15,7 @@
 
     <div class="card card-successv2">
         <div class="card-header">
-            <h3 class="card-title"><i class="fas fa-plus"></i> Tambah Data Bidang</h3>
+            <i class="fas fa-plus"></i> Tambah Data Bidang
         </div>
         <form class="form-horizontal" method="post" action="{{ route('bidang.store') }}">
             @csrf
@@ -34,9 +34,12 @@
                     </div>
                 </div>
                 <div class="text-center">
-                    <button type="submit" class="btn btn-primary" value="Tambah"><i class="fas fa-save"></i>
+                    <button type="sumbit" class="btn btn-primary"><i class="fas fa-save"></i>
                         Simpan</button>
-                    <a type="button" class="btn btn-danger" href="/bidang"><i class="fas fa-reply"></i> Kembali</a>
+                    <button type="reset" class="btn btn-secondary"><i class="fas fa-redo"></i>
+                        Reset</button>
+                    <button type="button" class="btn btn-danger" onclick="window.location='/bidang'"><i
+                            class="fas fa-reply"></i> Kembali</button>
                 </div>
             </div>
         </form>

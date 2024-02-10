@@ -1,47 +1,62 @@
 @extends('layouts.main')
 
 @section('content')
+    <title>Data Wilayah</title>
 
-@if($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-        @foreach($errors->all() as $error)
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
 
-            <li>{{ $error }}</li>
-
-        @endforeach
-        </ul>
-    </div>
-@endif
-
-<div class="card mt-4">
-    <div class="card-body">
-
-        <h5 class="card-title fw-bolder mb-3">Ubah Data Wilayah</h5>
-
+    <div class="card card-successv2">
+        <div class="card-header">
+            <i class="fas fa-pen"></i> Ubah Data Wilayah
+        </div>
         <form method="post" action="{{ route('wilayah.update', $wilayah->id_wilayah) }}">
             @csrf
-            <div class="mb-3">
-                <label for="nama_wilayah" class="form-label">Nama Wilayah:</label>
-                <input type="text" class="form-control" id="nama_wilayah" name="nama_wilayah" value="{{ $wilayah->nama_wilayah }}">
-            </div>
-            <div class="mb-3">
-                <label for="latitude" class="form-label">Latitude:</label>
-                <input type="text" class="form-control" id="latitude" name="latitude" value="{{ $wilayah->latitude }}">
-            </div>
-            <div class="mb-3">
-                <label for="longitude" class="form-label">Longitude:</label>
-                <input type="text" class="form-control" id="longitude" name="longitude" value="{{ $wilayah->longitude }}">
-            </div>
-            <div class="mb-3">
-                <label for="deskripsi" class="form-label">Longitude:</label>
-                <input type="text" class="form-control" id="deskripsi" name="deskripsi" value="{{ $wilayah->deskripsi }}">
-            </div>
-            <div class="text-center">
-                <input type="submit" class="btn btn-primary" value="Ubah" />
+            <div class="card-body">
+                <div class="form-group row col-12 col-md-10">
+                    <label for="nama_wilayah" class="col-sm-2 col-form-label">Nama Wilayah:</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="nama_wilayah" name="nama_wilayah"
+                            value="{{ $wilayah->nama_wilayah }}">
+                    </div>
+                </div>
+                <div class="form-group row col-12 col-md-10">
+                    <label for="latitude" class="col-sm-2 col-form-label">Latitude:</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="latitude" name="latitude"
+                            value="{{ $wilayah->latitude }}">
+                    </div>
+                </div>
+                <div class="form-group row col-12 col-md-10">
+                    <label for="longitude" class="col-sm-2 col-form-label">Longitude:</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="longitude" name="longitude"
+                            value="{{ $wilayah->longitude }}">
+                    </div>
+                </div>
+                <div class="form-group row col-12 col-md-10">
+                    <label for="deskripsi" class="col-sm-2 col-form-label">Longitude:</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="deskripsi" name="deskripsi"
+                            value="{{ $wilayah->deskripsi }}">
+                    </div>
+                </div>
+                <div class="text-center">
+                    <button type="sumbit" class="btn btn-primary"><i class="fas fa-save"></i>
+                        Simpan</button>
+                    <button type="reset" class="btn btn-secondary"><i class="fas fa-redo"></i>
+                        Reset</button>
+                    <button type="button" class="btn btn-danger" onclick="window.location='/wilayah'"><i
+                            class="fas fa-reply"></i> Kembali</button>
+                </div>
             </div>
         </form>
     </div>
-</div>
-
 @endsection

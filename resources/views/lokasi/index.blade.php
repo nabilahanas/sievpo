@@ -19,8 +19,8 @@
             @endif
 
             <div class="card-body table-responsive">
-                <table id="lokasi" class="table table-sm text-nowrap table-hover" style="width: 100%">
-                    <thead>
+                <table id="lokasi" class="table table-sm text-nowrap table-hover table-striped" style="width: 100%">
+                    <thead class="thead-successv2">
                         <tr>
                             <th>No.</th>
                             <th>Nama Lokasi</th>

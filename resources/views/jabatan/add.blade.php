@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('content')
-    <title>Tambah Jabatan</title>
+    <title>Data Jabatan</title>
 
     @if ($errors->any())
         <div class="alert alert-danger">
@@ -15,7 +15,7 @@
 
     <div class="card card-successv2">
         <div class="card-header">
-            <h3 class="card-title"><i class="fas fa-plus"></i> Tambah Data Jabatan</h3>
+            <i class="fas fa-plus"></i> Tambah Data Jabatan
         </div>
         <form class="form-horizontal" method="post" action="{{ route('jabatan.store') }}">
             @csrf
@@ -37,8 +37,12 @@
                     </div>
                 </div>
                 <div class="text-center">
-                    <input type="submit" class="btn btn-primary" value="Tambah" />
-                    <a type="button" class="btn btn-danger" href="/jabatan"><i class="fas fa-reply"></i> Kembali</a>
+                    <button type="sumbit" class="btn btn-primary"><i class="fas fa-save"></i>
+                        Simpan</button>
+                    <button type="reset" class="btn btn-secondary"><i class="fas fa-redo"></i>
+                        Reset</button>
+                    <button type="button" class="btn btn-danger" onclick="window.location='/jabatan'"><i
+                            class="fas fa-reply"></i> Kembali</button>
                 </div>
             </div>
         </form>

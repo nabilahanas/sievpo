@@ -18,8 +18,8 @@
             @endif
 
             <div class="card-body table-responsive">
-                <table id="jabatan" class="table table-sm text-nowrap table-hover" style="width: 100%">
-                    <thead>
+                <table id="jabatan" class="table table-sm text-nowrap table-hover table-striped" style="width: 100%">
+                    <thead class="thead-successv2">
                         <tr>
                             <th>No.</th>
                             <th>Nama Jabatan</th>

@@ -18,8 +18,8 @@
             @endif
 
             <div class="card-body table-responsive">
-                <table id="pengumuman" class="table table-sm text-nowrap table-hover" style="width: 100%">
-                    <thead>
+                <table id="pengumuman" class="table table-sm text-nowrap table-hover table-striped" style="width: 100%">
+                    <thead class="thead-successv2">
                         <tr>
                             <th>Judul Pengumuman</th>
                             <th>Gambar</th>

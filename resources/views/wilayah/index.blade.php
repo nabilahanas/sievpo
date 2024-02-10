@@ -8,7 +8,7 @@
 
     <div class="card">
         <div class="card-body">
-            <a href="{{ route('wilayah.add') }}" type="button" class="btn btn-primary rounded-3"><i class="fas fa-plus"></i>
+            <a href="{{ route('wilayah.add') }}" type="button" class="btn btn-primary"><i class="fas fa-plus"></i>
                 Tambah</a>
 
             @if ($message = Session::get('success'))
@@ -18,8 +18,8 @@
             @endif
 
             <div class="card-body table-responsive">
-            <table id="wilayah" class="table table-sm text-nowrap table-hover" style="width: 100%">
-                <thead>
+            <table id="wilayah" class="table table-sm text-nowrap table-hover table-striped" style="width: 100%">
+                <thead class="thead-successv2">
                     <tr>
                         <th>Nama Wilayah</th>
                         <th>Latitude</th>
@@ -38,14 +38,6 @@
                             <td>
                                 <a href="{{ route('wilayah.edit', $wilayah->id_wilayah) }}" type="button"
                                     class="btn btn-warning rounded-3"><i class="fas fa-pen"></i> Ubah</a>
-
-                                <!-- Button trigger modal -->
-                                {{-- <button type="button" class="btn btn-danger" Mhs-bs-toggle="modal" Mhs-bs-target="#hapusModal{{ $mhs->nim }}">
-                        Hapus
-                    </button> --}}
-
-                                <!-- Modal -->
-
                                 <form action="{{ route('wilayah.delete', $wilayah->id_wilayah) }}" method="post"
                                     class="d-inline">
                                     @csrf

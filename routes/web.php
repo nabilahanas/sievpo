@@ -13,6 +13,7 @@ use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\PengumumanController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\DataController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,7 +35,6 @@ Route::get('/login', [AuthController::class, 'login'])->name('login')->middlewar
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::post('/ceklogin', [AuthController::class, 'ceklogin'])->name('ceklogin')->middleware('guest');
 Route::post('/registered', [AuthController::class, 'registered'])->name('registered')->middleware('guest');
-// Route::get('/home', [NavController::class, 'home'])->name('home')->middleware('home');
 Route::get('/home', [NavController::class, 'dashboard'])->name('dashboard');
 
 Route::prefix("wilayah")->group(function () {
@@ -84,7 +84,7 @@ Route::prefix("role")->group(function () {
 
 Route::prefix("users")->group(function(){
     Route::get('/', [UserController::class, 'index'])->name('users.index');
-    Route::post('delete/{id', [UserController::class, 'delete'])->name('users.delete');
+    Route::post('delete/{id}', [UserController::class, 'delete'])->name('users.delete');
 });
 
 Route::prefix("bidang")->group(function(){
@@ -116,4 +116,11 @@ Route::prefix("lokasi")->group(function(){
     Route::get('edit/{id}', [LokasiController::class, 'edit'])->name('lokasi.edit');
     Route::post('update/{id}', [LokasiController::class, 'update'])->name('lokasi.update');
     Route::post('delete/{id}', [LokasiController::class, 'delete'])->name('lokasi.delete');
+});
+
+Route::prefix("data")->group(function(){
+    Route::get('add', [DataController::class, 'create'])->name('data.add');
+    Route::post('store', [DataController::class, 'store'])->name('data.store');
+    Route::get('/', [DataController::class, 'index'])->name('data.index');
+    Route::post('delete/{id}', [DataController::class, 'delete'])->name('data.delete');
 });

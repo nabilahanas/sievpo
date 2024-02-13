@@ -15,7 +15,7 @@
 
     <div class="card card-successv2">
         <div class="card-header">
-            <i class="fas fa-plus"></i> Tambah Data Berita
+            <i class="fas fa-plus mr-2"></i>Tambah Data Berita
         </div>
         <form class="form-horizontal" method="post" action="{{ route('berita.store') }}">
             @csrf
@@ -59,13 +59,10 @@
                     </div>
                 </div>
                 <div class="text-center">
-                    <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i>
-                        Simpan</button>
-                    <button type="reset" class="btn btn-secondary"><i class="fas fa-redo"></i>
-                        Reset</button>
+                    <button type="submit" class="btn btn-primary"><i class="fas fa-save mr-2"></i>Simpan</button>
+                    <button type="reset" class="btn btn-secondary"><i class="fas fa-redo mr-2"></i>Reset</button>
                     <button type="button" class="btn btn-danger" onclick="window.location='/berita'"><i
-                            class="fas fa-reply"></i>
-                        Kembali</button>
+                            class="fas fa-reply mr-2"></i>Kembali</button>
                 </div>
             </div>
         </form>

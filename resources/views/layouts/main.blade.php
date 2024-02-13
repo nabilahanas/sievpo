@@ -38,25 +38,35 @@
             </ul>
 
             <!-- Right navbar links -->
-            <div class="navbar-nav ml-auto">
-                <div class="media">
-                    <img class="align-self-center img-circle mr-3"
-                        src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png"
-                        height="30" width="30" alt="Generic placeholder image">
-                    <div class="media-body">
-                        <span class="mt-3 mb-1">{{ Auth::user()->nama_user ?? '' }}</span>
-                        <small>
-                            <p class="mb-0">{{ Auth::user()->jabatan ?? '' }}</p>
-                        </small>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <div class="media">
+                        <img class="align-self-center img-circle mr-3"
+                            src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png"
+                            height="30" width="30">
+                        <div class="media-body">
+                            <span class="mt-3 mb-1">{{ Auth::user()->nama_user ?? '' }}</span>
+                            <small>
+                                <p class="mb-0">{{ Auth::user()->jabatan ?? '' }}</p>
+                            </small>
+                        </div>
                     </div>
-                </div>
-                <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false">{{ Auth::user()->nama ?? '' }}
-                </button>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="/profile">Profil</a>
-                    <a class="dropdown-item" href="/logout">Logout</a>
-                </div>
+                </li>
+                <li class="nav-item dropdown">>
+                    <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">{{ Auth::user()->nama ?? '' }}
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                        <a class="dropdown-item" href="/profile">
+                            <i class="fas fa-user mr-2"></i>Profil
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="/logout">
+                            <i class="fas fa-sign-out-alt mr-2"></i>Logout
+                        </a>
+                    </div>
+                </li>
+            </ul>
         </nav>
         <!-- /.navbar -->
 

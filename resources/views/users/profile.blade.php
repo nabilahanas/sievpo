@@ -110,8 +110,8 @@
                                                         name="fileInput" accept="image/*">
                                                 </div>
                                                 <div class="form-group mb-2">
-                                                    <button type="button" class="btn btn-info2"><i class="fas fa-sync"></i>
-                                                        Update</button>
+                                                    <button type="button" class="btn btn-info2"><i
+                                                            class="fas fa-sync mr-2"></i>Update</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -128,8 +128,8 @@
                                                 placeholder="Masukkan password baru">
                                         </div>
                                         <div class="form-group mb-2">
-                                            <button type="button" class="btn btn-info2"><i class="fas fa-sync"></i>
-                                                Update</button>
+                                            <button type="button" class="btn btn-info2"><i
+                                                    class="fas fa-sync mr-2"></i>Update</button>
                                         </div>
                                     </div>
                                 </div>

@@ -11,11 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('lokasi', function (Blueprint $table) {
-            $table->id('id_lokasi');
-            $table->string('nama_lokasi', 50);
-            $table->double('latitude');
-            $table->double('longitude');
+        Schema::create('poin', function (Blueprint $table) {
+            $table->id();
             $table->timestamps();
         });
     }
@@ -25,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('lokasi');
+        Schema::dropIfExists('poin');
     }
 };

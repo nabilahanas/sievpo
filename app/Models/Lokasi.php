@@ -19,5 +19,10 @@ class Lokasi extends Model
         'longitude',
     ];
 
+    protected $casts = [
+        'latitude' => 'double',
+        'longitude' => 'double',
+    ];
+
     public $timestamps = true;
 }

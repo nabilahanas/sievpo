@@ -37,8 +37,8 @@
                                 <td>{{ $lokasi->latitude }}</td>
                                 <td>{{ $lokasi->longitude }}</td>
                                 <td>
-                                    <a href="{{ route('lokasi.edit', $lokasi->id_lokasi) }}" type="button"
-                                        class="btn btn-sm btn-warning rounded-3"><i class="fas fa-pen"></i> Ubah</a>
+                                    {{-- <a href="{{ route('lokasi.edit', $lokasi->id_lokasi) }}" type="button"
+                                        class="btn btn-sm btn-warning rounded-3"><i class="fas fa-pen"></i> Ubah</a> --}}
 
                                     <form action="{{ route('lokasi.delete', $lokasi->id_lokasi) }}" method="post"
                                         class="d-inline">

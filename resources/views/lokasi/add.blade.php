@@ -39,7 +39,7 @@
                     </div>
                 </div>
                 <div class="text-center">
-                    <button type="sumbit" class="btn btn-primary"><i class="fas fa-save"></i>
+                    <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i>
                         Simpan</button>
                     <button type="reset" class="btn btn-secondary"><i class="fas fa-redo"></i>
                         Reset</button>

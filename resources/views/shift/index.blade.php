@@ -36,8 +36,8 @@
                                 <td>{{ $shift->jam_mulai }}</td>
                                 <td>{{ $shift->jam_akhir }}</td>
                                 <td>
-                                    <a href="{{ route('shift.edit', $shift->id_shift) }}" type="button"
-                                        class="btn btn-sm btn-warning"><i class="fas fa-pen"></i> Ubah</a>
+                                    {{-- <a href="{{ route('shift.edit', $shift->id_shift) }}" type="button"
+                                        class="btn btn-sm btn-warning"><i class="fas fa-pen"></i> Ubah</a> --}}
 
                                     <form action="{{ route('shift.delete', $shift->id_shift) }}" method="post"
                                         class="d-inline">

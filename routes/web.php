@@ -1,9 +1,13 @@
 <?php
 
 use App\Http\Controllers\BidangController;
+use App\Http\Controllers\BulananController;
+use App\Http\Controllers\ConfirmController;
 use App\Http\Controllers\LokasiController;
 use App\Http\Controllers\ShiftController;
+use App\Http\Controllers\TotalController;
 use App\Http\Controllers\UserController;
+use Illuminate\Console\View\Components\Confirm;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\NavController;
@@ -14,6 +18,7 @@ use App\Http\Controllers\PengumumanController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DataController;
+use App\Http\Controllers\HarianController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,7 +32,7 @@ use App\Http\Controllers\DataController;
 */
 
 Route::get('/', function () {
-    return view('landing.home');
+return view('landing.home');
 });
 
 Route::get('/register', [AuthController::class, 'register'])->name('register')->middleware('guest');
@@ -124,3 +129,9 @@ Route::prefix("data")->group(function(){
     Route::get('/', [DataController::class, 'index'])->name('data.index');
     Route::post('delete/{id}', [DataController::class, 'delete'])->name('data.delete');
 });
+
+
+Route::get('/harian', [HarianController::class, 'index'])->name('harian')->middleware('guest');
+Route::get('/bulanan', [BulananController::class, 'index'])->name('bulanan')->middleware('guest');
+Route::get('/total', [TotalController::class, 'index'])->name('total')->middleware('guest');
+Route::get('/confirm', [ConfirmController::class, 'index'])->name('confirm')->middleware('guest');

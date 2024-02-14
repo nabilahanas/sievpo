@@ -28,19 +28,19 @@
             </a>
             <ul class="nav nav-treeview">
                 <li class="nav-item">
-                    <a href="#" class="nav-link {{ $key == 'harian' ? 'active' : '' }}">
+                    <a href="/harian" class="nav-link {{ $key == 'harian' ? 'active' : '' }}">
                         <i class="far fa-circle nav-icon"></i>
                         <p>Harian</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link {{ $key == 'bulanan' ? 'active' : '' }}">
+                    <a href="/bulanan" class="nav-link {{ $key == 'bulanan' ? 'active' : '' }}">
                         <i class="far fa-circle nav-icon"></i>
                         <p>Bulanan</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link {{ $key == 'total' ? 'active' : '' }}">
+                    <a href="/total" class="nav-link {{ $key == 'total' ? 'active' : '' }}">
                         <i class="far fa-circle nav-icon"></i>
                         <p>Total</p>
                     </a>
@@ -48,7 +48,7 @@
             </ul>
         </li>
         <li class="nav-item">
-            <a href="#" class="nav-link {{ $key == 'konfirmasi' ? 'active' : '' }}">
+            <a href="/confirm" class="nav-link {{ $key == 'konfirmasi' ? 'active' : '' }}">
                 <i class="nav-icon fas fa-check-circle"></i>
                 <p>
                     Konfirmasi Data

@@ -14,7 +14,7 @@
     @endif
     <div class="card card-successv2">
         <div class="card-header">
-            <i class="fas fa-plus"></i> Tambah Data Shift
+            <i class="fas fa-plus mr-2"></i>Tambah Data Shift
         </div>
         <form class="form-horizontal" method="post" action="{{ route('shift.store') }}">
             @csrf
@@ -28,22 +28,20 @@
                 <div class="form-group row col-12 col-md-10">
                     <label for="jam_mulai" class="col-sm-2 col-form-label">Jam Mulai</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="jam_mulai" placeholder="HH:mm:ss" required>
+                        <input type="text" class="form-control" name="jam_mulai" required>
                     </div>
                 </div>
                 <div class="form-group row col-12 col-md-10">
                     <label for="jam_akhir" class="col-sm-2 col-form-label">Jam Akhir</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="jam_akhir" placeholder="HH:mm:ss" required>
+                        <input type="time" class="form-control" name="jam_akhir" required>
                     </div>
                 </div>
                 <div class="text-center">
-                    <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i>
-                        Simpan</button>
-                    <button type="reset" class="btn btn-secondary"><i class="fas fa-redo"></i>
-                        Reset</button>
+                    <button type="sumbit" class="btn btn-primary"><i class="fas fa-save mr-2"></i>Simpan</button>
+                    <button type="reset" class="btn btn-secondary"><i class="fas fa-redo mr-2"></i>Reset</button>
                     <button type="button" class="btn btn-danger" onclick="window.location='/shift'"><i
-                            class="fas fa-reply"></i> Kembali</button>
+                            class="fas fa-reply mr-2"></i>Kembali</button>
                 </div>
             </div>
         </form>

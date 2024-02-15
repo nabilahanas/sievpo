@@ -7,8 +7,7 @@
 
     <div class="card">
         <div class="card-body">
-            <a href="{{ route('register') }}" type="button" class="btn btn-primary"><i class="fas fa-plus"></i>
-                Tambah</a>
+            <a href="{{ route('register') }}" type="button" class="btn btn-primary"><i class="fas fa-plus mr-2"></i>Tambah</a>
 
             @if ($message = Session::get('success'))
                 <div class="alert alert-success mt-3" role="alert">
@@ -49,7 +48,7 @@
                                         class="d-inline">
                                         @csrf
                                         @method('POST')
-                                        <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i> Hapus
+                                        <button class="btn btn-sm btn-danger"><i class="fas fa-trash mr-2"></i>Hapus
                                         </button>
                                     </form>
                                 </td>

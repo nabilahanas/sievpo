@@ -8,8 +8,7 @@
 
     <div class="card">
         <div class="card-body">
-            <a href="{{ route('wilayah.add') }}" type="button" class="btn btn-primary"><i class="fas fa-plus"></i>
-                Tambah</a>
+            <a href="{{ route('wilayah.add') }}" type="button" class="btn btn-primary"><i class="fas fa-plus mr-2"></i>Tambah</a>
 
             @if ($message = Session::get('success'))
                 <div class="alert alert-success mt-3" role="alert">
@@ -37,14 +36,12 @@
                             <td>{{ $wilayah->deskripsi }}</td>
                             <td>
                                 <a href="{{ route('wilayah.edit', $wilayah->id_wilayah) }}" type="button"
-                                    class="btn btn-warning rounded-3"><i class="fas fa-pen"></i> Ubah</a>
+                                    class="btn btn-warning"><i class="fas fa-pen mr-2"></i>Ubah</a>
                                 <form action="{{ route('wilayah.delete', $wilayah->id_wilayah) }}" method="post"
                                     class="d-inline">
                                     @csrf
                                     @method('POST')
-                                    <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i> 
-                                        Hapus
-                                    </button>
+                                    <button class="btn btn-sm btn-danger"><i class="fas fa-trash mr-2"></i>Hapus</button>
                                 </form>
                             </td>
                         </tr>

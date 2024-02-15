@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('berita', function (Blueprint $table) {
             $table->id('id_berita');
             $table->string('judul', 255);
-            $table->binary('gambar')->nullable(); // longblob in MySQL is equivalent to binary in Laravel
+            $table->text('gambar')->nullable();
             $table->text('deskripsi');
             $table->date('tgl_publikasi');
             $table->timestamps();

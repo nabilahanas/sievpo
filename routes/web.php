@@ -48,7 +48,7 @@ Route::prefix("wilayah")->group(function () {
     Route::get('/', [WilayahController::class, 'index'])->name('wilayah.index');
     Route::get('edit/{id}', [WilayahController::class, 'edit'])->name('wilayah.edit');
     Route::post('update/{id}', [WilayahController::class, 'update'])->name('wilayah.update');
-    Route::post('delete/{id}', [WilayahController::class, 'delete'])->name('wilayah.delete');
+    Route::delete('delete/{id}', [WilayahController::class, 'delete'])->name('wilayah.delete');
 });
 
 Route::prefix("jabatan")->group(function () {
@@ -57,7 +57,7 @@ Route::prefix("jabatan")->group(function () {
     Route::get('/', [JabatanController::class, 'index'])->name('jabatan.index');
     Route::get('edit/{id}', [JabatanController::class, 'edit'])->name('jabatan.edit');
     Route::post('update/{id}', [JabatanController::class, 'update'])->name('jabatan.update');
-    Route::post('delete/{id}', [JabatanController::class, 'delete'])->name('jabatan.delete');
+    Route::delete('delete/{id}', [JabatanController::class, 'delete'])->name('jabatan.delete');
 });
 
 Route::prefix("berita")->group(function () {
@@ -66,7 +66,7 @@ Route::prefix("berita")->group(function () {
     Route::get('/', [BeritaController::class, 'index'])->name('berita.index');
     Route::get('edit/{id}', [BeritaController::class, 'edit'])->name('berita.edit');
     Route::post('update/{id}', [BeritaController::class, 'update'])->name('berita.update');
-    Route::post('delete/{id}', [BeritaController::class, 'delete'])->name('berita.delete');
+    Route::delete('delete/{id}', [BeritaController::class, 'delete'])->name('berita.delete');
 });
 
 Route::prefix("pengumuman")->group(function () {
@@ -75,7 +75,7 @@ Route::prefix("pengumuman")->group(function () {
     Route::get('/', [PengumumanController::class, 'index'])->name('pengumuman.index');
     Route::get('edit/{id}', [PengumumanController::class, 'edit'])->name('pengumuman.edit');
     Route::post('update/{id}', [PengumumanController::class, 'update'])->name('pengumuman.update');
-    Route::post('delete/{id}', [PengumumanController::class, 'delete'])->name('pengumuman.delete');
+    Route::delete('delete/{id}', [PengumumanController::class, 'delete'])->name('pengumuman.delete');
 });
 
 Route::prefix("role")->group(function () {
@@ -84,12 +84,12 @@ Route::prefix("role")->group(function () {
     Route::get('/', [RoleController::class, 'index'])->name('role.index');
     Route::get('edit/{id}', [RoleController::class, 'edit'])->name('role.edit');
     Route::post('update/{id}', [RoleController::class, 'update'])->name('role.update');
-    Route::post('delete/{id}', [RoleController::class, 'delete'])->name('role.delete');
+    Route::delete('delete/{id}', [RoleController::class, 'delete'])->name('role.delete');
 });
 
 Route::prefix("users")->group(function(){
     Route::get('/', [UserController::class, 'index'])->name('users.index');
-    Route::post('delete/{id}', [UserController::class, 'delete'])->name('users.delete');
+    Route::delete('delete/{id}', [UserController::class, 'delete'])->name('users.delete');
 });
 
 Route::prefix("bidang")->group(function(){
@@ -98,7 +98,7 @@ Route::prefix("bidang")->group(function(){
     Route::get('/', [BidangController::class, 'index'])->name('bidang.index');
     Route::get('edit/{id}', [BidangController::class, 'edit'])->name('bidang.edit');
     Route::post('update/{id}', [BidangController::class, 'update'])->name('bidang.update');
-    Route::post('delete/{id}', [BidangController::class, 'delete'])->name('bidang.delete');
+    Route::delete('delete/{id}', [BidangController::class, 'delete'])->name('bidang.delete');
 });
 
 Route ::prefix("profile")->group(function(){
@@ -111,7 +111,7 @@ Route::prefix("shift")->group(function(){
     Route::get('/', [ShiftController::class, 'index'])->name('shift.index');
     Route::get('edit/{id}', [ShiftController::class, 'edit'])->name('shift.edit');
     Route::post('update/{id}', [ShiftController::class, 'update'])->name('shift.update');
-    Route::post('delete/{id}', [ShiftController::class, 'delete'])->name('shift.delete');
+    Route::delete('delete/{id}', [ShiftController::class, 'delete'])->name('shift.delete');
 });
 
 Route::prefix("lokasi")->group(function(){
@@ -120,14 +120,14 @@ Route::prefix("lokasi")->group(function(){
     Route::get('/', [LokasiController::class, 'index'])->name('lokasi.index');
     Route::get('edit/{id}', [LokasiController::class, 'edit'])->name('lokasi.edit');
     Route::post('update/{id}', [LokasiController::class, 'update'])->name('lokasi.update');
-    Route::post('delete/{id}', [LokasiController::class, 'delete'])->name('lokasi.delete');
+    Route::delete('delete/{id}', [LokasiController::class, 'delete'])->name('lokasi.delete');
 });
 
 Route::prefix("data")->group(function(){
     Route::get('add', [DataController::class, 'create'])->name('data.add');
     Route::post('store', [DataController::class, 'store'])->name('data.store');
     Route::get('/', [DataController::class, 'index'])->name('data.index');
-    Route::post('delete/{id}', [DataController::class, 'delete'])->name('data.delete');
+    Route::delete('delete/{id}', [DataController::class, 'delete'])->name('data.delete');
 });
 
 

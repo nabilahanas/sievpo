@@ -128,7 +128,7 @@
                             <td>
                                 <form action="" method="post" class="d-inline">
                                     @csrf
-                                    @method('POST')
+                                    @method('DELETE')
                                     <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i>
                                         Hapus
                                     </button>

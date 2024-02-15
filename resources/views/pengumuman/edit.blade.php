@@ -17,7 +17,7 @@
         <div class="card-header">
             <i class="fas fa-pen mr-2"></i>Ubah Data Pengumuman
         </div>
-        <form method="post" action="{{ route('pengumuman.update', $pengumuman->id_pengumuman) }}">
+        <form method="post" action="{{ route('pengumuman.update', $pengumuman->id_pengumuman) }}" enctype="multipart/form-data">
             @csrf
             <div class="card-body">
                 <div class="form-group row col-12 col-md-10">
@@ -30,7 +30,7 @@
                 <div class="form-group row col-12 col-md-10">
                     <label for="gambar" class="col-sm-2 col-form-label">Gambar</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="gambar" name="gambar"
+                        <input type="file" class="form-control" id="gambar" name="gambar"
                             value="{{ $pengumuman->gambar }}">
                     </div>
                 </div>

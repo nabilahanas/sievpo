@@ -30,7 +30,7 @@
 
                     <form action="{{route('role.delete', $role->id_role)}}" method="post" class="d-inline">
                         @csrf
-                        @method('POST')
+                        @method('DELETE')
                         <button class="btn btn-danger">
                             Hapus
                         </button>

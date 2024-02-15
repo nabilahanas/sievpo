@@ -27,18 +27,26 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($berita as $berita)
+                        @foreach ($berita as $item)
                             <tr>
-                                <td>{{ $berita->judul }}</td>
+                                <td>{{ $item->judul }}</td>
                                 <td>
-                                    <a href="{{ route('berita.edit', $berita->id_berita) }}" type="button"
+                                    @if($item->gambar)
+                                        <img src="{{ asset('storage/gambar-berita/'.$item->gambar)}}" alt="Gambar Berita" width="150">
+                                    @else
+                                        Tidak Ada Gambar
+                                    @endif
+                                </td>
+                                <td>{{ $item->deskripsi }}</td>
+                                <td>{{ $item->tgl_publikasi }}</td>
+                                <td>
+                                    <a href="{{ route('berita.edit', $item->id_berita) }}" type="button"
                                         class="btn btn-sm btn-warning"><i class="fas fa-pen mr-2"></i>Ubah</a>
-                                    <form action="{{ route('berita.delete', $berita->id_berita) }}" method="post"
+                                    <form action="{{ route('berita.delete', $item->id_berita) }}" method="post"
                                         class="d-inline">
                                         @csrf
-                                        @method('POST')
-                                        <button class="btn btn-sm btn-danger"><i class="fas fa-trash mr-2"></i>Hapus
-                                        </button>
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-sm btn-danger"><i class="fas fa-trash mr-2"></i>Hapus</button>
                                     </form>
                                 </td>
                             </tr>

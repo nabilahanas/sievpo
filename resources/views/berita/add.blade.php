@@ -17,7 +17,7 @@
         <div class="card-header">
             <i class="fas fa-plus mr-2"></i>Tambah Data Berita
         </div>
-        <form class="form-horizontal" method="post" action="{{ route('berita.store') }}">
+        <form class="form-horizontal" method="post" action="{{ route('berita.store') }}" enctype="multipart/form-data">
             @csrf
             <div class="card-body">
                 <div class="form-group row col-12 col-md-10">
@@ -34,16 +34,16 @@
                 </div>
                 <div class="form-group row col-12 col-md-10">
                     <label for="judul" class="col-sm-2 col-form-label">Judul</label>
-                    <div class="col-sm-10" name="id_berita" id="id_berita">
-                        <input type="text" class="form-control" name="id_berita" placeholder="Masukkan Judul Berita"
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="judul" id="judul" placeholder="Masukkan Judul Berita"
                             required>
                     </div>
                 </div>
                 <div class="form-group row col-12 col-md-10">
                     <label class="col-sm-2 col-form-label">Gambar</label>
                     <div class="col-sm-10">
-                        <input type="file" class="form-control" id="fileInput" name="fileInput" accept="image/*"
-                            required>
+                        <input type="file" class="form-control" id="fileInput" name="gambar" accept="image/*"
+                            >
                     </div>
                 </div>
                 <div class="form-group row col-12 col-md-10">

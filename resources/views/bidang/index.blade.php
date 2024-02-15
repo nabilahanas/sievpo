@@ -40,7 +40,7 @@
                                     <form action="{{ route('bidang.delete', $bidang->id_bidang) }}" method="post"
                                         class="d-inline">
                                         @csrf
-                                        @method('POST')
+                                        @method('DELETE')
                                         <button class="btn btn-sm btn-danger"><i class="fas fa-trash mr-2"></i>Hapus
                                         </button>
                                     </form>

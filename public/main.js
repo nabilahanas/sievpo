@@ -1,24 +1,199 @@
 // Data Eviden Poin
 $(document).ready(function () {
     $('#evpo').DataTable({
-        scrollY: 600,
-        scrollX: true,
         scrollCollapse: true,
         columnDefs: [{ orderable: false, targets: [1, 2, 3, 4, 5, 6, 7, 8, 10, 11, 12, 13, 14, 15, 16, 17, 19, 20, 21, 22, 23, 24, 25, 26, 28, 29, 30, 31, 32, 33, 34, 35, 37, 38] }],
         displayLength: 25,
     });
 });
 
+// Rekap Harian Karyawan
+$(document).ready(function () {
+    var groupColumn = 2;
+    var table = $('#hkaryawan').DataTable({
+        dom: "<'row'<'col-sm-12 col-md-6 carihkaryawan'l ><'col-sm-12 col-md-6'f>>" +
+            "<'row'<'col-sm-12'tr>>" +
+            "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+        scrollCollapse: true,
+        paging: false,
+        columnDefs: [{ visible: false, targets: groupColumn },
+        { orderable: false, targets: [4, 5, 6, 7, 8, 9, 10, 11, 13, 14, 15, 16, 17, 18, 19, 20, 22, 23, 24, 25, 26, 27, 28, 29, 31, 32, 33, 34, 35, 36, 37, 38] }],
+        // { visible: false, targets: -1, }],
+        order: [[groupColumn, 'asc']],
+        drawCallback: function (settings) {
+            var api = this.api();
+            var rows = api.rows({ page: 'current' }).nodes();
+            var last = null;
+
+            api
+                .column(groupColumn, { page: 'current' })
+                .data()
+                .each(function (group, i) {
+                    if (last !== group) {
+                        $(rows)
+                            .eq(i)
+                            .before('<tr class="group"><td colspan="39">' + group + '</td></tr>');
+
+                        last = group;
+                    }
+                });
+        },
+    });
+
+    $('.carihkaryawan').append(`
+        <form>
+            <div class="input-group">
+                <input type="date" class="form-control" name="search" placeholder="search"
+                    aria-label="search" aria-describedby="button-addon2">
+                 <button class="btn btn-outline-dark" type="submit" id="button-addon2">Cari</button>
+            </div>
+        </form>
+    `);
+
+    // Order by the grouping
+    $('#hkaryawan').on('click', 'tr.group', function () {
+        var currentOrder = table.order()[0];
+        if (currentOrder[0] === groupColumn && currentOrder[1] === 'asc') {
+            table.order([groupColumn, 'desc']).draw();
+        } else {
+            table.order([groupColumn, 'asc']).draw();
+        }
+    });
+});
+
+// Rekap Harian Bidang
+$(document).ready(function () {
+    $('#hbidang').DataTable({
+        dom: "<'row'<'col-sm-12 col-md-6 carihbidang'l ><'col-sm-12 col-md-6'f>>" +
+            "<'row'<'col-sm-12'tr>>" +
+            "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+        scrollCollapse: true,
+        paging: false,
+    });
+
+    $('.carihbidang').append(`
+    <form>
+        <div class="input-group">
+        <input type="date" class="form-control" name="search" placeholder="search"
+            aria-label="search" aria-describedby="button-addon2">
+         <button class="btn btn-outline-dark" type="submit" id="button-addon2">Cari</button>
+        </div>
+    </form>
+    `);
+
+    // Order by the grouping
+    $('#hbidang').on('click', 'tr.group', function () {
+        var currentOrder = table.order()[0];
+        if (currentOrder[0] === groupColumn && currentOrder[1] === 'asc') {
+            table.order([groupColumn, 'desc']).draw();
+        } else {
+            table.order([groupColumn, 'asc']).draw();
+        }
+    });
+});
+
+// Rekap Harian BKPH
+$(document).ready(function () {
+    $('#hbkph').DataTable({
+        dom: "<'row'<'col-sm-12 col-md-6 carihbkph'l ><'col-sm-12 col-md-6'f>>" +
+            "<'row'<'col-sm-12'tr>>" +
+            "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+        scrollCollapse: true,
+        paging: false,
+    });
+
+    $('.carihbkph').append(`
+<form>
+    <div class="input-group">
+    <input type="date" class="form-control" name="search" placeholder="search"
+        aria-label="search" aria-describedby="button-addon2">
+     <button class="btn btn-outline-dark" type="submit" id="button-addon2">Cari</button>
+    </div>
+</form>
+`);
+
+    // Order by the grouping
+    $('#hbkph').on('click', 'tr.group', function () {
+        var currentOrder = table.order()[0];
+        if (currentOrder[0] === groupColumn && currentOrder[1] === 'asc') {
+            table.order([groupColumn, 'desc']).draw();
+        } else {
+            table.order([groupColumn, 'asc']).draw();
+        }
+    });
+});
+
+// Rekap Harian KRPH
+$(document).ready(function () {
+    $('#hkrph').DataTable({
+        dom: "<'row'<'col-sm-12 col-md-6 carihkrph'l ><'col-sm-12 col-md-6'f>>" +
+            "<'row'<'col-sm-12'tr>>" +
+            "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+        scrollCollapse: true,
+        paging: false,
+    });
+
+    $('.carihkrph').append(`
+<form>
+    <div class="input-group">
+    <input type="date" class="form-control" name="search" placeholder="search"
+        aria-label="search" aria-describedby="button-addon2">
+     <button class="btn btn-outline-dark" type="submit" id="button-addon2">Cari</button>
+    </div>
+</form>
+`);
+
+    // Order by the grouping
+    $('#hkrph').on('click', 'tr.group', function () {
+        var currentOrder = table.order()[0];
+        if (currentOrder[0] === groupColumn && currentOrder[1] === 'asc') {
+            table.order([groupColumn, 'desc']).draw();
+        } else {
+            table.order([groupColumn, 'asc']).draw();
+        }
+    });
+});
+
+// Rekap Harian Asper/KBKPH
+$(document).ready(function () {
+    $('#hasper').DataTable({
+        dom: "<'row'<'col-sm-12 col-md-6 carihasper'l ><'col-sm-12 col-md-6'f>>" +
+            "<'row'<'col-sm-12'tr>>" +
+            "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+        scrollCollapse: true,
+        paging: false,
+    });
+
+    $('.carihasper').append(`
+<form>
+    <div class="input-group">
+    <input type="date" class="form-control" name="search" placeholder="search"
+        aria-label="search" aria-describedby="button-addon2">
+     <button class="btn btn-outline-dark" type="submit" id="button-addon2">Cari</button>
+    </div>
+</form>
+`);
+
+    // Order by the grouping
+    $('#hasper').on('click', 'tr.group', function () {
+        var currentOrder = table.order()[0];
+        if (currentOrder[0] === groupColumn && currentOrder[1] === 'asc') {
+            table.order([groupColumn, 'desc']).draw();
+        } else {
+            table.order([groupColumn, 'asc']).draw();
+        }
+    });
+});
+
 // Rekap Bulanan
 $(document).ready(function () {
     $('#bulanan').DataTable({
-        dom: "<'row'<'col-sm-10 col-md-6 caribd1'l ><'col-sm-10 col-md-6'f>>" +
+        dom: "<'row'<'col-sm-10 col-md-6 caribulanan'l ><'col-sm-10 col-md-6'f>>" +
             "<'row'<'col-sm-12'tr>>" +
             "<'row'<'col-sm-10 col-md-5'i><'col-sm-10 col-md-7'p>>",
         scrollY: 600,
         scrollX: true,
         scrollCollapse: true,
-        // displayLength: 25,
         paging: false,
         columnDefs: [{ orderable: false, targets: [3, 4, 5, 6, 7, 8, 9, 10, 12, 13, 14, 15, 16, 17, 18, 19, 21, 22, 23, 24, 25, 26, 27, 28, 30, 31, 32, 33, 34, 35, 36, 37] }],
     });
@@ -52,8 +227,6 @@ $(document).ready(function () {
 // User
 $(document).ready(function () {
     var table = $('#user').DataTable({
-        scrollY: 600,
-        scrollX: true,
         scrollCollapse: true,
         columnDefs: [{ orderable: false, targets: 6 }],
         displayLength: 25,
@@ -73,8 +246,6 @@ $(document).ready(function () {
 // Jabatan
 $(document).ready(function () {
     var table = $('#jabatan').DataTable({
-        scrollY: 600,
-        scrollX: true,
         scrollCollapse: true,
         columnDefs: [{ orderable: false, targets: 3 }],
         displayLength: 25,
@@ -94,8 +265,6 @@ $(document).ready(function () {
 // Bidang
 $(document).ready(function () {
     var table = $('#bidang').DataTable({
-        scrollY: 600,
-        scrollX: true,
         scrollCollapse: true,
         columnDefs: [{ orderable: false, targets: 3 }],
         displayLength: 25,
@@ -115,8 +284,6 @@ $(document).ready(function () {
 // Wilayah
 $(document).ready(function () {
     var table = $('#wilayah').DataTable({
-        scrollY: 600,
-        scrollX: true,
         scrollCollapse: true,
         columnDefs: [{ orderable: false, targets: 4 }],
         displayLength: 25,
@@ -136,8 +303,6 @@ $(document).ready(function () {
 //Lokasi
 $(document).ready(function () {
     var table = $('#lokasi').DataTable({
-        scrollY: 600,
-        scrollX: true,
         scrollCollapse: true,
         columnDefs: [{ orderable: false, targets: 4 }],
         displayLength: 25,
@@ -157,8 +322,6 @@ $(document).ready(function () {
 // Shift
 $(document).ready(function () {
     var table = $('#shift').DataTable({
-        scrollY: 600,
-        scrollX: true,
         scrollCollapse: true,
         columnDefs: [{ orderable: false, targets: 4 }],
         displayLength: 25,
@@ -178,8 +341,6 @@ $(document).ready(function () {
 // Berita
 $(document).ready(function () {
     var table = $('#berita').DataTable({
-        scrollY: 600,
-        scrollX: true,
         scrollCollapse: true,
         columnDefs: [{ orderable: false, targets: 4 }],
         displayLength: 25,
@@ -199,8 +360,6 @@ $(document).ready(function () {
 // Pengumuman
 $(document).ready(function () {
     var table = $('#pengumuman').DataTable({
-        scrollY: 600,
-        scrollX: true,
         scrollCollapse: true,
         columnDefs: [{ orderable: false, targets: 4 }],
         displayLength: 25,

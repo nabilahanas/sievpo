@@ -70,7 +70,7 @@
 
                     <tbody>
                         <tr>
-                            {{-- <th scope="row">{{ ++$no }}.</th> --}}
+                            <th scope="row">.</th>
 
                             <td></td>
                             <td></td>

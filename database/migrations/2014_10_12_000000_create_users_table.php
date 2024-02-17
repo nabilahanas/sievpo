@@ -20,6 +20,7 @@ return new class extends Migration
             $table->unsignedBigInteger('id_jabatan');
             $table->unsignedBigInteger('id_role');
             $table->string('password', 255);
+            $table->text('profile_pict')->nullable();
             $table->timestamps();
 
             $table->foreign('id_jabatan')->references('id_jabatan')->on('jabatan')->onDelete('cascade');

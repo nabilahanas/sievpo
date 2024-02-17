@@ -26,6 +26,7 @@ class User extends Authenticatable
         'no_hp',
         'id_role',
         'password',
+        'profile_pict',
         'id_jabatan',
         // 'id_wilayah',
     ];

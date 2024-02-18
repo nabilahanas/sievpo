@@ -41,20 +41,27 @@
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
                     <div class="media">
-                        <img class="align-self-center img-circle mr-3"
+                        {{-- <img class="align-self-center img-circle mr-3"
                             src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png"
-                            height="30" width="30">
+                            height="30" width="30"> --}}
+                            @if (auth()->user()->profile_pict)
+                            <img src="{{ asset('storage/profile-pict/' . auth()->user()->profile_pict) }}" alt="Profile Picture"
+                                 alt="avatar" class="align-self-center img-circle mr-3" height="30" width="30">
+                        @else
+                            <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png"
+                                 alt="avatar" class="align-self-center img-circle mr-3" height="30" width="30">
+                        @endif
                         <div class="media-body">
                             <span class="mt-3 mb-1">{{ Auth::user()->nama_user ?? '' }}</span>
                             <small>
-                                <p class="mb-0">{{ Auth::user()->jabatan ?? '' }}</p>
+                                <p class="mb-0">{{ Auth::user()->jabatan->nama_jabatan ?? '' }}</p>
                             </small>
                         </div>
                     </div>
                 </li>
-                <li class="nav-item dropdown">>
+                <li class="nav-item dropdown">
                     <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false">{{ Auth::user()->nama ?? '' }}
+                        aria-haspopup="true" aria-expanded="false">
                     </button>
                     <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                         <a class="dropdown-item" href="/profile">

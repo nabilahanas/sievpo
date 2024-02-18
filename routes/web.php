@@ -40,7 +40,7 @@ Route::post('/ceklogin', [AuthController::class, 'ceklogin'])->name('ceklogin');
 
 // ALL ROLES
 
-
+Route::middleware('check.role:Admin,Karyawan,Pimpinan,Mahasiswa')->group(function(){
     Route::get('/home', [NavController::class, 'dashboard'])->name('dashboard');
 
     Route::prefix("profile")->group(function () {
@@ -56,9 +56,9 @@ Route::post('/ceklogin', [AuthController::class, 'ceklogin'])->name('ceklogin');
         Route::get('/', [DataController::class, 'index'])->name('data.index');
         Route::delete('delete/{id}', [DataController::class, 'delete'])->name('data.delete');
     });
+});
 
-
-
+Route::middleware('check.role:Admin,Mahasiswa')->group(function(){
     Route::get('/register', [AuthController::class, 'register'])->name('register');
     Route::post('/registered', [AuthController::class, 'registered'])->name('registered');
 
@@ -138,8 +138,12 @@ Route::post('/ceklogin', [AuthController::class, 'ceklogin'])->name('ceklogin');
         Route::post('update/{id}', [LokasiController::class, 'update'])->name('lokasi.update');
         Route::delete('delete/{id}', [LokasiController::class, 'delete'])->name('lokasi.delete');
     });
+});
 
+Route::middleware('check.role:Admin,Pimpinan,Mahasiswa')->group(function(){
     Route::get('/harian', [HarianController::class, 'index'])->name('harian');
     Route::get('/bulanan', [BulananController::class, 'index'])->name('bulanan');
     Route::get('/total', [TotalController::class, 'index'])->name('total');
     Route::get('/confirm', [ConfirmController::class, 'index'])->name('confirm');
+
+});

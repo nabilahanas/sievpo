@@ -121,9 +121,7 @@
                             <td></td>
 
                             <td>
-                                <a href="" target="_blank" rel="noopener noreferrer">Lihat Foto</a>
-                                {{-- <img src="{{ asset($data1->foto) }}" width='50' height='50' class="img img-responsive" /> --}}
-                                {{-- <img class="img-circle" src="{{ $data1->foto }}"> --}}
+                                <a href="" target="_blank" rel="noopener noreferrer"></a>
                             </td>
                             <td>
                                 <form action="" method="post" class="d-inline">

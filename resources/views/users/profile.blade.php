@@ -6,8 +6,8 @@
     <title>Profil User</title>
 
     <div class="container-fluid">
-        <div class="breadcrumb mb-4">
-            <div class="breadcrumb-item active">Selamat datang, {{ auth()->user()->nama_user }}!</div>
+        <div class="alert alert-success" role="alert">
+            Selamat datang, {{ auth()->user()->nama_user }}!
         </div>
 
         <div class="card">
@@ -53,7 +53,6 @@
                             </div>
                             <div class="card-body mb-4 ml-4">
                                 <div class="tab-content">
-
                                     {{-- PERSONAL INFO --}}
                                     <div class="active tab-pane" id="info">
                                         <div class="row">
@@ -139,11 +138,20 @@
                                                     <div class="form-group">
                                                         <label>Pilih File Foto</label>
                                                         <input class="form-control" type="file" id="profile_pict"
-                                                            name="profile_pict" accept="image/">
+                                                            name="profile_pict" accept="image/*">
                                                     </div>
                                                     <div class="form-group mb-2">
                                                         <button type="submit" class="btn btn-info2"><i
                                                                 class="fas fa-sync mr-2"></i>Update</button>
+
+                                                        <form action=""
+                                                            method="post" class="d-inline">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button class="btn btn-danger"><i
+                                                                    class="fas fa-trash mr-2"></i>Hapus
+                                                            </button>
+                                                        </form>
                                                     </div>
                                                 </div>
                                             </form>
@@ -177,7 +185,6 @@
                                             </div>
                                         </form>
                                     </div>
-
                                 </div>
                             </div>
                         </div>

@@ -24,7 +24,7 @@
                         <th>Latitude</th>
                         <th>Longitude</th>
                         <th>Deskripsi</th>
-                        <th>Action</th>
+                        <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>

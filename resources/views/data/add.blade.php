@@ -21,13 +21,13 @@
             @csrf
             <div class="card-body">
                 <div class="form-group row col-12 col-md-10">
-                    <label for="" class="col-sm-2 col-form-label">Nama</label>
+                    <label for="" class="col-sm-2 col-form-label required">Nama</label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" name="" required>
                     </div>
                 </div>
                 <div class="form-group row col-12 col-md-10">
-                    <label for="" class="col-sm-2 col-form-label">Bidang</label>
+                    <label for="" class="col-sm-2 col-form-label required">Bidang</label>
                     <div class="col-sm-10">
                         <select name="" id="" class="form-control">
                             <option value="" disabled selected>Pilih Bidang</option>
@@ -39,7 +39,7 @@
                     </div>
                 </div>
                 <div class="form-group row col-12 col-md-10">
-                    <label for="" class="col-sm-2 col-form-label">Tanggal Waktu</label>
+                    <label for="" class="col-sm-2 col-form-label required">Tanggal Waktu</label>
                     <div class="col-sm-10">
                         <input type="datetime" class="form-control" name="" disabled>
                     </div>

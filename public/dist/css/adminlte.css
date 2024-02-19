@@ -2119,6 +2119,12 @@ pre code {
   border: 0;
 }
 
+.required::after {
+  content: " *";
+  color: #ff0000;
+  font-size: 14px;
+}
+
 .form-control {
   display: block;
   width: 100%;

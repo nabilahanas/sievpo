@@ -41,6 +41,12 @@
                             value="{{ $shift->jam_akhir }}" required>
                     </div>
                 </div>
+                <div class="form-group row col-12 col-md-10">
+                    <label for="poin" class="col-sm-2 col-form-label">Poin</label>
+                    <div class="col-sm-10">
+                        <input type="number" class="form-control" name="poin" value="1" min="1" max="10" required>
+                    </div>
+                </div>
                 <div class="text-center">
                     <button type="sumbit" class="btn btn-primary"><i class="fas fa-save mr-2"></i>Simpan</button>
                     <button type="reset" class="btn btn-secondary"><i class="fas fa-redo mr-2"></i>Reset</button>

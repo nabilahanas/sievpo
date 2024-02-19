@@ -16,19 +16,20 @@
                 </div>
             @endif
             <div class="card-body table-responsive">
-                <table id="berita" class="table table-sm text-nowrap table-hover table-striped" style="width: 100%">
+                <table id="berita" class="table table-sm table-hover table-striped" style="width: 100%">
                     <thead class="thead-successv2">
                         <tr>
+                            <th>Tanggal Publikasi</th>
                             <th>Judul Berita</th>
                             <th>Gambar</th>
                             <th>Deskripsi</th>
-                            <th>Tanggal Publikasi</th>
-                            <th>Action</th>
+                            <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($berita as $item)
                             <tr>
+                                <td>{{ $item->tgl_publikasi }}</td>
                                 <td>{{ $item->judul }}</td>
                                 <td>
                                     @if($item->gambar)
@@ -38,7 +39,6 @@
                                     @endif
                                 </td>
                                 <td>{{ $item->deskripsi }}</td>
-                                <td>{{ $item->tgl_publikasi }}</td>
                                 <td>
                                     <a href="{{ route('berita.edit', $item->id_berita) }}" type="button"
                                         class="btn btn-sm btn-warning"><i class="fas fa-pen mr-2"></i>Ubah</a>

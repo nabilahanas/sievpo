@@ -24,7 +24,8 @@
                             <th>Nama Shift</th>
                             <th>Jam Mulai</th>
                             <th>Jam Akhir</th>
-                            <th>Action</th>
+                            <th>Poin</th>
+                            <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -34,6 +35,7 @@
                                 <td>{{ $shift->nama_shift }}</td>
                                 <td>{{ $shift->jam_mulai }}</td>
                                 <td>{{ $shift->jam_akhir }}</td>
+                                <td></td>
                                 <td>
                                     {{-- <a href="{{ route('shift.edit', $shift->id_shift) }}" type="button"
                                         class="btn btn-sm btn-warning"><i class="fas fa-pen mr-2"></i>Ubah</a> --}}

@@ -26,7 +26,7 @@
                             <th>Nama Lokasi</th>
                             <th>Latitude</th>
                             <th>Longitude</th>
-                            <th>Action</th>
+                            <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>

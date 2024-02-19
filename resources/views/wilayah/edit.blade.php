@@ -21,28 +21,28 @@
             @csrf
             <div class="card-body">
                 <div class="form-group row col-12 col-md-10">
-                    <label for="nama_wilayah" class="col-sm-2 col-form-label">Nama Wilayah:</label>
+                    <label for="nama_wilayah" class="col-sm-2 col-form-label required">Nama Wilayah:</label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" id="nama_wilayah" name="nama_wilayah"
                             value="{{ $wilayah->nama_wilayah }}">
                     </div>
                 </div>
                 <div class="form-group row col-12 col-md-10">
-                    <label for="latitude" class="col-sm-2 col-form-label">Latitude:</label>
+                    <label for="latitude" class="col-sm-2 col-form-label required">Latitude:</label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" id="latitude" name="latitude"
                             value="{{ $wilayah->latitude }}">
                     </div>
                 </div>
                 <div class="form-group row col-12 col-md-10">
-                    <label for="longitude" class="col-sm-2 col-form-label">Longitude:</label>
+                    <label for="longitude" class="col-sm-2 col-form-label required">Longitude:</label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" id="longitude" name="longitude"
                             value="{{ $wilayah->longitude }}">
                     </div>
                 </div>
                 <div class="form-group row col-12 col-md-10">
-                    <label for="deskripsi" class="col-sm-2 col-form-label">Longitude:</label>
+                    <label for="deskripsi" class="col-sm-2 col-form-label required">Longitude:</label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" id="deskripsi" name="deskripsi"
                             value="{{ $wilayah->deskripsi }}">

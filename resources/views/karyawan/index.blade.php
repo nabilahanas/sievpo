@@ -1,14 +1,14 @@
 @extends('layouts.main')
 
-@section('title', 'Data Jabatan')
+@section('title', 'Data Karyawan')
 
 @section('content')
 
-    <title>Data Jabatan</title>
+    <title>Data Karyawan</title>
 
     <div class="card">
         <div class="card-body">
-            <a href="{{ route('jabatan.add') }}" type="button" class="btn btn-primary"><i
+            <a href="" type="button" class="btn btn-primary"><i
                     class="fas fa-plus mr-2"></i>Tambah</a>
 
             @if ($message = Session::get('success'))
@@ -18,22 +18,19 @@
             @endif
 
             <div class="card-body table-responsive">
-                <table id="jabatan" class="table table-sm text-nowrap table-hover table-striped" style="width: 100%">
+                <table id="karyawan" class="table table-sm text-nowrap table-hover table-striped" style="width: 100%">
                     <thead class="thead-successv2">
                         <tr>
                             <th>No.</th>
-                            <th>Nama Jabatan</th>
-                            <th>Wilayah</th>
-                            <th>Bagian</th>
-                            <th>Fasilitas</th>
-                            <th>Jenjang Jabatan</th>
-                            <th>Aksi</th>
+                            <th>Nama Karyawan</th>
+                            <th>Jabatan</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($jabatan as $jabatan)
                             <tr>
                                 <td>{{ $loop->iteration }}.</td>
+                                <td></td>
                                 <td>{{ $jabatan->nama_jabatan }}</td>
                                 <td>
                                     @if ($jabatan->wilayah == 0)
@@ -42,14 +39,11 @@
                                         Wilayah Barat
                                     @endif
                                 </td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
                                 <td>
-                                    <a href="{{ route('jabatan.edit', $jabatan->id_jabatan) }}" type="button"
+                                    <a href="" type="button"
                                         class="btn btn-sm btn-warning"><i class="fas fa-pen mr-2"></i>Ubah</a>
 
-                                    <form action="{{ route('jabatan.delete', $jabatan->id_jabatan) }}" method="post"
+                                    <form action="" method="post"
                                         class="d-inline">
                                         @csrf
                                         @method('DELETE')

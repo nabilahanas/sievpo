@@ -21,11 +21,11 @@
                         <tr>
                             <th>Nama</th>
                             <th>NIP</th>
-                            <th>No HP</th>
-                            <th>Role</th>
+                            <th>No. HP</th>
+                            <th>Peran</th>
                             <th>Jabatan</th>
                             <th>Wilayah</th>
-                            <th>Action</th>
+                            <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>

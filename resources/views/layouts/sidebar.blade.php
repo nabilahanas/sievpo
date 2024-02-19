@@ -75,6 +75,12 @@
             </a>
             <ul class="nav nav-treeview">
                 <li class="nav-item">
+                    <a href="/karyawan" class="nav-link {{ $key == 'karyawan' ? 'active' : '' }}">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Database Karyawan</p>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a href="/jabatan" class="nav-link {{ $key == 'jabatan' ? 'active' : '' }}">
                         <i class="far fa-circle nav-icon"></i>
                         <p>Jabatan</p>

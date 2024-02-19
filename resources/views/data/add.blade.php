@@ -23,25 +23,28 @@
                 <div class="form-group row col-12 col-md-10">
                     <label for="" class="col-sm-2 col-form-label required">Nama</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="" required>
+                        <input type="text" class="form-control" name="nama_user" value="{{ auth()->user()->nama_user }}" required disabled>
+
+                        {{-- untuk menyimpan nilai yang akan dikirim ke database --}}
+                        <input type="hidden" name="nama_hidden" value="{{ auth()->user()->nama_user }}">
                     </div>
                 </div>
                 <div class="form-group row col-12 col-md-10">
                     <label for="" class="col-sm-2 col-form-label required">Bidang</label>
                     <div class="col-sm-10">
-                        <select name="" id="" class="form-control">
+                        <select name="id_bidang" id="" class="form-control">
                             <option value="" disabled selected>Pilih Bidang</option>
-                            <option value="">Tan/Pers/Pemel</option>
-                            <option value="">Keamanan/Patroli</option>
-                            <option value="">Sosialisasi/Rapat/Apel/Komsos</option>
-                            <option value="">Prod/Agro/Wisata</option>
+                            @foreach ($bidang as $bidang)
+                            <option value="{{ $bidang->id_bidang }}">{{ $bidang->nama_bidang}}</option>
+                            @endforeach
                         </select>
                     </div>
                 </div>
                 <div class="form-group row col-12 col-md-10">
-                    <label for="" class="col-sm-2 col-form-label required">Tanggal Waktu</label>
+                    <label for="tgl_waktu" class="col-sm-2 col-form-label required">Tanggal Waktu</label>
                     <div class="col-sm-10">
-                        <input type="datetime" class="form-control" name="" disabled>
+                        <input type="text" class="form-control" name="tgl_waktu" id="tgl_waktu" value="{{ old('tgl_waktu', $formattedDateTime)}}" disabled>
+                        <span id="detik"></span>
                     </div>
                 </div>
                 <div class="text-center">
@@ -53,4 +56,5 @@
             </div>
         </form>
     </div>
+
 @endsection

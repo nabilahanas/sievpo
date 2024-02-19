@@ -22,6 +22,10 @@
         href="https://cdn.datatables.net/buttons/2.3.5/css/buttons.dataTables.min.css" />
     <!-- Chart -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed">
@@ -44,12 +48,13 @@
                         {{-- <img class="align-self-center img-circle mr-3"
                             src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png"
                             height="30" width="30"> --}}
-                            @if (auth()->user()->profile_pict)
-                            <img src="{{ asset('storage/profile-pict/' . auth()->user()->profile_pict) }}" alt="Profile Picture"
-                                 alt="avatar" class="align-self-center img-circle mr-3" height="30" width="30">
+                        @if (auth()->user()->profile_pict)
+                            <img src="{{ asset('storage/profile-pict/' . auth()->user()->profile_pict) }}"
+                                alt="Profile Picture" alt="avatar" class="align-self-center img-circle mr-3"
+                                height="30" width="30">
                         @else
                             <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png"
-                                 alt="avatar" class="align-self-center img-circle mr-3" height="30" width="30">
+                                alt="avatar" class="align-self-center img-circle mr-3" height="30" width="30">
                         @endif
                         <div class="media-body">
                             <span class="mt-3 mb-1">{{ Auth::user()->nama_user ?? '' }}</span>
@@ -149,6 +154,50 @@
     <script src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
     <!-- Chart -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var inputTanggalWaktu = document.getElementById('tgl_waktu');
+            var detikSpan = document.getElementById('detik');
+            var realtimeClockSpan = document.getElementById('realtime_clock');
+
+            function updateClock() {
+                var now = new Date();
+
+                // Sesuaikan nilai input dengan waktu lokal
+                inputTanggalWaktu.valueAsDate = now;
+
+                // Update detik
+                detikSpan.textContent = ('0' + now.getSeconds()).slice(-2);
+
+                // Update real-time clock
+                var year = now.getFullYear();
+                var month = (now.getMonth() + 1).toString().padStart(2, "0");
+                var day = now.getDate().toString().padStart(2, "0");
+                var hours = now.getHours().toString().padStart(2, "0");
+                var minutes = now.getMinutes().toString().padStart(2, "0");
+                var seconds = now.getSeconds().toString().padStart(2, "0");
+                realtimeClockSpan.textContent = year + "-" + month + "-" + day + " " + hours + ":" + minutes + ":" +
+                    seconds;
+            }
+
+            // Update setiap detik
+            setInterval(updateClock, 1000);
+
+            // Flatpickr konfigurasi
+            flatpickr(inputTanggalWaktu, {
+                enableTime: true,
+                time_24hr: true,
+                dateFormat: "Y-m-d H:i:S",
+                defaultDate: new Date(),
+                onClose: function(selectedDates, dateStr, instance) {
+                    // Panggil kembali fungsi updateClock setelah memilih tanggal dan waktu dari flatpickr
+                    updateClock();
+                }
+            });
+        });
+    </script>
+
 
 </body>
 

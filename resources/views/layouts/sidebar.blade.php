@@ -17,7 +17,7 @@
             </a>
         </li>
 
-        @if(auth()->user() && auth()->user()->role->nama_role === 'Admin,Mahasiswa,Pimpinan')
+        @if(auth()->user() && auth()->user()->role->nama_role == "Admin" || (auth()->user()->role->nama_role == "Pimpinan") || (auth()->user()->role->nama_role == "Mahasiswa") )
         <li
             class="nav-item {{ $key == 'harian' || $key == 'bulanan' || $key == 'total' ? 'menu-is-opening menu-open' : '' }}">
             <a href="{{ url('#') }}"
@@ -51,7 +51,7 @@
         </li>
         @endif
 
-        @if(auth()->user() && auth()->user()->role->nama_role === 'Admin,Mahasiswa')
+        @if(auth()->user() && auth()->user()->role->nama_role == "Admin" || (auth()->user()->role->nama_role == "Mahasiswa") )
         <li class="nav-item">
             <a href="/confirm" class="nav-link {{ $key == 'konfirmasi' ? 'active' : '' }}">
                 <i class="nav-icon fas fa-check-circle"></i>
@@ -62,7 +62,7 @@
         </li>
         @endif
 
-        @if(auth()->user() && auth()->user()->role->nama_role === 'Admin,Mahasiswa')
+        @if(auth()->user() && auth()->user()->role->nama_role == "Admin" || (auth()->user()->role->nama_role == "Mahasiswa") )
         <li
             class="nav-item {{ $key == 'jabatan' || $key == 'bidang' || $key == 'wilayah' || $key == 'lokasi' || $key == 'shift' ? 'menu-is-opening menu-open' : '' }}">
             <a href="{{ url('#') }}"
@@ -108,7 +108,7 @@
         </li>
         @endif
 
-        @if(auth()->user() && auth()->user()->role->nama_role === 'Admin,Mahasiswa')
+        @if(auth()->user() && auth()->user()->role->nama_role == "Admin" || (auth()->user()->role->nama_role == "Mahasiswa") )
         <li class="nav-item {{ $key == 'berita' || $key == 'pengumuman' ? 'menu-is-opening menu-open' : '' }}">
             <a href="{{ url('#') }}"
                 class="nav-link {{ $key == 'berita' || $key == 'pengumuman' ? 'active' : '' }}">
@@ -135,7 +135,7 @@
         </li>
         @endif
 
-        @if(auth()->user() && auth()->user()->role->nama_role === 'Admin,Mahasiswa')
+        @if(auth()->user() && auth()->user()->role->nama_role == "Admin" || (auth()->user()->role->nama_role == "Mahasiswa") )
         <li class="nav-item">
             <a href="/users" class="nav-link {{ $key == 'users' ? 'active' : '' }}">
                 <i class="nav-icon fas fa-users"></i>

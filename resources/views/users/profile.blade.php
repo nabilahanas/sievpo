@@ -10,7 +10,6 @@
             <div class="breadcrumb-item active">Selamat datang, {{ auth()->user()->nama_user }}!</div>
         </div>
 
-
         <div class="card">
             <div class="container py-5">
                 <div class="row">

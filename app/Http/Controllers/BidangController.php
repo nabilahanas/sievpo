@@ -32,7 +32,7 @@ class BidangController extends Controller
         Bidang::create($data);
         echo "Data berhasil ditambahkan" .PHP_EOL;
 
-        return redirect()->route('bidang.index');
+        return redirect()->route('bidang.index')->with('success', 'Data bidang berhasil ditambahkan');
     }
 
     public function edit ($id)
@@ -54,7 +54,7 @@ class BidangController extends Controller
             'deskripsi' => $request -> deskripsi,
         ]);
         echo "Data berhasil diubah" .PHP_EOL;
-        return redirect()->route('bidang.index');
+        return redirect()->route('bidang.index')->with('success', 'Data bidang berhasil diubah');
     }
 
     public function delete($id)
@@ -64,6 +64,6 @@ class BidangController extends Controller
         
         echo "Data berhasil dihapus" .PHP_EOL;
 
-        return redirect()->route('bidang.index');
+        return redirect()->route('bidang.index')->with('success', 'Data bidang berhasil dihapus');
     }
 }

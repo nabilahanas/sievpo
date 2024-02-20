@@ -33,7 +33,7 @@ class LokasiController extends Controller
         Lokasi::create($data);
         echo "Data berhasil ditambahkan" .PHP_EOL;
 
-        return redirect()->route('lokasi.index');
+        return redirect()->route('lokasi.index')->with('success', 'Data lokasi berhasil ditambahkan');
     }
 
     // public function edit ($id)
@@ -58,7 +58,7 @@ class LokasiController extends Controller
     //     ]);
 
     //     echo "Data berhasil diubah" .PHP_EOL;
-    //     return redirect()->route('lokasi.index');
+    //     return redirect()->route('lokasi.index')->with('success', 'Data lokasi berhasil diubah');
     // }
 
     public function delete($id)
@@ -67,6 +67,6 @@ class LokasiController extends Controller
         $lokasi -> delete();
 
         echo "Data berhasil dihapus" .PHP_EOL;
-        return redirect()->route('lokasi.index');
+        return redirect()->route('lokasi.index')->with('success', 'Data lokasi berhasil dihapus');
     }
 }

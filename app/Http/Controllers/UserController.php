@@ -28,6 +28,6 @@ class UserController extends Controller
 
         echo "Data berhasil dihapus" .PHP_EOL;
 
-        return redirect()->route('users.index');
+        return redirect()->route('users.index')->with('success', 'Data user berhasil dihapus');
     }
 }

@@ -610,8 +610,4 @@ $(document).ready(function () {
             table.order([groupColumn, 'asc']).draw();
         }
     });
-
-    $.extend( $.fn.dataTable.defaults, {
-        responsive: true
-      } );
 });

@@ -32,7 +32,7 @@ class JabatanController extends Controller
         Jabatan::create($data);
         echo "Data berhasil ditambahkan" .PHP_EOL;
 
-        return redirect()->route('jabatan.index');
+        return redirect()->route('jabatan.index')->with('success', 'Data jabatan berhasil ditambahkan');
     }
 
     public function edit($id)
@@ -53,7 +53,7 @@ class JabatanController extends Controller
             'wilayah' => $request -> wilayah,
         ]);
         
-        return redirect()->route('jabatan.index');
+        return redirect()->route('jabatan.index')->with('success', 'Data jabatan berhasil diubah');
     }
 
     public function delete($id)
@@ -63,6 +63,6 @@ class JabatanController extends Controller
 
         echo "Data berhasil dihapus" .PHP_EOL;
 
-        return redirect()->route('jabatan.index');
+        return redirect()->route('jabatan.index')->with('success', 'Data jabatan berhasil dihapus');
     }
 }

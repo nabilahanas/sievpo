@@ -48,7 +48,7 @@ class PengumumanController extends Controller
         $pengumuman = Pengumuman::create($data);
         echo "Data berhasil ditambahkan" . PHP_EOL;
 
-        return redirect()->route('pengumuman.index');
+        return redirect()->route('pengumuman.index')->with('success', 'Data pengumuman berhasil ditambahkan');
 
     }
 
@@ -90,7 +90,7 @@ class PengumumanController extends Controller
         $pengumuman->save();
 
         echo "Data berhasil diubah" . PHP_EOL;
-        return redirect()->route('pengumuman.index');
+        return redirect()->route('pengumuman.index')->with('success', 'Data pengumuman berhasil diubah');
     }
 
     public function delete($id)
@@ -100,6 +100,6 @@ class PengumumanController extends Controller
 
         echo "Data berhasil dihapus" .PHP_EOL;
 
-        return redirect()->route('pengumuman.index');
+        return redirect()->route('pengumuman.index')->with('success', 'Data pengumuman berhasil dihapus');
     }
 }

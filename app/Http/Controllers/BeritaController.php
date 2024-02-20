@@ -51,7 +51,7 @@ class BeritaController extends Controller
         $berita = Berita::create($data);
         echo "Data berhasil ditambahkan" . PHP_EOL;
 
-        return redirect()->route('berita.index');
+        return redirect()->route('berita.index')->with('success', 'Data berita berhasil ditambahkan');
     }
 
     public function edit($id)
@@ -97,7 +97,7 @@ class BeritaController extends Controller
         $berita->save();
 
         echo "Data berhasil diubah" . PHP_EOL;
-        return redirect()->route('berita.index');
+        return redirect()->route('berita.index')->with('success', 'Data berita berhasil diubah');
     }
 
     public function delete($id)
@@ -107,6 +107,6 @@ class BeritaController extends Controller
 
         echo "Data berhasil dihapus" . PHP_EOL;
 
-        return redirect()->route('berita.index');
+        return redirect()->route('berita.index')->with('success', 'Data berita berhasil dihapus');
     }
 }

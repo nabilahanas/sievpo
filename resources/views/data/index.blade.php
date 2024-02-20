@@ -5,22 +5,22 @@
 @section('content')
     <title>Data Laporan Eviden</title>
 
+    @if ($message = Session::get('success'))
+        <div class="alert alert-success mt-3" role="alert">
+            {{ $message }}
+        </div>
+    @endif
+
     <div class="card">
         <div class="card-body">
             <button onclick="window.location='{{ route('data.add') }}'" class="btn btn-primary"><i
                     class="fas fa-plus mr-2"></i>Tambah</button>
 
-            @if ($message = Session::get('success'))
-                <div class="alert alert-success mt-3" role="alert">
-                    {{ $message }}
-                </div>
-            @endif
-
             <div class="card-body table-responsive">
-                <table id="evpo" class="table table-sm text-nowrap table-hover" style="width: 100%">
+                <table id="evpo" class="table table-sm text-nowrap table-hover table-striped" style="width: 100%">
                     <thead class="thead-successv2">
                         <tr>
-                            <th colspan="42">{{ Auth::user()->nama ?? '' }}A</th>
+                            <th colspan="44">{{ Auth::user()->nama_user ?? '' }}</th>
                         </tr>
                         <tr>
                             <th rowspan="2" style="text-align: center">Tanggal</th>
@@ -72,7 +72,7 @@
                             <th>8</th>
                             <th>Jml</th>
                         </tr>
-                        </thead>
+                    </thead>
                     <tbody>
                         <tr>
                             <td></td>

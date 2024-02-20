@@ -38,7 +38,7 @@ class WilayahController extends Controller
         Wilayah::create($data);
         echo "Data berhasil ditambahkan" .PHP_EOL;
 
-        return redirect()->route('wilayah.index');
+        return redirect()->route('wilayah.index')->with('success', 'Data wilayah berhasil ditambahkan');
     }
 
     // Menampilkan detail suatu wilayah
@@ -72,7 +72,7 @@ class WilayahController extends Controller
             'deskripsi' => $request -> deskripsi,
         ]);
         echo "Data berhasil diubah" .PHP_EOL;
-        return redirect()->route('wilayah.index');
+        return redirect()->route('wilayah.index')->with('success', 'Data wilayah berhasil diubah');
     }
 
     // Menghapus suatu data wilayah
@@ -83,6 +83,6 @@ class WilayahController extends Controller
 
         echo "Data berhasil dihapus" .PHP_EOL;
 
-        return redirect()->route('wilayah.index');
+        return redirect()->route('wilayah.index')->with('success', 'Data wilayah berhasil dihapus');
     }
 }

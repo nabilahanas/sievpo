@@ -37,7 +37,7 @@ class ShiftController extends Controller
         Shift::create($data);
         echo "Data berhasil ditambahkan" .PHP_EOL;
 
-        return redirect()->route('shift.index');
+        return redirect()->route('shift.index')->with('success', 'Data shift berhasil ditambahkan');
     }
 
     // public function edit ($id)
@@ -62,7 +62,7 @@ class ShiftController extends Controller
     //     ]);
 
     //     echo "Data berhasil diubah" .PHP_EOL;
-    //     return redirect()->route('shift.index');
+    //     return redirect()->route('shift.index')->('success', 'Data shift berhasil diubah');
     // }
 
     public function delete($id)
@@ -71,6 +71,6 @@ class ShiftController extends Controller
         $shift -> delete();
 
         echo "Data berhasil dihapus" .PHP_EOL;
-        return redirect()->route('shift.index');
+        return redirect()->route('shift.index')->with('success', 'Data shift berhasil dihapus');
     }
 }

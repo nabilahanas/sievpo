@@ -47,7 +47,7 @@ class DataController extends Controller
         Data::create($data); //data disimpan
         echo "Data berhasil ditambahkan" .PHP_EOL;
 
-        return redirect()->route('data.index');
+        return redirect()->route('data.index')->with('success', 'Data berhasil ditambahkan');
     }
 
 
@@ -57,6 +57,6 @@ class DataController extends Controller
         $data -> delete();
 
         echo "Data berhasil dihapus" .PHP_EOL;
-        return redirect()->route('data.index');
+        return redirect()->route('data.index')->with('success', 'Data berhasil dihapus');
     }
 }

@@ -44,7 +44,7 @@ class KaryawanDBController extends Controller
     {
         $request->validate([
             'nama'=>'required',
-            'jabatan'=>''
+            'jabatan'=>'required'
         ]);
 
         $karyawan = Karyawan::find($id);

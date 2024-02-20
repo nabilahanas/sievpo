@@ -92,12 +92,12 @@
                         <p>Bidang</p>
                     </a>
                 </li>
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                     <a href="/wilayah" class="nav-link {{ $key == 'wilayah' ? 'active' : '' }}">
                         <i class="far fa-circle nav-icon"></i>
                         <p>Wilayah</p>
                     </a>
-                </li>
+                </li> --}}
                 <li class="nav-item">
                     <a href="/lokasi" class="nav-link {{ $key == 'lokasi' ? 'active' : '' }}">
                         <i class="far fa-circle nav-icon"></i>

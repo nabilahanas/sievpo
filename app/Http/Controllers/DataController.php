@@ -15,8 +15,11 @@ class DataController extends Controller
 
     public function index()
     {
+        $bidang = Bidang::all();
+        $shift = Shift::all();
         $data = Data::all();
-        return view('data.index', compact('data'), ['key'=>'data']);
+
+        return view('data.index', compact('bidang','shift','data'), ['key'=>'data']);
     }
 
     public function create()

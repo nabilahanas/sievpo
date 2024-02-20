@@ -49,7 +49,7 @@
                     </div>
                 </div>
                 <div class="text-center">
-                    <button type="sumbit" class="btn btn-primary mr-2"><i class="fas fa-save"></i>Simpan</button>
+                    <button type="submit" class="btn btn-primary mr-2"><i class="fas fa-save"></i>Simpan</button>
                     <button type="reset" class="btn btn-secondary mr-2"><i class="fas fa-redo"></i>Reset</button>
                     <button type="button" class="btn btn-danger" onclick="window.location='/wilayah'"><i
                             class="fas fa-reply mr-2"></i>Kembali</button>

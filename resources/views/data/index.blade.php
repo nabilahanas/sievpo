@@ -24,54 +24,36 @@
                         </tr>
                         <tr>
                             <th rowspan="2" style="text-align: center">Tanggal</th>
-                            <th colspan="9" style="text-align: center">Tanaman / Pemeliharaan / Persemaian</th>
-                            <th colspan="9" style="text-align: center">Keamanan / Patroli</th>
-                            <th colspan="9" style="text-align: center">Sosialisasi / Rapat / Apel</th>
-                            <th colspan="9" style="text-align: center">Produksi / Agroforestry / Wisata</th>
+
+                            @foreach ($bidang as $bidang)
+                                <th colspan="9" style="text-align: center">{{ $bidang->nama_bidang }}</th>
+                            @endforeach
+
                             <th rowspan="2" style="text-align: center">Foto</th>
                             <th rowspan="2" style="text-align: center">Aksi</th>
                         </tr>
                         <tr>
-                            <th>1</th>
-                            <th>2</th>
-                            <th>3</th>
-                            <th>4</th>
-                            <th>5</th>
-                            <th>6</th>
-                            <th>7</th>
-                            <th>8</th>
+                            @foreach ($shift as $s)
+                                <th>{{ $s->nama_shift }}</th>
+                            @endforeach
                             <th>Jml</th>
-
-                            <th>1</th>
-                            <th>2</th>
-                            <th>3</th>
-                            <th>4</th>
-                            <th>5</th>
-                            <th>6</th>
-                            <th>7</th>
-                            <th>8</th>
+                        
+                            @foreach ($shift as $s)
+                                <th>{{ $s->nama_shift }}</th>
+                            @endforeach
                             <th>Jml</th>
-
-                            <th>1</th>
-                            <th>2</th>
-                            <th>3</th>
-                            <th>4</th>
-                            <th>5</th>
-                            <th>6</th>
-                            <th>7</th>
-                            <th>8</th>
+                        
+                            @foreach ($shift as $s)
+                                <th>{{ $s->nama_shift }}</th>
+                            @endforeach
                             <th>Jml</th>
-
-                            <th>1</th>
-                            <th>2</th>
-                            <th>3</th>
-                            <th>4</th>
-                            <th>5</th>
-                            <th>6</th>
-                            <th>7</th>
-                            <th>8</th>
+                        
+                            @foreach ($shift as $s)
+                                <th>{{ $s->nama_shift }}</th>
+                            @endforeach
                             <th>Jml</th>
                         </tr>
+                        
                     </thead>
                     <tbody>
                         <tr>

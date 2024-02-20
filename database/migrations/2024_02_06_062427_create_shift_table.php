@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('nama_shift', 5);
             $table->time('jam_mulai');
             $table->time('jam_akhir');
+            $table->integer('poin');
             $table->timestamps();
         });
     }

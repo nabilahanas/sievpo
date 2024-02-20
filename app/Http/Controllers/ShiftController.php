@@ -27,6 +27,7 @@ class ShiftController extends Controller
             'nama_shift' => 'required',
             'jam_mulai' => 'required|date_format:H:i:s',
             'jam_akhir' => 'required|date_format:H:i:s',
+            'poin' => 'required',
         ]);
 
         $data=$request->all();
@@ -40,30 +41,32 @@ class ShiftController extends Controller
         return redirect()->route('shift.index')->with('success', 'Data shift berhasil ditambahkan');
     }
 
-    // public function edit ($id)
-    // {
-    //     $shift = Shift::find($id);
-    //     return view('shift.edit', compact('shift'), ['key'=>'shift']);
-    // }
+    public function edit ($id)
+    {
+        $shift = Shift::find($id);
+        return view('shift.edit', compact('shift'), ['key'=>'shift']);
+    }
 
-    // public function update (Request $request, $id)
-    // {
-    //     $request->validate([
-    //         'nama_shift' => 'required',
-    //         'jam_mulai' => 'required',
-    //         'jam_akhir' => 'required',
-    //     ]);
+    public function update (Request $request, $id)
+    {
+        $request->validate([
+            'nama_shift' => 'required',
+            'jam_mulai' => 'required',
+            'jam_akhir' => 'required',
+            'poin' => 'required'
+        ]);
 
-    //     $shift = SHift::find($id);
-    //     $shift->update([
-    //         'nama_shift' => $request -> nama_shift,
-    //         'jam_mulai' => $request -> jam_mulai,
-    //         'jam_akhir' => $request -> jam_akhir,
-    //     ]);
+        $shift = SHift::find($id);
+        $shift->update([
+            'nama_shift' => $request -> nama_shift,
+            'jam_mulai' => $request -> jam_mulai,
+            'jam_akhir' => $request -> jam_akhir,
+            'poin' => $request -> poin,
+        ]);
 
-    //     echo "Data berhasil diubah" .PHP_EOL;
-    //     return redirect()->route('shift.index')->('success', 'Data shift berhasil diubah');
-    // }
+        echo "Data berhasil diubah" .PHP_EOL;
+        return redirect()->route('shift.index')->with('success', 'Data shift berhasil diubah');
+    }
 
     public function delete($id)
     {

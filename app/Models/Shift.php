@@ -17,6 +17,7 @@ class Shift extends Model
         'nama_shift',
         'jam_mulai',
         'jam_akhir',
+        'poin',
     ];
 
     public $timestamps = true;

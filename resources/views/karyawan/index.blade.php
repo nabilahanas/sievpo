@@ -1,55 +1,75 @@
 @extends('layouts.main')
 
-@section('title', 'Data Karyawan')
+@section('title', 'Database Karyawan')
 
 @section('content')
+    <title>Database Karyawan</title>
 
-    <title>Data Karyawan</title>
+    @if ($message = Session::get('success'))
+        <div class="alert alert-success mt-3" role="alert">
+            {{ $message }}
+        </div>
+    @endif
 
     <div class="card">
         <div class="card-body">
-            <a href="" type="button" class="btn btn-primary"><i
+            <a href="{{ route('karyawan.add') }}" type="button" class="btn btn-primary"><i
                     class="fas fa-plus mr-2"></i>Tambah</a>
 
-            @if ($message = Session::get('success'))
-                <div class="alert alert-success mt-3" role="alert">
-                    {{ $message }}
-                </div>
-            @endif
 
             <div class="card-body table-responsive">
-                <table id="karyawan" class="table table-sm text-nowrap table-hover table-striped" style="width: 100%">
+                <table id="karyawan" class="table table-sm table-hover table-striped" style="table-layout:fixed">
+
                     <thead class="thead-successv2">
                         <tr>
-                            <th>No.</th>
-                            <th>Nama Karyawan</th>
+                            <th>Nama</th>
                             <th>Jabatan</th>
-                            <th>Action</th>
+                            <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach ($karyawan as $kar)
                             <tr>
-                                <td>{{ $loop->iteration }}.</td>
-                                <td></td>
-                                <td>{{ $jabatan->nama_jabatan }}</td>
+                                <td>{{ $kar->nama }}</td>
+                                <td>{{ $kar->jabatan }}</td>
                                 <td>
-                                    @if ($jabatan->wilayah == 0)
-                                        Wilayah Timur
-                                    @elseif($jabatan->wilayah == 1)
-                                        Wilayah Barat
-                                    @endif
-                                </td>
-                                <td>
-                                    <a href="" type="button"
-                                        class="btn btn-sm btn-warning"><i class="fas fa-pen mr-2"></i>Ubah</a>
+                                    <button onclick="window.location='{{ route('karyawan.edit', $kar->id_karyawan) }}'"
+                                        class="btn btn-sm btn-warning"><i class="fas fa-pen mr-2"></i>Ubah</button>
 
-                                    <form action="" method="post"
-                                        class="d-inline">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button class="btn btn-sm btn-danger"><i
-                                                class="fas fa-trash mr-2"></i>Hapus</button>
-                                    </form>
+                                    <!-- Button trigger modal -->
+                                    <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal"
+                                        data-bs-target="#hapusModal{{ $kar->id_karyawan }}"><i
+                                            class="fas fa-trash mr-2"></i>Hapus
+                                    </button>
+
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="hapusModal{{ $kar->id_karyawan }}" tabindex="-1"
+                                        aria-labelledby="hapusModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="hapusModalLabel">Konfirmasi</h5>
+                                                    <button type="button" class="close" data-bs-dismiss="modal"
+                                                        aria-label="Close">
+                                                        <span>&times;</span>
+                                                    </button>
+                                                </div>
+                                                <form method="POST"
+                                                    action="{{ route('karyawan.delete', $kar->id_karyawan) }}">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <div class="modal-body">
+                                                        Apakah Anda yakin ingin menghapus data ini?
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-bs-dismiss="modal">Tutup</button>
+                                                        <button type="submit" class="btn btn-danger">Yakin</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </td>
                             </tr>
                         @endforeach

@@ -3,6 +3,7 @@
 use App\Http\Controllers\BidangController;
 use App\Http\Controllers\BulananController;
 use App\Http\Controllers\ConfirmController;
+use App\Http\Controllers\KaryawanDBController;
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\LokasiController;
 use App\Http\Controllers\ShiftController;
@@ -137,6 +138,15 @@ Route::middleware('check.role:Admin,Mahasiswa')->group(function(){
         Route::get('edit/{id}', [LokasiController::class, 'edit'])->name('lokasi.edit');
         Route::post('update/{id}', [LokasiController::class, 'update'])->name('lokasi.update');
         Route::delete('delete/{id}', [LokasiController::class, 'delete'])->name('lokasi.delete');
+    });
+
+    Route::prefix("karyawan")->group(function () {
+        Route::get('add', [KaryawanDBController::class, 'create'])->name('karyawan.add');
+        Route::post('store', [KaryawanDBController::class, 'store'])->name('karyawan.store');
+        Route::get('/', [KaryawanDBController::class, 'index'])->name('karyawan.index');
+        Route::get('edit/{id}', [KaryawanDBController::class, 'edit'])->name('karyawan.edit');
+        Route::post('update/{id}', [KaryawanDBController::class, 'update'])->name('karyawan.update');
+        Route::delete('delete/{id}', [KaryawanDBController::class, 'delete'])->name('karyawan.delete');
     });
 });
 

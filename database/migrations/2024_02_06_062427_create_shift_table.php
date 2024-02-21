@@ -17,6 +17,7 @@ return new class extends Migration
             $table->time('jam_mulai');
             $table->time('jam_akhir');
             $table->integer('poin');
+            $table->boolean('is_active');
             $table->timestamps();
         });
     }

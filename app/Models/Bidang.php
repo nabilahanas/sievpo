@@ -14,7 +14,7 @@ class Bidang extends Model
     protected $primaryKey = 'id_bidang';
 
     protected $fillable = [
-        'nama_bidang', 'deskripsi',
+        'nama_bidang', 'deskripsi', 'is_active',
     ];
 
     public $timestamps = true;

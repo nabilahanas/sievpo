@@ -36,8 +36,17 @@
                                     <a href="{{ route('bidang.edit', $bidang->id_bidang) }}" type="button"
                                         class="btn btn-sm btn-warning"><i class="fas fa-pen mr-2"></i>Ubah</a>
 
+                                        <form action="{{ $bidang->is_active ? route('bidang.disable', $bidang->id_bidang) : route('bidang.enable', $bidang->id_bidang) }}" method="post" class="d-inline">
+                                            @csrf
+                                            @method('POST')
+                                            <button type="submit" class="btn btn-sm {{ $bidang->is_active ? 'btn-danger' : 'btn-success' }}">
+                                                <i class="{{ $bidang->is_active ? 'fas fa-ban' : 'fas fa-check-circle' }} mr-2"></i>
+                                                {{ $bidang->is_active ? 'Nonaktifkan' : 'Aktifkan' }}
+                                            </button>
+                                        </form>
+
                                     <!-- Button trigger modal -->
-                                    <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal"
+                                    {{-- <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal"
                                         data-bs-target="#hapusModal{{ $bidang->id_bidang }}">
                                         <i class="fas fa-trash mr-2"></i>Hapus
                                     </button>
@@ -69,7 +78,7 @@
                                                 </form>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> --}}
                                 </td>
                             </tr>
                         @endforeach

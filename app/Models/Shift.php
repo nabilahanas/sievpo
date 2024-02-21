@@ -18,6 +18,7 @@ class Shift extends Model
         'jam_mulai',
         'jam_akhir',
         'poin',
+        'is_active',
     ];
 
     public $timestamps = true;

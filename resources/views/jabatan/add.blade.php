@@ -43,9 +43,9 @@
                     </div>
                 </div>
                 <div class="form-group row col-12 col-md-10">
-                    <label for="fasilitas" class="col-sm-2 col-form-label required">Fasilitas</label>
+                    <label for="klasifikasi" class="col-sm-2 col-form-label required">Klasifikasi</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="fasilitas" required>
+                        <input type="text" class="form-control" name="klasifikasi" required>
                     </div>
                 </div>
                 <div class="form-group row col-12 col-md-10">

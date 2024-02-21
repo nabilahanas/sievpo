@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id('id_bidang');
             $table->string('nama_bidang', 50);
             $table->text('deskripsi');
+            $table->boolean('is_active');
             $table->timestamps();
         });
     }

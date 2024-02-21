@@ -36,6 +36,23 @@
                         </select>
                     </div>
                 </div>
+
+                <div class="form-group row col-12 col-md-10">
+                    <label for="bagian" class="col-sm-2 col-form-label required">Bagian</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="bagian" name="bagian"
+                            value="{{ $jabatan->bagian }}" required>
+                    </div>
+                </div>
+
+                <div class="form-group row col-12 col-md-10">
+                    <label for="klasifikasi" class="col-sm-2 col-form-label required">Klasifikasi</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="klasifikasi" name="klasifikasi"
+                            value="{{ $jabatan->klasifikasi }}" required>
+                    </div>
+                </div>
+
                 <div class="text-center">
                     <button type="submit" class="btn btn-primary"><i class="fas fa-save mr-2"></i>Simpan</button>
                     <button type="reset" class="btn btn-secondary"><i class="fas fa-redo mr-2"></i>Reset</button>

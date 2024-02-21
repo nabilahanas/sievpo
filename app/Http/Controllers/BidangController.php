@@ -57,13 +57,37 @@ class BidangController extends Controller
         return redirect()->route('bidang.index')->with('success', 'Data bidang berhasil diubah');
     }
 
-    public function delete($id)
+    public function disable($id)
     {
         $bidang = Bidang::find($id);
-        $bidang -> delete();
-        
-        echo "Data berhasil dihapus" .PHP_EOL;
+        if (!$bidang) {
+            return redirect()->route('bidang.index')->with('error', 'Data bidang tidak ditemukan');
+        }
 
-        return redirect()->route('bidang.index')->with('success', 'Data bidang berhasil dihapus');
+        $bidang->update(['is_active' => false]);
+
+        return redirect()->route('bidang.index')->with('success', 'Data bidang berhasil dinonaktifkan');
     }
+
+    public function enable($id)
+    {
+        $bidang = Bidang::find($id);
+        if (!$bidang) {
+            return redirect()->route('bidang.index')->with('error', 'Data bidang tidak ditemukan');
+        }
+
+        $bidang->update(['is_active' => true]);
+
+        return redirect()->route('bidang.index')->with('success', 'Data bidang berhasil diaktifkan');
+    }
+
+    // public function delete($id)
+    // {
+    //     $bidang = Bidang::find($id);
+    //     $bidang -> delete();
+        
+    //     echo "Data berhasil dihapus" .PHP_EOL;
+
+    //     return redirect()->route('bidang.index')->with('success', 'Data bidang berhasil dihapus');
+    // }
 }

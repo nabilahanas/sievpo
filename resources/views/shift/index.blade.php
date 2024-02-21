@@ -39,8 +39,17 @@
                                     <a href="{{ route('shift.edit', $shift->id_shift) }}" type="button"
                                         class="btn btn-sm btn-warning"><i class="fas fa-pen mr-2"></i>Ubah</a>
 
+                                        <form action="{{ $shift->is_active ? route('shift.disable', $shift->id_shift) : route('shift.enable', $shift->id_shift) }}" method="post" class="d-inline">
+                                            @csrf
+                                            @method('POST')
+                                            <button type="submit" class="btn btn-sm {{ $shift->is_active ? 'btn-danger' : 'btn-success' }}">
+                                                <i class="{{ $shift->is_active ? 'fas fa-ban' : 'fas fa-check-circle' }} mr-2"></i>
+                                                {{ $shift->is_active ? 'Nonaktifkan' : 'Aktifkan' }}
+                                            </button>
+                                        </form>
+
                                     <!-- Button trigger modal -->
-                                    <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal"
+                                    {{-- <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal"
                                         data-bs-target="#hapusModal{{ $shift->id_shift }}">
                                         <i class="fas fa-trash mr-2"></i>Hapus
                                     </button>
@@ -71,7 +80,7 @@
                                                 </form>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> --}}
                                 </td>
                             </tr>
                         @endforeach

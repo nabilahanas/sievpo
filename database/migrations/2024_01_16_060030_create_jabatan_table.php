@@ -16,6 +16,9 @@ return new class extends Migration
             $table->id('id_jabatan');
             $table->string('nama_jabatan', 100);
             $table->boolean('wilayah');
+            $table->string('bagian', 50);
+            $table->string('klasifikasi', 10);
+            $table->boolean('is_active');
             $table->timestamps();
         });
     }

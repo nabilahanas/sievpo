@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('nama_lokasi', 50);
             $table->double('latitude');
             $table->double('longitude');
+            $table->boolean('is_active');
             $table->timestamps();
         });
     }

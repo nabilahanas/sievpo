@@ -41,7 +41,7 @@ Route::post('/ceklogin', [AuthController::class, 'ceklogin'])->name('ceklogin');
 
 // ALL ROLES
 
-Route::middleware('check.role:Admin,Karyawan,Pimpinan,Mahasiswa')->group(function(){
+Route::middleware('check.role:Admin,Karyawan,Pimpinan,Mahasiswa')->group(function () {
     Route::get('/home', [NavController::class, 'dashboard'])->name('dashboard');
 
     Route::prefix("profile")->group(function () {
@@ -59,7 +59,7 @@ Route::middleware('check.role:Admin,Karyawan,Pimpinan,Mahasiswa')->group(functio
     });
 });
 
-Route::middleware('check.role:Admin,Mahasiswa')->group(function(){
+Route::middleware('check.role:Admin,Mahasiswa')->group(function () {
     Route::get('/register', [AuthController::class, 'register'])->name('register');
     Route::post('/registered', [AuthController::class, 'registered'])->name('registered');
 
@@ -78,7 +78,9 @@ Route::middleware('check.role:Admin,Mahasiswa')->group(function(){
         Route::get('/', [JabatanController::class, 'index'])->name('jabatan.index');
         Route::get('edit/{id}', [JabatanController::class, 'edit'])->name('jabatan.edit');
         Route::post('update/{id}', [JabatanController::class, 'update'])->name('jabatan.update');
-        Route::delete('delete/{id}', [JabatanController::class, 'delete'])->name('jabatan.delete');
+        // Route::delete('delete/{id}', [JabatanController::class, 'delete'])->name('jabatan.delete');
+        Route::post('disable/{id}', [JabatanController::class, 'disable'])->name('jabatan.disable');
+        Route::post('enable/{id}', [JabatanController::class, 'enable'])->name('jabatan.enable');
     });
 
     Route::prefix("berita")->group(function () {
@@ -119,7 +121,9 @@ Route::middleware('check.role:Admin,Mahasiswa')->group(function(){
         Route::get('/', [BidangController::class, 'index'])->name('bidang.index');
         Route::get('edit/{id}', [BidangController::class, 'edit'])->name('bidang.edit');
         Route::post('update/{id}', [BidangController::class, 'update'])->name('bidang.update');
-        Route::delete('delete/{id}', [BidangController::class, 'delete'])->name('bidang.delete');
+        // Route::delete('delete/{id}', [BidangController::class, 'delete'])->name('bidang.delete');
+        Route::post('disable/{id}', [BidangController::class, 'disable'])->name('bidang.disable');
+        Route::post('enable/{id}', [BidangController::class, 'enable'])->name('bidang.enable');
     });
 
     Route::prefix("shift")->group(function () {
@@ -128,7 +132,9 @@ Route::middleware('check.role:Admin,Mahasiswa')->group(function(){
         Route::get('/', [ShiftController::class, 'index'])->name('shift.index');
         Route::get('edit/{id}', [ShiftController::class, 'edit'])->name('shift.edit');
         Route::post('update/{id}', [ShiftController::class, 'update'])->name('shift.update');
-        Route::delete('delete/{id}', [ShiftController::class, 'delete'])->name('shift.delete');
+        // Route::delete('delete/{id}', [ShiftController::class, 'delete'])->name('shift.delete');
+        Route::post('disable/{id}', [ShiftController::class, 'disable'])->name('shift.disable');
+        Route::post('enable/{id}', [ShiftController::class, 'enable'])->name('shift.enable');
     });
 
     Route::prefix("lokasi")->group(function () {
@@ -137,7 +143,9 @@ Route::middleware('check.role:Admin,Mahasiswa')->group(function(){
         Route::get('/', [LokasiController::class, 'index'])->name('lokasi.index');
         Route::get('edit/{id}', [LokasiController::class, 'edit'])->name('lokasi.edit');
         Route::post('update/{id}', [LokasiController::class, 'update'])->name('lokasi.update');
-        Route::delete('delete/{id}', [LokasiController::class, 'delete'])->name('lokasi.delete');
+        // Route::delete('delete/{id}', [LokasiController::class, 'delete'])->name('lokasi.delete');
+        Route::post('disable/{id}', [LokasiController::class, 'disable'])->name('lokasi.disable');
+        Route::post('enable/{id}', [LokasiController::class, 'enable'])->name('lokasi.enable');
     });
 
     Route::prefix("karyawan")->group(function () {
@@ -150,7 +158,7 @@ Route::middleware('check.role:Admin,Mahasiswa')->group(function(){
     });
 });
 
-Route::middleware('check.role:Admin,Pimpinan,Mahasiswa')->group(function(){
+Route::middleware('check.role:Admin,Pimpinan,Mahasiswa')->group(function () {
     Route::get('/harian', [HarianController::class, 'index'])->name('harian');
     Route::get('/bulanan', [BulananController::class, 'index'])->name('bulanan');
     Route::get('/total', [TotalController::class, 'index'])->name('total');

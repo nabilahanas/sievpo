@@ -35,11 +35,20 @@
                                 <td>{{ $lokasi->latitude }}</td>
                                 <td>{{ $lokasi->longitude }}</td>
                                 <td>
-                                    {{-- <a href="{{ route('lokasi.edit', $lokasi->id_lokasi) }}" type="button"
-                                        class="btn btn-sm btn-warning rounded-3"><i class="fas fa-pen mr-2"></i>Ubah</a> --}}
+                                    <a href="{{ route('lokasi.edit', $lokasi->id_lokasi) }}" type="button"
+                                        class="btn btn-sm btn-warning rounded-3"><i class="fas fa-pen mr-2"></i>Ubah</a>
+
+                                        <form action="{{ $lokasi->is_active ? route('lokasi.disable', $lokasi->id_lokasi) : route('lokasi.enable', $lokasi->id_lokasi) }}" method="post" class="d-inline">
+                                            @csrf
+                                            @method('POST')
+                                            <button type="submit" class="btn btn-sm {{ $lokasi->is_active ? 'btn-danger' : 'btn-success' }}">
+                                                <i class="{{ $lokasi->is_active ? 'fas fa-ban' : 'fas fa-check-circle' }} mr-2"></i>
+                                                {{ $lokasi->is_active ? 'Nonaktifkan' : 'Aktifkan' }}
+                                            </button>
+                                        </form>
 
                                     <!-- Button trigger modal -->
-                                    <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal"
+                                    {{-- <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal"
                                         data-bs-target="#hapusModal{{ $lokasi->id_lokasi }}">
                                         <i class="fas fa-trash mr-2"></i>Hapus
                                     </button>
@@ -71,7 +80,7 @@
                                                 </form>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> --}}
                                 </td>
                             </tr>
                         @endforeach

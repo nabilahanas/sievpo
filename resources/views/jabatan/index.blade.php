@@ -24,8 +24,8 @@
                             <th>Nama Jabatan</th>
                             <th>Wilayah</th>
                             <th>Bagian</th>
-                            <th>Fasilitas</th>
-                            <th>Jenjang Jabatan</th>
+                            <th>Klasifikasi</th>
+                            {{-- <th>Jenjang Jabatan</th> --}}
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -41,21 +41,30 @@
                                         Wilayah Barat
                                     @endif
                                 </td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td>{{ $jabatan->bagian }}</td>
+                                <td>{{ $jabatan->klasifikasi }}</td>
+                                {{-- <td></td> --}}
                                 <td>
                                     <a href="{{ route('jabatan.edit', $jabatan->id_jabatan) }}" type="button"
                                         class="btn btn-sm btn-warning"><i class="fas fa-pen mr-2"></i>Ubah</a>
 
+                                        <form action="{{ $jabatan->is_active ? route('jabatan.disable', $jabatan->id_jabatan) : route('jabatan.enable', $jabatan->id_jabatan) }}" method="post" class="d-inline">
+                                            @csrf
+                                            @method('POST')
+                                            <button type="submit" class="btn btn-sm {{ $jabatan->is_active ? 'btn-danger' : 'btn-success' }}">
+                                                <i class="{{ $jabatan->is_active ? 'fas fa-ban' : 'fas fa-check-circle' }} mr-2"></i>
+                                                {{ $jabatan->is_active ? 'Nonaktifkan' : 'Aktifkan' }}
+                                            </button>
+                                        </form>
+
                                     <!-- Button trigger modal -->
-                                    <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal"
+                                    {{-- <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal"
                                         data-bs-target="#hapusModal{{ $jabatan->id_jabatan }}">
                                         <i class="fas fa-trash mr-2"></i>Hapus
-                                    </button>
+                                    </button> --}}
 
                                     <!-- Modal -->
-                                    <div class="modal fade" id="hapusModal{{ $jabatan->id_jabatan }}" tabindex="-1"
+                                    {{-- <div class="modal fade" id="hapusModal{{ $jabatan->id_jabatan }}" tabindex="-1"
                                         aria-labelledby="hapusModalLabel" aria-hidden="true">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
@@ -81,7 +90,7 @@
                                                 </form>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> --}}
                                 </td>
                             </tr>
                         @endforeach

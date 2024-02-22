@@ -21,7 +21,7 @@
             @csrf
             <div class="card-body">
                 <div class="form-group row col-12 col-md-10">
-                    <label for="nama" class="col-sm-2 col-form-label required">Nama</label>
+                    <label for="nama" class="col-sm-2 col-form-label required">Nama Karyawan</label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" name="nama" required>
                     </div>

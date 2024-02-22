@@ -21,29 +21,29 @@
             @csrf
             <div class="card-body">
                 <div class="form-group row col-12 col-md-10">
-                    <label for="tgl_publikasi" class="col-sm-2 col-form-label required">Tanggal Publikasi</label>
-                    <div class="col-sm-10">
+                    <label for="tgl_publikasi" class="col-sm-3 col-form-label required">Tanggal Publikasi</label>
+                    <div class="col-sm-9">
                         <input type="date" class="form-control" name="tgl_publikasi" required>
                     </div>
                 </div>
                 <div class="form-group row col-12 col-md-10">
-                    <label for="judul" class="col-sm-2 col-form-label required">Judul Berita</label>
-                    <div class="col-sm-10">
+                    <label for="judul" class="col-sm-3 col-form-label required">Judul Berita</label>
+                    <div class="col-sm-9">
                         <input type="text" class="form-control" name="judul" id="judul" placeholder="Masukkan Judul Berita"
                             required>
                     </div>
                 </div>
                 <div class="form-group row col-12 col-md-10">
-                    <label class="col-sm-2 col-form-label required">Gambar</label>
-                    <div class="col-sm-10">
+                    <label for="gambar" class="col-sm-3 col-form-label">Gambar</label>
+                    <div class="col-sm-9">
                         <input type="file" class="form-control" id="fileInput" name="gambar" accept="image/*"
                             >
                     </div>
                 </div>
                 <div class="form-group row col-12 col-md-10">
-                    <label for="deskripsi" class="col-sm-2 col-form-label required">Deskripsi</label>
-                    <div class="col-sm-10">
-                        <textarea class="form-control" name="deskripsi" placeholder="Masukkan Deskripsi Berita" required></textarea>
+                    <label for="link" class="col-sm-3 col-form-label required">Link Berita</label>
+                    <div class="col-sm-9">
+                        <input type="url" class="form-control" name="deskripsi" placeholder="Masukkan Link Berita" required></input>
                     </div>
                 </div>
 

@@ -16,13 +16,12 @@
             <a href="{{ route('karyawan.add') }}" type="button" class="btn btn-primary"><i
                     class="fas fa-plus mr-2"></i>Tambah</a>
 
-
             <div class="card-body table-responsive">
-                <table id="karyawan" class="table table-sm table-hover table-striped" style="table-layout:fixed">
-
+                <table id="karyawan" class="table table-sm table-hover table-striped">
                     <thead class="thead-successv2">
                         <tr>
-                            <th>Nama</th>
+                            <th>No.</th>
+                            <th>Nama Karyawan</th>
                             <th>Jabatan</th>
                             <th>Aksi</th>
                         </tr>
@@ -30,13 +29,14 @@
                     <tbody>
                         @foreach ($karyawan as $kar)
                             <tr>
+                                <td>{{ $loop->iteration }}.</td>
                                 <td>{{ $kar->nama }}</td>
                                 <td>{{ $kar->jabatan }}</td>
                                 <td>
                                     <button onclick="window.location='{{ route('karyawan.edit', $kar->id_karyawan) }}'"
                                         class="btn btn-sm btn-warning"><i class="fas fa-pen mr-2"></i>Ubah</button>
 
-                                    <!-- Button trigger modal -->
+                                    {{-- <!-- Button trigger modal -->
                                     <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal"
                                         data-bs-target="#hapusModal{{ $kar->id_karyawan }}"><i
                                             class="fas fa-trash mr-2"></i>Hapus
@@ -69,7 +69,7 @@
                                                 </form>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> --}}
                                 </td>
                             </tr>
                         @endforeach

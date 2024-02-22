@@ -11,6 +11,10 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="{{ asset('/') }}plugins/fontawesome-free/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        integrity="sha512-/Ff2RGc2vJCVt21QBD2NpP3h6UlxVzF/4vEOppu91Fg4ErBm1/JJx96mds3Q8E+3w2JZl+l5JFi3vr9KHgHAA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('/') }}dist/css/adminlte.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
@@ -45,9 +49,6 @@
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
                     <div class="media">
-                        {{-- <img class="align-self-center img-circle mr-3"
-                            src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png"
-                            height="30" width="30"> --}}
                         @if (auth()->user()->profile_pict)
                             <img src="{{ asset('storage/profile-pict/' . auth()->user()->profile_pict) }}"
                                 alt="Profile Picture" alt="avatar" class="align-self-center img-circle mr-3"

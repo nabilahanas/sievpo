@@ -20,7 +20,7 @@
                 <table id="evpo" class="table table-sm text-nowrap table-hover table-striped" style="width: 100%">
                     <thead class="thead-successv2">
                         <tr>
-                            <th colspan="44">{{ Auth::user()->nama_user ?? '' }}</th>
+                            <th colspan="53">{{ Auth::user()->nama_user ?? '' }}</th>
                         </tr>
                         <tr>
                             <th rowspan="2" style="text-align: center">Tanggal</th>
@@ -29,7 +29,14 @@
                                 <th colspan="9" style="text-align: center">{{ $bidang->nama_bidang }}</th>
                             @endforeach
 
+                            <th rowspan="2" style="text-align: center">Total Poin</th>
+                            <th rowspan="2" style="text-align: center">Shift</th>
+                            <th rowspan="2" style="text-align: center">Lokasi</th>
                             <th rowspan="2" style="text-align: center">Foto</th>
+                            <th rowspan="2" style="text-align: center">Status</th>
+                            <th rowspan="2" style="text-align: center">Oleh</th>
+                            <th rowspan="2" style="text-align: center">Tanggal Konfirmasi</th>
+                            <th rowspan="2" style="text-align: center">Catatan</th>
                             <th rowspan="2" style="text-align: center">Aksi</th>
                         </tr>
                         <tr>
@@ -37,23 +44,23 @@
                                 <th>{{ $s->nama_shift }}</th>
                             @endforeach
                             <th>Jml</th>
-                        
+
                             @foreach ($shift as $s)
                                 <th>{{ $s->nama_shift }}</th>
                             @endforeach
                             <th>Jml</th>
-                        
+
                             @foreach ($shift as $s)
                                 <th>{{ $s->nama_shift }}</th>
                             @endforeach
                             <th>Jml</th>
-                        
+
                             @foreach ($shift as $s)
                                 <th>{{ $s->nama_shift }}</th>
                             @endforeach
                             <th>Jml</th>
                         </tr>
-                        
+
                     </thead>
                     <tbody>
                         <tr>
@@ -67,16 +74,6 @@
                             <td></td>
                             <td></td>
                             <td></td>
-                            <td></td>
-
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
 
                             <td></td>
 
@@ -102,17 +99,64 @@
 
                             <td></td>
 
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+
+                            <td></td>
+
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><a href="">Lihat Foto</a></td>
                             <td>
-                                <a href="" target="_blank" rel="noopener noreferrer"></a>
+                                <div class="text-center">--</div>
+                                <div><i class="far fa-check-circle mr-2" style="color: #28a745"></i>Diterima</div>
+                                <div><i class="far fa-times-circle mr-2" style="color: #dc3545"></i>Ditolak</div>
                             </td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
                             <td>
-                                <form action="" method="post" class="d-inline">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i>
-                                        Hapus
-                                    </button>
-                                </form>
+                                <!-- Button trigger modal -->
+                                <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal"
+                                    data-bs-target="#hapusModal"><i
+                                        class="fas fa-trash mr-2"></i>Hapus
+                                </button>
+
+                                <!-- Modal -->
+                                <div class="modal fade" id="hapusModal" tabindex="-1"
+                                    aria-labelledby="hapusModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="hapusModalLabel">Konfirmasi</h5>
+                                                <button type="button" class="close" data-bs-dismiss="modal"
+                                                    aria-label="Close">
+                                                    <span>&times;</span>
+                                                </button>
+                                            </div>
+                                            <form method="POST"
+                                                action="">
+                                                @csrf
+                                                @method('DELETE')
+                                                <div class="modal-body">
+                                                    Apakah Anda yakin ingin menghapus data ini?
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-bs-dismiss="modal">Tutup</button>
+                                                    <button type="submit" class="btn btn-danger">Yakin</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
                             </td>
                         </tr>
                     </tbody>

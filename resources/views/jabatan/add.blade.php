@@ -48,12 +48,6 @@
                         <input type="text" class="form-control" name="klasifikasi" required>
                     </div>
                 </div>
-                <div class="form-group row col-12 col-md-10">
-                    <label for="jenjang_jabatan" class="col-sm-2 col-form-label required">Jenjang Jabatan</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" name="jenjang_jabatan" required>
-                    </div>
-                </div>
                 <div class="text-center">
                     <button type="submit" class="btn btn-primary"><i class="fas fa-save mr-2"></i>Simpan</button>
                     <button type="reset" class="btn btn-secondary"><i class="fas fa-redo mr-2"></i>Reset</button>

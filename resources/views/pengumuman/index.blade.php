@@ -47,7 +47,7 @@
                                     <button onclick="window.location='{{ route('pengumuman.edit', $item->id_pengumuman) }}'"
                                         class="btn btn-sm btn-warning"><i class="fas fa-pen mr-2"></i>Ubah</button>
 
-                                    <!-- Button trigger modal -->
+                                    {{-- <!-- Button trigger modal -->
                                     <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal"
                                         data-bs-target="#hapusModal{{ $item->id_pengumuman }}"><i
                                             class="fas fa-trash mr-2"></i>Hapus
@@ -80,7 +80,7 @@
                                                 </form>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> --}}
                                 </td>
                             </tr>
                         @endforeach

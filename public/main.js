@@ -3,9 +3,38 @@ $(document).ready(function () {
     $('#evpo').DataTable({
         scrollX: true,
         scrollCollapse: true,
-        columnDefs: [{ orderable: false, targets: [1, 2, 3, 4, 5, 6, 7, 8, 10, 11, 12, 13, 14, 15, 16, 17, 19, 20, 21, 22, 23, 24, 25, 26, 28, 29, 30, 31, 32, 33, 34, 35, 37, 38] }],
+        columnDefs: [{ orderable: false, targets: [1, 2, 3, 4, 5, 6, 7, 8, 10, 11, 12, 13, 14, 15, 16, 17, 19, 20, 21, 22, 23, 24, 25, 26, 28, 29, 30, 31, 32, 33, 34, 35, 40, 44, 45] }],
         displayLength: 25,
     });
+});
+
+// Rekap Total Karyawan
+$(document).ready(function () {
+    $('#konfirm').DataTable({
+        dom: "<'row'<'col-sm-10 col-md-6 carikonfirm'l ><'col-sm-10 col-md-6'f>>" +
+            "<'row'<'col-sm-12'tr>>" +
+            "<'row'<'col-sm-10 col-md-5'i><'col-sm-10 col-md-7'p>>",
+        scrollX: true,
+        scrollCollapse: true,
+        paging: false,
+        columnDefs: [{ orderable: false, targets: 8 }],
+    });
+
+    $('.carikonfirm').append(`
+    <form>
+    <div class="input-group mt-2 mb-4">
+        <select name="search" type="number" class="form-control" placeholder="search" aria-label="search"
+            aria-describedby="button-addon2">
+            <option>Pilih Status</option>
+            <option value="01">Menunggu Konfirmasi</option>
+            <option value="02">Diterima</option>
+            <option value="03">Ditolak</option>
+        </select>
+
+        <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Cari</button>
+    </div>
+    </form>
+    `);
 });
 
 // Rekap Harian Karyawan
@@ -454,6 +483,14 @@ $(document).ready(function () {
             <option value="12">Desember</option>
         </select>
 
+        <select name="search" type="number" class="form-control" placeholder="search" aria-label="search"
+            aria-describedby="button-addon2">
+            <option>Pilih Tahun</option>
+            <option value="01">2024</option>
+            <option value="02">2025</option>
+            <option value="03">2026</option>
+        </select>
+
         <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Cari</button>
     </div>
     </form>
@@ -479,10 +516,29 @@ $(document).ready(function () {
     });
 });
 
+// Karyawan
+$(document).ready(function () {
+    var table = $('#karyawan').DataTable({
+        columnDefs: [{ orderable: false, targets: 3 }],
+        scrollCollapse: true,
+        displayLength: 25,
+    });
+
+    // Order by the grouping
+    $('#jabatan').on('click', 'tr.group', function () {
+        var currentOrder = table.order()[0];
+        if (currentOrder[0] === groupColumn && currentOrder[1] === 'asc') {
+            table.order([groupColumn, 'desc']).draw();
+        } else {
+            table.order([groupColumn, 'asc']).draw();
+        }
+    });
+});
+
 // Jabatan
 $(document).ready(function () {
     var table = $('#jabatan').DataTable({
-        columnDefs: [{ orderable: false, targets: 6 }],
+        columnDefs: [{ orderable: false, targets: 5 }],
         scrollCollapse: true,
         displayLength: 25,
     });

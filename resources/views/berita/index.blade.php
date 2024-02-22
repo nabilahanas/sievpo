@@ -10,20 +10,20 @@
             {{ $message }}
         </div>
     @endif
-    
+
     <div class="card">
         <div class="card-body">
             <a href="{{ route('berita.add') }}" type="button" class="btn btn-primary"><i
                     class="fas fa-plus mr-2"></i>Tambah</a>
 
             <div class="card-body table-responsive">
-                <table id="berita" class="table table-sm table-hover table-striped" style="table-layout:fixed">
+                <table id="berita" class="table table-sm table-hover table-striped">
                     <thead class="thead-successv2">
                         <tr>
                             <th>Tanggal Publikasi</th>
                             <th>Judul Berita</th>
                             <th>Gambar</th>
-                            <th>Deskripsi</th>
+                            <th>Link Berita</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -40,12 +40,12 @@
                                         Tidak Ada Gambar
                                     @endif
                                 </td>
-                                <td>{{ $item->deskripsi }}</td>
+                                <td><a href="{{ $item->deskripsi }}">Lihat Selengkapnya</a></td>
                                 <td>
                                     <a href="{{ route('berita.edit', $item->id_berita) }}" type="button"
                                         class="btn btn-sm btn-warning"><i class="fas fa-pen mr-2"></i>Ubah</a>
 
-                                    <!-- Button trigger modal -->
+                                    {{-- <!-- Button trigger modal -->
                                     <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal"
                                         data-bs-target="#hapusModal{{ $item->id_berita }}">
                                         <i class="fas fa-trash mr-2"></i>Hapus
@@ -78,7 +78,7 @@
                                                 </form>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> --}}
                                 </td>
                             </tr>
                         @endforeach

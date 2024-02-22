@@ -44,7 +44,7 @@
                                     @endif
                                 </td>
                                 <td>
-                                    <!-- Button trigger modal -->
+                                    {{-- <!-- Button trigger modal -->
                                     <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal"
                                         data-bs-target="#hapusModal{{ $user->id_user }}">
                                         <i class="fas fa-trash mr-2"></i>Hapus
@@ -76,7 +76,7 @@
                                                 </form>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> --}}
                                 </td>
                             </tr>
                         @endforeach

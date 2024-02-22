@@ -142,12 +142,11 @@
                                                     </div>
                                                     <div class="form-group mb-2">
                                                         <button type="submit" class="btn btn-info2"><i
-                                                                class="fas fa-sync mr-2"></i>Update</button>
+                                                                class="fas fa-sync-alt mr-2"></i>Update</button>
 
                                                         <form action=""
                                                             method="post" class="d-inline">
                                                             @csrf
-                                                            @method('DELETE')
                                                             <button class="btn btn-danger"><i
                                                                     class="fas fa-trash mr-2"></i>Hapus
                                                             </button>
@@ -181,7 +180,7 @@
                                             </div>
                                             <div class="form-group mb-2">
                                                 <button type="submit" class="btn btn-info2"><i
-                                                        class="fas fa-sync mr-2"></i>Update Password</button>
+                                                        class="fas fa-sync-alt mr-2"></i>Update Password</button>
                                             </div>
                                         </form>
                                     </div>

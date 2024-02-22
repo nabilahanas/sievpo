@@ -77,7 +77,7 @@
 
                     <tbody>
                         <tr>
-                            <th scope="row">.</th>
+                            <th>.</th>
 
                             <td></td>
                             <td></td>

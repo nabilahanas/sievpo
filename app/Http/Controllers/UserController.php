@@ -18,7 +18,7 @@ class UserController extends Controller
 
     public function create()
     {
-        return view('users.register', ['key'=>'users']);
+        return view('users.register', ['key'=>'users'])->with('success', 'Data user berhasil');
     }
 
     public function delete($id)

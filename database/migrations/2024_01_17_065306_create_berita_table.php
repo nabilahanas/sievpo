@@ -18,6 +18,7 @@ return new class extends Migration
             $table->text('deskripsi');
             $table->date('tgl_publikasi');
             $table->timestamps();
+            $table->softDeletes();
 
         });
     }

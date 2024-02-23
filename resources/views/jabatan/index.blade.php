@@ -48,14 +48,16 @@
                                     <a href="{{ route('jabatan.edit', $jabatan->id_jabatan) }}" type="button"
                                         class="btn btn-sm btn-warning"><i class="fas fa-pen mr-2"></i>Ubah</a>
 
-                                        <form action="{{ $jabatan->is_active ? route('jabatan.disable', $jabatan->id_jabatan) : route('jabatan.enable', $jabatan->id_jabatan) }}" method="post" class="d-inline">
-                                            @csrf
-                                            @method('POST')
-                                            <button type="submit" class="btn btn-sm {{ $jabatan->is_active ? 'btn-danger' : 'btn-success' }}">
-                                                <i class="{{ $jabatan->is_active ? 'fas fa-ban' : 'fas fa-check-circle' }} mr-2"></i>
-                                                {{ $jabatan->is_active ? 'Nonaktifkan' : 'Aktifkan' }}
-                                            </button>
-                                        </form>
+                                        <form action="{{ $jabatan->trashed() ? route('jabatan.restore', $jabatan->id_jabatan) : route('jabatan.delete', $jabatan->id_jabatan) }}"
+                                            method="post" class="d-inline">
+                                          @csrf
+                                          @method($jabatan->trashed() ? 'POST' : 'DELETE')
+                                          <button type="submit"
+                                                  class="btn btn-sm {{ $jabatan->trashed() ? 'btn-success' : 'btn-danger' }}">
+                                              <i class="{{ $jabatan->trashed() ? 'fas fa-check-circle' : 'fas fa-trash' }} mr-2"></i>
+                                              {{ $jabatan->trashed() ? 'Restore' : 'Soft Delete' }}
+                                          </button>
+                                      </form>
 
                                     <!-- Button trigger modal -->
                                     {{-- <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal"

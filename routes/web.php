@@ -78,17 +78,17 @@ Route::middleware('check.role:Admin,Mahasiswa')->group(function () {
         Route::get('/', [JabatanController::class, 'index'])->name('jabatan.index');
         Route::get('edit/{id}', [JabatanController::class, 'edit'])->name('jabatan.edit');
         Route::post('update/{id}', [JabatanController::class, 'update'])->name('jabatan.update');
-        // Route::delete('delete/{id}', [JabatanController::class, 'delete'])->name('jabatan.delete');
-        Route::post('disable/{id}', [JabatanController::class, 'disable'])->name('jabatan.disable');
-        Route::post('enable/{id}', [JabatanController::class, 'enable'])->name('jabatan.enable');
+        Route::post('restore/{id}', [JabatanController::class, 'restore'])->name('jabatan.restore');
+        Route::delete('delete/{id}', [JabatanController::class, 'delete'])->name('jabatan.delete');
     });
 
     Route::prefix("berita")->group(function () {
+        Route::get('/', [BeritaController::class, 'index'])->name('berita.index');
         Route::get('add', [BeritaController::class, 'create'])->name('berita.add');
         Route::post('store', [BeritaController::class, 'store'])->name('berita.store');
-        Route::get('/', [BeritaController::class, 'index'])->name('berita.index');
         Route::get('edit/{id}', [BeritaController::class, 'edit'])->name('berita.edit');
         Route::post('update/{id}', [BeritaController::class, 'update'])->name('berita.update');
+        Route::post('restore/{id}', [BeritaController::class, 'restore'])->name('berita.restore');
         Route::delete('delete/{id}', [BeritaController::class, 'delete'])->name('berita.delete');
     });
 
@@ -98,6 +98,7 @@ Route::middleware('check.role:Admin,Mahasiswa')->group(function () {
         Route::get('/', [PengumumanController::class, 'index'])->name('pengumuman.index');
         Route::get('edit/{id}', [PengumumanController::class, 'edit'])->name('pengumuman.edit');
         Route::post('update/{id}', [PengumumanController::class, 'update'])->name('pengumuman.update');
+        Route::post('restore/{id}', [PengumumanController::class, 'restore'])->name('pengumuman.restore');
         Route::delete('delete/{id}', [PengumumanController::class, 'delete'])->name('pengumuman.delete');
     });
 
@@ -112,6 +113,7 @@ Route::middleware('check.role:Admin,Mahasiswa')->group(function () {
 
     Route::prefix("users")->group(function () {
         Route::get('/', [UserController::class, 'index'])->name('users.index');
+        Route::post('restore/{id}', [UserController::class, 'restore'])->name('users.restore');
         Route::delete('delete/{id}', [UserController::class, 'delete'])->name('users.delete');
     });
 
@@ -121,9 +123,8 @@ Route::middleware('check.role:Admin,Mahasiswa')->group(function () {
         Route::get('/', [BidangController::class, 'index'])->name('bidang.index');
         Route::get('edit/{id}', [BidangController::class, 'edit'])->name('bidang.edit');
         Route::post('update/{id}', [BidangController::class, 'update'])->name('bidang.update');
-        // Route::delete('delete/{id}', [BidangController::class, 'delete'])->name('bidang.delete');
-        Route::post('disable/{id}', [BidangController::class, 'disable'])->name('bidang.disable');
-        Route::post('enable/{id}', [BidangController::class, 'enable'])->name('bidang.enable');
+        Route::delete('delete/{id}', [BidangController::class, 'delete'])->name('bidang.delete');
+        Route::post('restore/{id}', [BidangController::class, 'restore'])->name('bidang.restore');
     });
 
     Route::prefix("shift")->group(function () {
@@ -132,9 +133,8 @@ Route::middleware('check.role:Admin,Mahasiswa')->group(function () {
         Route::get('/', [ShiftController::class, 'index'])->name('shift.index');
         Route::get('edit/{id}', [ShiftController::class, 'edit'])->name('shift.edit');
         Route::post('update/{id}', [ShiftController::class, 'update'])->name('shift.update');
-        // Route::delete('delete/{id}', [ShiftController::class, 'delete'])->name('shift.delete');
-        Route::post('disable/{id}', [ShiftController::class, 'disable'])->name('shift.disable');
-        Route::post('enable/{id}', [ShiftController::class, 'enable'])->name('shift.enable');
+        Route::delete('delete/{id}', [ShiftController::class, 'delete'])->name('shift.delete');
+        Route::post('restore/{id}', [ShiftController::class, 'restore'])->name('shift.restore');
     });
 
     Route::prefix("lokasi")->group(function () {
@@ -143,9 +143,8 @@ Route::middleware('check.role:Admin,Mahasiswa')->group(function () {
         Route::get('/', [LokasiController::class, 'index'])->name('lokasi.index');
         Route::get('edit/{id}', [LokasiController::class, 'edit'])->name('lokasi.edit');
         Route::post('update/{id}', [LokasiController::class, 'update'])->name('lokasi.update');
-        // Route::delete('delete/{id}', [LokasiController::class, 'delete'])->name('lokasi.delete');
-        Route::post('disable/{id}', [LokasiController::class, 'disable'])->name('lokasi.disable');
-        Route::post('enable/{id}', [LokasiController::class, 'enable'])->name('lokasi.enable');
+        Route::delete('delete/{id}', [LokasiController::class, 'delete'])->name('lokasi.delete');
+        Route::post('restore/{id}', [LokasiController::class, 'restore'])->name('lokasi.restore');
     });
 
     Route::prefix("karyawan")->group(function () {
@@ -154,6 +153,7 @@ Route::middleware('check.role:Admin,Mahasiswa')->group(function () {
         Route::get('/', [KaryawanDBController::class, 'index'])->name('karyawan.index');
         Route::get('edit/{id}', [KaryawanDBController::class, 'edit'])->name('karyawan.edit');
         Route::post('update/{id}', [KaryawanDBController::class, 'update'])->name('karyawan.update');
+        Route::post('restore/{id}', [KaryawanDBController::class, 'restore'])->name('karyawan.restore');
         Route::delete('delete/{id}', [KaryawanDBController::class, 'delete'])->name('karyawan.delete');
     });
 });

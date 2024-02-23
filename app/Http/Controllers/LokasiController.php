@@ -12,7 +12,7 @@ class LokasiController extends Controller
 
     public function index()
     {
-        $lokasi = Lokasi::all();
+        $lokasi = Lokasi::withTrashed()->get();
         return view('lokasi.index', compact('lokasi'), ['key'=>'lokasi']);
     }
 
@@ -61,36 +61,19 @@ class LokasiController extends Controller
         return redirect()->route('lokasi.index')->with('success', 'Data lokasi berhasil diubah');
     }
 
-    public function disable($id)
+    public function restore($id)
     {
-        $lokasi = Lokasi::find($id);
-        if (!$lokasi) {
-            return redirect()->route('lokasi.index')->with('error', 'Data lokasi tidak ditemukan');
-        }
+        $lokasi=Lokasi::withTrashed()->find($id);
+        $lokasi->restore();
 
-        $lokasi->update(['is_active' => false]);
-
-        return redirect()->route('lokasi.index')->with('success', 'Data lokasi berhasil dinonaktifkan');
+        return redirect()->route('lokasi.index')->with('success', 'Data lokasi berhasil dipulihkan');
     }
 
-    public function enable($id)
+    public function delete($id)
     {
         $lokasi = Lokasi::find($id);
-        if (!$lokasi) {
-            return redirect()->route('lokasi.index')->with('error', 'Data lokasi tidak ditemukan');
-        }
+        $lokasi -> delete();
 
-        $lokasi->update(['is_active' => true]);
-
-        return redirect()->route('lokasi.index')->with('success', 'Data lokasi berhasil diaktifkan');
+        return redirect()->route('lokasi.index')->with('success', 'Data lokasi berhasil dihapus');
     }
-
-    // public function delete($id)
-    // {
-    //     $lokasi = Lokasi::find($id);
-    //     $lokasi -> delete();
-
-    //     echo "Data berhasil dihapus" .PHP_EOL;
-    //     return redirect()->route('lokasi.index')->with('success', 'Data lokasi berhasil dihapus');
-    // }
 }

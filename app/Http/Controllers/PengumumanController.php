@@ -14,12 +14,13 @@ class PengumumanController extends Controller
     public function index()
     {
         $pengumuman = Pengumuman::all();
-        return view('pengumuman.index', compact('pengumuman'), ['key'=>'pengumuman']);
+        $pengumumanDeleted = Pengumuman::onlyTrashed()->get();
+        return view('pengumuman.index', compact('pengumuman', 'pengumumanDeleted'), ['key' => 'pengumuman']);
     }
 
     public function create()
     {
-        return view('pengumuman.add', ['key'=>'pengumuman']);
+        return view('pengumuman.add', ['key' => 'pengumuman']);
     }
 
     public function store(Request $request)
@@ -45,8 +46,8 @@ class PengumumanController extends Controller
             $data['gambar'] = null;
         }
 
-        $pengumuman = Pengumuman::create($data);
-        echo "Data berhasil ditambahkan" . PHP_EOL;
+        Pengumuman::create($data);
+        // echo "Data berhasil ditambahkan" . PHP_EOL;
 
         return redirect()->route('pengumuman.index')->with('success', 'Data pengumuman berhasil ditambahkan');
 
@@ -55,7 +56,7 @@ class PengumumanController extends Controller
     public function edit($id)
     {
         $pengumuman = Pengumuman::find($id);
-        return view('pengumuman.edit', compact('pengumuman'), ['key'=>'pengumuman']);
+        return view('pengumuman.edit', compact('pengumuman'), ['key' => 'pengumuman']);
     }
 
     public function update(Request $request, $id)
@@ -64,7 +65,7 @@ class PengumumanController extends Controller
             'judul' => 'required',
             'gambar' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Validate image
             'deskripsi' => 'required',
-            'tgl_publikasi' => 'required',
+            'tgl_publikasi' => 'required|date_format:d-m-Y',
         ]);
 
         $pengumuman = Pengumuman::find($id);
@@ -89,16 +90,25 @@ class PengumumanController extends Controller
 
         $pengumuman->save();
 
-        echo "Data berhasil diubah" . PHP_EOL;
+        // echo "Data berhasil diubah" . PHP_EOL;
         return redirect()->route('pengumuman.index')->with('success', 'Data pengumuman berhasil diubah');
+    }
+
+    public function restore($id)
+    {
+        $pengumuman = Pengumuman::onlyTrashed()->find($id);
+
+        $pengumuman->deleteImage();
+        $pengumuman->restore();
+
+        return redirect()->route('pengumuman.index')->with('success', 'Data pengumuman berhasil dipulihkan');
     }
 
     public function delete($id)
     {
         $pengumuman = Pengumuman::find($id);
-        $pengumuman -> delete();
-
-        echo "Data berhasil dihapus" .PHP_EOL;
+        $pengumuman->deleteImage();
+        $pengumuman->delete();
 
         return redirect()->route('pengumuman.index')->with('success', 'Data pengumuman berhasil dihapus');
     }

@@ -13,7 +13,9 @@ class KaryawanDBController extends Controller
     public function index()
     {
         $karyawan = Karyawan::all();
-        return view('karyawan.index', compact('karyawan'), ['key'=>'karyawan']);
+        $karyawanDeleted = Karyawan::onlyTrashed()->get();
+
+        return view('karyawan.index', compact('karyawan', 'karyawanDeleted'), ['key'=>'karyawan']);
     }
 
     public function create()
@@ -29,7 +31,6 @@ class KaryawanDBController extends Controller
         ]);
         $data = $request->all();
         Karyawan::create($data);
-        echo "Data berhasil ditambahkan" .PHP_EOL;
 
         return redirect()->route('karyawan.index')->with('succes', 'Data karyawan berhasil ditambahan');
     }
@@ -52,16 +53,23 @@ class KaryawanDBController extends Controller
             'nama' => $request -> nama,
             'jabatan' => $request -> jabatan,
         ]);
-        echo "Data berhasil diubah" .PHP_EOL;
+
         return redirect()->route('karyawan.index')->with('success', 'Data karyawan berhasil diubah');
+    }
+
+    public function restore($id)
+    {
+        $karyawan = Karyawan::onlyTrashed()->find($id);
+
+        $karyawan->restore();
+
+        return redirect()->route('karyawan.index')->with('success', 'Data karyawan berhasil dipulihkan');
     }
 
     public function delete($id)
     {
         $karyawan = Karyawan::find($id);
         $karyawan -> delete();
-
-        echo "Data berhasil dihapus" .PHP_EOL;
 
         return redirect()->route('karyawan.index')->with('success', 'Data karyawan berhasil dihapus');
     }

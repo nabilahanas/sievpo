@@ -37,17 +37,18 @@
                                         class="btn btn-sm btn-warning"><i class="fas fa-pen mr-2"></i>Ubah</a>
 
                                     <form
-                                        action="{{ $bidang->is_active ? route('bidang.disable', $bidang->id_bidang) : route('bidang.enable', $bidang->id_bidang) }}"
+                                        action="{{ $bidang->trashed() ? route('bidang.restore', $bidang->id_bidang) : route('bidang.delete', $bidang->id_bidang) }}"
                                         method="post" class="d-inline">
                                         @csrf
-                                        @method('POST')
+                                        @method($bidang->trashed() ? 'POST' : 'DELETE')
                                         <button type="submit"
-                                            class="btn btn-sm {{ $bidang->is_active ? 'btn-danger' : 'btn-success' }}">
+                                            class="btn btn-sm {{ $bidang->trashed() ? 'btn-success' : 'btn-danger' }}">
                                             <i
-                                                class="{{ $bidang->is_active ? 'fas fa-ban' : 'fas fa-check-circle' }} mr-2"></i>
-                                            {{ $bidang->is_active ? 'Nonaktifkan' : 'Aktifkan' }}
+                                                class="{{ $bidang->trashed() ? 'fas fa-check-circle' : 'fas fa-trash' }} mr-2"></i>
+                                            {{ $bidang->trashed() ? 'Restore' : 'Soft Delete' }}
                                         </button>
                                     </form>
+
 
                                     <!-- Button trigger modal -->
                                     {{-- <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal"

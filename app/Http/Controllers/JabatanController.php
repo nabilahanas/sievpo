@@ -12,7 +12,7 @@ class JabatanController extends Controller
 
     public function index()
     {
-        $jabatan = Jabatan::all();
+        $jabatan = Jabatan::withTrashed()->get();
         return view('jabatan.index', compact('jabatan'), ['key'=>'jabatan']);
     }
 
@@ -32,7 +32,6 @@ class JabatanController extends Controller
 
         $data = $request->all();
         Jabatan::create($data);
-        echo "Data berhasil ditambahkan" .PHP_EOL;
 
         return redirect()->route('jabatan.index')->with('success', 'Data jabatan berhasil ditambahkan');
     }
@@ -62,37 +61,19 @@ class JabatanController extends Controller
         return redirect()->route('jabatan.index')->with('success', 'Data jabatan berhasil diubah');
     }
 
-    public function disable($id)
+    public function restore($id)
     {
-        $jabatan = Jabatan::find($id);
-        if (!$jabatan) {
-            return redirect()->route('jabatan.index')->with('error', 'Data jabatan tidak ditemukan');
-        }
+        $jabatan = Jabatan::withTrashed()->find($id);
+        $jabatan->restore();
 
-        $jabatan->update(['is_active' => false]);
-
-        return redirect()->route('jabatan.index')->with('success', 'Data jabatan berhasil dinonaktifkan');
+        return redirect()->route('jabatan.index')->with('success', 'Data jabatan berhasil dipulihkan');
     }
 
-    public function enable($id)
+    public function delete($id)
     {
         $jabatan = Jabatan::find($id);
-        if (!$jabatan) {
-            return redirect()->route('jabatan.index')->with('error', 'Data jabatan tidak ditemukan');
-        }
+        $jabatan -> delete();
 
-        $jabatan->update(['is_active' => true]);
-
-        return redirect()->route('jabatan.index')->with('success', 'Data jabatan berhasil diaktifkan');
+        return redirect()->route('jabatan.index')->with('success', 'Data jabatan berhasil dihapus');
     }
-
-    // public function delete($id)
-    // {
-    //     $jabatan = Jabatan::find($id);
-    //     $jabatan -> delete();
-
-    //     echo "Data berhasil dihapus" .PHP_EOL;
-
-    //     return redirect()->route('jabatan.index')->with('success', 'Data jabatan berhasil dihapus');
-    // }
 }

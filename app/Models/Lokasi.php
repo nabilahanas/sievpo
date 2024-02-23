@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Lokasi extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $table = 'lokasi';
 
@@ -17,7 +18,6 @@ class Lokasi extends Model
         'nama_lokasi',
         'latitude',
         'longitude',
-        'is_active',
     ];
 
     protected $casts = [

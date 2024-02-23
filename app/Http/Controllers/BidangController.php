@@ -12,7 +12,8 @@ class BidangController extends Controller
 
     public function index()
     {
-        $bidang = Bidang::all();
+        $bidang = Bidang::withTrashed()->get();
+
         return view('bidang.index', compact('bidang'), ['key'=>'bidang']);
     }
 
@@ -57,37 +58,20 @@ class BidangController extends Controller
         return redirect()->route('bidang.index')->with('success', 'Data bidang berhasil diubah');
     }
 
-    public function disable($id)
+    public function restore($id)
     {
-        $bidang = Bidang::find($id);
-        if (!$bidang) {
-            return redirect()->route('bidang.index')->with('error', 'Data bidang tidak ditemukan');
-        }
+        $bidang = Bidang::withTrashed()->find($id);
+        $bidang->restore();
 
-        $bidang->update(['is_active' => false]);
+        return redirect()->route('bidang.index')->with('success', 'Data bidang berhasil dipulihkan');
 
-        return redirect()->route('bidang.index')->with('success', 'Data bidang berhasil dinonaktifkan');
     }
 
-    public function enable($id)
+    public function delete($id)
     {
         $bidang = Bidang::find($id);
-        if (!$bidang) {
-            return redirect()->route('bidang.index')->with('error', 'Data bidang tidak ditemukan');
-        }
+        $bidang -> delete();
 
-        $bidang->update(['is_active' => true]);
-
-        return redirect()->route('bidang.index')->with('success', 'Data bidang berhasil diaktifkan');
+        return redirect()->route('bidang.index')->with('success', 'Data bidang berhasil dihapus');
     }
-
-    // public function delete($id)
-    // {
-    //     $bidang = Bidang::find($id);
-    //     $bidang -> delete();
-        
-    //     echo "Data berhasil dihapus" .PHP_EOL;
-
-    //     return redirect()->route('bidang.index')->with('success', 'Data bidang berhasil dihapus');
-    // }
 }

@@ -12,7 +12,7 @@ class ShiftController extends Controller
 
     public function index()
     {
-        $shift = Shift::all();
+        $shift = Shift::withTrashed()->get();
         return view('shift.index', compact('shift'), ['key' => 'shift']);
     }
 
@@ -36,7 +36,6 @@ class ShiftController extends Controller
         $data['jam_akhir'] = date('H:i:s', strtotime($data['jam_akhir']));
 
         Shift::create($data);
-        echo "Data berhasil ditambahkan" . PHP_EOL;
 
         return redirect()->route('shift.index')->with('success', 'Data shift berhasil ditambahkan');
     }
@@ -64,42 +63,22 @@ class ShiftController extends Controller
             'poin' => $request->poin,
         ]);
 
-        echo "Data berhasil diubah" . PHP_EOL;
         return redirect()->route('shift.index')->with('success', 'Data shift berhasil diubah');
     }
-
-
-    public function disable($id)
+    
+    public function restore($id)
     {
-        $shift = Shift::find($id);
-        if (!$shift) {
-            return redirect()->route('shift.index')->with('error', 'Data shift tidak ditemukan');
-        }
+        $shift=Shift::withTrashed()->find($id);
+        $shift->restore();
 
-        $shift->update(['is_active' => false]);
-
-        return redirect()->route('shift.index')->with('success', 'Data shift berhasil dinonaktifkan');
+        return redirect()->route('shift.index')->with('success', 'Data shift berhasil dihapus');
     }
 
-    public function enable($id)
+    public function delete($id)
     {
         $shift = Shift::find($id);
-        if (!$shift) {
-            return redirect()->route('shift.index')->with('error', 'Data shift tidak ditemukan');
-        }
+        $shift -> delete();
 
-        $shift->update(['is_active' => true]);
-
-        return redirect()->route('shift.index')->with('success', 'Data shift berhasil diaktifkan');
+        return redirect()->route('shift.index')->with('success', 'Data shift berhasil dihapus');
     }
-
-
-    // public function delete($id)
-    // {
-    //     $shift = Shift::find($id);
-    //     $shift -> delete();
-
-    //     echo "Data berhasil dihapus" .PHP_EOL;
-    //     return redirect()->route('shift.index')->with('success', 'Data shift berhasil dihapus');
-    // }
 }

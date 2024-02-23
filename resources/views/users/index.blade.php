@@ -35,15 +35,25 @@
                                 <td>{{ $user->nip }}</td>
                                 <td>{{ $user->no_hp }}</td>
                                 <td>{{ $user->role->nama_role }}</td>
-                                <td>{{ $user->jabatan->nama_jabatan }}</td>
+                                <td>{{ $user->jabatan->nama_jabatan ?? '' }}</td>
                                 <td>
-                                    @if ($user->jabatan->wilayah == 0)
-                                        Wilayah Timur
-                                    @elseif($user->jabatan->wilayah == 1)
-                                        Wilayah Barat
+                                    @if ($user->jabatan)
+                                        @if ($user->jabatan->wilayah == 0)
+                                            Wilayah Timur
+                                        @elseif($user->jabatan->wilayah == 1)
+                                            Wilayah Barat
+                                        @endif
                                     @endif
                                 </td>
                                 <td>
+                                    <form action="{{ route('users.delete', $user->id_user) }}" method="POST"
+                                        class="d-inline">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-sm btn-danger">
+                                            <i class="fas fa-trash-alt mr-2"></i>Hapus
+                                        </button>
+                                    </form>
                                     {{-- <!-- Button trigger modal -->
                                     <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal"
                                         data-bs-target="#hapusModal{{ $user->id_user }}">
@@ -85,4 +95,55 @@
             </div>
         </div>
     </div>
+
+    @if (count($usersDeleted) > 0)
+        <div class="card mt-3">
+            <div class="card-body">
+                <h2>Riwayat Data User</h2>
+
+                <table class="table table-sm table-hover table-striped">
+                    <thead class="thead-danger">
+                        <tr>
+                            <th>Nama</th>
+                            <th>NIP</th>
+                            <th>No. HP</th>
+                            <th>Peran</th>
+                            <th>Jabatan</th>
+                            <th>Wilayah</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($usersDeleted as $item)
+                            <tr>
+                                <td>{{ $item->nama_user }}</td>
+                                <td>{{ $item->nip }}</td>
+                                <td>{{ $item->no_hp }}</td>
+                                <td>{{ $item->role->nama_role }}</td>
+                                <td>{{ $item->jabatan->nama_jabatan }}</td>
+                                <td>
+                                    @if ($item->jabatan->wilayah == 0)
+                                        Wilayah Timur
+                                    @elseif($item->jabatan->wilayah == 1)
+                                        Wilayah Barat
+                                    @endif
+                                </td>
+                                <td>
+                                    <form action="{{ route('users.restore', $item->id_user) }}" method="POST"
+                                        class="d-inline">
+                                        @csrf
+                                        @method('POST')
+                                        <button type="submit" class="btm btn-success btn-sm">
+                                            <i class="fas fa-undo"></i>
+                                            Pulihkan</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    @endif
+
 @endsection

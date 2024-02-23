@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Berita;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
+use Carbon\Carbon;
 
 class BeritaController extends Controller
 {
@@ -14,7 +16,9 @@ class BeritaController extends Controller
     public function index()
     {
         $berita = Berita::all();
-        return view('berita.index', compact('berita'), ['key' => 'berita']);
+        $beritaDeleted = Berita::onlyTrashed()->get();
+
+        return view('berita.index', compact('berita', 'beritaDeleted'), ['key' => 'berita']);
     }
 
     public function create()
@@ -24,12 +28,16 @@ class BeritaController extends Controller
 
     public function store(Request $request)
     {
-        $this->validate($request, [
+        $validator = Validator::make($request->all(), [
             'judul' => 'required',
             'gambar' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'deskripsi' => 'required',
             'tgl_publikasi' => 'required',
         ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
 
         $data = $request->all();
 
@@ -48,8 +56,7 @@ class BeritaController extends Controller
             $data['gambar'] = null;
         }
 
-        $berita = Berita::create($data);
-        echo "Data berhasil ditambahkan" . PHP_EOL;
+        Berita::create($data);
 
         return redirect()->route('berita.index')->with('success', 'Data berita berhasil ditambahkan');
     }
@@ -62,12 +69,16 @@ class BeritaController extends Controller
 
     public function update(Request $request, $id)
     {
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'judul' => 'required',
             'gambar' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Validate image
             'deskripsi' => 'required',
             'tgl_publikasi' => 'required',
         ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
 
         $berita = Berita::find($id);
 
@@ -77,14 +88,13 @@ class BeritaController extends Controller
         $berita->tgl_publikasi = $request->tgl_publikasi;
 
         // Check if a new image is uploaded
-        if ($request->hasFile('gambar')) {
+        if ($request->hasFile('gambar') && ($gambar = $request->file('gambar'))) {
             // Delete the old image if exists
             if ($berita->gambar) {
                 Storage::disk('public')->delete('gambar-berita/' . $berita->gambar);
             }
 
             // Upload the new image
-            $gambar = $request->file('gambar');
             $filename = time() . '_' . $gambar->getClientOriginalName();
             $path = 'gambar-berita/' . $filename;
 
@@ -96,17 +106,33 @@ class BeritaController extends Controller
 
         $berita->save();
 
-        echo "Data berhasil diubah" . PHP_EOL;
         return redirect()->route('berita.index')->with('success', 'Data berita berhasil diubah');
+    }
+
+    public function restore($id)
+    {
+        $berita = Berita::onlyTrashed()->find($id);
+
+        // Hapus gambar terkait sebelum memulihkan
+        $berita->deleteImage();
+
+        // Memulihkan model
+        $berita->restore();
+
+        return redirect()->route('berita.index')->with('success', 'Data berita berhasil dipulihkan');
     }
 
     public function delete($id)
     {
         $berita = Berita::find($id);
-        $berita->delete();
 
-        echo "Data berhasil dihapus" . PHP_EOL;
+        // Hapus gambar terkait sebelum menghapus
+        $berita->deleteImage();
+
+        // Menghapus model
+        $berita->delete();
 
         return redirect()->route('berita.index')->with('success', 'Data berita berhasil dihapus');
     }
+
 }

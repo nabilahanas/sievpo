@@ -39,14 +39,16 @@
                                     <a href="{{ route('shift.edit', $shift->id_shift) }}" type="button"
                                         class="btn btn-sm btn-warning"><i class="fas fa-pen mr-2"></i>Ubah</a>
 
-                                        <form action="{{ $shift->is_active ? route('shift.disable', $shift->id_shift) : route('shift.enable', $shift->id_shift) }}" method="post" class="d-inline">
-                                            @csrf
-                                            @method('POST')
-                                            <button type="submit" class="btn btn-sm {{ $shift->is_active ? 'btn-danger' : 'btn-success' }}">
-                                                <i class="{{ $shift->is_active ? 'fas fa-ban' : 'fas fa-check-circle' }} mr-2"></i>
-                                                {{ $shift->is_active ? 'Nonaktifkan' : 'Aktifkan' }}
-                                            </button>
-                                        </form>
+                                        <form action="{{ $shift->trashed() ? route('shift.restore', $shift->id_shift) : route('shift.delete', $shift->id_shift) }}"
+                                            method="post" class="d-inline">
+                                          @csrf
+                                          @method($shift->trashed() ? 'POST' : 'DELETE')
+                                          <button type="submit"
+                                                  class="btn btn-sm {{ $shift->trashed() ? 'btn-success' : 'btn-danger' }}">
+                                              <i class="{{ $shift->trashed() ? 'fas fa-check-circle' : 'fas fa-trash' }} mr-2"></i>
+                                              {{ $shift->trashed() ? 'Restore' : 'Soft Delete' }}
+                                          </button>
+                                      </form>
 
                                     <!-- Button trigger modal -->
                                     {{-- <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal"

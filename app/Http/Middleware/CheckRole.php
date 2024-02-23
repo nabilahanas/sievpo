@@ -21,6 +21,6 @@ class CheckRole
         {
             return $next($request);
         }
-        return response('Forbidden. You do not have the required role.', 403);
+        return redirect('login');
     }
 }

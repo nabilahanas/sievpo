@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Jabatan extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $table = 'jabatan';
     protected $primaryKey = 'id_jabatan';
@@ -17,7 +18,6 @@ class Jabatan extends Model
         'wilayah',
         'bagian',
         'klasifikasi',
-        'is_active',
     ];
 
     public $timestamps = true;

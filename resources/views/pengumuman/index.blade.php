@@ -32,7 +32,7 @@
                     <tbody>
                         @foreach ($pengumuman as $item)
                             <tr>
-                                <td>{{ $item->tgl_publikasi }}</td>
+                                <td>{{ \Carbon\Carbon::parse($item->tgl_publikasi)->format('d-m-Y') }}</td>
                                 <td>{{ $item->judul }}</td>
                                 <td>
                                     @if ($item->gambar)
@@ -46,6 +46,14 @@
                                 <td>
                                     <button onclick="window.location='{{ route('pengumuman.edit', $item->id_pengumuman) }}'"
                                         class="btn btn-sm btn-warning"><i class="fas fa-pen mr-2"></i>Ubah</button>
+
+                                        <form action="{{ route('pengumuman.delete', $item->id_pengumuman) }}" method="POST" class="d-inline">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-sm btn-danger">
+                                                <i class="fas fa-trash-alt mr-2"></i>Hapus
+                                            </button>
+                                        </form>
 
                                     {{-- <!-- Button trigger modal -->
                                     <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal"
@@ -89,4 +97,51 @@
             </div>
         </div>
     </div>
+
+    @if (count($pengumumanDeleted) > 0)
+        <div class="card mt-3">
+            <div class="card-body">
+                <h2>Riwayat Pengumuman</h2>
+
+                <table class="table table-sm table-hover table-striped">
+                    <thead class="thead-danger">
+                        <tr>
+                            <th>Tanggal Publikasi</th>
+                            <th>Judul Pengumuman</th>
+                            <th>Gambar</th>
+                            <th>Deskripsi</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($pengumumanDeleted as $item)
+                            <tr>
+                                <td>{{ \Carbon\Carbon::parse($item->tgl_publikasi)->format('d-m-Y') }}</td>
+                                <td>{{ $item->judul }}</td>
+                                <td>
+                                    @if ($item->gambar)
+                                        <img src="{{ asset('storage/gambar-pengumuman/' . $item->gambar) }}"
+                                            alt="Gambar Pengumuman" width="150">
+                                    @else
+                                        Tidak Ada Gambar
+                                    @endif
+                                </td>
+                                <td><a href="{{ $item->deskripsi }}">Lihat Selengkapnya</a></td>
+                                <td>
+                                    <form action="{{ route('pengumuman.restore', $item->id_pengumuman) }}" method="POST" class="d-inline">
+                                        @csrf
+                                        @method('POST')
+                                        <button type="submit" class="btm btn-success btn-sm">
+                                            <i class="fas fa-undo"></i>
+                                            Pulihkan</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    @endif
+
 @endsection

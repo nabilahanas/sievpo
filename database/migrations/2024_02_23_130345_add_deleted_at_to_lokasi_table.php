@@ -11,13 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('shift', function (Blueprint $table) {
-            $table->id('id_shift');
-            $table->string('nama_shift', 5);
-            $table->time('jam_mulai');
-            $table->time('jam_akhir');
-            $table->integer('poin');
-            $table->timestamps();
+        Schema::table('lokasi', function (Blueprint $table) {
+            $table->softDeletes();
         });
     }
 
@@ -26,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('shift');
+        Schema::table('lokasi', function (Blueprint $table) {
+            $table->dropSoftDeletes();
+        });
     }
 };

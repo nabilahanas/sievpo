@@ -36,6 +36,14 @@
                                     <button onclick="window.location='{{ route('karyawan.edit', $kar->id_karyawan) }}'"
                                         class="btn btn-sm btn-warning"><i class="fas fa-pen mr-2"></i>Ubah</button>
 
+                                        <form action="{{ route('karyawan.delete', $kar->id_karyawan) }}" method="POST" class="d-inline">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-sm btn-danger">
+                                                <i class="fas fa-trash-alt mr-2"></i>Hapus
+                                            </button>
+                                        </form>
+
                                     {{-- <!-- Button trigger modal -->
                                     <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal"
                                         data-bs-target="#hapusModal{{ $kar->id_karyawan }}"><i
@@ -78,4 +86,42 @@
             </div>
         </div>
     </div>
+
+    @if (count($karyawanDeleted) > 0)
+    <div class="card mt-3">
+        <div class="card-body">
+            <h2>Riwayat Data Karyawan</h2>
+
+            <table class="table table-sm table-hover table-striped">
+                <thead class="thead-danger">
+                    <tr>
+                        <th>No.</th>
+                        <th>Nama Karyawan</th>
+                        <th>Jabatan</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($karyawanDeleted as $item)
+                        <tr>
+                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $item->nama }}</td>
+                            <td>{{ $item->jabatan}}</td>
+                            <td>
+                                <form action="{{ route('karyawan.restore', $item->id_karyawan) }}" method="POST" class="d-inline">
+                                    @csrf
+                                    @method('POST')
+                                    <button type="submit" class="btm btn-success btn-sm">
+                                        <i class="fas fa-undo"></i>
+                                        Pulihkan</button>
+                                </form>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+    </div>
+    @endif
+
 @endsection

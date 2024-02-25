@@ -2036,6 +2036,12 @@ pre code {
   border-color: #383f45;
 }
 
+.table .thead-secondary th {
+  color: #fff;
+  background-color: #6c757d;
+  border-color: #383f45;
+}
+
 .table-dark {
   color: #fff;
   background-color: #212529;
@@ -10607,6 +10613,10 @@ a.text-dark:hover, a.text-dark:focus {
     border-color: #dee2e6;
   }
   .table .thead-successv2 th {
+    color: inherit;
+    border-color: #dee2e6;
+  }  
+  .table .thead-secondary th {
     color: inherit;
     border-color: #dee2e6;
   }

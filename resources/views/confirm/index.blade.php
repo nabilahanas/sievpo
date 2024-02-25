@@ -13,7 +13,7 @@
 
     <div class="card">
         <div class="card-body">
-            <div class="card-body table-responsive">
+            <div class="table-responsive mt-4">
                 <table id="konfirm" class="table table-sm text-nowrap table-hover table-striped" style="width: 100%">
                     <thead class="thead-successv2">
                         <tr>
@@ -47,7 +47,8 @@
                                 {{-- BELOM FIX --}}
                                 <button class="btn btn-sm btn-success"><i
                                         class="fas fa-check-circle mr-2"></i>Terima</button>
-                                <button class="btn btn-sm btn-danger mb-2"><i class="fas fa-times-circle mr-2"></i>Tolak</button>
+                                <button class="btn btn-sm btn-danger mb-2"><i
+                                        class="fas fa-times-circle mr-2"></i>Tolak</button>
 
                                 <br>
                                 <a href="" type="button" class="btn btn-sm btn-warning"><i

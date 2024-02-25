@@ -1,9 +1,9 @@
 @extends('layouts.main')
 
-@section('title', 'Database Karyawan')
+@section('title', 'Data Karyawan')
 
 @section('content')
-    <title>Database Karyawan</title>
+    <title>Data Karyawan</title>
 
     @if ($message = Session::get('success'))
         <div class="alert alert-success mt-3" role="alert">
@@ -16,7 +16,7 @@
             <a href="{{ route('karyawan.add') }}" type="button" class="btn btn-primary"><i
                     class="fas fa-plus mr-2"></i>Tambah</a>
 
-            <div class="card-body table-responsive">
+            <div class="table-responsive mt-4">
                 <table id="karyawan" class="table table-sm table-hover table-striped">
                     <thead class="thead-successv2">
                         <tr>
@@ -36,15 +36,7 @@
                                     <button onclick="window.location='{{ route('karyawan.edit', $kar->id_karyawan) }}'"
                                         class="btn btn-sm btn-warning"><i class="fas fa-pen mr-2"></i>Ubah</button>
 
-                                        <form action="{{ route('karyawan.delete', $kar->id_karyawan) }}" method="POST" class="d-inline">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-sm btn-danger">
-                                                <i class="fas fa-trash-alt mr-2"></i>Hapus
-                                            </button>
-                                        </form>
-
-                                    {{-- <!-- Button trigger modal -->
+                                    <!-- Button trigger modal -->
                                     <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal"
                                         data-bs-target="#hapusModal{{ $kar->id_karyawan }}"><i
                                             class="fas fa-trash mr-2"></i>Hapus
@@ -56,7 +48,7 @@
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title" id="hapusModalLabel">Konfirmasi</h5>
+                                                    <h4 class="modal-title" id="hapusModalLabel">Konfirmasi</h4>
                                                     <button type="button" class="close" data-bs-dismiss="modal"
                                                         aria-label="Close">
                                                         <span>&times;</span>
@@ -67,7 +59,8 @@
                                                     @csrf
                                                     @method('DELETE')
                                                     <div class="modal-body">
-                                                        Apakah Anda yakin ingin menghapus data ini?
+                                                        Data karyawan yang dihapus <b>dapat</b> dipulihkan.
+                                                        <br>Apakah Anda yakin ingin menghapus data ini?
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary"
@@ -77,7 +70,7 @@
                                                 </form>
                                             </div>
                                         </div>
-                                    </div> --}}
+                                    </div>
                                 </td>
                             </tr>
                         @endforeach
@@ -88,40 +81,40 @@
     </div>
 
     @if (count($karyawanDeleted) > 0)
-    <div class="card mt-3">
-        <div class="card-body">
-            <h2>Riwayat Data Karyawan</h2>
-
-            <table class="table table-sm table-hover table-striped">
-                <thead class="thead-danger">
-                    <tr>
-                        <th>No.</th>
-                        <th>Nama Karyawan</th>
-                        <th>Jabatan</th>
-                        <th>Aksi</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($karyawanDeleted as $item)
+        <h3 class="ml-3">Riwayat Data Karyawan</h3>
+        <div class="card mt-3">
+            <div class="card-body table-responsive">
+                <table class="table table-sm table-hover table-striped">
+                    <thead class="thead-secondary">
                         <tr>
-                            <td>{{ $loop->iteration }}</td>
-                            <td>{{ $item->nama }}</td>
-                            <td>{{ $item->jabatan}}</td>
-                            <td>
-                                <form action="{{ route('karyawan.restore', $item->id_karyawan) }}" method="POST" class="d-inline">
-                                    @csrf
-                                    @method('POST')
-                                    <button type="submit" class="btm btn-success btn-sm">
-                                        <i class="fas fa-undo"></i>
-                                        Pulihkan</button>
-                                </form>
-                            </td>
+                            <th>No.</th>
+                            <th>Nama Karyawan</th>
+                            <th>Jabatan</th>
+                            <th>Aksi</th>
                         </tr>
-                    @endforeach
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        @foreach ($karyawanDeleted as $item)
+                            <tr>
+                                <td>{{ $loop->iteration }}.</td>
+                                <td>{{ $item->nama }}</td>
+                                <td>{{ $item->jabatan }}</td>
+                                <td>
+                                    <form action="{{ route('karyawan.restore', $item->id_karyawan) }}" method="POST"
+                                        class="d-inline">
+                                        @csrf
+                                        @method('POST')
+                                        <button type="submit" class="btn btn-success btn-sm">
+                                            <i class="fas fa-trash-restore mr-2"></i>
+                                            Pulihkan</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
         </div>
-    </div>
     @endif
 
 @endsection

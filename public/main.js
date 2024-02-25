@@ -73,7 +73,7 @@ $(document).ready(function () {
 
     $('.carihkaryawan').append(`
         <form>
-            <div class="input-group mt-2 mb-4">
+            <div class="input-group col-md-8 mt-2 mb-4">
                 <input type="date" class="form-control" name="search" placeholder="search"
                     aria-label="search" aria-describedby="button-addon2">
                  <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Cari</button>
@@ -220,6 +220,30 @@ $(document).ready(function () {
     });
 });
 
+// Rekap Bulanan
+$(document).ready(function () {
+    $('#bulanan').DataTable({
+        dom: "<'row'<'col-sm-10 col-md-6 caribulanan'l ><'col-sm-10 col-md-6'f>>" +
+            "<'row'<'col-sm-12'tr>>" +
+            "<'row'<'col-sm-10 col-md-5'i><'col-sm-10 col-md-7'p>>",
+        scrollY: 600,
+        scrollX: true,
+        scrollCollapse: true,
+        paging: false,
+        columnDefs: [{ orderable: false, targets: [3, 4, 5, 6, 7, 8, 9, 10, 12, 13, 14, 15, 16, 17, 18, 19, 21, 22, 23, 24, 25, 26, 27, 28, 30, 31, 32, 33, 34, 35, 36, 37] }],
+    });
+
+    $('.caribulanan').append(`
+    <form>
+    <div class="input-group col-md-8 mt-2 mb-4">
+        <input type="month" class="form-control" name="search" placeholder="search"
+            aria-label="search" aria-describedby="button-addon2">
+        <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Cari</button>
+    </div>
+    </form>
+    `);
+});
+
 // Rekap Total Karyawan
 $(document).ready(function () {
     $('#tkaryawan').DataTable({
@@ -229,7 +253,6 @@ $(document).ready(function () {
         scrollX: true,
         scrollCollapse: true,
         paging: false,
-        columnDefs: [{ orderable: false, targets: [3, 4, 5, 6, 7, 8, 9, 10, 12, 13, 14, 15, 16, 17, 18, 19, 21, 22, 23, 24, 25, 26, 27, 28, 30, 31, 32, 33, 34, 35, 36, 37] }],
     });
 
     $('.caritkaryawan').append(`
@@ -237,19 +260,17 @@ $(document).ready(function () {
     <div class="input-group mt-2 mb-4">
         <select name="search" type="number" class="form-control" placeholder="search" aria-label="search"
             aria-describedby="button-addon2">
-            <option>Pilih Bulan</option>
-            <option value="01">Januari</option>
-            <option value="02">Febuari</option>
-            <option value="03">Maret</option>
-            <option value="04">April</option>
-            <option value="05">Mei</option>
-            <option value="06">Juni</option>
-            <option value="07">Juli</option>
-            <option value="08">Agustus</option>
-            <option value="09">September</option>
-            <option value="10">Oktober</option>
-            <option value="11">November</option>
-            <option value="12">Desember</option>
+            <option>Pilih Semester</option>
+            <option value="01">Semester I (Januari-Juni)</option>
+            <option value="02">Semester II (Juli-Desember)</option>
+        </select>
+
+        <select name="search" type="number" class="form-control" placeholder="search" aria-label="search"
+            aria-describedby="button-addon2">
+            <option>Pilih Tahun</option>
+            <option value="01">2024</option>
+            <option value="02">2025</option>
+            <option value="03">2026</option>
         </select>
 
         <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Cari</button>
@@ -264,7 +285,6 @@ $(document).ready(function () {
         dom: "<'row'<'col-sm-12 col-md-6 caritbidang'l ><'col-sm-12 col-md-6'f>>" +
             "<'row'<'col-sm-12'tr>>" +
             "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
-        columnDefs: [{ orderable: false, targets: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32] }],
         scrollX: true,
         scrollCollapse: true,
         paging: false,
@@ -275,19 +295,17 @@ $(document).ready(function () {
     <div class="input-group mt-2 mb-4">
         <select name="search" type="number" class="form-control" placeholder="search" aria-label="search"
             aria-describedby="button-addon2">
-            <option>Pilih Bulan</option>
-            <option value="01">Januari</option>
-            <option value="02">Febuari</option>
-            <option value="03">Maret</option>
-            <option value="04">April</option>
-            <option value="05">Mei</option>
-            <option value="06">Juni</option>
-            <option value="07">Juli</option>
-            <option value="08">Agustus</option>
-            <option value="09">September</option>
-            <option value="10">Oktober</option>
-            <option value="11">November</option>
-            <option value="12">Desember</option>
+            <option>Pilih Semester</option>
+            <option value="01">Semester I (Januari-Juni)</option>
+            <option value="02">Semester II (Juli-Desember)</option>
+        </select>
+
+        <select name="search" type="number" class="form-control" placeholder="search" aria-label="search"
+            aria-describedby="button-addon2">
+            <option>Pilih Tahun</option>
+            <option value="01">2024</option>
+            <option value="02">2025</option>
+            <option value="03">2026</option>
         </select>
 
         <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Cari</button>
@@ -312,7 +330,6 @@ $(document).ready(function () {
         dom: "<'row'<'col-sm-12 col-md-6 caritbkph'l ><'col-sm-12 col-md-6'f>>" +
             "<'row'<'col-sm-12'tr>>" +
             "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
-        columnDefs: [{ orderable: false, targets: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32] }],
         scrollX: true,
         scrollCollapse: true,
         paging: false,
@@ -323,19 +340,17 @@ $(document).ready(function () {
     <div class="input-group mt-2 mb-4">
         <select name="search" type="number" class="form-control" placeholder="search" aria-label="search"
             aria-describedby="button-addon2">
-            <option>Pilih Bulan</option>
-            <option value="01">Januari</option>
-            <option value="02">Febuari</option>
-            <option value="03">Maret</option>
-            <option value="04">April</option>
-            <option value="05">Mei</option>
-            <option value="06">Juni</option>
-            <option value="07">Juli</option>
-            <option value="08">Agustus</option>
-            <option value="09">September</option>
-            <option value="10">Oktober</option>
-            <option value="11">November</option>
-            <option value="12">Desember</option>
+            <option>Pilih Semester</option>
+            <option value="01">Semester I (Januari-Juni)</option>
+            <option value="02">Semester II (Juli-Desember)</option>
+        </select>
+
+        <select name="search" type="number" class="form-control" placeholder="search" aria-label="search"
+            aria-describedby="button-addon2">
+            <option>Pilih Tahun</option>
+            <option value="01">2024</option>
+            <option value="02">2025</option>
+            <option value="03">2026</option>
         </select>
 
         <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Cari</button>
@@ -360,7 +375,6 @@ $(document).ready(function () {
         dom: "<'row'<'col-sm-12 col-md-6 caritkrph'l ><'col-sm-12 col-md-6'f>>" +
             "<'row'<'col-sm-12'tr>>" +
             "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
-        columnDefs: [{ orderable: false, targets: [3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33] }],
         scrollX: true,
         scrollCollapse: true,
         paging: false,
@@ -371,19 +385,17 @@ $(document).ready(function () {
     <div class="input-group mt-2 mb-4">
         <select name="search" type="number" class="form-control" placeholder="search" aria-label="search"
             aria-describedby="button-addon2">
-            <option>Pilih Bulan</option>
-            <option value="01">Januari</option>
-            <option value="02">Febuari</option>
-            <option value="03">Maret</option>
-            <option value="04">April</option>
-            <option value="05">Mei</option>
-            <option value="06">Juni</option>
-            <option value="07">Juli</option>
-            <option value="08">Agustus</option>
-            <option value="09">September</option>
-            <option value="10">Oktober</option>
-            <option value="11">November</option>
-            <option value="12">Desember</option>
+            <option>Pilih Semester</option>
+            <option value="01">Semester I (Januari-Juni)</option>
+            <option value="02">Semester II (Juli-Desember)</option>
+        </select>
+
+        <select name="search" type="number" class="form-control" placeholder="search" aria-label="search"
+            aria-describedby="button-addon2">
+            <option>Pilih Tahun</option>
+            <option value="01">2024</option>
+            <option value="02">2025</option>
+            <option value="03">2026</option>
         </select>
 
         <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Cari</button>
@@ -408,7 +420,6 @@ $(document).ready(function () {
         dom: "<'row'<'col-sm-12 col-md-6 caritasper'l ><'col-sm-12 col-md-6'f>>" +
             "<'row'<'col-sm-12'tr>>" +
             "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
-        columnDefs: [{ orderable: false, targets: [3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33] }],
         scrollX: true,
         scrollCollapse: true,
         paging: false,
@@ -419,19 +430,17 @@ $(document).ready(function () {
     <div class="input-group mt-2 mb-4">
         <select name="search" type="number" class="form-control" placeholder="search" aria-label="search"
             aria-describedby="button-addon2">
-            <option>Pilih Bulan</option>
-            <option value="01">Januari</option>
-            <option value="02">Febuari</option>
-            <option value="03">Maret</option>
-            <option value="04">April</option>
-            <option value="05">Mei</option>
-            <option value="06">Juni</option>
-            <option value="07">Juli</option>
-            <option value="08">Agustus</option>
-            <option value="09">September</option>
-            <option value="10">Oktober</option>
-            <option value="11">November</option>
-            <option value="12">Desember</option>
+            <option>Pilih Semester</option>
+            <option value="01">Semester I (Januari-Juni)</option>
+            <option value="02">Semester II (Juli-Desember)</option>
+        </select>
+
+        <select name="search" type="number" class="form-control" placeholder="search" aria-label="search"
+            aria-describedby="button-addon2">
+            <option>Pilih Tahun</option>
+            <option value="01">2024</option>
+            <option value="02">2025</option>
+            <option value="03">2026</option>
         </select>
 
         <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Cari</button>
@@ -450,56 +459,28 @@ $(document).ready(function () {
     });
 });
 
-// Rekap Bulanan
-$(document).ready(function () {
-    $('#bulanan').DataTable({
-        dom: "<'row'<'col-sm-10 col-md-6 caribulanan'l ><'col-sm-10 col-md-6'f>>" +
-            "<'row'<'col-sm-12'tr>>" +
-            "<'row'<'col-sm-10 col-md-5'i><'col-sm-10 col-md-7'p>>",
-        scrollY: 600,
-        scrollX: true,
-        scrollCollapse: true,
-        paging: false,
-        columnDefs: [{ orderable: false, targets: [3, 4, 5, 6, 7, 8, 9, 10, 12, 13, 14, 15, 16, 17, 18, 19, 21, 22, 23, 24, 25, 26, 27, 28, 30, 31, 32, 33, 34, 35, 36, 37] }],
-    });
-
-    $('.caribulanan').append(`
-    <form>
-    <div class="input-group mt-2 mb-4">
-        <select name="search" type="number" class="form-control" placeholder="search" aria-label="search"
-            aria-describedby="button-addon2">
-            <option>Pilih Bulan</option>
-            <option value="01">Januari</option>
-            <option value="02">Febuari</option>
-            <option value="03">Maret</option>
-            <option value="04">April</option>
-            <option value="05">Mei</option>
-            <option value="06">Juni</option>
-            <option value="07">Juli</option>
-            <option value="08">Agustus</option>
-            <option value="09">September</option>
-            <option value="10">Oktober</option>
-            <option value="11">November</option>
-            <option value="12">Desember</option>
-        </select>
-
-        <select name="search" type="number" class="form-control" placeholder="search" aria-label="search"
-            aria-describedby="button-addon2">
-            <option>Pilih Tahun</option>
-            <option value="01">2024</option>
-            <option value="02">2025</option>
-            <option value="03">2026</option>
-        </select>
-
-        <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Cari</button>
-    </div>
-    </form>
-    `);
-});
-
 // User
 $(document).ready(function () {
     var table = $('#user').DataTable({
+        scrollCollapse: true,
+        columnDefs: [{ orderable: false, targets: 6 }],
+        displayLength: 25,
+    });
+
+    // Order by the grouping
+    $('#user').on('click', 'tr.group', function () {
+        var currentOrder = table.order()[0];
+        if (currentOrder[0] === groupColumn && currentOrder[1] === 'asc') {
+            table.order([groupColumn, 'desc']).draw();
+        } else {
+            table.order([groupColumn, 'asc']).draw();
+        }
+    });
+});
+
+// Riwayat User
+$(document).ready(function () {
+    var table = $('#ruser').DataTable({
         scrollCollapse: true,
         columnDefs: [{ orderable: false, targets: 6 }],
         displayLength: 25,
@@ -538,7 +519,7 @@ $(document).ready(function () {
 // Jabatan
 $(document).ready(function () {
     var table = $('#jabatan').DataTable({
-        columnDefs: [{ orderable: false, targets: 5 }],
+        columnDefs: [{ orderable: false, targets: 4 }],
         scrollCollapse: true,
         displayLength: 25,
     });

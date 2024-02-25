@@ -18,7 +18,7 @@
             {{-- <div class="tab-content">
                     <div class="active tab-pane" id="karyawan"> --}}
             <a class="btn btn-outline-success" href="">Download Excel</a>
-            <div class="card-body table-responsive">
+            <div class="table-responsive mt-4">
                 <table id="hkaryawan" class="table table-sm text-nowrap table-hover table-striped" style="width: 100%">
                     <thead class="thead-successv2">
                         <tr>
@@ -31,6 +31,7 @@
                             <th colspan="9" style="text-align: center">Keamanan / Patroli</th>
                             <th colspan="9" style="text-align: center">Sosialisasi / Rapat / Apel</th>
                             <th colspan="9" style="text-align: center">Produksi / Agroforestry / Wisata</th>
+                            <th rowspan="2">Total</th>
                         </tr>
                         <tr>
                             <th>1</th>
@@ -79,6 +80,7 @@
                         <tr>
                             <th>.</th>
 
+                            <td></td>
                             <td></td>
                             <td></td>
                             <td></td>

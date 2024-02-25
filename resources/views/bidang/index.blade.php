@@ -16,7 +16,7 @@
             <a href="{{ route('bidang.add') }}" type="button" class="btn btn-primary"><i
                     class="fas fa-plus mr-2"></i>Tambah</a>
 
-            <div class="card-body table-responsive">
+            <div class="table-responsive mt-4">
                 <table id="bidang" class="table table-sm text-nowrap table-hover table-striped" style="width: 100%">
                     <thead class="thead-successv2">
                         <tr>
@@ -44,8 +44,8 @@
                                         <button type="submit"
                                             class="btn btn-sm {{ $bidang->trashed() ? 'btn-success' : 'btn-danger' }}">
                                             <i
-                                                class="{{ $bidang->trashed() ? 'fas fa-check-circle' : 'fas fa-trash' }} mr-2"></i>
-                                            {{ $bidang->trashed() ? 'Restore' : 'Soft Delete' }}
+                                                class="{{ $bidang->trashed() ? 'fas fa-eye' : 'fas fa-eye-slash' }} mr-1"></i>
+                                            {{ $bidang->trashed() ? 'Tampilkan' : 'Sembunyikan' }}
                                         </button>
                                     </form>
 

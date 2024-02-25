@@ -16,13 +16,13 @@
             <a href="{{ route('jabatan.add') }}" type="button" class="btn btn-primary"><i
                     class="fas fa-plus mr-2"></i>Tambah</a>
 
-            <div class="card-body table-responsive">
+            <div class="table-responsive mt-4">
                 <table id="jabatan" class="table table-sm text-nowrap table-hover table-striped">
                     <thead class="thead-successv2">
                         <tr>
                             <th>No.</th>
                             <th>Nama Jabatan</th>
-                            <th>Wilayah</th>
+                            {{-- <th>Wilayah</th> --}}
                             <th>Bagian</th>
                             <th>Klasifikasi</th>
                             {{-- <th>Jenjang Jabatan</th> --}}
@@ -34,13 +34,13 @@
                             <tr>
                                 <td>{{ $loop->iteration }}.</td>
                                 <td>{{ $jabatan->nama_jabatan }}</td>
-                                <td>
+                                {{-- <td>
                                     @if ($jabatan->wilayah == 0)
                                         Wilayah Timur
                                     @elseif($jabatan->wilayah == 1)
                                         Wilayah Barat
                                     @endif
-                                </td>
+                                </td> --}}
                                 <td>{{ $jabatan->bagian }}</td>
                                 <td>{{ $jabatan->klasifikasi }}</td>
                                 {{-- <td></td> --}}
@@ -54,8 +54,8 @@
                                           @method($jabatan->trashed() ? 'POST' : 'DELETE')
                                           <button type="submit"
                                                   class="btn btn-sm {{ $jabatan->trashed() ? 'btn-success' : 'btn-danger' }}">
-                                              <i class="{{ $jabatan->trashed() ? 'fas fa-check-circle' : 'fas fa-trash' }} mr-2"></i>
-                                              {{ $jabatan->trashed() ? 'Restore' : 'Soft Delete' }}
+                                              <i class="{{ $jabatan->trashed() ? 'fas fa-eye' : 'fas fa-eye-slash' }} mr-1"></i>
+                                              {{ $jabatan->trashed() ? 'Tampilkan' : 'Sembunyikan' }}
                                           </button>
                                       </form>
 

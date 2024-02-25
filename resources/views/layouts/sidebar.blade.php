@@ -80,7 +80,7 @@
                     <li class="nav-item">
                         <a href="/karyawan" class="nav-link {{ $key == 'karyawan' ? 'active' : '' }}">
                             <i class="far fa-circle nav-icon"></i>
-                            <p>Database Karyawan</p>
+                            <p>Karyawan</p>
                         </a>
                     </li>
                     <li class="nav-item">

@@ -66,7 +66,7 @@ class JabatanController extends Controller
         $jabatan = Jabatan::withTrashed()->find($id);
         $jabatan->restore();
 
-        return redirect()->route('jabatan.index')->with('success', 'Data jabatan berhasil dipulihkan');
+        return redirect()->route('jabatan.index')->with('success', 'Data jabatan berhasil ditampilkan');
     }
 
     public function delete($id)
@@ -74,6 +74,6 @@ class JabatanController extends Controller
         $jabatan = Jabatan::find($id);
         $jabatan -> delete();
 
-        return redirect()->route('jabatan.index')->with('success', 'Data jabatan berhasil dihapus');
+        return redirect()->route('jabatan.index')->with('success', 'Data jabatan berhasil disembunyikan');
     }
 }

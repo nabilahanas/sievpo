@@ -16,7 +16,7 @@
             <a href="{{ route('berita.add') }}" type="button" class="btn btn-primary"><i
                     class="fas fa-plus mr-2"></i>Tambah</a>
 
-            <div class="card-body table-responsive">
+            <div class="table-responsive mt-4">
                 <table id="berita" class="table table-sm table-hover table-striped">
                     <thead class="thead-successv2">
                         <tr>
@@ -45,16 +45,7 @@
                                     <a href="{{ route('berita.edit', $item->id_berita) }}" type="button"
                                         class="btn btn-sm btn-warning"><i class="fas fa-pen mr-2"></i>Ubah</a>
 
-                                    <form action="{{ route('berita.delete', $item->id_berita) }}" method="POST" class="d-inline">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-sm btn-danger">
-                                            <i class="fas fa-trash-alt mr-2"></i>Hapus
-                                        </button>
-                                    </form>
-
-
-                                    {{-- <!-- Button trigger modal -->
+                                    <!-- Button trigger modal -->
                                     <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal"
                                         data-bs-target="#hapusModal{{ $item->id_berita }}">
                                         <i class="fas fa-trash mr-2"></i>Hapus
@@ -77,7 +68,8 @@
                                                     @csrf
                                                     @method('DELETE')
                                                     <div class="modal-body">
-                                                        Apakah Anda yakin ingin menghapus data ini?
+                                                        Data karyawan yang dihapus <b>dapat</b> dipulihkan.
+                                                        <br>Apakah Anda yakin ingin menghapus data ini?
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary"
@@ -87,7 +79,7 @@
                                                 </form>
                                             </div>
                                         </div>
-                                    </div> --}}
+                                    </div>
                                 </td>
                             </tr>
                         @endforeach
@@ -98,12 +90,11 @@
     </div>
 
     @if (count($beritaDeleted) > 0)
+        <h3 class="ml-3">Riwayat Berita</h3>
         <div class="card mt-3">
-            <div class="card-body">
-                <h2>Riwayat Berita</h2>
-
-                <table class="table table-sm table-hover table-striped">
-                    <thead class="thead-danger">
+            <div class="card-body table-responsive">
+                <table id="berita" class="table table-sm table-hover table-striped">
+                    <thead class="thead-secondary">
                         <tr>
                             <th>Tanggal Publikasi</th>
                             <th>Judul Berita</th>
@@ -127,12 +118,12 @@
                                 </td>
                                 <td><a href="{{ $item->deskripsi }}">Lihat Selengkapnya</a></td>
                                 <td>
-                                    <form action="{{ route('berita.restore', $item->id_berita) }}" method="POST" class="d-inline">
+                                    <form action="{{ route('berita.restore', $item->id_berita) }}" method="POST"
+                                        class="d-inline">
                                         @csrf
                                         @method('POST')
-                                        <button type="submit" class="btm btn-success btn-sm">
-                                            <i class="fas fa-undo"></i>
-                                            Pulihkan</button>
+                                        <button type="submit" class="btn btn-success btn-sm">
+                                            <i class="fas fa-trash-restore mr-2"></i>Pulihkan</button>
                                     </form>
                                 </td>
                             </tr>

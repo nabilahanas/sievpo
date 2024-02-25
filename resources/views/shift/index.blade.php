@@ -15,7 +15,7 @@
         <div class="card-body">
             <a href="{{ route('shift.add') }}" type="button" class="btn btn-primary"><i class="fas fa-plus mr-2"></i>Tambah</a>
 
-            <div class="card-body table-responsive">
+            <div class="table-responsive mt-4">
                 <table id="shift" class="table table-sm text-nowrap table-hover table-striped" style="width: 100%">
                     <thead class="thead-successv2">
                         <tr>
@@ -45,8 +45,8 @@
                                           @method($shift->trashed() ? 'POST' : 'DELETE')
                                           <button type="submit"
                                                   class="btn btn-sm {{ $shift->trashed() ? 'btn-success' : 'btn-danger' }}">
-                                              <i class="{{ $shift->trashed() ? 'fas fa-check-circle' : 'fas fa-trash' }} mr-2"></i>
-                                              {{ $shift->trashed() ? 'Restore' : 'Soft Delete' }}
+                                              <i class="{{ $shift->trashed() ? 'fas fa-eye' : 'fas fa-eye-slash' }} mr-1"></i>
+                                              {{ $shift->trashed() ? 'Tampilkan' : 'Sembunyikan' }}
                                           </button>
                                       </form>
 

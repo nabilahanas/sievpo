@@ -26,7 +26,7 @@
                         <input type="text" class="form-control" name="nama_jabatan" required>
                     </div>
                 </div>
-                <div class="form-group row col-12 col-md-10">
+                {{-- <div class="form-group row col-12 col-md-10">
                     <label for="wilayah" class="col-sm-2 col-form-label required">Wilayah</label>
                     <div class="col-sm-10">
                         <select name="wilayah" id="wilayah" class="form-control">
@@ -35,7 +35,7 @@
                             <option value="">Wilayah Timur</option>
                         </select>
                     </div>
-                </div>
+                </div> --}}
                 <div class="form-group row col-12 col-md-10">
                     <label for="bagian" class="col-sm-2 col-form-label required">Bagian</label>
                     <div class="col-sm-10">

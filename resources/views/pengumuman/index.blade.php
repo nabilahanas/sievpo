@@ -16,10 +16,8 @@
             <a href="{{ route('pengumuman.add') }}" type="button" class="btn btn-primary"><i
                     class="fas fa-plus mr-2"></i>Tambah</a>
 
-
-            <div class="card-body table-responsive">
+            <div class="table-responsive mt-4">
                 <table id="pengumuman" class="table table-sm table-hover table-striped" style="table-layout:fixed">
-
                     <thead class="thead-successv2">
                         <tr>
                             <th>Tanggal Publikasi</th>
@@ -47,15 +45,7 @@
                                     <button onclick="window.location='{{ route('pengumuman.edit', $item->id_pengumuman) }}'"
                                         class="btn btn-sm btn-warning"><i class="fas fa-pen mr-2"></i>Ubah</button>
 
-                                        <form action="{{ route('pengumuman.delete', $item->id_pengumuman) }}" method="POST" class="d-inline">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-sm btn-danger">
-                                                <i class="fas fa-trash-alt mr-2"></i>Hapus
-                                            </button>
-                                        </form>
-
-                                    {{-- <!-- Button trigger modal -->
+                                    <!-- Button trigger modal -->
                                     <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal"
                                         data-bs-target="#hapusModal{{ $item->id_pengumuman }}"><i
                                             class="fas fa-trash mr-2"></i>Hapus
@@ -78,7 +68,8 @@
                                                     @csrf
                                                     @method('DELETE')
                                                     <div class="modal-body">
-                                                        Apakah Anda yakin ingin menghapus data ini?
+                                                        Data pengumuman yang dihapus <b>dapat</b> dipulihkan.
+                                                        <br>Apakah Anda yakin ingin menghapus data ini?
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary"
@@ -88,7 +79,7 @@
                                                 </form>
                                             </div>
                                         </div>
-                                    </div> --}}
+                                    </div>
                                 </td>
                             </tr>
                         @endforeach
@@ -99,12 +90,11 @@
     </div>
 
     @if (count($pengumumanDeleted) > 0)
+        <h3 class="ml-3">Riwayat Pengumuman</h3>
         <div class="card mt-3">
-            <div class="card-body">
-                <h2>Riwayat Pengumuman</h2>
-
+            <div class="card-body table-responsive">
                 <table class="table table-sm table-hover table-striped">
-                    <thead class="thead-danger">
+                    <thead class="thead-secondary">
                         <tr>
                             <th>Tanggal Publikasi</th>
                             <th>Judul Pengumuman</th>
@@ -128,12 +118,12 @@
                                 </td>
                                 <td><a href="{{ $item->deskripsi }}">Lihat Selengkapnya</a></td>
                                 <td>
-                                    <form action="{{ route('pengumuman.restore', $item->id_pengumuman) }}" method="POST" class="d-inline">
+                                    <form action="{{ route('pengumuman.restore', $item->id_pengumuman) }}" method="POST"
+                                        class="d-inline">
                                         @csrf
                                         @method('POST')
-                                        <button type="submit" class="btm btn-success btn-sm">
-                                            <i class="fas fa-undo"></i>
-                                            Pulihkan</button>
+                                        <button type="submit" class="btn btn-success btn-sm">
+                                            <i class="fas fa-trash-restore mr-2"></i>Pulihkan</button>
                                     </form>
                                 </td>
                             </tr>

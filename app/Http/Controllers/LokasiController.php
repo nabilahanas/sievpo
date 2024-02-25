@@ -66,7 +66,7 @@ class LokasiController extends Controller
         $lokasi=Lokasi::withTrashed()->find($id);
         $lokasi->restore();
 
-        return redirect()->route('lokasi.index')->with('success', 'Data lokasi berhasil dipulihkan');
+        return redirect()->route('lokasi.index')->with('success', 'Data lokasi berhasil ditampilkan');
     }
 
     public function delete($id)
@@ -74,6 +74,6 @@ class LokasiController extends Controller
         $lokasi = Lokasi::find($id);
         $lokasi -> delete();
 
-        return redirect()->route('lokasi.index')->with('success', 'Data lokasi berhasil dihapus');
+        return redirect()->route('lokasi.index')->with('success', 'Data lokasi berhasil disembunyikan');
     }
 }

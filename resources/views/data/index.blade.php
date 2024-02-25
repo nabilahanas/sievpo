@@ -16,7 +16,7 @@
             <button onclick="window.location='{{ route('data.add') }}'" class="btn btn-primary"><i
                     class="fas fa-plus mr-2"></i>Tambah</button>
 
-            <div class="card-body table-responsive">
+            <div class="table-responsive mt-4">
                 <table id="evpo" class="table table-sm text-nowrap table-hover table-striped" style="width: 100%">
                     <thead class="thead-successv2">
                         <tr>
@@ -34,8 +34,8 @@
                             <th rowspan="2" style="text-align: center">Lokasi</th>
                             <th rowspan="2" style="text-align: center">Foto</th>
                             <th rowspan="2" style="text-align: center">Status</th>
-                            <th rowspan="2" style="text-align: center">Oleh</th>
                             <th rowspan="2" style="text-align: center">Tanggal Konfirmasi</th>
+                            <th rowspan="2" style="text-align: center">Oleh</th>
                             <th rowspan="2" style="text-align: center">Catatan</th>
                             <th rowspan="2" style="text-align: center">Aksi</th>
                         </tr>

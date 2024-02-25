@@ -29,13 +29,13 @@
                 <div class="form-group row col-12 col-md-10">
                     <label for="jam_mulai" class="col-sm-2 col-form-label required">Jam Mulai</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="jam_mulai" placeholder="HH:ii:ss" required>
+                        <input type="text" class="form-control" name="jam_mulai" placeholder="HH:mm:ss" required>
                     </div>
                 </div>
                 <div class="form-group row col-12 col-md-10">
                     <label for="jam_akhir" class="col-sm-2 col-form-label required">Jam Akhir</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="jam_akhir" placeholder="HH:ii:ss" required>
+                        <input type="text" class="form-control" name="jam_akhir" placeholder="HH:mm:ss" required>
                     </div>
                 </div>
                 <div class="form-group row col-12 col-md-10">

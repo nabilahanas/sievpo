@@ -8,6 +8,7 @@ use App\Models\Shift;
 use App\Models\Bidang;
 use Illuminate\Http\Request;
 use App\Models\Data;
+use Illuminate\Support\Facades\Storage;
 
 class DataController extends Controller
 {
@@ -19,7 +20,7 @@ class DataController extends Controller
         $shift = Shift::all();
         $data = Data::all();
 
-        return view('data.index', compact('bidang','shift','data'), ['key'=>'data']);
+        return view('data.index', compact('bidang', 'shift', 'data'), ['key' => 'data']);
     }
 
     public function create()
@@ -28,9 +29,10 @@ class DataController extends Controller
         $shift = Shift::all();
         $lokasi = Lokasi::all();
 
-        $formattedDateTime = now()->format('Y-m-d H:i:s');
+        $currentDateTime = now();
+        $shift = Shift::where('jam_mulai', '>=', $currentDateTime->format('H:i:s'))->where('jam_akhir', '<=', $currentDateTime->format('H:i:s'))->first();
 
-        return view('data.add', compact('bidang', 'shift', 'lokasi', 'formattedDateTime'), ['key'=>'data']);
+        return view('data.add', compact('bidang', 'shift', 'lokasi'), ['key' => 'data']);
     }
 
     public function store(Request $request)
@@ -40,15 +42,31 @@ class DataController extends Controller
             'id_bidang' => 'required',
             'id_shift' => 'required',
             'id_lokasi' => 'required',
-            'tgl_waktu' => 'required|date_format:Y-m-d H:i:s',
-            'foto' => 'required',
+            'tgl_waktu' => 'required|date_format:Y-m-d\TH:i:s',
+            'foto' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
             'is_approved' => 'required',
         ]);
 
-        $data = $request->all(); //data diambil dari form
+        // Mengisi nilai default tgl_waktu dengan waktu saat ini jika tidak ada yang diinput
+        $data = $request->except('tgl_waktu');
+        $data['tgl_waktu'] = $request->input('tgl_waktu', now());
+
+        if ($request->hasFile('foto')) {
+            $foto = $request->file('foto');
+            $filename = time() . '_' . $foto->getClientOriginalName();
+            $path = 'foto-user/' . $filename;
+
+            // Simpan gambar ke storage
+            Storage::disk('public')->put($path, file_get_contents($foto));
+
+            // Simpan nama file ke dalam data
+            $data['foto'] = $filename;
+        } else {
+            // Jika tidak ada gambar, atur 'gambar' menjadi null atau sesuai kebutuhan
+            $data['foto'] = null;
+        }
 
         Data::create($data); //data disimpan
-        echo "Data berhasil ditambahkan" .PHP_EOL;
 
         return redirect()->route('data.index')->with('success', 'Data berhasil ditambahkan');
     }
@@ -57,9 +75,8 @@ class DataController extends Controller
     public function delete($id)
     {
         $data = Data::find($id);
-        $data -> delete();
+        $data->delete();
 
-        echo "Data berhasil dihapus" .PHP_EOL;
         return redirect()->route('data.index')->with('success', 'Data berhasil dihapus');
     }
 }

@@ -32,6 +32,7 @@
                                 <input type="hidden" name="nama_hidden" value="{{ auth()->user()->nama_user }}">
                             </div>
                         </div>
+
                         <div class="form-group row col-12">
                             <label for="" class="col-sm-3 col-form-label required">Bidang</label>
                             <div class="col-sm-9">
@@ -43,21 +44,28 @@
                                 </select>
                             </div>
                         </div>
+
                         <div class="form-group row col-12">
                             <label for="tgl_waktu" class="col-sm-3 col-form-label required">Tanggal Waktu</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" name="tgl_waktu" id="tgl_waktu"
-                                    value="{{ old('tgl_waktu', $formattedDateTime) }}" disabled>
-                                <span id="detik"></span>
+                                {{-- Input untuk tampilan --}}
+                                <input type="text" class="form-control" value="{{ now()->format('d-m-Y H:i:s') }}"
+                                    disabled>
+
+                                {{-- Input untuk menyimpan nilai yg disimpan --}}
+                                <input type="hidden" name="tgl_waktu" value="{{ now()->format('Y-m-d\TH:i:s') }}" required>
                             </div>
                         </div>
+
+
                         <div class="form-group row col-12">
                             <label for="shift" class="col-sm-3 col-form-label required">Shift</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" name="shift" id="" value=""
-                                    disabled>
+                                <input type="text" class="form-control" name="shift" id=""
+                                    value="{{ $shift->nama_shift ?? '' }}" disabled>
                             </div>
                         </div>
+
                         <div class="form-group row col-12">
                             <label for="lokasi" class="col-sm-3 col-form-label required">Lokasi</label>
                             <div class="col-sm-9">
@@ -72,7 +80,7 @@
                     <div class="card-body">
                         <div class="form-group col-12">
                             <label for="foto" class="col-form-label required">Bukti Foto</label>
-                            <div class="card" style="border-color: #6c757d; width: 16rem">
+                            <div id="img-area" class="card" style="border-color: #6c757d; width: 16rem">
                                 <div class="card-body mt-4 mb-4" style="text-align: center">
                                     <div class="img-area">
                                         <i class="fas fa-camera fa-3x"></i>
@@ -80,12 +88,35 @@
                                             komputer/smartphone Anda untuk
                                             mengambil gambar</p>
                                     </div>
-                                    <button class="btn btn-outline-secondary">Ambil Foto</button>
+                                    <button id="ambil-foto-btn" class="btn btn-outline-secondary">Ambil Foto</button>
+
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+
+                @push('myscript')
+                    <script>
+                        Webcam.set({
+                            height: 240,
+                            width: 320,
+                            image_format: 'jpeg',
+                            jpeg_quality: 100,
+
+                        });
+
+                        // Define a function to attach Webcam
+                        function attachWebcam() {
+                            Webcam.attach('#img-area');
+                        }
+
+                        // Attach Webcam when the "Ambil Foto" button is clicked
+                        document.getElementById('ambil-foto-btn').addEventListener('click', function() {
+                            attachWebcam();
+                        });
+                    </script>
+                @endpush
 
                 <div class="card-body text-center">
                     <button type="submit" class="btn btn-primary"><i class="fas fa-save mr-2"></i>Simpan</button>

@@ -55,7 +55,7 @@ class ShiftController extends Controller
             'poin' => 'required'
         ]);
 
-        $shift = SHift::find($id);
+        $shift = Shift::find($id);
         $shift->update([
             'nama_shift' => $request->nama_shift,
             'jam_mulai' => $request->jam_mulai,

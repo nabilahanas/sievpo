@@ -51,18 +51,18 @@
                     <li class="dropdown"><button class="btn btn-success" href="#about"><span>Tentang Kami</span> <i
                                 class="bi bi-chevron-down dropdown-indicator"></i></button>
                         <ul>
-                            <li><button class="btn btn-success" onclick="window.location='#'">Profil Perusahaan</button>
+                            <li><button class="btn btn-success" onclick="window.location='/profilekph'">Profil Perusahaan</button>
                             </li>
-                            <li><button class="btn btn-success" onclick="window.location='#'">Visi, Misi, dan Tata
+                            <li><button class="btn btn-success" onclick="window.location='/visimisikph'">Visi, Misi, dan Tata
                                     Nilai</button></li>
-                            <li><button type="button" class="btn btn-success" onclick="window.location='#'">Struktur
+                            <li><button type="button" class="btn btn-success" onclick="window.location='strukturkph'">Struktur
                                     Ogranisasi</button></li>
-                            <li><button type="button" class="btn btn-success" onclick="window.location='#'">Data
+                            <li><button type="button" class="btn btn-success" onclick="window.location='datakaryawankph'">Data
                                     Karyawan</button></li>
                         </ul>
                     </li>
-                    <li><button class="btn btn-success" onclick="window.location='#about'">Berita</button></li>
-                    <li><button class="btn btn-success" onclick="window.location='#services'">Fitur</a></li>
+                    <li><button class="btn btn-success" onclick="window.location='/beritakph'">Berita</button></li>
+                    <li><button class="btn btn-success" onclick="window.location='/fitur'">Fitur</a></li>
                     <li><button class="btn btn-success" onclick="window.location='/login'">Masuk</a></li>
                 </ul>
             </nav><!-- .navbar -->

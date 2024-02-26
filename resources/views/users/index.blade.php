@@ -112,12 +112,14 @@
                                 <td>{{ $item->nip }}</td>
                                 <td>{{ $item->no_hp }}</td>
                                 <td>{{ $item->role->nama_role }}</td>
-                                <td>{{ $item->jabatan->nama_jabatan }}</td>
+                                <td>{{ $item->jabatan->nama_jabatan ?? '' }}</td>
                                 <td>
-                                    @if ($item->jabatan->wilayah == 0)
-                                        Wilayah Timur
-                                    @elseif($item->jabatan->wilayah == 1)
-                                        Wilayah Barat
+                                    @if ($item->jabatan)
+                                        @if ($item->jabatan->wilayah == 0)
+                                            Wilayah Timur
+                                        @elseif($item->jabatan->wilayah == 1)
+                                            Wilayah Barat
+                                        @endif
                                     @endif
                                 </td>
                                 <td>

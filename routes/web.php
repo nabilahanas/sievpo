@@ -49,6 +49,8 @@ Route::get('/strukturkph', [LandingController::class, 'struktur'])->name('strukt
 
 Route::middleware('check.role:Admin,Karyawan,Pimpinan,Mahasiswa')->group(function () {
     Route::get('/home', [NavController::class, 'dashboard'])->name('dashboard');
+    Route::get('/get_pengumuman', [PengumumanController::class, 'get_pengumuman'])->name('get_pengumuman');
+
 
     Route::prefix("profile")->group(function () {
         Route::get('/', [ProfileController::class, 'index'])->name('profile.index');

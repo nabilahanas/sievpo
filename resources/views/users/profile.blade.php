@@ -87,7 +87,8 @@
                                                 <label class="mb-0">Jabatan</label>
                                             </div>
                                             <div class="col-sm-9">
-                                                <p class="text-muted mb-0">{{ auth()->user()->jabatan->nama_jabatan }}</p>
+                                                <p class="text-muted mb-0">{{ auth()->user()->jabatan->nama_jabatan ?? '' }}
+                                                </p>
                                             </div>
                                         </div>
                                         <hr>
@@ -96,7 +97,7 @@
                                                 <label class="mb-0">Bagian</label>
                                             </div>
                                             <div class="col-sm-9">
-                                                <p class="text-muted mb-0">(Bagian)</p>
+                                                <p class="text-muted mb-0">{{ auth()->user()->jabatan->bagian ?? '' }}</p>
                                             </div>
                                         </div>
                                         <hr>
@@ -106,10 +107,12 @@
                                             </div>
                                             <div class="col-sm-9">
                                                 <p class="text-muted mb-0">
-                                                    @if (auth()->user()->jabatan->wilayah == 0)
-                                                        Wilayah Timur
-                                                    @elseif(auth()->user()->jabatan->wilayah == 1)
-                                                        Wilayah Barat
+                                                    @if (auth()->user()->jabatan)
+                                                        @if (auth()->user()->jabatan->wilayah == 0)
+                                                            Wilayah Timur
+                                                        @elseif(auth()->user()->jabatan->wilayah == 1)
+                                                            Wilayah Barat
+                                                        @endif
                                                     @endif
                                                 </p>
                                             </div>
@@ -144,8 +147,7 @@
                                                         <button type="submit" class="btn btn-info2"><i
                                                                 class="fas fa-sync-alt mr-2"></i>Update</button>
 
-                                                        <form action=""
-                                                            method="post" class="d-inline">
+                                                        <form action="" method="post" class="d-inline">
                                                             @csrf
                                                             <button class="btn btn-danger"><i
                                                                     class="fas fa-trash mr-2"></i>Hapus

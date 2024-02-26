@@ -22,7 +22,7 @@
                         <tr>
                             <th>No.</th>
                             <th>Nama Jabatan</th>
-                            {{-- <th>Wilayah</th> --}}
+                            <th>Wilayah</th>
                             <th>Bagian</th>
                             <th>Klasifikasi</th>
                             {{-- <th>Jenjang Jabatan</th> --}}
@@ -34,13 +34,13 @@
                             <tr>
                                 <td>{{ $loop->iteration }}.</td>
                                 <td>{{ $jabatan->nama_jabatan }}</td>
-                                {{-- <td>
+                                <td>
                                     @if ($jabatan->wilayah == 0)
                                         Wilayah Timur
                                     @elseif($jabatan->wilayah == 1)
                                         Wilayah Barat
                                     @endif
-                                </td> --}}
+                                </td>
                                 <td>{{ $jabatan->bagian }}</td>
                                 <td>{{ $jabatan->klasifikasi }}</td>
                                 {{-- <td></td> --}}

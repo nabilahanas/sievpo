@@ -18,6 +18,13 @@ class PengumumanController extends Controller
         return view('pengumuman.index', compact('pengumuman', 'pengumumanDeleted'), ['key' => 'pengumuman']);
     }
 
+    public function get_pengumuman()
+    {
+        $pengumuman = Pengumuman::all();
+
+        return view('layouts.dashboard', compact('pengumuman'), ['key'=>'pengumuman']);
+    }
+
     public function create()
     {
         return view('pengumuman.add', ['key' => 'pengumuman']);

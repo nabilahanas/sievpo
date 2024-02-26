@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('nama_user', 50);
             $table->string('nip', 20);
             $table->string('no_hp')->nullable();
-            $table->unsignedBigInteger('id_jabatan')->nullable();
+            $table->unsignedBigInteger('id_jabatan');
             $table->unsignedBigInteger('id_role');
             $table->string('password', 255);
             $table->text('profile_pict')->nullable();

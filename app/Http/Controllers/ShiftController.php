@@ -71,7 +71,7 @@ class ShiftController extends Controller
         $shift=Shift::withTrashed()->find($id);
         $shift->restore();
 
-        return redirect()->route('shift.index')->with('success', 'Data shift berhasil ditampilkan');
+        return redirect()->route('shift.index')->with('success', 'Data shift berhasil diaktifkan');
     }
 
     public function delete($id)
@@ -79,6 +79,6 @@ class ShiftController extends Controller
         $shift = Shift::find($id);
         $shift -> delete();
 
-        return redirect()->route('shift.index')->with('success', 'Data shift berhasil disembunyikan');
+        return redirect()->route('shift.index')->with('success', 'Data shift berhasil dinonaktifkan');
     }
 }

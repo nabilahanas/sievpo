@@ -4,6 +4,49 @@
 
 @section('content')
     <title>Dashboard</title>
+
+    <!-- Trigger pop up -->
+    @if (session('just_logged_in'))
+        {!! session('modal_content') !!}
+        <script>
+            $(document).ready(function() {
+                $('#exampleModalCenter').modal('show');
+                $('#close-modal-button').on('click', function() {
+                    setTimeout(function() {
+                        $('#exampleModalCenter').modal('hide');
+                    }, 0);
+                });
+                $('#close-button').on('click', function() {
+                    setTimeout(function() {
+                        $('#exampleModalCenter').modal('hide');
+                    }, 0);
+                });
+            });
+        </script>
+    @endif
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+        aria-labelledby="pengumumanCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="pengumumanCenterTitle">Pengumuman</h5>
+                    <button type="button" class="close" id="close-button" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <img src="https://www.w3schools.com/w3images/lights.jpg" alt="Lights" style="width:100%">
+                    <p>Text</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" id="close-modal-button">Tutup</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">

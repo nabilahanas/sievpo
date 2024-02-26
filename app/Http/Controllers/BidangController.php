@@ -63,7 +63,7 @@ class BidangController extends Controller
         $bidang = Bidang::withTrashed()->find($id);
         $bidang->restore();
 
-        return redirect()->route('bidang.index')->with('success', 'Data bidang berhasil ditampilkan');
+        return redirect()->route('bidang.index')->with('success', 'Data bidang berhasil diaktifkan');
 
     }
 
@@ -72,6 +72,6 @@ class BidangController extends Controller
         $bidang = Bidang::find($id);
         $bidang -> delete();
 
-        return redirect()->route('bidang.index')->with('success', 'Data bidang berhasil disembunyikan');
+        return redirect()->route('bidang.index')->with('success', 'Data bidang berhasil dinonaktifkan');
     }
 }

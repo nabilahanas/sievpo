@@ -45,8 +45,8 @@
                                           @method($shift->trashed() ? 'POST' : 'DELETE')
                                           <button type="submit"
                                                   class="btn btn-sm {{ $shift->trashed() ? 'btn-success' : 'btn-danger' }}">
-                                              <i class="{{ $shift->trashed() ? 'fas fa-eye' : 'fas fa-eye-slash' }} mr-1"></i>
-                                              {{ $shift->trashed() ? 'Tampilkan' : 'Sembunyikan' }}
+                                              <i class="{{ $shift->trashed() ? 'fas fa-check-circle' : 'fas fa-times-circle' }} mr-1"></i>
+                                              {{ $shift->trashed() ? 'Aktifkan' : 'Nonaktifkan' }}
                                           </button>
                                       </form>
 

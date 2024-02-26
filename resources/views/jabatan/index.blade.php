@@ -54,8 +54,8 @@
                                           @method($jabatan->trashed() ? 'POST' : 'DELETE')
                                           <button type="submit"
                                                   class="btn btn-sm {{ $jabatan->trashed() ? 'btn-success' : 'btn-danger' }}">
-                                              <i class="{{ $jabatan->trashed() ? 'fas fa-eye' : 'fas fa-eye-slash' }} mr-1"></i>
-                                              {{ $jabatan->trashed() ? 'Tampilkan' : 'Sembunyikan' }}
+                                              <i class="{{ $jabatan->trashed() ? 'fas fa-check-circle' : 'fas fa-times-circle' }} mr-1"></i>
+                                              {{ $jabatan->trashed() ? 'Aktifkan' : 'Nonaktifkan' }}
                                           </button>
                                       </form>
 

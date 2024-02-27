@@ -93,7 +93,7 @@
         <h3 class="ml-3">Riwayat Pengumuman</h3>
         <div class="card mt-3">
             <div class="card-body table-responsive">
-                <table class="table table-sm table-hover table-striped">
+                <table id="rpengumuman" class="table table-sm table-hover table-striped">
                     <thead class="thead-secondary">
                         <tr>
                             <th>Tanggal Publikasi</th>

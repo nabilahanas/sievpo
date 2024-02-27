@@ -15,7 +15,7 @@
                 <div class="row">
 
                     {{-- TAMPILAN NAVBAR --}}
-                    <div class="col-4">
+                    <div class="col-12 col-md-4">
                         <div class="card mb-4">
                             <div class="card-body text-center mt-3 mb-3">
                                 @if (auth()->user()->profile_pict)
@@ -38,7 +38,7 @@
                     </div>
 
                     {{-- TAMPILAN DATA USER LOGIN --}}
-                    <div class="col-8">
+                    <div class="col-12 col-md-8">
                         <div class="card">
                             <div class="card-body">
                                 <h3 class="card-title text-successv2 mt-2 ml-2"><b>Profile Account</b></h3>

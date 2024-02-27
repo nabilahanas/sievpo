@@ -84,7 +84,7 @@
         <h3 class="ml-3">Riwayat Data Karyawan</h3>
         <div class="card mt-3">
             <div class="card-body table-responsive">
-                <table class="table table-sm table-hover table-striped">
+                <table id="rkaryawan" class="table table-sm table-hover table-striped">
                     <thead class="thead-secondary">
                         <tr>
                             <th>No.</th>

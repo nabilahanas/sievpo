@@ -40,7 +40,6 @@
     <div class="split right">
         <div class="centered">
             <div class="card-body p-0">
-                <!-- Nested Row within Card Body -->
                 <div style="text-align: center"><img
                         src="https://upload.wikimedia.org/wikipedia/id/2/2b/Perhutani_logo.svg" style="padding-top: 2%"
                         height="80%" width="80%"></div>
@@ -75,7 +74,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group col-12">
-                                    <input name="" id="" class="btn btn-successv2 btn-block"
+                                    <input class="btn btn-successv2 btn-block"
                                         type="submit" value="Login">
                                 </div>
                             </form>

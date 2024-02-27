@@ -487,7 +487,7 @@ $(document).ready(function () {
     });
 
     // Order by the grouping
-    $('#user').on('click', 'tr.group', function () {
+    $('#ruser').on('click', 'tr.group', function () {
         var currentOrder = table.order()[0];
         if (currentOrder[0] === groupColumn && currentOrder[1] === 'asc') {
             table.order([groupColumn, 'desc']).draw();
@@ -506,7 +506,26 @@ $(document).ready(function () {
     });
 
     // Order by the grouping
-    $('#jabatan').on('click', 'tr.group', function () {
+    $('#karyawan').on('click', 'tr.group', function () {
+        var currentOrder = table.order()[0];
+        if (currentOrder[0] === groupColumn && currentOrder[1] === 'asc') {
+            table.order([groupColumn, 'desc']).draw();
+        } else {
+            table.order([groupColumn, 'asc']).draw();
+        }
+    });
+});
+
+// Riwayat Karyawan
+$(document).ready(function () {
+    var table = $('#rkaryawan').DataTable({
+        columnDefs: [{ orderable: false, targets: 3 }],
+        scrollCollapse: true,
+        displayLength: 25,
+    });
+
+    // Order by the grouping
+    $('#rkaryawan').on('click', 'tr.group', function () {
         var currentOrder = table.order()[0];
         if (currentOrder[0] === groupColumn && currentOrder[1] === 'asc') {
             table.order([groupColumn, 'desc']).draw();
@@ -630,6 +649,25 @@ $(document).ready(function () {
     });
 });
 
+// Riwayat Berita
+$(document).ready(function () {
+    var table = $('#rberita').DataTable({
+        scrollCollapse: true,
+        columnDefs: [{ orderable: false, targets: [2, 3, 4] }],
+        displayLength: 25,
+    });
+
+    // Order by the grouping
+    $('#berita').on('click', 'tr.group', function () {
+        var currentOrder = table.order()[0];
+        if (currentOrder[0] === groupColumn && currentOrder[1] === 'asc') {
+            table.order([groupColumn, 'desc']).draw();
+        } else {
+            table.order([groupColumn, 'asc']).draw();
+        }
+    });
+});
+
 // Pengumuman
 $(document).ready(function () {
     var table = $('#pengumuman').DataTable({
@@ -640,6 +678,25 @@ $(document).ready(function () {
 
     // Order by the grouping
     $('#pengumuman').on('click', 'tr.group', function () {
+        var currentOrder = table.order()[0];
+        if (currentOrder[0] === groupColumn && currentOrder[1] === 'asc') {
+            table.order([groupColumn, 'desc']).draw();
+        } else {
+            table.order([groupColumn, 'asc']).draw();
+        }
+    });
+});
+
+// Riwayat Pengumuman
+$(document).ready(function () {
+    var table = $('#rpengumuman').DataTable({
+        scrollCollapse: true,
+        columnDefs: [{ orderable: false, targets: [2, 3, 4] }],
+        displayLength: 25,
+    });
+
+    // Order by the grouping
+    $('#rpengumuman').on('click', 'tr.group', function () {
         var currentOrder = table.order()[0];
         if (currentOrder[0] === groupColumn && currentOrder[1] === 'asc') {
             table.order([groupColumn, 'desc']).draw();

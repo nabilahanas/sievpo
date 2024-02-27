@@ -2039,7 +2039,7 @@ pre code {
 .table .thead-secondary th {
   color: #fff;
   background-color: #6c757d;
-  border-color: #383f45;
+  border-color: #6c757d;
 }
 
 .table-dark {
@@ -5265,6 +5265,20 @@ input[type="button"].btn-block {
     display: inline-block;
     width: 100%;
   }
+}
+
+.map-container-2{
+  overflow:hidden;
+  padding-bottom:56.25%;
+  position:relative;
+  height:0;
+}
+.map-container-2 iframe{
+  left:0;
+  top:0;
+  height:100%;
+  width:100%;
+  position:absolute;
 }
 
 .accordion {
@@ -33662,8 +33676,9 @@ a.close.disabled, a.disabled.mailbox-attachment-close {
 }
 
 .small-box .icon > i.fa, .small-box .icon > i.fas, .small-box .icon > i.far, .small-box .icon > i.fab, .small-box .icon > i.fal, .small-box .icon > i.fad, .small-box .icon > i.ion {
-  font-size: 70px;
+  font-size: 60px;
   top: 20px;
+  margin-right: 15;
 }
 
 .small-box .icon svg {

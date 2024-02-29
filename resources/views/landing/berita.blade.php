@@ -5,11 +5,12 @@
 
         <!-- ======= Breadcrumbs ======= -->
         <div class="breadcrumbs">
-            <div class="page-header d-flex align-items-center" style="background-image: url('');">
+            <div class="page-header d-flex align-items-center"
+                style="background-image: url('https://i0.wp.com/www.perhutani.co.id/wp-content/uploads/2021/08/WhatsApp-Image-2021-08-03-at-14.35.15-2.jpeg?resize=1024%2C768&ssl=1');">
                 <div class="container position-relative">
                     <div class="row d-flex justify-content-center">
                         <div class="col-lg-6 text-center">
-                            <h2><b>Berita</b></h2>
+                            <h3><b>Berita</b></h3>
                         </div>
                     </div>
                 </div>

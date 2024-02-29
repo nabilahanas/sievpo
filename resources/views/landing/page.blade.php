@@ -33,6 +33,8 @@
 
     <!-- Template Main CSS File -->
     <link href="{{ asset('landingpage/assets/css/main.css') }}" rel="stylesheet">
+    {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> --}}
     {{-- <link rel="stylesheet" href="{{ asset('/') }}dist/css/adminlte.css"> --}}
 </head>
 
@@ -49,12 +51,12 @@
                     <li><a href="#hero">Beranda</a></li>
                     <li class="dropdown"><a href="#about"><span>Tentang Kami</span> <i
                                 class="bi bi-chevron-down dropdown-indicator"></i></a>
-                            <ul>
-                                <li><a href="/profilekph">Profil Perusahaan</a></li>
-                                <li><a href="/visimisikph">Visi, Misi, dan Tata Nilai</a></li>
-                                <li><a href="/strukturkph">Struktur Organisasi</a></li>
-                                <li><a href="/datakaryawankph">Data Karyawan</a></li>
-                            </ul>
+                        <ul>
+                            <li><a href="/profilekph">Profil Perusahaan</a></li>
+                            <li><a href="/visimisikph">Visi, Misi, dan Tata Nilai</a></li>
+                            <li><a href="/strukturkph">Struktur Organisasi</a></li>
+                            <li><a href="/datakaryawankph">Data Karyawan</a></li>
+                        </ul>
                     </li>
                     <li><a href="/beritakph">Berita</a></li>
                     <li><a href="/fitur">Fitur</a></li>
@@ -82,69 +84,59 @@
             <div class="col-lg-5 col-md-12 footer-info">
                 <a href="/" class="logo d-flex align-items-center">
                     <span>Perhutani</span>
-
                 </a>
                 <p>Perhutani adalah Badan Usaha Milik Negara berbentuk Perusahaan Umum (Perum) yang memiliki tugas
                     dan wewenang untuk mengelola sumberdaya hutan negara di pulau Jawa dan Madura.</p>
-                <div class="row">
-                    <div class="footer-contact text-center text-md-start">
-                        <h4>Alamat</h4>
-                        <p>
-                            Perum Perhutani KPH Semarang Divisi Regional Jawa Tengah <br>
-                            <i class="fas fa-map-marker-alt mr-2"></i>Jl. Cipto No. 99, Semarang, Kode Pos:
-                            50552<br>
-                            <i class="fas fa-phone-alt mr-2"></i>(024) 254326<br>
-                            <i class="fas fa-phone-alt mr-2"></i>(024) 354621<br>
-                            <i class="fas fa-envelope mr-2"></i>kph.semarang@perhutani.co.id<br>
-                        </p>
-                    </div>
-                    <div class="footer-links">
-                        <h4>Tentang Kami</h4>
-                        <ul>
-                            <li><a href="#">Profil Perusahaan</a></li>
-                            <li><a href="#">Visi, Misi, dan Tata Nilai</a></li>
-                            <li><a href="#">Struktur Ogranisasi</a></li>
-                            <li><a href="#">Data Karyawan</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="footer-links">
-                        <h4>Fitur</h4>
-                        <ul>
-                            <li><a>Aplikasi Biodata Karyawan</a></li>
-                            <li><a>Aplikasi Jadwal Kerja (Shifting)</a></li>
-                            <li><a>Aplikasi Kehadiran</a></li>
-                            <li><a>Aplikasi Pelacakan GPS</a></li>
-                            <li><a>Aplikasi Penilaian</a></li>
-                            <li><a>Aplikasi Rekapan Data Eviden Poin</a></li>
-                        </ul>
-                    </div>
-                </div>
                 <div class="social-links d-flex mt-4">
-                    <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
-                    <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-                    <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-                    <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+                    <a href="https://www.facebook.com/perumperhutani/" target=”_blank”><i
+                            class="bi bi-facebook"></i></a>
+                    <a href="https://twitter.com/perumperhutani" target=”_blank”><i class="bi bi-twitter-x"></i></a>
+                    <a href="https://www.instagram.com/perumperhutani/?hl=id" target=”_blank”><i
+                            class="bi bi-instagram"></i></a>
+                    <a href="https://www.tiktok.com/@perum.perhutani" target=”_blank”><i class="bi bi-tiktok"></i></a>
+                    <a href="https://www.youtube.com/channel/UCmMvplsIxDZLQeusTWlLE2w" target=”_blank”><i
+                            class="bi bi-youtube"></i></a>
+                    <a href="https://www.linkedin.com/company/perum-perhutani/" target=”_blank”><i
+                            class="bi bi-linkedin"></i></a>
                 </div>
+            </div>
+
+            <div class="col-lg-2 col-6 footer-links">
+                <h4>Tentang Kami</h4>
+                <ul>
+                    <li><a href="/profilekph">Profil Perusahaan</a></li>
+                    <li><a href="/visimisikph">Visi, Misi, dan Tata Nilai</a></li>
+                    <li><a href="/strukturkph">Struktur Organisasi</a></li>
+                    <li><a href="/datakaryawankph">Data Karyawan</a></li>
+                </ul>
+            </div>
+
+            <div class="col-lg-2 col-6 footer-links">
+                <h4>Fitur</h4>
+                <ul>
+                    <li><a>Aplikasi Biodata Karyawan</a></li>
+                    <li><a>Aplikasi Jadwal Kerja (Shifting)</a></li>
+                    <li><a>Aplikasi Kehadiran</a></li>
+                    <li><a>Aplikasi Pelacakan GPS</a></li>
+                    <li><a>Aplikasi Penilaian</a></li>
+                    <li><a>Aplikasi Rekapan Data Eviden Poin</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-3 col-md-12 footer-contact text-md-start">
+                <h4>Alamat</h4>
+                <p>
+                    Perum Perhutani KPH Semarang Divisi Regional Jawa Tengah <br>
+                    <i class="fas fa-map-marker-alt mr-2"></i>Jl. Cipto No. 99, Semarang, Kode Pos:
+                    50552<br>
+                    <i class="fas fa-phone-alt mr-2"></i>(024) 254326<br>
+                    <i class="fas fa-building mr-2"></i>(024) 354621<br>
+                    <i class="fas fa-envelope mr-2"></i>kph.semarang@perhutani.co.id<br>
+                </p>
             </div>
         </div>
     </div>
+</footer>
 
-    {{-- <div class="container mt-4">
-            <div class="copyright">
-                &copy; Copyright <strong><span>Impact</span></strong>. All Rights Reserved
-            </div>
-            <div class="credits">
-                <!-- All the links in the footer should remain intact. -->
-                <!-- You can delete the links only if you purchased the pro version. -->
-                <!-- Licensing information: https://bootstrapmade.com/license/ -->
-                <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/impact-bootstrap-business-website-template/ -->
-                Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-            </div>
-        </div> --}}
-
-</footer><!-- End Footer -->
-<!-- End Footer -->
 
 <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i
         class="bi bi-arrow-up-short"></i></a>

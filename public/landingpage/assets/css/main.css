@@ -103,14 +103,13 @@ section {
 # Breadcrumbs
 --------------------------------------------------------------*/
 .breadcrumbs .page-header {
-  padding: 60px 0 60px 0;
-  min-height: 20vh;
   position: relative;
-  background-color: var(--color-primary);
+  min-height: 20vh;
+  padding: 40px 0;
 }
 
-.breadcrumbs .page-header h2 {
-  font-size: 56px;
+.breadcrumbs .page-header h3 {
+  font-size: 36px;
   font-weight: 500;
   color: #fff;
   font-family: var(--font-secondary);
@@ -121,7 +120,7 @@ section {
 }
 
 .breadcrumbs nav {
-  background-color: #f6f6f6;
+  background-color: #E4FFF6;
   padding: 20px 0;
 }
 
@@ -133,7 +132,7 @@ section {
   padding: 0;
   font-size: 16px;
   font-weight: 600;
-  color: var(--color-default);
+  color: #6c757d;
 }
 
 .breadcrumbs nav ol a {
@@ -428,7 +427,7 @@ section {
     font-size: 15px;
     text-transform: none;
     font-weight: 600;
-    color: #006a5d;
+    color: var(--color-default);
   }
 
   .navbar .dropdown ul a i {
@@ -438,7 +437,8 @@ section {
   .navbar .dropdown ul a:hover,
   .navbar .dropdown ul .active:hover,
   .navbar .dropdown ul li:hover>a {
-    color: var(--color-secondary);
+    color: var(--color-default);
+    background-color: #dee2e6;
   }
 
   .navbar .dropdown:hover>ul {
@@ -1304,6 +1304,8 @@ section {
 
 .portfolio-details .portfolio-description p {
   padding: 0;
+  text-align: justify;
+  font-size: 15px;
 }
 
 .portfolio-details .portfolio-description .testimonial-item {
@@ -2609,7 +2611,8 @@ section {
   border-radius: 50%;
   border: 1px solid rgba(255, 255, 255, 0.2);
   font-size: 16px;
-  color: rgba(255, 255, 255, 0.7);
+  color: var(--color-primary);
+  background-color: #fff;
   margin-right: 10px;
   transition: 0.3s;
 }
@@ -2617,6 +2620,7 @@ section {
 .footer .social-links a:hover {
   color: #fff;
   border-color: #fff;
+  background-color: var(--color-primary);
 }
 
 .footer h4 {

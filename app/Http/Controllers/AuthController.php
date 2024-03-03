@@ -53,8 +53,8 @@ class AuthController extends Controller
 
             $request->session()->put('just_logged_in', true);
 
-            $daftarPengumuman = Pengumuman::all();
-            $request->session()->put('daftar_pengumuman', $daftarPengumuman);
+            $pengumuman = Pengumuman::all();
+            $request->session()->put('pengumuman', $pengumuman);
 
             return redirect('/home');
         }

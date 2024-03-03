@@ -31,12 +31,16 @@ class LandingController extends Controller
 
     public function datakaryawan()
     {
-        return view('landing.datakaryawan', ['key'=>'landing']);
+        $karyawan = Karyawan::all();
+
+        return view('landing.datakaryawan', compact('karyawan'), ['key'=>'landing']);
     }
 
     public function berita()
     {
-        return view('landing.berita', ['key'=>'landing']);
+        $berita = Berita::all();
+
+        return view('landing.berita', compact('berita'), ['key'=>'landing']);
     }
 
     public function fitur()

@@ -48,7 +48,7 @@
             </a>
             <nav id="navbar" class="navbar">
                 <ul>
-                    <li><a href="#hero">Beranda</a></li>
+                    <li><a href="/">Beranda</a></li>
                     <li class="dropdown"><a href="#about"><span>Tentang Kami</span> <i
                                 class="bi bi-chevron-down dropdown-indicator"></i></a>
                         <ul>

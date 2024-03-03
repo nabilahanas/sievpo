@@ -42,21 +42,13 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach ($karyawan as $item)
                             <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
+                                <td>{{ $loop->iteration }}.</td>
+                                <td>{{ $item->nama }}</td>
+                                <td>{{ $item->jabatan }}</td>
                             </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td>Larry</td>
-                                <td>the Bird</td>
-                            </tr>
+                        @endforeach
                         </tbody>
                     </table>
                 </div>

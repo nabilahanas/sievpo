@@ -17,7 +17,7 @@
             </div>
             <nav aria-label="breadcrumb">
                 <div class="container">
-                    <ol class="breadcrumb">
+                    <ol>
                         <li class="breadcrumb-item"><a href="/">Beranda</a></li>
                         <li class="breadcrumb-item"><a herf="#">Tentang Kami</a></li>
                         <li class="breadcrumb-item active" aria-current="page">Profil Perusahaan</li>
@@ -28,14 +28,14 @@
 
         <section id="portfolio-details" class="portfolio-details">
             <div class="container" data-aos="fade-up">
-                <div class="row justify-content-center">
+                <div class="row justify-content-center position-relative h-100">
                     <div class="col-md-8">
-                        <div class="position-relative h-100">
+                        <div class="image-container d-flex justify-content-center align-items-center">
                             <img src="https://i0.wp.com/www.perhutani.co.id/wp-content/uploads/2021/08/WhatsApp-Image-2021-08-03-at-14.35.15-2.jpeg"
-                                class="img-fluid mx-auto d-block" alt="Profil Perusahaan" style="max-width: 90%">
+                                class="img-fluid" alt="Profil Perusahaan">
                         </div>
                     </div>
-                </div>
+                </div>                
 
                 <div class="row justify-content-between gy-4 mt-4">
                     <div class="col-md-10 offset-md-1">

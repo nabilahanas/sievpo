@@ -32,9 +32,9 @@
     <link href="{{ asset('landingpage/assets/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
 
     <!-- Template Main CSS File -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link href="{{ asset('landingpage/assets/css/main.css') }}" rel="stylesheet">
-    {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> --}}
     {{-- <link rel="stylesheet" href="{{ asset('/') }}dist/css/adminlte.css"> --}}
 </head>
 
@@ -49,7 +49,7 @@
             <nav id="navbar" class="navbar">
                 <ul>
                     <li><a href="/">Beranda</a></li>
-                    <li class="dropdown"><a href="#about"><span>Tentang Kami</span> <i
+                    <li class="dropdown"><a href=""><span>Tentang Kami</span> <i
                                 class="bi bi-chevron-down dropdown-indicator"></i></a>
                         <ul>
                             <li><a href="/profilekph">Profil Perusahaan</a></li>
@@ -64,8 +64,8 @@
                 </ul>
             </nav><!-- .navbar -->
 
-            <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
-            <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
+            <i class="mobile-nav-toggle mobile-nav-show bi bi-list" style="color: #016237"></i>
+            <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x" style="color: #016237"></i>
 
         </div>
     </header><!-- End Header -->

@@ -17,7 +17,7 @@
             </div>
             <nav aria-label="breadcrumb">
                 <div class="container">
-                    <ol class="breadcrumb">
+                    <ol>
                         <li class="breadcrumb-item"><a href="/">Beranda</a></li>
                         <li class="breadcrumb-item"><a herf="#">Tentang Kami</a></li>
                         <li class="breadcrumb-item active" aria-current="page">Visi, Misi, dan Tata Nilai</li>
@@ -28,20 +28,22 @@
 
         <section id="blog" class="blog">
             <div class="container" data-aos="fade-up">
-                <div class="text-center">
-                    <h3>VISI</h3>
-                    <p>Menjadi Perusahaan Pengelola Hutan Berkelanjutan dan Bermanfaat Bagi Masyarakat</p>
-                    <h3>MISI</h3>
-                    <p>
+                <article class="blog-details text-center">
+                    <h3 class="title">VISI</h3>
+                    <p class="content">Menjadi Perusahaan Pengelola Hutan Berkelanjutan dan Bermanfaat Bagi Masyarakat</p>
+                    <h3 class="title">MISI</h3>
+                    <p class="content">
                         Mengelola Sumberdaya Hutan Secara Lestari
                         <br>Peduli Kepada Kepentingan Masyarakat dan Lingkungan
                         <br>Mengoptimalkan Bisnis Kehutanan dengan Prinsip Good Corporate Governance
                     </p>
-                    <h5 style="color: #016237">TATA NILAI AKHLAK</h5>
-                    <img class="position-relative h-100"
-                        src="https://i0.wp.com/www.perhutani.co.id/wp-content/uploads/2022/10/akhlak-2.png"
-                        class="img-fluid mx-auto d-block" alt="Akhlak" style="max-width: 60%">
-                </div>
+                    <h5 class="title" style="color: #016237">TATA NILAI AKHLAK</h5>
+                    <div class="post-img">
+                        <img class="position-relative h-100"
+                            src="https://i0.wp.com/www.perhutani.co.id/wp-content/uploads/2022/10/akhlak-2.png"
+                            class="img-fluid mx-auto d-block" alt="Akhlak" style="max-width: 100%; height: auto;">
+                    </div>
+                </article>
             </div>
         </section>
     </main>

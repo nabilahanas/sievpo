@@ -237,7 +237,7 @@ section {
 # Header
 --------------------------------------------------------------*/
 .topbar {
-  background: #00796b;
+  background: var(--color-primary);
   height: 40px;
   font-size: 14px;
   transition: all 0.5s;
@@ -359,9 +359,9 @@ section {
     align-items: center;
     justify-content: space-between;
     padding: 0 3px;
-    font-family: var(--font-secondary);
-    font-size: 14px;
-    font-weight: medium;
+    font-family: var(--font-primary);
+    font-size: 15px;
+    font-weight: 600;
     color: #000000;
     white-space: nowrap;
     transition: 0.3s;
@@ -382,7 +382,7 @@ section {
     height: 2px;
     bottom: -6px;
     left: 0;
-    background-color: var(--color-secondary);
+    background-color: var(--color-primary);
     visibility: hidden;
     width: 0px;
     transition: all 0.3s ease-in-out 0s;
@@ -426,7 +426,6 @@ section {
     padding: 10px 20px;
     font-size: 15px;
     text-transform: none;
-    font-weight: 600;
     color: var(--color-default);
   }
 
@@ -499,7 +498,7 @@ section {
     inset: 0;
     padding: 50px 0 10px 0;
     margin: 0;
-    background: rgba(0, 131, 116, 0.9);
+    background: var(--color-secondary);
     overflow-y: auto;
     transition: 0.3s;
     z-index: 9998;
@@ -514,7 +513,7 @@ section {
     font-family: var(--font-primary);
     font-size: 15px;
     font-weight: 600;
-    color: rgba(255, 255, 255, 0.7);
+    color: var(--color-default);
     white-space: nowrap;
     transition: 0.3s;
   }
@@ -530,7 +529,7 @@ section {
   .navbar .active,
   .navbar .active:focus,
   .navbar li:hover>a {
-    color: #fff;
+    color: var(--color-primary);
   }
 
   .navbar .getstarted,
@@ -545,7 +544,7 @@ section {
   .navbar .getstarted:hover,
   .navbar .getstarted:focus:hover {
     color: #fff;
-    background: rgba(0, 131, 116, 0.8);
+    background: var(--color-primary);
   }
 
   .navbar .dropdown ul,
@@ -555,8 +554,7 @@ section {
     padding: 10px 0;
     margin: 10px 20px;
     transition: all 0.5s ease-in-out;
-    background-color: #007466;
-    border: 1px solid #006459;
+    background-color: var(--color-secondary);
   }
 
   .navbar .dropdown>.dropdown-active,
@@ -598,7 +596,7 @@ section {
     content: "";
     position: fixed;
     inset: 0;
-    background: rgba(0, 106, 93, 0.8);
+    background: var(--color-primary);
     z-index: 9996;
   }
 }
@@ -1364,6 +1362,17 @@ section {
   padding: 0;
 }
 
+.image-container {
+  max-width: 90%;
+  margin: 0 auto;
+}
+
+.img-fluid {
+  max-width: 100%;
+  height: auto;
+}
+
+
 /*--------------------------------------------------------------
 # Our Team Section
 --------------------------------------------------------------*/
@@ -2044,8 +2053,6 @@ section {
   background: var(--color-primary);
   color: #fff;
   border-color: var(--color-primary);
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  transform: scale(1.1);
 }
 
 .blog .blog-pagination li.active a,
@@ -2105,41 +2112,50 @@ section {
 }
 
 .blog .posts-list .post-author-list {
-  font-weight: 600;
   margin-bottom: 5px;
+  font-size: 14px;
+  color: #3c3c3c;
 }
 
 .blog .posts-list .post-date {
-  font-size: 14px;
-  color: #3c3c3c;
   margin-bottom: 0;
+}
+
+.posts-list .row {
+  margin-bottom: 15px;
+}
+
+@media (max-width: 767px) {
+  .posts-list .row {
+    margin-left: -7.5px;
+    margin-right: -7.5px;
+  }
+
+  .posts-list .col-xl-4 {
+    padding-left: 7.5px;
+    padding-right: 7.5px;
+    margin-bottom: 15px;
+  }
 }
 
 /*--------------------------------------------------------------
 # Blog Details
 --------------------------------------------------------------*/
-.blog .blog-details {
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-  padding: 30px;
-  border-radius: 10px;
-}
-
 .blog .blog-details .post-img {
-  margin: -30px -30px 20px -30px;
+  margin: 30px 30px 20px 30px;
   overflow: hidden;
-  border-radius: 10px 10px 0 0;
 }
 
 .blog .blog-details .title {
   font-size: 28px;
-  font-weight: 700;
+  font-weight: 600;
   padding: 0;
-  margin: 20px 0 0 0;
   color: var(--color-default);
 }
 
 .blog .blog-details .content {
   margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .blog .blog-details .content h3 {

@@ -30,7 +30,9 @@ class DataController extends Controller
         $lokasi = Lokasi::all();
 
         $currentDateTime = now();
-        $shift = Shift::where('jam_mulai', '>=', $currentDateTime->format('H:i:s'))->where('jam_akhir', '<=', $currentDateTime->format('H:i:s'))->first();
+        $shift = Shift::whereTime('jam_mulai', '<=', $currentDateTime->format('H:i:s'))
+            ->whereTime('jam_akhir', '>=', $currentDateTime->format('H:i:s'))
+            ->first();
 
         return view('data.add', compact('bidang', 'shift', 'lokasi'), ['key' => 'data']);
     }

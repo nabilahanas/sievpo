@@ -12,6 +12,8 @@ class ShiftController extends Controller
 
     public function index()
     {
+        config(['app.timezone' => 'Asia/Jakarta']);
+
         $shift = Shift::withTrashed()->get();
         return view('shift.index', compact('shift'), ['key' => 'shift']);
     }

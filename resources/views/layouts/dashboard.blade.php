@@ -29,16 +29,25 @@
     <div class="modal fade" id="pengumumanModal" data-backdrop="static" tabindex="-1" role="dialog"
         aria-labelledby="pengumumanTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
+            @foreach ($pengumuman as $item)
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="pengumumanTitle">Pengumuman</h5>
+                    <h5 class="modal-title" id="pengumumanTitle">{{$item->judul}}</h5>
                     <button type="button" class="close" id="close-button" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <img src="https://www.w3schools.com/w3images/lights.jpg" alt="Lights" style="width:100%">
-                    <p>Text</p>
+                    @if (auth()->user()->profile_pict)
+                                    <img src="{{ asset('storage/gambar-pengumuman/' . $item->gambar) }}"
+                                        alt="Lights"
+                                        style="width:100%;">
+                                @else
+                                    <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png"
+                                        alt="Lights"
+                                        style="width:100%;">
+                                @endif
+                    <p>{{ $item->deskripsi }}</p>
                 </div>
                 <div class="form-group row">
                     <div class="offset-sm-4 col-sm-10">
@@ -53,6 +62,7 @@
                     <button type="button" class="btn btn-secondary" id="close-modal-button">Tutup</button>
                 </div>
             </div>
+            @endforeach
         </div>
     </div>
 

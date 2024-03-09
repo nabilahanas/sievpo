@@ -26,9 +26,10 @@
                             <label for="" class="col-sm-3 col-form-label required">Nama</label>
                             <div class="col-sm-9">
                                 <input type="text" class="form-control" name="nama_user"
+                                {{-- input untuk tampilan --}}
                                     value="{{ auth()->user()->nama_user }}" required disabled>
 
-                                {{-- untuk menyimpan nilai yang akan dikirim ke database --}}
+                                {{-- input untuk menyimpan nilai --}}
                                 <input type="hidden" name="nama_hidden" value="{{ auth()->user()->nama_user }}">
                             </div>
                         </div>
@@ -48,11 +49,11 @@
                         <div class="form-group row col-12">
                             <label for="tgl_waktu" class="col-sm-3 col-form-label required">Tanggal Waktu</label>
                             <div class="col-sm-9">
-                                {{-- Input untuk tampilan --}}
+                                {{-- input untuk tampilan --}}
                                 <input type="text" class="form-control" value="{{ now()->format('d-m-Y H:i:s') }}"
                                     disabled>
 
-                                {{-- Input untuk menyimpan nilai yg disimpan --}}
+                                {{-- input untuk menyimpan nilai --}}
                                 <input type="hidden" name="tgl_waktu" value="{{ now()->format('Y-m-d\TH:i:s') }}" required>
                             </div>
                         </div>
@@ -62,17 +63,26 @@
                             <label for="shift" class="col-sm-3 col-form-label required">Shift</label>
                             <div class="col-sm-9">
                                 <input type="text" class="form-control" name="shift" id=""
-                                    value="{{ $shift->nama_shift ?? '' }}" disabled>
+                                {{-- input untuk tampilan --}}
+                                    value="{{ $shift->nama_shift }}" disabled>
+
+                                    {{-- input untuk menyimpan nilai --}}
+                                    <input type="hidden" name="shift_hidden" value="{{ $shift->nama_shift }}">
                             </div>
                         </div>
 
                         <div class="form-group row col-12">
                             <label for="lokasi" class="col-sm-3 col-form-label required">Lokasi</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" name="lokasi" id="" value=""
+                                {{-- input untuk tampilan --}}
+                                <input type="text" class="form-control" name="lokasi" id="lokasi" value=""
                                     disabled>
+
+                                    {{-- input untuk menyimpan nilai --}}
+                                    <input type="hidden" name="lokasi_hidden" value="lokasi">
                             </div>
                         </div>
+
                     </div>
                 </div>
 
@@ -117,6 +127,64 @@
                         });
                     </script>
                 @endpush
+
+
+                {{-- GET LOCATION USING API --}}
+                <script>
+                    function getLocation() {
+                        if (navigator.geolocation) {
+                            navigator.geolocation.getCurrentPosition(function(position) {
+                                var latitude = position.coords.latitude;
+                                var longitude = position.coords.longitude;
+
+                                // fungsi untuk mendapatkan nama lokasi
+                                getGeolocationName(latitude, longitude);
+                            }, function(error) {
+                                console.error('Error getting location:', error.message);
+                            });
+                        } else {
+                            console.error('Geolocation is not supported by this browser.');
+                        }
+                    }
+
+                    function getGeolocationName(latitude, longitude) {
+                        // apikey akun geocoding
+                        var apiKey = '1a6118a363944c9e83e49de502419bcd';
+
+                        // URL untuk mengakses OpenCage Geocoding API
+                        var apiUrl = 'https://api.opencagedata.com/geocode/v1/json?q=' + latitude + '+' + longitude + '&key=' + apiKey;
+
+                        fetch(apiUrl)
+                            .then(response => response.json())
+                            .then(data => {
+
+                                var components = data.results[0].components;
+
+                                // ambil informasi desa, kecamatan, kota, dst
+                                var village = components.village || "";
+                                var subdistrict = components.suburb || "";
+                                var city = components.city || "";
+                                var county = components.county || "";
+                                var state = components.state || "";
+
+                                // ambil nama daerah berdasarkan prioritas
+                                var areaName = village || subdistrict || city || county || state;
+
+                                // isi otomatis input dengan informasi lengkap
+                                document.getElementById('lokasi').value = areaName + '. Latitude: ' + latitude + ', Longitude: ' +
+                                    longitude;
+                            })
+                            .catch(error => {
+                                console.error('Error fetching location name:', error);
+                            });
+                    }
+
+                    document.addEventListener('DOMContentLoaded', function() {
+                        getLocation();
+                    });
+                </script>
+
+
 
                 <div class="card-body text-center">
                     <button type="submit" class="btn btn-primary"><i class="fas fa-save mr-2"></i>Simpan</button>

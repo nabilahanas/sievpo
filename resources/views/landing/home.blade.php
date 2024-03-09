@@ -6,14 +6,10 @@
         <div class="container position-relative">
             <div class="row gy-5" data-aos="fade-in">
                 <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center text-center text-lg-start">
-                    <h2>Welcome to <span>Impact</span></h2>
-                    <p>Sed autem laudantium dolores. Voluptatem itaque ea consequatur eveniet. Eum quas beatae cumque
-                        eum quaerat.</p>
+                    <h2>Sistem Informasi Eviden Poin Perum Perhutani KPH Semarang</h2>
+                    <p>SIEVPO kelola data penilaian karyawan lebih mudah!</p>
                     <div class="d-flex justify-content-center justify-content-lg-start">
-                        <a href="#about" class="btn-get-started">Get Started</a>
-                        <a href="https://www.youtube.com/watch?v=LXb3EKWsInQ"
-                            class="glightbox btn-watch-video d-flex align-items-center"><i
-                                class="bi bi-play-circle"></i><span>Watch Video</span></a>
+                        <a href="" class="btn-get-started">Data Karyawan</a>
                     </div>
                 </div>
                 <div class="col-lg-6 order-1 order-lg-2">
@@ -27,8 +23,7 @@
             <div class="container position-relative">
                 <div class="col-xl-10" data-aos="fade-up" data-aos-delay="100">
                     <div class="icon-box">
-                        <div class="icon"><i class="bi bi-easel"></i></div>
-                        <h4 class="title"><a href="" class="stretched-link">Lorem Ipsum</a></h4>
+                        <h4 class="title"><a href="" class="stretched-link">173 Karyawan</a></h4>
                     </div>
                 </div>
             </div>
@@ -95,77 +90,13 @@
             </div>
         </section><!-- End About Us Section -->
 
-        <!-- ======= Clients Section ======= -->
-        <section id="clients" class="clients">
-            <div class="container" data-aos="zoom-out">
-
-                <div class="clients-slider swiper">
-                    <div class="swiper-wrapper align-items-center">
-                        <div class="swiper-slide"><img src="{{ asset('landingpage/assets/img/clients/client-1.png') }}"
-                                class="img-fluid" alt=""></div>
-                        <div class="swiper-slide"><img src="{{ asset('landingpage/assets/img/clients/client-2.png') }}"
-                                class="img-fluid" alt=""></div>
-                        <div class="swiper-slide"><img src="{{ asset('landingpage/assets/img/clients/client-3.png') }}"
-                                class="img-fluid" alt=""></div>
-                        <div class="swiper-slide"><img src="{{ asset('landingpage/assets/img/clients/client-4.png') }}"
-                                class="img-fluid" alt=""></div>
-                        <div class="swiper-slide"><img src="{{ asset('landingpage/assets/img/clients/client-5.png') }}"
-                                class="img-fluid" alt=""></div>
-                        <div class="swiper-slide"><img src="{{ asset('landingpage/assets/img/clients/client-6.png') }}"
-                                class="img-fluid" alt=""></div>
-                        <div class="swiper-slide"><img src="{{ asset('landingpage/assets/img/clients/client-7.png') }}"
-                                class="img-fluid" alt=""></div>
-                        <div class="swiper-slide"><img src="{{ asset('landingpage/assets/img/clients/client-8.png') }}"
-                                class="img-fluid" alt=""></div>
-                    </div>
-                </div>
-
-            </div>
-        </section><!-- End Clients Section -->
-
-        <!-- ======= Stats Counter Section ======= -->
-        <section id="stats-counter" class="stats-counter">
-            <div class="container" data-aos="fade-up">
-
-                <div class="row gy-4 align-items-center">
-
-                    <div class="col-lg-6">
-                        <img src="{{ asset('landingpage/assets/img/stats-img.svg') }}" alt="" class="img-fluid">
-                    </div>
-
-                    <div class="col-lg-6">
-
-                        <div class="stats-item d-flex align-items-center">
-                            <span data-purecounter-start="0" data-purecounter-end="232" data-purecounter-duration="1"
-                                class="purecounter"></span>
-                            <p><strong>Happy Clients</strong> consequuntur quae diredo para mesta</p>
-                        </div>
-
-                        <div class="stats-item d-flex align-items-center">
-                            <span data-purecounter-start="0" data-purecounter-end="521" data-purecounter-duration="1"
-                                class="purecounter"></span>
-                            <p><strong>Projects</strong> adipisci atque cum quia aut</p>
-                        </div>
-
-                        <div class="stats-item d-flex align-items-center">
-                            <span data-purecounter-start="0" data-purecounter-end="453" data-purecounter-duration="1"
-                                class="purecounter"></span>
-                            <p><strong>Hours Of Support</strong> aut commodi quaerat</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section><!-- End Stats Counter Section -->
-
         <!-- ======= Call To Action Section ======= -->
         <section id="call-to-action" class="call-to-action">
             <div class="container text-center" data-aos="zoom-out">
-                <a href="https://www.youtube.com/watch?v=LXb3EKWsInQ" class="glightbox play-btn"></a>
                 <h3>Call To Action</h3>
                 <p> Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
                     pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
                     anim id est laborum.</p>
-                <a class="cta-btn" href="#">Call To Action</a>
             </div>
         </section><!-- End Call To Action Section -->
 
@@ -174,87 +105,205 @@
             <div class="container" data-aos="fade-up">
 
                 <div class="section-header">
-                    <h2>Our Services</h2>
-                    <p>Aperiam dolorum et et wuia molestias qui eveniet numquam nihil porro incidunt dolores placeat
-                        sunt id nobis omnis tiledo stran delop</p>
+                    <h2>Berbagai Fitur SIEVPO</h2>
+                    <p>Fitur-fitur SIEVPO untuk manajemen penilaian karyawan</p>
                 </div>
 
+                <!-- BIODATA KARYAWAN -->
                 <div class="row gy-4" data-aos="fade-up" data-aos-delay="100">
                     <div class="col-lg-4 col-md-6">
                         <div class="service-item  position-relative">
-                            <div class="icon">
-                                <i class="bi bi-activity"></i>
-                            </div>
-                            <h3>Nesciunt Mete</h3>
-                            <p>Provident nihil minus qui consequatur non omnis maiores. Eos accusantium minus dolores
-                                iure perferendis tempore et consequatur.</p>
-                            <a href="#" class="readmore stretched-link">Read more <i
-                                    class="bi bi-arrow-right"></i></a>
+                            <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#biodataModal">
+                                <div class="icon">
+                                    <i class="bi bi-people-fill"></i>
+                                </div>
+                                <h3>Biodata Karyawan</h3>
+                                <p>Kemudahan dalam mengelola data karyawan</p>
+                            </button>
                         </div>
                     </div>
 
-                    <div class="col-lg-4 col-md-6">
-                        <div class="service-item position-relative">
-                            <div class="icon">
-                                <i class="bi bi-broadcast"></i>
+                    <!-- The Modal -->
+                    <div class="modal fade" id="biodataModal" tabindex="-1" aria-labelledby="biodataModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title" id="biodataModalLabel">Biodata Karyawan?</h4>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Menu Biodata Karyawan ini menyimpan informasi penting karyawan, seperti nama lengkap,
+                                        NIP, jabatan, wilayah, dan sebagainya. Menu ini memudahkan akses data karyawan
+                                        kapanpun dan di manapun. Bagi perusahaan, menu ini dapat membantu mengelola data
+                                        karyawan dengan mudah dan efisien. Dengan menggunakan menu ini, perusahaan dapat
+                                        meningkatkan keakuratan data karyawan, membuat keputusan yang lebih baik terkait
+                                        SDM, dan meningkatkan efisiensi dalam pengelolaan SDM.</p>
+                                    <div class="modal-footer">
+                                        <div class="text-center">
+                                            <button type="button" class="btn btn-outline-primary"
+                                                onclick="window.location='/login'">Halaman Login</button>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <h3>Eosle Commodi</h3>
-                            <p>Ut autem aut autem non a. Sint sint sit facilis nam iusto sint. Libero corrupti neque eum
-                                hic non ut nesciunt dolorem.</p>
-                            <a href="#" class="readmore stretched-link">Read more <i
-                                    class="bi bi-arrow-right"></i></a>
                         </div>
                     </div>
 
+                    <!-- JADWAL KERJA -->
                     <div class="col-lg-4 col-md-6">
                         <div class="service-item position-relative">
-                            <div class="icon">
-                                <i class="bi bi-easel"></i>
-                            </div>
-                            <h3>Ledo Markt</h3>
-                            <p>Ut excepturi voluptatem nisi sed. Quidem fuga consequatur. Minus ea aut. Vel qui id
-                                voluptas adipisci eos earum corrupti.</p>
-                            <a href="#" class="readmore stretched-link">Read more <i
-                                    class="bi bi-arrow-right"></i></a>
+                            <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#shiftingModal">
+                                <div class="icon">
+                                    <i class="bi bi-calendar3"></i>
+                                </div>
+                                <h3>Jadwal Kerja (Shifting)</h3>
+                                <p>Jadwal jam kerja atau shifting dengan mudah dan tidak rumit</p>
+                            </button>
                         </div>
                     </div>
 
-                    <div class="col-lg-4 col-md-6">
-                        <div class="service-item position-relative">
-                            <div class="icon">
-                                <i class="bi bi-bounding-box-circles"></i>
+                    <!-- The Modal -->
+                    <div class="modal fade" id="shiftingModal" tabindex="-1" aria-labelledby="shiftingModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centereds">
+                            <div class="modal-content">
+                                <div class="modal-body">
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                    <p>Menu Shifting mudah digunakan dan dipahami oleh karyawan. Proses pengaturan shifting
+                                        dapat dilakukan dengan cepat dan efisien. Menu shifting memungkinkan karyawan untuk
+                                        mendapatkan jadwal kerja secara otomatis yang sesuai dengan kebutuhan mereka. Sistem
+                                        shifting dapat membantu meningkatkan keseimbangan kehidupan kerja karyawan. Selain
+                                        itu, menu shifting dapat membantu perusahaan mengoptimalkan penggunaan sumber daya
+                                        manusia.</p>
+                                </div>
                             </div>
-                            <h3>Asperiores Commodit</h3>
-                            <p>Non et temporibus minus omnis sed dolor esse consequatur. Cupiditate sed error ea fuga
-                                sit provident adipisci neque.</p>
-                            <a href="#" class="readmore stretched-link">Read more <i
-                                    class="bi bi-arrow-right"></i></a>
                         </div>
                     </div>
 
+                    <!-- KEHADIRAN -->
                     <div class="col-lg-4 col-md-6">
                         <div class="service-item position-relative">
-                            <div class="icon">
-                                <i class="bi bi-calendar4-week"></i>
-                            </div>
-                            <h3>Velit Doloremque</h3>
-                            <p>Cumque et suscipit saepe. Est maiores autem enim facilis ut aut ipsam corporis aut. Sed
-                                animi at autem alias eius labore.</p>
-                            <a href="#" class="readmore stretched-link">Read more <i
-                                    class="bi bi-arrow-right"></i></a>
+                            <button type="button" class="btn" data-bs-toggle="modal"
+                                data-bs-target="#kehadiranModal">
+                                <div class="icon">
+                                    <i class="bi bi-person-fill-check"></i>
+                                </div>
+                                <h3>Kehadiran</h3>
+                                <p>Absensi karyawan lebih mudah</p>
+                            </button>
                         </div>
                     </div>
 
+                    <!-- The Modal -->
+                    <div class="modal fade" id="kehadiranModal" tabindex="-1" aria-labelledby="kehadiranModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-body">
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                    <p>Menu Kehadiran menyediakan antarmuka yang mudah digunakan untuk mencata absensi
+                                        karyawan. Memungkinkan karyawan untuk mencatat absensi mereka sendiri melalui
+                                        berbagai perangkat, seperti komputer dan smartphone. Meminimalisir kesalahan dalam
+                                        pencatatan absensi serta menghemat waktu dan biaya dalam pengelolaan absensi
+                                        karyawan</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PELACAKAN GPS -->
                     <div class="col-lg-4 col-md-6">
                         <div class="service-item position-relative">
-                            <div class="icon">
-                                <i class="bi bi-chat-square-text"></i>
+                            <button type="button" class="btn" data-bs-toggle="modal"
+                                data-bs-target="#pelacakanModal">
+                                <div class="icon">
+                                    <i class="bi bi-geo-alt-fill"></i>
+                                </div>
+                                <h3>Pelacakan GPS</h3>
+                                <p>Ketahui posisi karyawan saat melakukan absensi</p>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- The Modal -->
+                    <div class="modal fade" id="pelacakanModal" tabindex="-1" aria-labelledby="pelacakanModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-body">
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                    <p>Menu Pelacakan GPS memungkinkan perusahaan untuk mengetahui posisi karyawan saat
+                                        melakukan absensi. Menu ini juga dapat membantu perusahaan dalam meningkatkan
+                                        akurasi absensi, memantau karyawan, meningkatkan keamanan, dan mengintegrasikan data
+                                        karyawan secara terpusat</p>
+                                </div>
                             </div>
-                            <h3>Dolori Architecto</h3>
-                            <p>Hic molestias ea quibusdam eos. Fugiat enim doloremque aut neque non et debitis iure.
-                                Corrupti recusandae ducimus enim.</p>
-                            <a href="#" class="readmore stretched-link">Read more <i
-                                    class="bi bi-arrow-right"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- PENILAIAN-->
+                    <div class="col-lg-4 col-md-6">
+                        <div class="service-item position-relative">
+                            <button type="button" class="btn" data-bs-toggle="modal"
+                                data-bs-target="#penilaianModal">
+                                <div class="icon">
+                                    <i class="bi bi-clipboard-check"></i>
+                                </div>
+                                <h3>Penilaian</h3>
+                                <p>Pengisian eviden poin karyawan otomatis dan lebih cepat</p>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- The Modal -->
+                    <div class="modal fade" id="penilaianModal" tabindex="-1" aria-labelledby="penilaianModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-body">
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                    <p>Menu Penilaian dirancang untuk membantu perusahaan dalam melakukan penilaian kinerja
+                                        karyawan dengan mudah dan efisien, serta meminimalisir kesalahan dalam penilaian
+                                        kinerja. Penilaian diatur berdasarkan jumlah poin yang diperoleh setiap karyawan.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- REKAPAN DATA EVIDEN POIN -->
+                    <div class="col-lg-4 col-md-6">
+                        <div class="service-item position-relative">
+                            <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#rekapModal">
+                                <div class="icon">
+                                    <i class="bi bi-bar-chart-fill"></i>
+                                </div>
+                                <h3>Rekapan Data Eviden Poin</h3>
+                                <p>Rekapan data eviden poin karyawan tersimpan dengan baik dan mudah diakses</p>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- The Modal -->
+                    <div class="modal fade" id="rekapModal" tabindex="-1" aria-labelledby="rekapModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-body">
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                    <p>Menu Rekap Data dapat membantu perusahaan dalam meringkas dan menganalisa data
+                                        karyawan dengan mudah, akurat, dan efisien. Memungkinkan pengguna untuk membuat
+                                        berbagai jenis laporan rekap data dengan mudah serta meminimalisisr kesalahan dalam
+                                        pembuatan</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -738,291 +787,42 @@
             </div>
         </section><!-- End Pricing Section -->
 
-        <!-- ======= Frequently Asked Questions Section ======= -->
-        <section id="faq" class="faq">
-            <div class="container" data-aos="fade-up">
-
-                <div class="row gy-4">
-                    <div class="col-lg-4">
-                        <div class="content px-xl-5">
-                            <h3>Frequently Asked <strong>Questions</strong></h3>
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                incididunt ut labore et dolore magna aliqua. Duis aute irure dolor in reprehenderit
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-8">
-                        <div class="accordion accordion-flush" id="faqlist" data-aos="fade-up" data-aos-delay="100">
-                            <div class="accordion-item">
-                                <h3 class="accordion-header">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#faq-content-1">
-                                        <span class="num">1.</span>
-                                        Non consectetur a erat nam at lectus urna duis?
-                                    </button>
-                                </h3>
-                                <div id="faq-content-1" class="accordion-collapse collapse" data-bs-parent="#faqlist">
-                                    <div class="accordion-body">
-                                        Feugiat pretium nibh ipsum consequat. Tempus iaculis urna id volutpat lacus
-                                        laoreet non curabitur gravida. Venenatis lectus magna fringilla urna porttitor
-                                        rhoncus dolor purus non.
-                                    </div>
+        <!-- ======= Carousel Slide ======= -->
+        <div class="row">
+            <section class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                            <ol class="carousel-indicators">
+                                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                            </ol>
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <a href="https://www.tokoperhutani.com/" target=”_blank”><img
+                                            src="https://i0.wp.com/www.perhutani.co.id/wp-content/uploads/2024/01/tokophtArtboard-1@300x-50.jpg?fit=1366%2C600&ssl=1"
+                                            class="d-block w-100" alt="Toko Perhutani"></a>
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="https://i0.wp.com/www.perhutani.co.id/wp-content/uploads/2024/01/SMAP-WEBSITE-1.jpg?fit=1366%2C600&ssl=1"
+                                        class="d-block w-100" alt="Kebijakan Anti Penyuapan">
                                 </div>
                             </div>
-
-                            <div class="accordion-item">
-                                <h3 class="accordion-header">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#faq-content-2">
-                                        <span class="num">2.</span>
-                                        Feugiat scelerisque varius morbi enim nunc faucibus a pellentesque?
-                                    </button>
-                                </h3>
-                                <div id="faq-content-2" class="accordion-collapse collapse" data-bs-parent="#faqlist">
-                                    <div class="accordion-body">
-                                        Dolor sit amet consectetur adipiscing elit pellentesque habitant morbi. Id
-                                        interdum velit laoreet id donec ultrices. Fringilla phasellus faucibus
-                                        scelerisque eleifend donec pretium. Est pellentesque elit ullamcorper dignissim.
-                                        Mauris ultrices eros in cursus turpis massa tincidunt dui.
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="accordion-item">
-                                <h3 class="accordion-header">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#faq-content-3">
-                                        <span class="num">3.</span>
-                                        Dolor sit amet consectetur adipiscing elit pellentesque habitant morbi?
-                                    </button>
-                                </h3>
-                                <div id="faq-content-3" class="accordion-collapse collapse" data-bs-parent="#faqlist">
-                                    <div class="accordion-body">
-                                        Eleifend mi in nulla posuere sollicitudin aliquam ultrices sagittis orci.
-                                        Faucibus pulvinar elementum integer enim. Sem nulla pharetra diam sit amet nisl
-                                        suscipit. Rutrum tellus pellentesque eu tincidunt. Lectus urna duis convallis
-                                        convallis tellus. Urna molestie at elementum eu facilisis sed odio morbi quis
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="accordion-item">
-                                <h3 class="accordion-header">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#faq-content-4">
-                                        <span class="num">4.</span>
-                                        Ac odio tempor orci dapibus. Aliquam eleifend mi in nulla?
-                                    </button>
-                                </h3>
-                                <div id="faq-content-4" class="accordion-collapse collapse" data-bs-parent="#faqlist">
-                                    <div class="accordion-body">
-                                        Dolor sit amet consectetur adipiscing elit pellentesque habitant morbi. Id
-                                        interdum velit laoreet id donec ultrices. Fringilla phasellus faucibus
-                                        scelerisque eleifend donec pretium. Est pellentesque elit ullamcorper dignissim.
-                                        Mauris ultrices eros in cursus turpis massa tincidunt dui.
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="accordion-item">
-                                <h3 class="accordion-header">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#faq-content-5">
-                                        <span class="num">5.</span>
-                                        Tempus quam pellentesque nec nam aliquam sem et tortor consequat?
-                                    </button>
-                                </h3>
-                                <div id="faq-content-5" class="accordion-collapse collapse" data-bs-parent="#faqlist">
-                                    <div class="accordion-body">
-                                        Molestie a iaculis at erat pellentesque adipiscing commodo. Dignissim
-                                        suspendisse in est ante in. Nunc vel risus commodo viverra maecenas accumsan.
-                                        Sit amet nisl suscipit adipiscing bibendum est. Purus gravida quis blandit
-                                        turpis cursus in
-                                    </div>
-                                </div>
-                            </div>
+                            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button"
+                                data-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button"
+                                data-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Next</span>
+                            </a>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section><!-- End Frequently Asked Questions Section -->
-
-        <!-- ======= Recent Blog Posts Section ======= -->
-        <section id="recent-posts" class="recent-posts sections-bg">
-            <div class="container" data-aos="fade-up">
-
-                <div class="section-header">
-                    <h2>Recent Blog Posts</h2>
-                    <p>Consequatur libero assumenda est voluptatem est quidem illum et officia imilique qui vel
-                        architecto accusamus fugit aut qui distinctio</p>
-                </div>
-
-                <div class="row gy-4">
-                    <div class="col-xl-4 col-md-6">
-                        <article>
-                            <div class="post-img">
-                                <img src="{{ asset('landingpage/assets/img/blog/blog-1.jpg') }}" alt=""
-                                    class="img-fluid">
-                            </div>
-
-                            <p class="post-category">Politics</p>
-
-                            <h2 class="title">
-                                <a href="blog-details.html">Dolorum optio tempore voluptas dignissimos</a>
-                            </h2>
-
-                            <div class="d-flex align-items-center">
-                                <img src="{{ asset('landingpage/assets/img/blog/blog-author.jpg') }}" alt=""
-                                    class="img-fluid post-author-img flex-shrink-0">
-                                <div class="post-meta">
-                                    <p class="post-author">Maria Doe</p>
-                                    <p class="post-date">
-                                        <time datetime="2022-01-01">Jan 1, 2022</time>
-                                    </p>
-                                </div>
-                            </div>
-
-                        </article>
-                    </div>
-
-                    <div class="col-xl-4 col-md-6">
-                        <article>
-
-                            <div class="post-img">
-                                <img src="{{ asset('landingpage/assets/img/blog/blog-2.jpg') }}" alt=""
-                                    class="img-fluid">
-                            </div>
-
-                            <p class="post-category">Sports</p>
-
-                            <h2 class="title">
-                                <a href="blog-details.html">Nisi magni odit consequatur autem nulla dolorem</a>
-                            </h2>
-
-                            <div class="d-flex align-items-center">
-                                <img src="{{ asset('landingpage/assets/img/blog/blog-author-2.jpg') }}" alt=""
-                                    class="img-fluid post-author-img flex-shrink-0">
-                                <div class="post-meta">
-                                    <p class="post-author">Allisa Mayer</p>
-                                    <p class="post-date">
-                                        <time datetime="2022-01-01">Jun 5, 2022</time>
-                                    </p>
-                                </div>
-                            </div>
-                        </article>
-                    </div>
-
-                    <div class="col-xl-4 col-md-6">
-                        <article>
-
-                            <div class="post-img">
-                                <img src="{{ asset('landingpage/assets/img/blog/blog-3.jpg') }}" alt=""
-                                    class="img-fluid">
-                            </div>
-
-                            <p class="post-category">Entertainment</p>
-
-                            <h2 class="title">
-                                <a href="blog-details.html">Possimus soluta ut id suscipit ea ut in quo quia et
-                                    soluta</a>
-                            </h2>
-
-                            <div class="d-flex align-items-center">
-                                <img src="{{ asset('landingpage/assets/img/blog/blog-author-3.jpg') }}" alt=""
-                                    class="img-fluid post-author-img flex-shrink-0">
-                                <div class="post-meta">
-                                    <p class="post-author">Mark Dower</p>
-                                    <p class="post-date">
-                                        <time datetime="2022-01-01">Jun 22, 2022</time>
-                                    </p>
-                                </div>
-                            </div>
-                        </article>
-                    </div>
-                </div>
-            </div>
-        </section><!-- End Recent Blog Posts Section -->
-
-        <!-- ======= Contact Section ======= -->
-        <section id="contact" class="contact">
-            <div class="container" data-aos="fade-up">
-
-                <div class="section-header">
-                    <h2>Contact</h2>
-                    <p>Nulla dolorum nulla nesciunt rerum facere sed ut inventore quam porro nihil id ratione ea sunt
-                        quis dolorem dolore earum</p>
-                </div>
-
-                <div class="row gx-lg-0 gy-4">
-                    <div class="col-lg-4">
-                        <div class="info-container d-flex flex-column align-items-center justify-content-center">
-                            <div class="info-item d-flex">
-                                <i class="bi bi-geo-alt flex-shrink-0"></i>
-                                <div>
-                                    <h4>Location:</h4>
-                                    <p>A108 Adam Street, New York, NY 535022</p>
-                                </div>
-                            </div>
-
-                            <div class="info-item d-flex">
-                                <i class="bi bi-envelope flex-shrink-0"></i>
-                                <div>
-                                    <h4>Email:</h4>
-                                    <p>info@example.com</p>
-                                </div>
-                            </div>
-
-                            <div class="info-item d-flex">
-                                <i class="bi bi-phone flex-shrink-0"></i>
-                                <div>
-                                    <h4>Call:</h4>
-                                    <p>+1 5589 55488 55</p>
-                                </div>
-                            </div>
-
-                            <div class="info-item d-flex">
-                                <i class="bi bi-clock flex-shrink-0"></i>
-                                <div>
-                                    <h4>Open Hours:</h4>
-                                    <p>Mon-Sat: 11AM - 23PM</p>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <div class="col-lg-8">
-                        <form action="forms/contact.php" method="post" role="form" class="php-email-form">
-                            <div class="row">
-                                <div class="col-md-6 form-group">
-                                    <input type="text" name="name" class="form-control" id="name"
-                                        placeholder="Your Name" required>
-                                </div>
-                                <div class="col-md-6 form-group mt-3 mt-md-0">
-                                    <input type="email" class="form-control" name="email" id="email"
-                                        placeholder="Your Email" required>
-                                </div>
-                            </div>
-                            <div class="form-group mt-3">
-                                <input type="text" class="form-control" name="subject" id="subject"
-                                    placeholder="Subject" required>
-                            </div>
-                            <div class="form-group mt-3">
-                                <textarea class="form-control" name="message" rows="7" placeholder="Message" required></textarea>
-                            </div>
-                            <div class="my-3">
-                                <div class="loading">Loading</div>
-                                <div class="error-message"></div>
-                                <div class="sent-message">Your message has been sent. Thank you!</div>
-                            </div>
-                            <div class="text-center"><button type="submit">Send Message</button></div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </section><!-- End Contact Section -->
+            </section>
+        </div>
 
     </main><!-- End #main -->
 @endsection

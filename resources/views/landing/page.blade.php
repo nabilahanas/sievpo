@@ -59,8 +59,8 @@
                         </ul>
                     </li>
                     <li><a href="/beritakph">Berita</a></li>
-                    <li><a href="/fitur">Fitur</a></li>
-                    <li><a type="button" href="/login">Masuk</a></li>
+                    {{-- <li><a href="/fitur">Fitur</a></li> --}}
+                    <li><a href="/login" class="btn-perhutani">Masuk</a></li>
                 </ul>
             </nav><!-- .navbar -->
 

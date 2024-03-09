@@ -21,7 +21,7 @@
 :root {
   --color-default: #222222;
   --color-primary: #016237;
-  --color-secondary: #fff;
+  --color-secondary: #76BE33;
 }
 
 /* Smooth scroll behavior */
@@ -151,7 +151,7 @@ section {
 .breadcrumbs nav ol li+li::before {
   display: inline-block;
   padding-right: 10px;
-  color: var(--color-secondary);
+  color: #fff;
   content: "/";
 }
 
@@ -165,7 +165,7 @@ section {
   right: 15px;
   bottom: -15px;
   z-index: 99999;
-  background: var(--color-secondary);
+  background: #fff;
   width: 44px;
   height: 44px;
   border-radius: 50px;
@@ -290,7 +290,7 @@ section {
   transition: all 0.5s;
   z-index: 997;
   height: 90px;
-  background-color: var(--color-secondary);
+  background-color: #fff;
 }
 
 .header.sticked {
@@ -402,6 +402,26 @@ section {
     color: var(--color-primary);
   }
 
+  .navbar>ul>li>.btn-perhutani {
+    display: inline-block;
+    padding: 7px 16px;
+    border-radius: 8px;
+    color: #fff;
+    background: var(--color-primary);
+    border: 1px solid var(--color-primary);
+    transition: none;
+    font-size: 15px;
+    font-weight: 600;
+    font-family: var(--font-primary);
+    transition: 0.3s;
+  }
+
+  .navbar>ul>li>.btn-perhutani:hover {
+    background: #fff;
+    color: var(--color-primary);
+    text-decoration: none;
+  }
+
   .navbar .dropdown ul {
     display: block;
     position: absolute;
@@ -498,7 +518,7 @@ section {
     inset: 0;
     padding: 50px 0 10px 0;
     margin: 0;
-    background: var(--color-secondary);
+    background: #fff;
     overflow-y: auto;
     transition: 0.3s;
     z-index: 9998;
@@ -554,7 +574,7 @@ section {
     padding: 10px 0;
     margin: 10px 20px;
     transition: all 0.5s ease-in-out;
-    background-color: var(--color-secondary);
+    background-color: #fff;
   }
 
   .navbar .dropdown>.dropdown-active,
@@ -932,25 +952,60 @@ section {
 --------------------------------------------------------------*/
 .services {
   padding: 60px 0;
+  background-color: var(--color-primary);
+}
+
+.services .section-header {
+  padding-bottom: 40px;
+}
+
+.services .section-header h2,
+.services .section-header p {
+  color: white;
+  margin-bottom: 10px;
+}
+
+.services .section-header h2:after {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 50px;
+  height: 3px;
+  background: #fff;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
 }
 
 .services .service-item {
-  padding: 40px;
-  background: #fff;
+  padding: 20px;
   height: 100%;
+  border: 1px solid #eeeeee;
   border-radius: 10px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.services .service-item .btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
 .services .service-item .icon {
-  width: 48px;
-  height: 48px;
+  width: 62px;
+  height: 62px;
   position: relative;
-  margin-bottom: 50px;
+  margin-bottom: 30px;
 }
 
 .services .service-item .icon i {
-  color: var(--color-default);
-  font-size: 56px;
+  color: #eeeeee;
+  font-size: 60px;
   transition: ease-in-out 0.3s;
   z-index: 2;
   position: relative;
@@ -959,9 +1014,9 @@ section {
 .services .service-item .icon:before {
   position: absolute;
   content: "";
-  height: 100%;
-  width: 100%;
-  background: #eeeeee;
+  height: 80%;
+  width: 80%;
+  background: transparent;
   border-radius: 50px;
   z-index: 1;
   top: 10px;
@@ -970,14 +1025,14 @@ section {
 }
 
 .services .service-item h3 {
-  color: var(--color-default);
+  color: #fff;
   font-weight: 700;
-  margin: 0 0 20px 0;
+  margin: 0 0 10px 0;
   padding-bottom: 8px;
   font-size: 22px;
   position: relative;
   display: inline-block;
-  border-bottom: 4px solid #eeeeee;
+  border-bottom: 4px solid var(--color-primary);
   transition: 0.3s;
 }
 
@@ -985,20 +1040,15 @@ section {
   line-height: 24px;
   font-size: 14px;
   margin-bottom: 0;
-}
-
-.services .service-item .readmore {
-  margin-top: 15px;
-  display: inline-block;
-  color: var(--color-primary);
+  color: #fff;
 }
 
 .services .service-item:hover .icon:before {
-  background: #00b6a1;
+  background: var(--color-secondary);
 }
 
 .services .service-item:hover h3 {
-  border-color: var(--color-primary);
+  border-color: var(--color-secondary);
 }
 
 /*--------------------------------------------------------------
@@ -1509,7 +1559,7 @@ section {
 
 .pricing h4 {
   font-size: 48px;
-  color: var(--color-secondary);
+  color: #fff;
   font-weight: 700;
   font-family: var(--font-secondary);
   margin-bottom: 0;
@@ -1974,8 +2024,8 @@ section {
   padding: 60px 30px;
   position: relative;
   overflow: hidden;
-  background: #008d7d;
-  box-shadow: 0 0 29px 0 rgba(0, 0, 0, 0.08);
+  background: #fff;
+  box-shadow: 0 0 29px 0 rgba(0, 0, 0, 0.3);
   transition: all 0.3s ease-in-out;
   border-radius: 8px;
   z-index: 1;
@@ -1991,7 +2041,7 @@ section {
 }
 
 .hero .icon-box .title a {
-  color: #fff;
+  color: #3d3b3b;
   transition: 0.3s;
 }
 
@@ -2002,16 +2052,18 @@ section {
   transition: all 0.3s ease-in-out;
   font-size: 48px;
   line-height: 1;
-  color: rgba(255, 255, 255, 0.6);
+  color: #3d3b3b;
 }
 
 .hero .icon-box:hover {
-  background: #009786;
+  background: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  transform: scale(1.03);
 }
 
 .hero .icon-box:hover .title a,
 .hero .icon-box:hover .icon {
-  color: #fff;
+  color: #000;
 }
 
 /*--------------------------------------------------------------
@@ -2033,7 +2085,7 @@ section {
   margin: 0 5px;
   transition: 0.3s;
   border-radius: 20px;
-  background: var(--color-secondary);
+  background: #fff;
   border: 1px solid var(--color-primary);
   color: #000;
 }
@@ -2104,6 +2156,18 @@ section {
 .blog .posts-list .title a:hover {
   color: var(--color-primary);
 }
+
+.blog .posts-list .post-meta a {
+  color: var(--color-default);
+  text-decoration: none;
+  transition: color 0.3s, text-decoration 0.3s;
+}
+
+.blog .posts-list .post-meta a:hover {
+  color: var(--color-primary);
+  text-decoration: underline;
+}
+
 
 .blog .posts-list .post-author-img {
   width: 50px;
@@ -2189,7 +2253,7 @@ section {
   top: 0;
   bottom: 0;
   width: 3px;
-  background-color: var(--color-secondary);
+  background-color: #fff;
   margin-top: 20px;
   margin-bottom: 20px;
 }
@@ -2578,7 +2642,7 @@ section {
   border-radius: 50px;
   padding: 14px 40px;
   border: 0;
-  background-color: var(--color-secondary);
+  background-color: #fff;
 }
 
 .blog .comments .reply-form .btn-primary:hover {

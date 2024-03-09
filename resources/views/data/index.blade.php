@@ -115,7 +115,7 @@
                             <td></td>
                             <td><a href="">Lihat Foto</a></td>
                             <td>
-                                <div class="text-center">--</div>
+                                <div><i class="far fa-clock mr-2" style="color: #FFD43B;"></i>Ditunda</div>
                                 <div><i class="far fa-check-circle mr-2" style="color: #28a745"></i>Diterima</div>
                                 <div><i class="far fa-times-circle mr-2" style="color: #dc3545"></i>Ditolak</div>
                             </td>

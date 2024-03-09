@@ -25,6 +25,7 @@
                             <th>Tanggal Waktu</th>
                             <th>Foto</th>
                             <th>Status</th>
+                            <th>Catatan</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -36,18 +37,18 @@
                             <td></td>
                             <td></td>
                             <td></td>
-                            <td><a href="">Lihat Foto</a></td>
+                            <td></td>
                             <td>
-                                {{-- <div><i class="far fa-question-circle mr-2" style="color:#6c757d"></i>Tertunda</div> --}}
-                                <div class="text-center">--</div>
+                                <div><i class="far fa-clock mr-2" style="color: #FFD43B"></i>Diproses</div>
                                 <div><i class="far fa-check-circle mr-2" style="color: #28a745"></i>Diterima</div>
                                 <div><i class="far fa-times-circle mr-2" style="color: #dc3545"></i>Ditolak</div>
                             </td>
+                            <td></td>
                             <td>
                                 {{-- BELOM FIX --}}
                                 <button class="btn btn-sm btn-success"><i
                                         class="fas fa-check-circle mr-2"></i>Terima</button>
-                                <button class="btn btn-sm btn-danger mb-2"><i
+                                <button class="btn btn-sm btn-secondary mb-2"><i
                                         class="fas fa-times-circle mr-2"></i>Tolak</button>
 
                                 <br>

@@ -8,7 +8,7 @@ $(document).ready(function () {
     });
 });
 
-// Rekap Total Karyawan
+// Konfirmasi Data
 $(document).ready(function () {
     $('#konfirm').DataTable({
         dom: "<'row'<'col-sm-10 col-md-6 carikonfirm'l ><'col-sm-10 col-md-6'f>>" +
@@ -26,7 +26,7 @@ $(document).ready(function () {
         <select name="search" type="number" class="form-control" placeholder="search" aria-label="search"
             aria-describedby="button-addon2">
             <option>Pilih Status</option>
-            <option value="01">Menunggu Konfirmasi</option>
+            <option value="01">Diproses</option>
             <option value="02">Diterima</option>
             <option value="03">Ditolak</option>
         </select>

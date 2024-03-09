@@ -19,90 +19,60 @@
         </div>
         <form class="form-horizontal" method="post" action="">
             @csrf
-            <div class="row">
-                <div class="col-sm-7">
-                    <div class="card-body">
-                        <div class="form-group row col-12">
-                            <label for="" class="col-sm-3 col-form-label required">Nama</label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" name="nama_user"
-                                {{-- input untuk tampilan --}}
-                                    value="{{ auth()->user()->nama_user }}" required disabled>
+            <div class="card-body">
+                <div class="form-group row col-12 col-md-10">
+                    <label for="nama_user" class="col-sm-2 col-form-label required">Nama</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="nama_user" {{-- input untuk tampilan --}}
+                            value="{{ auth()->user()->nama_user }}" required disabled>
 
-                                {{-- input untuk menyimpan nilai --}}
-                                <input type="hidden" name="nama_hidden" value="{{ auth()->user()->nama_user }}">
-                            </div>
-                        </div>
-
-                        <div class="form-group row col-12">
-                            <label for="" class="col-sm-3 col-form-label required">Bidang</label>
-                            <div class="col-sm-9">
-                                <select name="id_bidang" id="" class="form-control">
-                                    <option value="" disabled selected>Pilih Bidang</option>
-                                    @foreach ($bidang as $bidang)
-                                        <option value="{{ $bidang->id_bidang }}">{{ $bidang->nama_bidang }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="form-group row col-12">
-                            <label for="tgl_waktu" class="col-sm-3 col-form-label required">Tanggal Waktu</label>
-                            <div class="col-sm-9">
-                                {{-- input untuk tampilan --}}
-                                <input type="text" class="form-control" value="{{ now()->format('d-m-Y H:i:s') }}"
-                                    disabled>
-
-                                {{-- input untuk menyimpan nilai --}}
-                                <input type="hidden" name="tgl_waktu" value="{{ now()->format('Y-m-d\TH:i:s') }}" required>
-                            </div>
-                        </div>
-
-
-                        <div class="form-group row col-12">
-                            <label for="shift" class="col-sm-3 col-form-label required">Shift</label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" name="shift" id=""
-                                {{-- input untuk tampilan --}}
-                                    value="{{ $shift->nama_shift }}" disabled>
-
-                                    {{-- input untuk menyimpan nilai --}}
-                                    <input type="hidden" name="shift_hidden" value="{{ $shift->nama_shift }}">
-                            </div>
-                        </div>
-
-                        <div class="form-group row col-12">
-                            <label for="lokasi" class="col-sm-3 col-form-label required">Lokasi</label>
-                            <div class="col-sm-9">
-                                {{-- input untuk tampilan --}}
-                                <input type="text" class="form-control" name="lokasi" id="lokasi" value=""
-                                    disabled>
-
-                                    {{-- input untuk menyimpan nilai --}}
-                                    <input type="hidden" name="lokasi_hidden" value="lokasi">
-                            </div>
-                        </div>
-
+                        {{-- input untuk menyimpan nilai --}}
+                        <input type="hidden" name="nama_hidden" value="{{ auth()->user()->nama_user }}">
                     </div>
                 </div>
 
-                <div class="col-sm-5">
-                    <div class="card-body">
-                        <div class="form-group col-12">
-                            <label for="foto" class="col-form-label required">Bukti Foto</label>
-                            <div id="img-area" class="card" style="border-color: #6c757d; width: 16rem">
-                                <div class="card-body mt-4 mb-4" style="text-align: center">
-                                    <div class="img-area">
-                                        <i class="fas fa-camera fa-3x"></i>
-                                        <p class="mt-2" style="font-size: 10pt; color: #6c757d">Gunakan kamera
-                                            komputer/smartphone Anda untuk
-                                            mengambil gambar</p>
-                                    </div>
-                                    <button id="ambil-foto-btn" class="btn btn-outline-secondary">Ambil Foto</button>
+                <div class="form-group row col-12 col-md-10">
+                    <label for="id_bidang" class="col-sm-2 col-form-label required">Bidang</label>
+                    <div class="col-sm-10">
+                        <select name="id_bidang" id="" class="form-control">
+                            <option value="" disabled selected>Pilih Bidang</option>
+                            @foreach ($bidang as $bidang)
+                                <option value="{{ $bidang->id_bidang }}">{{ $bidang->nama_bidang }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
 
-                                </div>
-                            </div>
-                        </div>
+                <div class="form-group row col-12 col-md-10">
+                    <label for="tgl_waktu" class="col-sm-2 col-form-label required">Tanggal Waktu</label>
+                    <div class="col-sm-10">
+                        {{-- input untuk tampilan --}}
+                        <input type="text" class="form-control" value="{{ now()->format('d-m-Y H:i:s') }}" disabled>
+
+                        {{-- input untuk menyimpan nilai --}}
+                        <input type="hidden" name="tgl_waktu" value="{{ now()->format('Y-m-d\TH:i:s') }}" required>
+                    </div>
+                </div>
+
+                <div class="form-group row col-12 col-md-10">
+                    <label for="shift" class="col-sm-2 col-form-label required">Shift</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="shift" id="" {{-- input untuk tampilan --}}
+                            value="{{ $shift->nama_shift }}" disabled>
+
+                        {{-- input untuk menyimpan nilai --}}
+                        <input type="hidden" name="shift_hidden" value="{{ $shift->nama_shift }}">
+                    </div>
+                </div>
+
+                <div class="form-group row col-12 col-md-10">
+                    <label for="lokasi" class="col-sm-2 col-form-label required">Lokasi</label>
+                    <div class="col-sm-10">
+                        {{-- input untuk tampilan --}}
+                        <input type="text" class="form-control" name="lokasi" id="lokasi" value="" disabled>
+
+                        {{-- input untuk menyimpan nilai --}}
+                        <input type="hidden" name="lokasi_hidden" value="lokasi">
                     </div>
                 </div>
 
@@ -127,7 +97,6 @@
                         });
                     </script>
                 @endpush
-
 
                 {{-- GET LOCATION USING API --}}
                 <script>
@@ -184,9 +153,14 @@
                     });
                 </script>
 
-
-
-                <div class="card-body text-center">
+                <div class="form-group row col-12 col-md-10">
+                    <label for="foto" class="col-sm-2 col-form-label required">Bukti Foto</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" type="file" id="" name="foto" accept="image/*" required>
+                        <small id="" class="form-text text-muted">Foto harus memiliki timestamp!</small>
+                    </div>
+                </div>
+                <div class="text-center">
                     <button type="submit" class="btn btn-primary"><i class="fas fa-save mr-2"></i>Simpan</button>
                     <button type="reset" class="btn btn-secondary"><i class="fas fa-redo mr-2"></i>Reset</button>
                     <button type="button" class="btn btn-danger" onclick="window.location='/data'"><i

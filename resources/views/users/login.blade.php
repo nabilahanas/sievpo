@@ -33,7 +33,7 @@
                 <h1 class="intro-title"><b>Selamat Datang Pengguna SIEVPO</b></h1>
                 <p class="intro-text">SIEVPO hanya bisa dimasuki oleh pengguna yang sudah didaftarkan oleh Admin SIEVPO.
                     Terima kasih!</p>
-                <a href="/" class="btn btn-outline-success">BAIK, SAYA MENGERTI</a>
+                <a href="/" class="btn btn-outline-success">Kembali ke Beranda</a>
             </div>
         </div>
     </div>

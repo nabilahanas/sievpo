@@ -49,40 +49,6 @@
                                               {{ $shift->trashed() ? 'Aktifkan' : 'Nonaktifkan' }}
                                           </button>
                                       </form>
-
-                                    <!-- Button trigger modal -->
-                                    {{-- <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal"
-                                        data-bs-target="#hapusModal{{ $shift->id_shift }}">
-                                        <i class="fas fa-trash mr-2"></i>Hapus
-                                    </button>
-
-                                    <!-- Modal -->
-                                    <div class="modal fade" id="hapusModal{{ $shift->id_shift }}" tabindex="-1"
-                                        aria-labelledby="hapusModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="hapusModalLabel">Konfirmasi</h5>
-                                                    <button type="button" class="close" data-bs-dismiss="modal"
-                                                        aria-label="Close">
-                                                        <span>&times;</span>
-                                                    </button>
-                                                </div>
-                                                <form method="POST" action="{{ route('shift.delete', $shift->id_shift) }}">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <div class="modal-body">
-                                                        Apakah Anda yakin ingin menghapus data ini?
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary"
-                                                            data-bs-dismiss="modal">Tutup</button>
-                                                        <button type="submit" class="btn btn-danger">Yakin</button>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div> --}}
                                 </td>
                             </tr>
                         @endforeach

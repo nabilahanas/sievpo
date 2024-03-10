@@ -30,14 +30,18 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach ($data as $item)
                         <tr>
                             <td>.</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td>{{ $item->users->nama_user }}</td>
+                            <td>{{ $item->bidang->nama_bidang }}</td>
+                            <td>{{ $item->shift->nama_shift }}</td>
+                            <td>{{ $item->lokasi }}</td>
+                            <td>{{ $item->tgl_waktu}}</td>
+                            <td>
+                                <img src="{{ $item->foto ? asset('storage/foto-user/' . $item->foto) : '' }}"
+                                    alt="Foto Eviden" width="150">
+                            </td>
                             <td>
                                 <div><i class="far fa-clock mr-2" style="color: #FFD43B"></i>Diproses</div>
                                 <div><i class="far fa-check-circle mr-2" style="color: #28a745"></i>Diterima</div>
@@ -90,6 +94,7 @@
                                 </div>
                             </td>
                         </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>

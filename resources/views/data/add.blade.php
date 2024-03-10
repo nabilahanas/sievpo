@@ -17,7 +17,7 @@
         <div class="card-header">
             <i class="fas fa-plus mr-2"></i>Tambah Data Eviden
         </div>
-        <form class="form-horizontal" method="post" action="">
+        <form class="form-horizontal" method="post" action="{{ route('data.store') }}">
             @csrf
             <div class="card-body">
                 <div class="form-group row col-12 col-md-10">
@@ -76,7 +76,7 @@
                     </div>
                 </div>
 
-                @push('myscript')
+                {{-- @push('myscript')
                     <script>
                         Webcam.set({
                             height: 240,
@@ -96,67 +96,12 @@
                             attachWebcam();
                         });
                     </script>
-                @endpush
-
-                {{-- GET LOCATION USING API --}}
-                <script>
-                    function getLocation() {
-                        if (navigator.geolocation) {
-                            navigator.geolocation.getCurrentPosition(function(position) {
-                                var latitude = position.coords.latitude;
-                                var longitude = position.coords.longitude;
-
-                                // fungsi untuk mendapatkan nama lokasi
-                                getGeolocationName(latitude, longitude);
-                            }, function(error) {
-                                console.error('Error getting location:', error.message);
-                            });
-                        } else {
-                            console.error('Geolocation is not supported by this browser.');
-                        }
-                    }
-
-                    function getGeolocationName(latitude, longitude) {
-                        // apikey akun geocoding
-                        var apiKey = '1a6118a363944c9e83e49de502419bcd';
-
-                        // URL untuk mengakses OpenCage Geocoding API
-                        var apiUrl = 'https://api.opencagedata.com/geocode/v1/json?q=' + latitude + '+' + longitude + '&key=' + apiKey;
-
-                        fetch(apiUrl)
-                            .then(response => response.json())
-                            .then(data => {
-
-                                var components = data.results[0].components;
-
-                                // ambil informasi desa, kecamatan, kota, dst
-                                var village = components.village || "";
-                                var subdistrict = components.suburb || "";
-                                var city = components.city || "";
-                                var county = components.county || "";
-                                var state = components.state || "";
-
-                                // ambil nama daerah berdasarkan prioritas
-                                var areaName = village || subdistrict || city || county || state;
-
-                                // isi otomatis input dengan informasi lengkap
-                                document.getElementById('lokasi').value = areaName + '. Latitude: ' + latitude + ', Longitude: ' +
-                                    longitude;
-                            })
-                            .catch(error => {
-                                console.error('Error fetching location name:', error);
-                            });
-                    }
-
-                    document.addEventListener('DOMContentLoaded', function() {
-                        getLocation();
-                    });
-                </script>
+                @endpush --}}
 
                 <div class="form-group row col-12 col-md-10">
                     <label for="foto" class="col-sm-2 col-form-label required">Bukti Foto</label>
                     <div class="col-sm-10">
-                        <input class="form-control" type="file" id="" name="foto" accept="image/*" required>
+                        <input class="form-control" type="file" id="fileInput" name="foto" accept="image/*" required>
                         <small id="" class="form-text text-muted">Foto harus memiliki timestamp!</small>
                     </div>
                 </div>
@@ -169,4 +114,59 @@
             </div>
         </form>
     </div>
+
+    {{-- GET LOCATION USING API --}}
+    <script>
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    var latitude = position.coords.latitude;
+                    var longitude = position.coords.longitude;
+
+                    // fungsi untuk mendapatkan nama lokasi
+                    getGeolocationName(latitude, longitude);
+                }, function(error) {
+                    console.error('Error getting location:', error.message);
+                });
+            } else {
+                console.error('Geolocation is not supported by this browser.');
+            }
+        }
+
+        function getGeolocationName(latitude, longitude) {
+            // apikey akun geocoding
+            var apiKey = '1a6118a363944c9e83e49de502419bcd';
+
+            // URL untuk mengakses OpenCage Geocoding API
+            var apiUrl = 'https://api.opencagedata.com/geocode/v1/json?q=' + latitude + '+' + longitude + '&key=' + apiKey;
+
+            fetch(apiUrl)
+                .then(response => response.json())
+                .then(data => {
+
+                    var components = data.results[0].components;
+
+                    // ambil informasi desa, kecamatan, kota, dst
+                    var village = components.village || "";
+                    var subdistrict = components.suburb || "";
+                    var city = components.city || "";
+                    var county = components.county || "";
+                    var state = components.state || "";
+
+                    // ambil nama daerah berdasarkan prioritas
+                    var areaName = village || subdistrict || city || county || state;
+
+                    // isi otomatis input dengan informasi lengkap
+                    document.getElementById('lokasi').value = areaName + '. Latitude: ' + latitude + ', Longitude: ' +
+                        longitude;
+                })
+                .catch(error => {
+                    console.error('Error fetching location name:', error);
+                });
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            getLocation();
+        });
+    </script>
 @endsection

@@ -17,7 +17,7 @@ class AuthController extends Controller
         $role = Role::all();
         $jabatan = Jabatan::all();
 
-        return view('users/register', ['role' => $role, 'jabatan' => $jabatan,]);
+        return view('users/register', compact('role','jabatan'), ['key' => 'dashboard']);
     }
 
 

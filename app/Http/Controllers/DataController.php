@@ -43,7 +43,7 @@ class DataController extends Controller
             'id_user' => 'required',
             'id_bidang' => 'required',
             'id_shift' => 'required',
-            'id_lokasi' => 'required',
+            'lokasi' => 'required',
             'tgl_waktu' => 'required|date_format:Y-m-d\TH:i:s',
             'foto' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
             'is_approved' => 'required',

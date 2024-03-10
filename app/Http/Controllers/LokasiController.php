@@ -57,7 +57,6 @@ class LokasiController extends Controller
             'longitude' => $request -> longitude,
         ]);
 
-        echo "Data berhasil diubah" .PHP_EOL;
         return redirect()->route('lokasi.index')->with('success', 'Data lokasi berhasil diubah');
     }
 

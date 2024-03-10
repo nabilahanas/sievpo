@@ -42,7 +42,7 @@
                     <label for="role" class="col-sm-2 col-form-label required">Role</label>
                     <div class="col-sm-10">
                         <select name="role" id="role" class="form-control">
-                            <option value="" disabled selected></option>
+                            <option disabled selected>Pilih Role</option>
                             @foreach ($role as $role)
                                 <option value="{{ $role->id_role }}">{{ $role->nama_role }}</option>
                             @endforeach
@@ -53,7 +53,7 @@
                     <label for="jabatan" class="col-sm-2 col-form-label required">Jabatan</label>
                     <div class="col-sm-10">
                         <select name="jabatan" id="jabatan" class="form-control">
-                            <option value="" disabled selected></option>
+                            <option disabled selected>Pilih Jabatan</option>
                             @foreach ($jabatan as $jabatan)
                                 <option value="{{ $jabatan->id_jabatan }}">{{ $jabatan->nama_jabatan }}</option>
                             @endforeach
@@ -66,19 +66,15 @@
                         <input type="password" name="password" class="form-control" Required autocomplete="off">
                     </div>
                 </div>
-                <div class="form-group row col-12 col-md-10">
-                    <label for="" class="col-sm-2 col-form-label">Foto</label>
+                {{-- <div class="form-group row col-12 col-md-10">
+                    <label for="wilayah" class="col-sm-2 col-form-label">Wilayah</label>
                     <div class="col-sm-10">
-                        <input class="form-control" type="file" id="" name="foto" accept="image/*">
+                        <input name="wilayah" id="wilayah" class="form-control">
+                        @foreach ($jabatan as $jabatan)
+                            <div value="{{ $jabatan->wilayah }}">{{ $jabatan->wilayah }}</div>
+                        @endforeach
                     </div>
-                </div>
-                {{-- <div class="mb-3">
-                                <label for="wilayah" class="form-label">Wilayah</label>
-                                <input name="wilayah" id="wilayah" class="form-control">
-                                @foreach ($jabatan as $jabatan)
-                                        <div value="{{ $jabatan->wilayah}}">{{ $jabatan->wilayah }}</div>
-                                    @endforeach
-                            </div> --}}
+                </div> --}}
                 <div class="text-center">
                     <button type="submit" class="btn btn-primary"><i class="fas fa-save mr-2"></i>Simpan</button>
                     <button type="reset" class="btn btn-secondary"><i class="fas fa-redo mr-2"></i>Reset</button>

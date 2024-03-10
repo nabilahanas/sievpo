@@ -3,7 +3,7 @@ $(document).ready(function () {
     $('#evpo').DataTable({
         scrollX: true,
         scrollCollapse: true,
-        columnDefs: [{ orderable: false, targets: [1, 2, 3, 4, 5, 6, 7, 8, 10, 11, 12, 13, 14, 15, 16, 17, 19, 20, 21, 22, 23, 24, 25, 26, 28, 29, 30, 31, 32, 33, 34, 35, 40, 44, 45] }],
+        columnDefs: [{ orderable: false, targets: [1, 2, 3, 4, 5, 6, 7, 8, 10, 11, 12, 13, 14, 15, 16, 17, 19, 20, 21, 22, 23, 24, 25, 26, 28, 29, 30, 31, 32, 33, 34, 35, 40, 44] }],
         displayLength: 25,
     });
 });
@@ -37,11 +37,11 @@ $(document).ready(function () {
     `);
 });
 
-// Rekap Harian Karyawan
+// Rekap Harian
 $(document).ready(function () {
     var groupColumn = 2;
-    var table = $('#hkaryawan').DataTable({
-        dom: "<'row'<'col-sm-12 col-md-6 carihkaryawan'l ><'col-sm-12 col-md-6'f>>" +
+    var table = $('#harian').DataTable({
+        dom: "<'row'<'col-sm-12 col-md-6 cariharian'l ><'col-sm-12 col-md-6'f>>" +
             "<'row'<'col-sm-12'tr>>" +
             "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
         scrollX: true,
@@ -71,7 +71,7 @@ $(document).ready(function () {
         },
     });
 
-    $('.carihkaryawan').append(`
+    $('.cariharian').append(`
         <form>
             <div class="input-group col-md-8 mt-2 mb-4">
                 <input type="date" class="form-control" name="search" placeholder="search"
@@ -83,134 +83,6 @@ $(document).ready(function () {
 
     // Order by the grouping
     $('#hkaryawan').on('click', 'tr.group', function () {
-        var currentOrder = table.order()[0];
-        if (currentOrder[0] === groupColumn && currentOrder[1] === 'asc') {
-            table.order([groupColumn, 'desc']).draw();
-        } else {
-            table.order([groupColumn, 'asc']).draw();
-        }
-    });
-});
-
-// Rekap Harian Bidang
-$(document).ready(function () {
-    $('#hbidang').DataTable({
-        dom: "<'row'<'col-sm-12 col-md-6 carihbidang'l ><'col-sm-12 col-md-6'f>>" +
-            "<'row'<'col-sm-12'tr>>" +
-            "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
-        scrollX: true,
-        scrollCollapse: true,
-        paging: false,
-    });
-
-    $('.carihbidang').append(`
-    <form>
-        <div class="input-group mt-2 mb-4">
-        <input type="date" class="form-control" name="search" placeholder="search"
-            aria-label="search" aria-describedby="button-addon2">
-         <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Cari</button>
-        </div>
-    </form>
-    `);
-
-    // Order by the grouping
-    $('#hbidang').on('click', 'tr.group', function () {
-        var currentOrder = table.order()[0];
-        if (currentOrder[0] === groupColumn && currentOrder[1] === 'asc') {
-            table.order([groupColumn, 'desc']).draw();
-        } else {
-            table.order([groupColumn, 'asc']).draw();
-        }
-    });
-});
-
-// Rekap Harian BKPH
-$(document).ready(function () {
-    $('#hbkph').DataTable({
-        dom: "<'row'<'col-sm-12 col-md-6 carihbkph'l ><'col-sm-12 col-md-6'f>>" +
-            "<'row'<'col-sm-12'tr>>" +
-            "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
-        scrollX: true,
-        scrollCollapse: true,
-        paging: false,
-    });
-
-    $('.carihbkph').append(`
-<form>
-    <div class="input-group mt-2 mb-4">
-    <input type="date" class="form-control" name="search" placeholder="search"
-        aria-label="search" aria-describedby="button-addon2">
-     <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Cari</button>
-    </div>
-</form>
-`);
-
-    // Order by the grouping
-    $('#hbkph').on('click', 'tr.group', function () {
-        var currentOrder = table.order()[0];
-        if (currentOrder[0] === groupColumn && currentOrder[1] === 'asc') {
-            table.order([groupColumn, 'desc']).draw();
-        } else {
-            table.order([groupColumn, 'asc']).draw();
-        }
-    });
-});
-
-// Rekap Harian KRPH
-$(document).ready(function () {
-    $('#hkrph').DataTable({
-        dom: "<'row'<'col-sm-12 col-md-6 carihkrph'l ><'col-sm-12 col-md-6'f>>" +
-            "<'row'<'col-sm-12'tr>>" +
-            "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
-        scrollX: true,
-        scrollCollapse: true,
-        paging: false,
-    });
-
-    $('.carihkrph').append(`
-<form>
-    <div class="input-group">
-    <input type="date" class="form-control" name="search" placeholder="search"
-        aria-label="search" aria-describedby="button-addon2">
-     <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Cari</button>
-    </div>
-</form>
-`);
-
-    // Order by the grouping
-    $('#hkrph').on('click', 'tr.group', function () {
-        var currentOrder = table.order()[0];
-        if (currentOrder[0] === groupColumn && currentOrder[1] === 'asc') {
-            table.order([groupColumn, 'desc']).draw();
-        } else {
-            table.order([groupColumn, 'asc']).draw();
-        }
-    });
-});
-
-// Rekap Harian Asper/KBKPH
-$(document).ready(function () {
-    $('#hasper').DataTable({
-        dom: "<'row'<'col-sm-12 col-md-6 carihasper'l ><'col-sm-12 col-md-6'f>>" +
-            "<'row'<'col-sm-12'tr>>" +
-            "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
-        scrollX: true,
-        scrollCollapse: true,
-        paging: false,
-    });
-
-    $('.carihasper').append(`
-<form>
-    <div class="input-group mt-2 mb-4">
-    <input type="date" class="form-control" name="search" placeholder="search"
-        aria-label="search" aria-describedby="button-addon2">
-     <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Cari</button>
-    </div>
-</form>
-`);
-
-    // Order by the grouping
-    $('#hasper').on('click', 'tr.group', function () {
         var currentOrder = table.order()[0];
         if (currentOrder[0] === groupColumn && currentOrder[1] === 'asc') {
             table.order([groupColumn, 'desc']).draw();

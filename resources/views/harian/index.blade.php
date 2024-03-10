@@ -7,19 +7,9 @@
 
     <div class="card">
         <div class="card-body">
-            {{-- <ul class="nav nav-tabs">
-                <li class="nav-item"><a class="nav-link active" href="#karyawan" data-toggle="tab">Rekap Karyawan</a></li>
-                <li class="nav-item"><a class="nav-link" href="#bidang" data-toggle="tab">Rekap Bidang</a></li>
-                <li class="nav-item"><a class="nav-link" href="#bkph" data-toggle="tab">Rekap BKPH</a></li>
-                <li class="nav-item"><a class="nav-link" href="#krph" data-toggle="tab">Rekap KRPH</a></li>
-                <li class="nav-item"><a class="nav-link" href="#asper" data-toggle="tab">Rekap Asper/KBKPH</a></li>
-            </ul>
-            <div class="mt-4"> --}}
-            {{-- <div class="tab-content">
-                    <div class="active tab-pane" id="karyawan"> --}}
             <a class="btn btn-outline-success" href="">Download Excel</a>
             <div class="table-responsive mt-4">
-                <table id="hkaryawan" class="table table-sm text-nowrap table-hover table-striped" style="width: 100%">
+                <table id="harian" class="table table-sm text-nowrap table-hover table-striped" style="width: 100%">
                     <thead class="thead-successv2">
                         <tr>
                             <th rowspan="2">No.</th>
@@ -129,98 +119,5 @@
                 </table>
             </div>
         </div>
-        {{-- <div class="tab-pane" id="bidang">
-                        <a class="btn btn-outline-success" href="">Download Excel</a>
-                        <div class="card-body table-responsive">
-                            <table id="hbidang" class="table table-sm text-nowrap table-hover table-striped"
-                                style="width: 100%">
-                                <thead class="thead-successv2">
-                                    <tr>
-                                        <th>No.</th>
-                                        <th>Nama Bidang</th>
-                                        <th>Total</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>1.</td>
-                                        <td>Bidang</td>
-                                        <td>0</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <div class="tab-pane" id="bkph">
-                        <a class="btn btn-outline-success" href="">Download Excel</a>
-                        <div class="card-body table-responsive">
-                            <table id="hbkph" class="table table-sm text-nowrap table-hover table-striped"
-                                style="width: 100%">
-                                <thead class="thead-successv2">
-                                    <tr>
-                                        <th>No.</th>
-                                        <th>Nama BKPH</th>
-                                        <th>Total</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>1.</td>
-                                        <td>B</td>
-                                        <td>2</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <div class="tab-pane" id="krph">
-                        <a class="btn btn-outline-success" href="">Download Excel</a>
-                        <div class="card-body table-responsive">
-                            <table id="hkrph" class="table table-sm text-nowrap table-hover table-striped"
-                                style="width: 100%">
-                                <thead class="thead-successv2">
-                                    <tr>
-                                        <th>No.</th>
-                                        <th>Nama KRPH</th>
-                                        <th>Total</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>1.</td>
-                                        <td>B</td>
-                                        <td>2</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <div class="tab-pane" id="asper">
-                        <a class="btn btn-outline-success" href="">Download Excel</a>
-                        <div class="card-body table-responsive">
-                            <table id="hasper" class="table table-sm text-nowrap table-hover table-striped"
-                                style="width: 100%">
-                                <thead class="thead-successv2">
-                                    <tr>
-                                        <th>No.</th>
-                                        <th>Nama</th>
-                                        <th>Asper/KBKPH</th>
-                                        <th>Total</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>1.</td>
-                                        <td>B</td>
-                                        <td>a</td>
-                                        <td>2</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div> --}}
-    </div>
-    </div>
-    </div>
     </div>
 @endsection

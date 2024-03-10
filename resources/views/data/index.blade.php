@@ -36,7 +36,6 @@
                             <th rowspan="2" style="text-align: center">Status</th>
                             <th rowspan="2" style="text-align: center">Tanggal Konfirmasi</th>
                             <th rowspan="2" style="text-align: center">Oleh</th>
-                            <th rowspan="2" style="text-align: center">Catatan</th>
                             <th rowspan="2" style="text-align: center">Aksi</th>
                         </tr>
                         <tr>
@@ -119,7 +118,6 @@
                                 <div><i class="far fa-check-circle mr-2" style="color: #28a745"></i>Diterima</div>
                                 <div><i class="far fa-times-circle mr-2" style="color: #dc3545"></i>Ditolak</div>
                             </td>
-                            <td></td>
                             <td></td>
                             <td></td>
                             <td>

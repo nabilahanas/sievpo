@@ -73,6 +73,7 @@
 
                         {{-- input untuk menyimpan nilai --}}
                         <input type="hidden" name="lokasi_hidden" value="lokasi">
+                        <small class="form-text text-muted">Harap tunggu hingga lokasi muncul!</small>
                     </div>
                 </div>
 
@@ -102,7 +103,13 @@
                     <label for="foto" class="col-sm-2 col-form-label required">Bukti Foto</label>
                     <div class="col-sm-10">
                         <input class="form-control" type="file" id="fileInput" name="foto" accept="image/*" required>
-                        <small id="" class="form-text text-muted">Foto harus memiliki timestamp!</small>
+                        <small class="form-text text-muted">Foto <b>wajib</b> memiliki timestamp!</small>
+                    </div>
+                </div>
+                <div class="form-group row col-12 col-md-10">
+                    <div class="col-sm-10">
+                        <img src="https://www.svgrepo.com/show/508699/landscape-placeholder.svg" class="img-fluid"
+                            style="max-width: 320px;">
                     </div>
                 </div>
                 <div class="text-center">

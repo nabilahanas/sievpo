@@ -1,7 +1,7 @@
 <nav class="mt-2">
     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
         <li class="nav-item">
-            <a href="{{ url('/home') }}" class="nav-link {{ $key == 'dashboard' ? 'active' : '' }}">
+            <a href="/home" class="nav-link @if ($key == 'dashboard' && !request()->is('register')) active @endif">
                 <i class="nav-icon fas fa-tachometer-alt"></i>
                 <p>
                     Dashboard
@@ -146,7 +146,7 @@
 
         @if ((auth()->user() && auth()->user()->role->nama_role == 'Admin') || auth()->user()->role->nama_role == 'Mahasiswa')
             <li class="nav-item">
-                <a href="/users" class="nav-link {{ $key == 'users' ? 'active' : '' }}">
+                <a href="/users" class="nav-link @if (request()->is('users', 'register')) active @endif">
                     <i class="nav-icon fas fa-users"></i>
                     <p>
                         User

@@ -20,12 +20,10 @@
                             <div class="card-body text-center mt-3 mb-3">
                                 @if (auth()->user()->profile_pict)
                                     <img src="{{ asset('storage/profile-pict/' . auth()->user()->profile_pict) }}"
-                                        alt="Profile Picture" width="150" alt="avatar" class="rounded-circle img-fluid"
-                                        style="width: 150px;">
+                                        alt="Profile Picture" class="rounded-circle img-fluid" style="max-width: 150px;">
                                 @else
                                     <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png"
-                                        width="150" alt="avatar" class="rounded-circle img-fluid"
-                                        style="width: 150px;">
+                                        alt="Profile Picture" class="rounded-circle img-fluid" style="max-width: 150px;">
                                 @endif
                                 <h5 class="mt-3 mb-1">{{ auth()->user()->nama_user }}</h5>
                                 <p class="text-muted mb-1">{{ auth()->user()->role->nama_role }}</p>
@@ -125,12 +123,12 @@
                                             <div class="col-12 col-md-3">
                                                 @if (auth()->user()->profile_pict)
                                                     <img src="{{ asset('storage/profile-pict/' . auth()->user()->profile_pict) }}"
-                                                        alt="Profile Picture" width="150" alt="avatar"
-                                                        class="rounded-circle img-fluid" style="width: 150px;">
+                                                        alt="Profile Picture" class="rounded-circle img-fluid"
+                                                        style="max-width: 150px">
                                                 @else
                                                     <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png"
-                                                        width="150" alt="avatar" class="rounded-circle img-fluid"
-                                                        style="width: 150px;">
+                                                        alt="Profile Picture" class="rounded-circle img-fluid"
+                                                        style="max-width: 150px">
                                                 @endif
                                             </div>
                                             <form class="form-horizontal" method="post"

@@ -114,12 +114,12 @@
             <div class="col-lg-2 col-6 footer-links">
                 <h4>Fitur</h4>
                 <ul>
-                    <li><a>Aplikasi Biodata Karyawan</a></li>
-                    <li><a>Aplikasi Jadwal Kerja (Shifting)</a></li>
-                    <li><a>Aplikasi Kehadiran</a></li>
-                    <li><a>Aplikasi Pelacakan GPS</a></li>
-                    <li><a>Aplikasi Penilaian</a></li>
-                    <li><a>Aplikasi Rekapan Data Eviden Poin</a></li>
+                    <li><a>Biodata Karyawan</a></li>
+                    <li><a>Jadwal Kerja (Shifting)</a></li>
+                    <li><a>Kehadiran</a></li>
+                    <li><a>Pelacakan GPS</a></li>
+                    <li><a>Penilaian</a></li>
+                    <li><a>Rekapan Data Eviden Poin</a></li>
                 </ul>
             </div>
             <div class="col-lg-3 col-md-12 footer-contact text-md-start">

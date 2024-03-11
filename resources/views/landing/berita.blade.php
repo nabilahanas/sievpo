@@ -57,8 +57,8 @@
 
                 <div class="blog-pagination">
                     <ul class="justify-content-center">
-                        <li><a href="#">Sebelumnya</a></li>
-                        <li><a href="#">Selanjutnya</a></li>
+                        <li><a href="#"><i class="bi bi-arrow-left mr-2"></i>Sebelumnya</a></li>
+                        <li><a href="#">Selanjutnya<i class="bi bi-arrow-right ml-2"></i></a></li>
                     </ul>
                 </div>
             </div>

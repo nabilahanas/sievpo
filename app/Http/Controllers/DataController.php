@@ -44,22 +44,24 @@ class DataController extends Controller
             'id_bidang' => 'required',
             'id_shift' => 'required',
             'lokasi' => 'required',
-            'tgl_waktu' => 'required|date_format:Y-m-d\TH:i:s',
-            'foto' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'is_approved' => 'required',
+            'tgl_waktu' => 'required|date_format:Y-m-d H:i:s',
+            'foto' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            // 'is_approved' => 'required|in:approved,rejected',
         ]);
+
+        $request->merge(['is_approved' => 'pending']);
 
         // Mengisi nilai default tgl_waktu dengan waktu saat ini jika tidak ada yang diinput
         $data = $request->except('tgl_waktu');
         $data['tgl_waktu'] = $request->input('tgl_waktu', now());
 
         if ($request->hasFile('foto')) {
-            $foto = $request->file('foto');
-            $filename = time() . '_' . $foto->getClientOriginalName();
-            $path = 'foto-user/' . $filename;
+            $image = $request->file('foto');
+            $filename = time() . '_' . $image->getClientOriginalName();
+            $path = 'foto-eviden/' . $filename;
 
             // Simpan gambar ke storage
-            Storage::disk('public')->put($path, file_get_contents($foto));
+            Storage::disk('public')->put($path, file_get_contents($image));
 
             // Simpan nama file ke dalam data
             $data['foto'] = $filename;

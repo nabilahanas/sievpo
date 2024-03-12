@@ -18,8 +18,8 @@ return new class extends Migration
             $table->unsignedBigInteger('id_shift');
             $table->text('lokasi');
             $table->timestamp('tgl_waktu');
-            $table->binary('foto');
-            $table->boolean('is_approved');
+            $table->text('foto');
+            // $table->boolean('is_approved');
             $table->timestamps();
 
 

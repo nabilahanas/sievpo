@@ -30,64 +30,68 @@
                     </thead>
                     <tbody>
                         @foreach ($data as $item)
-                        <tr>
-                            <td>.</td>
-                            <td>{{ $item->users->nama_user }}</td>
-                            <td>{{ $item->bidang->nama_bidang }}</td>
-                            <td>{{ $item->shift->nama_shift }}</td>
-                            <td>{{ $item->lokasi }}</td>
-                            <td>{{ $item->tgl_waktu}}</td>
-                            <td>
-                                <img src="{{ $item->foto ? asset('storage/foto-user/' . $item->foto) : '' }}"
-                                    alt="Foto Eviden" width="150">
-                            </td>
-                            <td>
-                                <div><i class="far fa-clock mr-2" style="color: #FFD43B"></i>Diproses</div>
-                                <div><i class="far fa-check-circle mr-2" style="color: #28a745"></i>Diterima</div>
-                                <div><i class="far fa-times-circle mr-2" style="color: #dc3545"></i>Ditolak</div>
-                            </td>
-                            <td>
-                                <button class="btn btn-sm btn-success"><i
-                                        class="fas fa-check-circle mr-2"></i>Terima</button>
-                                <button class="btn btn-sm btn-secondary mb-2"><i
-                                        class="fas fa-times-circle mr-2"></i>Tolak</button>
+                            <tr>
+                                <td>{{ $loop->iteration }}.</td>
+                                <td>{{ $item->users->nama_user }}</td>
+                                <td>{{ $item->bidang->nama_bidang }}</td>
+                                <td>{{ $item->shift->nama_shift }}</td>
+                                <td>{{ $item->lokasi }}</td>
+                                <td>{{ $item->tgl_waktu }}</td>
+                                <td>
+                                    <img src="{{ $item->foto ? asset('storage/foto-eviden/' . $item->foto) : '' }}"
+                                        alt="Foto Eviden" width="150">
+                                </td>
+                                <td>
+                                    @if ($item->is_approved === 'pending')
+                                        <div><i class="far fa-clock mr-2" style="color: #FFD43B;"></i>Diproses</div>
+                                    @elseif($item->is_approved === 'approved')
+                                        <div><i class="far fa-check-circle mr-2" style="color: #28a745"></i>Diterima</div>
+                                    @elseif($item->is_approved === 'rejected')
+                                        <div><i class="far fa-times-circle mr-2" style="color: #dc3545"></i>Ditolak</div>
+                                    @endif
+                                </td>
+                                <td>
+                                    <button class="btn btn-sm btn-success"><i
+                                            class="fas fa-check-circle mr-2"></i>Terima</button>
+                                    <button class="btn btn-sm btn-secondary mb-2"><i
+                                            class="fas fa-times-circle mr-2"></i>Tolak</button>
 
-                                <br>
-                                <!-- Button trigger modal -->
-                                <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal"
-                                    data-bs-target="#hapusModal">
-                                    <i class="fas fa-trash mr-2"></i>Hapus
-                                </button>
+                                    <br>
+                                    <!-- Button trigger modal -->
+                                    <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal"
+                                        data-bs-target="#hapusModal">
+                                        <i class="fas fa-trash mr-2"></i>Hapus
+                                    </button>
 
-                                <!-- Modal -->
-                                <div class="modal fade" id="hapusModal" tabindex="-1" aria-labelledby="hapusModalLabel"
-                                    aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="hapusModalLabel">Konfirmasi</h5>
-                                                <button type="button" class="close" data-bs-dismiss="modal"
-                                                    aria-label="Close">
-                                                    <span>&times;</span>
-                                                </button>
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="hapusModal" tabindex="-1" aria-labelledby="hapusModalLabel"
+                                        aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="hapusModalLabel">Konfirmasi</h5>
+                                                    <button type="button" class="close" data-bs-dismiss="modal"
+                                                        aria-label="Close">
+                                                        <span>&times;</span>
+                                                    </button>
+                                                </div>
+                                                <form method="POST" action="">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <div class="modal-body">
+                                                        Apakah Anda yakin ingin menghapus data ini?
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-bs-dismiss="modal">Tutup</button>
+                                                        <button type="submit" class="btn btn-danger">Yakin</button>
+                                                    </div>
+                                                </form>
                                             </div>
-                                            <form method="POST" action="">
-                                                @csrf
-                                                @method('DELETE')
-                                                <div class="modal-body">
-                                                    Apakah Anda yakin ingin menghapus data ini?
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary"
-                                                        data-bs-dismiss="modal">Tutup</button>
-                                                    <button type="submit" class="btn btn-danger">Yakin</button>
-                                                </div>
-                                            </form>
                                         </div>
                                     </div>
-                                </div>
-                            </td>
-                        </tr>
+                                </td>
+                            </tr>
                         @endforeach
                     </tbody>
                 </table>

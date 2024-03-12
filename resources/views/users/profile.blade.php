@@ -144,8 +144,10 @@
                                                     <div class="form-group mb-2">
                                                         <button type="submit" class="btn btn-info2"><i
                                                                 class="fas fa-sync-alt mr-2"></i>Update</button>
+                                                        <button type="reset" class="btn btn-secondary"><i
+                                                                class="fas fa-sync-alt mr-2"></i>Reset</button>
 
-                                                        <form action="" method="post" class="d-inline">
+                                                        <form action="" method="delete" class="d-inline">
                                                             @csrf
                                                             <button class="btn btn-danger"><i
                                                                     class="fas fa-trash mr-2"></i>Hapus

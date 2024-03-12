@@ -17,17 +17,18 @@
         <div class="card-header">
             <i class="fas fa-plus mr-2"></i>Tambah Data Eviden
         </div>
-        <form class="form-horizontal" method="post" action="{{ route('data.store') }}">
+        <form class="form-horizontal" method="post" action="{{ route('data.store') }}" enctype="multipart/form-data">
             @csrf
             <div class="card-body">
                 <div class="form-group row col-12 col-md-10">
-                    <label for="nama_user" class="col-sm-2 col-form-label required">Nama</label>
+                    <label for="id_user" class="col-sm-2 col-form-label required">Nama</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="nama_user" {{-- input untuk tampilan --}}
-                            value="{{ auth()->user()->nama_user }}" required disabled>
+                        {{-- input untuk tampilan --}}
+                        <input type="text" class="form-control" value="{{ auth()->user()->nama_user }}"
+                            required readonly>
 
                         {{-- input untuk menyimpan nilai --}}
-                        <input type="hidden" name="nama_hidden" value="{{ auth()->user()->nama_user }}">
+                        <input type="hidden" name="id_user" value="{{ auth()->user()->id_user }}">
                     </div>
                 </div>
 
@@ -47,21 +48,18 @@
                     <label for="tgl_waktu" class="col-sm-2 col-form-label required">Tanggal Waktu</label>
                     <div class="col-sm-10">
                         {{-- input untuk tampilan --}}
-                        <input type="text" class="form-control" value="{{ now()->format('d-m-Y H:i:s') }}" disabled>
+                        <input type="text" class="form-control" name="tgl_waktu" value="{{ now()->format('d-m-Y H:i:s') }}" disabled>
 
                         {{-- input untuk menyimpan nilai --}}
-                        <input type="hidden" name="tgl_waktu" value="{{ now()->format('Y-m-d\TH:i:s') }}" required>
+                        <input type="hidden" name="tgl_waktu" value="{{ now()->format('Y-m-d H:i:s') }}" required>
                     </div>
                 </div>
 
                 <div class="form-group row col-12 col-md-10">
-                    <label for="shift" class="col-sm-2 col-form-label required">Shift</label>
+                    <label for="id_shift" class="col-sm-2 col-form-label required">Shift</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="shift" id="" {{-- input untuk tampilan --}}
-                            value="{{ $shift->nama_shift }}" disabled>
-
-                        {{-- input untuk menyimpan nilai --}}
-                        <input type="hidden" name="shift_hidden" value="{{ $shift->nama_shift }}">
+                        <input type="text" class="form-control" value="{{ $shift->nama_shift }}" required readonly>
+                        <input type="hidden" name="id_shift" value="{{ $shift->id_shift }}">
                     </div>
                 </div>
 
@@ -69,40 +67,18 @@
                     <label for="lokasi" class="col-sm-2 col-form-label required">Lokasi</label>
                     <div class="col-sm-10">
                         {{-- input untuk tampilan --}}
-                        <input type="text" class="form-control" name="lokasi" id="lokasi" value="" disabled>
+                        <input type="text" class="form-control" name="lokasi" id="lokasi" value="" required readonly>
+                        <small class="form-text text-muted">Harap tunggu hingga lokasi muncul!</small>
 
                         {{-- input untuk menyimpan nilai --}}
-                        <input type="hidden" name="lokasi_hidden" value="lokasi">
-                        <small class="form-text text-muted">Harap tunggu hingga lokasi muncul!</small>
+                        {{-- <input type="hidden" name="lokasi" value="lokasi"> --}}
                     </div>
                 </div>
-
-                {{-- @push('myscript')
-                    <script>
-                        Webcam.set({
-                            height: 240,
-                            width: 320,
-                            image_format: 'jpeg',
-                            jpeg_quality: 100,
-
-                        });
-
-                        // Define a function to attach Webcam
-                        function attachWebcam() {
-                            Webcam.attach('#img-area');
-                        }
-
-                        // Attach Webcam when the "Ambil Foto" button is clicked
-                        document.getElementById('ambil-foto-btn').addEventListener('click', function() {
-                            attachWebcam();
-                        });
-                    </script>
-                @endpush --}}
 
                 <div class="form-group row col-12 col-md-10">
                     <label for="foto" class="col-sm-2 col-form-label required">Bukti Foto</label>
                     <div class="col-sm-10">
-                        <input class="form-control" type="file" id="fileInput" name="foto" accept="image/*" required>
+                        <input class="form-control" type="file" id="foto" name="foto" accept="image/*" required>
                         <small class="form-text text-muted">Foto <b>wajib</b> memiliki timestamp!</small>
                     </div>
                 </div>
@@ -112,6 +88,7 @@
                             style="max-width: 320px;">
                     </div>
                 </div>
+
                 <div class="text-center">
                     <button type="submit" class="btn btn-primary"><i class="fas fa-save mr-2"></i>Simpan</button>
                     <button type="reset" class="btn btn-secondary"><i class="fas fa-redo mr-2"></i>Reset</button>
@@ -176,4 +153,27 @@
             getLocation();
         });
     </script>
+
+    {{-- @push('myscript')
+                    <script>
+                        Webcam.set({
+                            height: 240,
+                            width: 320,
+                            image_format: 'jpeg',
+                            jpeg_quality: 100,
+
+                        });
+
+                        // Define a function to attach Webcam
+                        function attachWebcam() {
+                            Webcam.attach('#img-area');
+                        }
+
+                        // Attach Webcam when the "Ambil Foto" button is clicked
+                        document.getElementById('ambil-foto-btn').addEventListener('click', function() {
+                            attachWebcam();
+                        });
+                    </script>
+                @endpush --}}
+
 @endsection

@@ -62,101 +62,125 @@
 
                     </thead>
                     <tbody>
-                        <tr>
-                            <td></td>
+                        @foreach ($data as $item)
+                            <tr>
+                                <td>{{ $item->tgl_waktu }}</td>
 
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
 
-                            <td></td>
+                                <td></td>
 
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
 
-                            <td></td>
+                                <td></td>
 
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
 
-                            <td></td>
+                                <td></td>
 
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
 
-                            <td></td>
+                                <td></td>
 
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td><a href="">Lihat Foto</a></td>
-                            <td>
-                                <div><i class="far fa-clock mr-2" style="color: #FFD43B;"></i>Ditunda</div>
+                                <td></td>
+                                <td>{{ $item->shift->nama_shift }}</td>
+                                <td>{{ $item->lokasi }}</td>
+                                <td>
+                                    <a href="javascript:void(0);" onclick="showFoto('{{ asset('storage/foto-eviden/' . $item->foto) }}')">
+                                        Lihat Foto
+                                    </a>
+                                    <img id="fotoPreview" src="" alt="Foto Eviden" width="150" style="display:none;">
+                                </td>
+                                
+                                <script>
+                                    function showFoto(src) {
+                                        var fotoPreview = document.getElementById('fotoPreview');
+                                        fotoPreview.src = src;
+                                        fotoPreview.style.display = 'block';
+                                    }
+                                </script>                                
+
+
+                                <td>
+                                    @if ($item->is_approved === 'pending')
+                                        <div><i class="far fa-clock mr-2" style="color: #FFD43B;"></i>Ditunda</div>
+                                    @elseif($item->is_approved === 'approved')
+                                        <div><i class="far fa-check-circle mr-2" style="color: #28a745"></i>Diterima</div>
+                                    @elseif($item->is_approved === 'rejected')
+                                        <div><i class="far fa-times-circle mr-2" style="color: #dc3545"></i>Ditolak</div>
+                                    @endif
+                                </td>
+
+                                {{-- <div><i class="far fa-clock mr-2" style="color: #FFD43B;"></i>Ditunda</div>
                                 <div><i class="far fa-check-circle mr-2" style="color: #28a745"></i>Diterima</div>
-                                <div><i class="far fa-times-circle mr-2" style="color: #dc3545"></i>Ditolak</div>
-                            </td>
-                            <td></td>
-                            <td></td>
-                            <td>
-                                <!-- Button trigger modal -->
-                                <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal"
-                                    data-bs-target="#hapusModal"><i
-                                        class="fas fa-trash mr-2"></i>Hapus
-                                </button>
+                                <div><i class="far fa-times-circle mr-2" style="color: #dc3545"></i>Ditolak</div> --}}
 
-                                <!-- Modal -->
-                                <div class="modal fade" id="hapusModal" tabindex="-1"
-                                    aria-labelledby="hapusModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="hapusModalLabel">Konfirmasi</h5>
-                                                <button type="button" class="close" data-bs-dismiss="modal"
-                                                    aria-label="Close">
-                                                    <span>&times;</span>
-                                                </button>
+                                <td></td>
+                                <td></td>
+                                <td>
+                                    <!-- Button trigger modal -->
+                                    <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal"
+                                        data-bs-target="#hapusModal"><i class="fas fa-trash mr-2"></i>Hapus
+                                    </button>
+
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="hapusModal" tabindex="-1" aria-labelledby="hapusModalLabel"
+                                        aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="hapusModalLabel">Konfirmasi</h5>
+                                                    <button type="button" class="close" data-bs-dismiss="modal"
+                                                        aria-label="Close">
+                                                        <span>&times;</span>
+                                                    </button>
+                                                </div>
+                                                <form method="POST" action="">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <div class="modal-body">
+                                                        Apakah Anda yakin ingin menghapus data ini?
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-bs-dismiss="modal">Tutup</button>
+                                                        <button type="submit" class="btn btn-danger">Yakin</button>
+                                                    </div>
+                                                </form>
                                             </div>
-                                            <form method="POST"
-                                                action="">
-                                                @csrf
-                                                @method('DELETE')
-                                                <div class="modal-body">
-                                                    Apakah Anda yakin ingin menghapus data ini?
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary"
-                                                        data-bs-dismiss="modal">Tutup</button>
-                                                    <button type="submit" class="btn btn-danger">Yakin</button>
-                                                </div>
-                                            </form>
                                         </div>
                                     </div>
-                                </div>
-                            </td>
-                        </tr>
+                                </td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>

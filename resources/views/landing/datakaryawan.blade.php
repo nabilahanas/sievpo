@@ -34,7 +34,7 @@
                     </h3>
                     <div class="col-md-8 offset-md-2 mt-4">
                         <table class="table table-striped table-responsive">
-                            <thead class="thead-dark">
+                            <thead class="thead-perhutani">
                                 <tr>
                                     <th scope="col">No.</th>
                                     <th scope="col">Nama</th>

@@ -39,8 +39,52 @@
                                 <td>{{ $item->lokasi }}</td>
                                 <td>{{ $item->tgl_waktu }}</td>
                                 <td>
-                                    <img src="{{ $item->foto ? asset('storage/foto-eviden/' . $item->foto) : '' }}"
-                                        alt="Foto Eviden" width="150">
+                                    <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#fotoModal">
+                                        <img src="{{ $item->foto ? asset('storage/foto-eviden/' . $item->foto) : '' }}"
+                                            alt="Foto Eviden" width="150">
+                                    </button>
+
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="fotoModal" tabindex="-1" aria-labelledby="fotoModalLabel"
+                                        aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered">
+                                            <div class="modal-content">
+                                                <div class="modal-body">
+                                                    <img src="{{ $item->foto ? asset('storage/foto-eviden/' . $item->foto) : '' }}"
+                                                        alt="Foto Eviden" width="400">
+                                                    <div class="table-responsive">
+                                                        <table class="table">
+                                                            <tr>
+                                                                <th style="width:50%">Nama</th>
+                                                                <td>$250.30</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th>Waktu</th>
+                                                                <td>$10.34</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th>Dimensi</th>
+                                                                <td>$5.80</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th>Ukuran</th>
+                                                                <td>$265.24</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th>Perangkat</th>
+                                                                <td>$265.24</td>
+                                                            </tr>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-primary"
+                                                        data-bs-dismiss="modal">Tutup</button>
+                                                </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </td>
                                 <td>
                                     @if ($item->is_approved === 'pending')
@@ -53,29 +97,26 @@
                                 </td>
                                 <td>{{ $item->poin }}</td>
                                 <td>
-                                    {{-- <button class="btn btn-sm btn-success"><i
-                                            class="fas fa-check-circle mr-2"></i>Terima</button>
-                                    <button class="btn btn-sm btn-secondary mb-2"><i
-                                            class="fas fa-times-circle mr-2"></i>Tolak</button> --}}
+                                    <form
+                                        action="{{ route('approval.process', ['id' => $item->id_data, 'status' => 'approved']) }}"
+                                        method="post">
+                                        @csrf
+                                        <button type="submit" class="btn btn-sm btn-success btn-block mb-2">
+                                            <i class="fas fa-check-circle mr-2"></i>Terima
+                                        </button>
+                                    </form>
 
-                                            <form action="{{ route('approval.process', ['id' => $item->id_data, 'status' => 'approved']) }}" method="post">
-                                                @csrf
-                                                <button type="submit" class="btn btn-sm btn-success">
-                                                    <i class="fas fa-check-circle mr-2"></i>Terima
-                                                </button>
-                                            </form>
-                                            
-                                            <form action="{{ route('approval.process', ['id' => $item->id_data, 'status' => 'rejected']) }}" method="post">
-                                                @csrf
-                                                <button type="submit" class="btn btn-sm btn-secondary mb-2">
-                                                    <i class="fas fa-times-circle mr-2"></i>Tolak
-                                                </button>
-                                            </form>
-                                            
-                                    <br>
+                                    <form
+                                        action="{{ route('approval.process', ['id' => $item->id_data, 'status' => 'rejected']) }}"
+                                        method="post">
+                                        @csrf
+                                        <button type="submit" class="btn btn-sm btn-secondary btn-block mb-2">
+                                            <i class="fas fa-times-circle mr-2"></i>Tolak
+                                        </button>
+                                    </form>
                                     <!-- Button trigger modal -->
-                                    <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal"
-                                        data-bs-target="#hapusModal">
+                                    <button type="button" class="btn btn-sm btn-danger btn-block mb-2"
+                                        data-bs-toggle="modal" data-bs-target="#hapusModal">
                                         <i class="fas fa-trash mr-2"></i>Hapus
                                     </button>
 
@@ -95,7 +136,8 @@
                                                     @csrf
                                                     @method('DELETE')
                                                     <div class="modal-body">
-                                                        Apakah Anda yakin ingin menghapus data ini?
+                                                        Data yang dihapus <b>tidak dapat</b> dipulihkan.
+                                                        <br>Apakah Anda yakin ingin menghapus data ini?
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary"
@@ -114,6 +156,5 @@
             </div>
         </div>
     </div>
-
 
 @endsection

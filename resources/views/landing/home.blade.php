@@ -22,10 +22,40 @@
 
         <div class="icon-boxes position-relative">
             <div class="container position-relative">
-                <div class="col-xl-10" data-aos="fade-up" data-aos-delay="100">
-                    <div class="icon-box">
-                        <h4 class="title row"><a href="" class="stretched-link">173 Karyawan</a></h4>
+                <div class="row gy-4 mt-5">
+
+                    <div class="col-xl-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                        <div class="icon-box">
+                            <h2 class="counter"><span data-purecounter-start="0" data-purecounter-end="173"
+                                    data-purecounter-duration="1" class="purecounter"></span></h2>
+                            <h3>Karyawan</h3>
+                        </div>
                     </div>
+
+                    <div class="col-xl-3 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                        <div class="icon-box">
+                            <h2 class="counter"><span data-purecounter-start="0" data-purecounter-end="2"
+                                    data-purecounter-duration="1" class="purecounter"></span></h2>
+                            <h3>Wilayah</h3>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-3 col-md-6" data-aos="fade-up" data-aos-delay="300">
+                        <div class="icon-box">
+                            <h2 class="counter"><span data-purecounter-start="0" data-purecounter-end="4"
+                                    data-purecounter-duration="1" class="purecounter"></span></h2>
+                            <h3>Bidang</h3>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-3 col-md-6" data-aos="fade-up" data-aos-delay="500">
+                        <div class="icon-box">
+                            <h2 class="counter"><span data-purecounter-start="0" data-purecounter-end="16"
+                                    data-purecounter-duration="1" class="purecounter"></span></h2>
+                            <h3>Jam Kerja</h3>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -121,7 +151,8 @@
                     <!-- JADWAL KERJA -->
                     <div class="col-lg-4 col-md-6">
                         <div class="service-item position-relative">
-                            <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#shiftingModal">
+                            <button type="button" class="btn" data-bs-toggle="modal"
+                                data-bs-target="#shiftingModal">
                                 <div class="icon">
                                     <i class="bi bi-calendar3"></i>
                                 </div>
@@ -134,7 +165,7 @@
                     <!-- The Modal -->
                     <div class="modal fade" id="shiftingModal" tabindex="-1" aria-labelledby="shiftingModalLabel"
                         aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centereds">
+                        <div class="modal-dialog modal-dialog-centered">
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h4 class="modal-title" id="shiftingModalLabel">Jadwal Kerja (Shifting)?</h4>
@@ -161,7 +192,8 @@
                     <!-- KEHADIRAN -->
                     <div class="col-lg-4 col-md-6">
                         <div class="service-item position-relative">
-                            <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#kehadiranModal">
+                            <button type="button" class="btn" data-bs-toggle="modal"
+                                data-bs-target="#kehadiranModal">
                                 <div class="icon">
                                     <i class="bi bi-person-fill-check"></i>
                                 </div>
@@ -360,13 +392,13 @@
                 data-aos="zoom-out">
                 <div class="carousel-inner">
                     <div class="carousel-item active">
+                        <img src="https://i0.wp.com/www.perhutani.co.id/wp-content/uploads/2024/01/SMAP-WEBSITE-1.jpg?fit=1366%2C600&ssl=1"
+                            class="d-block w-100" alt="Kebijakan Anti Penyuapan">
+                    </div>
+                    <div class="carousel-item">
                         <a href="https://www.tokoperhutani.com/" target=”_blank”><img
                                 src="https://i0.wp.com/www.perhutani.co.id/wp-content/uploads/2024/01/tokophtArtboard-1@300x-50.jpg?fit=1366%2C600&ssl=1"
                                 class="d-block w-100" alt="Toko Perhutani">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="https://i0.wp.com/www.perhutani.co.id/wp-content/uploads/2024/01/SMAP-WEBSITE-1.jpg?fit=1366%2C600&ssl=1"
-                            class="d-block w-100" alt="Kebijakan Anti Penyuapan">
                     </div>
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselIndicators"

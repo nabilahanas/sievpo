@@ -1826,7 +1826,7 @@ section {
   font-weight: 700;
   margin-bottom: 20px;
   color: var(--color-secondary);
-  text-align:left
+  text-align: left
 }
 
 .hero p {
@@ -1905,7 +1905,7 @@ section {
 }
 
 .hero .icon-box {
-  padding: 60px 30px;
+  padding: 30px 30px;
   position: relative;
   overflow: hidden;
   background: #fff;
@@ -1915,28 +1915,23 @@ section {
   z-index: 1;
   height: 100%;
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
 }
 
-.hero .icon-box .title {
+.hero .icon-box .counter {
   font-weight: 700;
   margin-bottom: 15px;
-  font-size: 24px;
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+  color: var(--color-default);
 }
 
-.hero .icon-box .title a {
-  color: #3d3b3b;
-  transition: 0.3s;
-}
-
-.hero .icon-box .icon {
-  margin-bottom: 20px;
-  padding-top: 10px;
-  display: inline-block;
-  transition: all 0.3s ease-in-out;
-  font-size: 48px;
-  line-height: 1;
-  color: #3d3b3b;
+.hero .icon-box h3 {
+  font-size: 1.3rem;
+  color: #333;
 }
 
 .hero .icon-box:hover {
@@ -1945,8 +1940,7 @@ section {
   transform: scale(1.03);
 }
 
-.hero .icon-box:hover .title a,
-.hero .icon-box:hover .icon {
+.hero .icon-box:hover .counter {
   color: #000;
 }
 
@@ -2113,34 +2107,14 @@ section {
   font-weight: bold;
 }
 
-.blog .blog-details .content blockquote {
-  overflow: hidden;
-  background-color: rgba(34, 34, 34, 0.06);
-  padding: 60px;
-  position: relative;
-  text-align: center;
-  margin: 20px 0;
+.blog .blog-details .table .table-striped tbody tr:nth-of-type(odd) {
+  background-color: #E4FFF6;
 }
 
-.blog .blog-details .content blockquote p {
-  color: var(--color-default);
-  line-height: 1.6;
-  margin-bottom: 0;
-  font-style: italic;
-  font-weight: 500;
-  font-size: 22px;
-}
-
-.blog .blog-details .content blockquote:after {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 3px;
-  background-color: #fff;
-  margin-top: 20px;
-  margin-bottom: 20px;
+.blog .blog-details .table .thead-perhutani th {
+  background-color: var(--color-primary);
+  color: #fff;
+  border-color: #dee2e6;
 }
 
 .blog .blog-details .meta-top {
@@ -2235,11 +2209,6 @@ section {
   margin-top: 30px;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
-}
-
-.blog .post-author img {
-  max-width: 120px;
-  margin-right: 20px;
 }
 
 .blog .post-author h4 {
@@ -2532,13 +2501,6 @@ section {
 
 .blog .comments .reply-form .btn-primary:hover {
   background-color: rgba(248, 90, 64, 0.8);
-}
-
-/*--------------------------------------------------------------
-# Carousels Section
---------------------------------------------------------------*/
-.carousel {
-  padding: 10px 5px 10px 5px;
 }
 
 /*--------------------------------------------------------------

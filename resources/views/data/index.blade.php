@@ -113,7 +113,7 @@
                                 <td></td>
                                 <td>{{ $item->shift->nama_shift }}</td>
                                 <td>{{ $item->lokasi }}</td>
-                                <td>
+                                {{-- <td>
                                     <a href="javascript:void(0);" onclick="showFoto('{{ asset('storage/foto-eviden/' . $item->foto) }}')">
                                         Lihat Foto
                                     </a>
@@ -126,9 +126,29 @@
                                         fotoPreview.src = src;
                                         fotoPreview.style.display = 'block';
                                     }
-                                </script>                                
+                                </script>                                 --}}
 
-
+                                <td>
+                                    <a href="" data-bs-toggle="modal" data-bs-target="#fotoModal">
+                                        Lihat Foto
+                                    </a>
+                                    <div class="modal fade" id="fotoModal" tabindex="-1" aria-labelledby="fotoModalLabel"
+                                        aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered modal-lg">
+                                            <div class="modal-content">
+                                                <div class="modal-body d-flex justify-content-center">
+                                                    <img src="{{ $item->foto ? asset('storage/foto-eviden/' . $item->foto) : '' }}"
+                                                        alt="Foto Eviden" width="700" class="img-fluid">
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-primary"
+                                                        data-bs-dismiss="modal">Tutup</button>
+                                                </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
                                 <td>
                                     @if ($item->is_approved === 'pending')
                                         <div><i class="far fa-clock mr-2" style="color: #FFD43B;"></i>Ditunda</div>
@@ -138,7 +158,6 @@
                                         <div><i class="far fa-times-circle mr-2" style="color: #dc3545"></i>Ditolak</div>
                                     @endif
                                 </td>
-
                                 <td></td>
                                 <td></td>
                                 <td>

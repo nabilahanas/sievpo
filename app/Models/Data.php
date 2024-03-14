@@ -13,8 +13,11 @@ class Data extends Model
     protected $primaryKey = 'id_data';
 
     protected $fillable = [
-        'id_user', 'id_bidang', 'id_shift', 'lokasi', 'tgl_waktu', 'foto', 'is_approved',
+        'id_user', 'id_bidang', 'id_shift', 'lokasi', 'tgl_waktu', 'foto', 'is_approved', 'poin',
     ];
+    protected $dates = ['tgl_waktu'];
+
+    public $timestamps = true;
 
     public function users()
     {

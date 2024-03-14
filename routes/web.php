@@ -170,6 +170,7 @@ Route::middleware('check.role:Admin,Pimpinan,Mahasiswa')->group(function () {
     Route::get('/harian', [HarianController::class, 'index'])->name('harian');
     Route::get('/bulanan', [BulananController::class, 'index'])->name('bulanan');
     Route::get('/total', [TotalController::class, 'index'])->name('total');
-    Route::get('/confirm', [ConfirmController::class, 'index'])->name('confirm');
+    Route::get('/confirm', [ConfirmController::class, 'index'])->name('confirm.index');
+    Route::post('proses-approval/{id}/{status}', [ConfirmController::class, 'approval'])->name('approval.process');
 
 });

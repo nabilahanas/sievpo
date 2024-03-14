@@ -18,4 +18,30 @@ class ConfirmController extends Controller
 
         return view('confirm.index', compact('bidang','shift','data'), ['key'=>'confirm']);
     }
+
+    public function approval($id, $status)
+{
+    $data = Data::findOrFail($id);
+
+    // Mengambil id_shift dari data
+    $idShift = $data->id_shift;
+
+    // Mengambil data shift berdasarkan id_shift
+    $shift = Shift::find($idShift);
+
+    // Mengambil nilai poin dari shift atau mengatur menjadi 0 jika shift tidak ditemukan
+    $poin = $shift ? $shift->poin : 0;
+
+    // Mengupdate data sesuai dengan status
+    if ($status === 'approved') {
+        // Jika disetujui, mengupdate is_approved menjadi 'approved' dan menambahkan poin dari shift
+        $data->update(['is_approved' => 'approved', 'poin' => $data->poin + $poin]);
+    } elseif ($status === 'rejected') {
+        // Jika ditolak, mengupdate is_approved menjadi 'rejected' dan menetapkan poin menjadi 0
+        $data->update(['is_approved' => 'rejected', 'poin' => 0]);
+    }
+
+    return redirect()->route('confirm.index')->with('success', 'Laporan berhasil dinilai');
+}
+
 }

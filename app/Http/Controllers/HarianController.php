@@ -12,7 +12,7 @@ class HarianController extends Controller
 
     public function index()
     {
-        // $poin = Poin::all();
-        return view('harian.index', ['key'=>'harian']);
+        $poin = Poin::all();
+        return view('harian.index', compact('poin'), ['key'=>'harian']);
     }
 }

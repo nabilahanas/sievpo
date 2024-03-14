@@ -25,6 +25,7 @@
                             <th>Tanggal Waktu</th>
                             <th>Foto</th>
                             <th>Status</th>
+                            <th>Poin</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -50,12 +51,27 @@
                                         <div><i class="far fa-times-circle mr-2" style="color: #dc3545"></i>Ditolak</div>
                                     @endif
                                 </td>
+                                <td>{{ $item->poin }}</td>
                                 <td>
-                                    <button class="btn btn-sm btn-success"><i
+                                    {{-- <button class="btn btn-sm btn-success"><i
                                             class="fas fa-check-circle mr-2"></i>Terima</button>
                                     <button class="btn btn-sm btn-secondary mb-2"><i
-                                            class="fas fa-times-circle mr-2"></i>Tolak</button>
+                                            class="fas fa-times-circle mr-2"></i>Tolak</button> --}}
 
+                                            <form action="{{ route('approval.process', ['id' => $item->id_data, 'status' => 'approved']) }}" method="post">
+                                                @csrf
+                                                <button type="submit" class="btn btn-sm btn-success">
+                                                    <i class="fas fa-check-circle mr-2"></i>Terima
+                                                </button>
+                                            </form>
+                                            
+                                            <form action="{{ route('approval.process', ['id' => $item->id_data, 'status' => 'rejected']) }}" method="post">
+                                                @csrf
+                                                <button type="submit" class="btn btn-sm btn-secondary mb-2">
+                                                    <i class="fas fa-times-circle mr-2"></i>Tolak
+                                                </button>
+                                            </form>
+                                            
                                     <br>
                                     <!-- Button trigger modal -->
                                     <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal"

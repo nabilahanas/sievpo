@@ -37,15 +37,15 @@
                                 <td>{{ $item->bidang->nama_bidang }}</td>
                                 <td>{{ $item->shift->nama_shift }}</td>
                                 <td>{{ $item->lokasi }}</td>
-                                <td>{{ $item->tgl_waktu }}</td>
+                                <td>{{ $item->created_at }}</td>
                                 <td>
-                                    <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#fotoModal">
+                                    <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#fotoModal{{$item->id_data}}">
                                         <img src="{{ $item->foto ? asset('storage/foto-eviden/' . $item->foto) : '' }}"
                                             alt="Foto Eviden" width="150">
                                     </button>
 
                                     <!-- Modal -->
-                                    <div class="modal fade" id="fotoModal" tabindex="-1" aria-labelledby="fotoModalLabel"
+                                    <div class="modal fade" id="fotoModal{{$item->id_data}}" tabindex="-1" aria-labelledby="fotoModalLabel"
                                         aria-hidden="true">
                                         <div class="modal-dialog modal-dialog-centered">
                                             <div class="modal-content">
@@ -84,7 +84,7 @@
                                                 </form>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div>           
                                 </td>
                                 <td>
                                     @if ($item->is_approved === 'pending')
@@ -101,7 +101,7 @@
                                         action="{{ route('approval.process', ['id' => $item->id_data, 'status' => 'approved']) }}"
                                         method="post">
                                         @csrf
-                                        <button type="submit" class="btn btn-sm btn-success btn-block mb-2">
+                                        <button type="submit" class="btn btn-sm btn-success btn-block mb-2" {{ $item->is_approved !== 'pending' ? 'disabled' : '' }}>
                                             <i class="fas fa-check-circle mr-2"></i>Terima
                                         </button>
                                     </form>
@@ -110,18 +110,18 @@
                                         action="{{ route('approval.process', ['id' => $item->id_data, 'status' => 'rejected']) }}"
                                         method="post">
                                         @csrf
-                                        <button type="submit" class="btn btn-sm btn-secondary btn-block mb-2">
+                                        <button type="submit" class="btn btn-sm btn-secondary btn-block mb-2" {{ $item->is_approved !== 'pending' ? 'disabled' : '' }}>
                                             <i class="fas fa-times-circle mr-2"></i>Tolak
                                         </button>
                                     </form>
                                     <!-- Button trigger modal -->
                                     <button type="button" class="btn btn-sm btn-danger btn-block mb-2"
-                                        data-bs-toggle="modal" data-bs-target="#hapusModal">
+                                        data-bs-toggle="modal" data-bs-target="#hapusModal{{$item->id_data}}">
                                         <i class="fas fa-trash mr-2"></i>Hapus
                                     </button>
 
                                     <!-- Modal -->
-                                    <div class="modal fade" id="hapusModal" tabindex="-1" aria-labelledby="hapusModalLabel"
+                                    <div class="modal fade" id="hapusModal{{$item->id_data}}" tabindex="-1" aria-labelledby="hapusModalLabel"
                                         aria-hidden="true">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
@@ -132,7 +132,7 @@
                                                         <span>&times;</span>
                                                     </button>
                                                 </div>
-                                                <form method="POST" action="">
+                                                <form method="POST" action="{{ route('data.delete', $item->id_data) }}">
                                                     @csrf
                                                     @method('DELETE')
                                                     <div class="modal-body">
@@ -148,6 +148,7 @@
                                             </div>
                                         </div>
                                     </div>
+                                    
                                 </td>
                             </tr>
                         @endforeach

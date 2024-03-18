@@ -75,23 +75,6 @@ class DataController extends Controller
         return redirect()->route('data.index')->with('success', 'Data berhasil ditambahkan');
     }
 
-    // public function approval($id,$status)
-    // {
-    //     $data = Data::findOrFail($id);
-    //     $shift = Shift::find($data->id_shift);
-
-    //     $poin = $shift ? $shift->poin : 0;
-
-    //     if($status === 'approved') {
-    //         $data->update(['is_approved'=>'approved', 'poin' => $poin]);
-    //     } elseif ($status === 'rejected') {
-    //         $data->update(['is_approved'=>'rejected', 'poin' => 0]);
-    //     }
-
-    //     return redirect()->route('data.index')->with('success', 'Laporan berhasil dinilai');
-    // }
-
-
     public function delete($id)
     {
         $data = Data::find($id);

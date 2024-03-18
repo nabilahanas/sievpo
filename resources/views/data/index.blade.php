@@ -23,22 +23,24 @@
                             <th colspan="53">{{ Auth::user()->nama_user ?? '' }}</th>
                         </tr>
                         <tr>
-                            <th rowspan="2" style="text-align: center">Tanggal</th>
+                            <th rowspan="2" style="text-align: center">Tanggal Laporan</th>
 
-                            @foreach ($bidang as $bidang)
+                            {{-- @foreach ($bidang as $bidang)
                                 <th colspan="9" style="text-align: center">{{ $bidang->nama_bidang }}</th>
-                            @endforeach
-
-                            <th rowspan="2" style="text-align: center">Total Poin</th>
+                            @endforeach --}}
+                            <th rowspan="2" style="text-align: center">Bidang</th>
                             <th rowspan="2" style="text-align: center">Shift</th>
+                            {{-- <th rowspan="2" style="text-align: center">Total Poin</th> --}}
+                            {{-- <th rowspan="2" style="text-align: center">Shift</th> --}}
                             <th rowspan="2" style="text-align: center">Lokasi</th>
                             <th rowspan="2" style="text-align: center">Foto</th>
                             <th rowspan="2" style="text-align: center">Status</th>
+                            <th rowspan="2" style="text-align: center">Poin</th>
                             <th rowspan="2" style="text-align: center">Tanggal Konfirmasi</th>
-                            <th rowspan="2" style="text-align: center">Oleh</th>
+                            {{-- <th rowspan="2" style="text-align: center">Oleh</th> --}}
                             <th rowspan="2" style="text-align: center">Aksi</th>
                         </tr>
-                        <tr>
+                        {{-- <tr>
                             @foreach ($shift as $s)
                                 <th>{{ $s->nama_shift }}</th>
                             @endforeach
@@ -58,60 +60,66 @@
                                 <th>{{ $s->nama_shift }}</th>
                             @endforeach
                             <th>Jml</th>
-                        </tr>
+                        </tr> --}}
 
                     </thead>
                     <tbody>
                         @foreach ($data as $item)
                             <tr>
-                                <td>{{ $item->tgl_waktu }}</td>
+                                <td>{{ $item->created_at }}</td>
+                                
+                                <td>{{ $item->bidang->nama_bidang}}</td>
 
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-
-                                <td></td>
-
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-
-                                <td></td>
-
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-
-                                <td></td>
-
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-
-                                <td></td>
-
-                                <td></td>
                                 <td>{{ $item->shift->nama_shift }}</td>
+
+                                
+
+                                {{-- <td>{{$item->poin_1_11}}</td>
+                                <td>{{$item->poin_1_12}}</td>
+                                <td>{{$item->poin_1_13}}</td>
+                                <td>{{$item->poin_1_14}}</td>
+                                <td>{{$item->poin_1_15}}</td>
+                                <td>{{$item->poin_1_16}}</td>
+                                <td>{{$item->poin_1_17}}</td>
+                                <td>{{$item->poin_1_18}}</td>
+
+                                <td></td>
+
+                                <td>{{$item->poin_2_11}}</td>
+                                <td>{{$item->poin_2_12}}</td>
+                                <td>{{$item->poin_2_13}}</td>
+                                <td>{{$item->poin_2_14}}</td>
+                                <td>{{$item->poin_2_15}}</td>
+                                <td>{{$item->poin_2_16}}</td>
+                                <td>{{$item->poin_2_17}}</td>
+                                <td>{{$item->poin_2_18}}</td>
+
+                                <td></td>
+
+                                <td>{{$item->poin_3_11}}</td>
+                                <td>{{$item->poin_3_12}}</td>
+                                <td>{{$item->poin_3_13}}</td>
+                                <td>{{$item->poin_3_14}}</td>
+                                <td>{{$item->poin_3_15}}</td>
+                                <td>{{$item->poin_3_16}}</td>
+                                <td>{{$item->poin_3_17}}</td>
+                                <td>{{$item->poin_3_18}}</td>
+
+                                <td></td>
+
+                                <td>{{$item->poin_4_11}}</td>
+                                <td>{{$item->poin_4_12}}</td>
+                                <td>{{$item->poin_4_13}}</td>
+                                <td>{{$item->poin_4_14}}</td>
+                                <td>{{$item->poin_4_15}}</td>
+                                <td>{{$item->poin_4_16}}</td>
+                                <td>{{$item->poin_4_17}}</td>
+                                <td>{{$item->poin_4_18}}</td> --}}
+
+                                {{-- <td></td> --}}
+
+                                {{-- <td></td> --}}
+                                {{-- <td>{{ $item->shift->nama_shift }}</td> --}}
                                 <td>{{ $item->lokasi }}</td>
                                 {{-- <td>
                                     <a href="javascript:void(0);" onclick="showFoto('{{ asset('storage/foto-eviden/' . $item->foto) }}')">
@@ -129,10 +137,10 @@
                                 </script>                                 --}}
 
                                 <td>
-                                    <a href="" data-bs-toggle="modal" data-bs-target="#fotoModal">
+                                    <a href="" data-bs-toggle="modal" data-bs-target="#fotoModal{{$item->id_data}}">
                                         Lihat Foto
                                     </a>
-                                    <div class="modal fade" id="fotoModal" tabindex="-1" aria-labelledby="fotoModalLabel"
+                                    <div class="modal fade" id="fotoModal{{$item->id_data}}" tabindex="-1" aria-labelledby="fotoModalLabel"
                                         aria-hidden="true">
                                         <div class="modal-dialog modal-dialog-centered modal-lg">
                                             <div class="modal-content">
@@ -158,16 +166,18 @@
                                         <div><i class="far fa-times-circle mr-2" style="color: #dc3545"></i>Ditolak</div>
                                     @endif
                                 </td>
-                                <td></td>
-                                <td></td>
+                                <td>{{ $item->poin }}</td>
+                                <td>{{ $item->updated_at }}</td>
+                                {{-- <td></td> --}}
                                 <td>
                                     <!-- Button trigger modal -->
                                     <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal"
-                                        data-bs-target="#hapusModal"><i class="fas fa-trash mr-2"></i>Hapus
+                                        data-bs-target="#hapusModal{{$item->id_data}}" {{ $item->is_approved !== 'pending' ? 'disabled' : '' }}>
+                                        <i class="fas fa-trash mr-2"></i>Hapus
                                     </button>
 
                                     <!-- Modal -->
-                                    <div class="modal fade" id="hapusModal" tabindex="-1" aria-labelledby="hapusModalLabel"
+                                    <div class="modal fade" id="hapusModal{{$item->id_data}}" tabindex="-1" aria-labelledby="hapusModalLabel"
                                         aria-hidden="true">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
@@ -178,7 +188,7 @@
                                                         <span>&times;</span>
                                                     </button>
                                                 </div>
-                                                <form method="POST" action="">
+                                                <form method="POST" action="{{ route('data.delete', $item->id_data) }}">
                                                     @csrf
                                                     @method('DELETE')
                                                     <div class="modal-body">

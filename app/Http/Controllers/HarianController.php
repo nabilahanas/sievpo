@@ -8,7 +8,7 @@ use App\Models\Poin;
 
 class HarianController extends Controller
 {
-    // protected $primaryKey = 'id_poin';
+    protected $primaryKey = 'id_poin';
 
     public function index()
     {

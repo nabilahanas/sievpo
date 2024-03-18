@@ -141,8 +141,7 @@
                     var areaName = village || subdistrict || city || county || state;
 
                     // isi otomatis input dengan informasi lengkap
-                    document.getElementById('lokasi').value = areaName + '. Latitude: ' + latitude + ', Longitude: ' +
-                        longitude;
+                    document.getElementById('lokasi').value = areaName;
                 })
                 .catch(error => {
                     console.error('Error fetching location name:', error);

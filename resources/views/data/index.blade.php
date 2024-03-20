@@ -20,25 +20,25 @@
                 <table id="evpo" class="table table-sm text-nowrap table-hover table-striped" style="width: 100%">
                     <thead class="thead-successv2">
                         <tr>
-                            <th colspan="53">{{ Auth::user()->nama_user ?? '' }}</th>
+                            <th colspan="9">{{ Auth::user()->nama_user ?? '' }}</th>
                         </tr>
                         <tr>
-                            <th rowspan="2" style="text-align: center">Tanggal Laporan</th>
+                            <th style="text-align: center">Tanggal Laporan</th>
 
                             {{-- @foreach ($bidang as $bidang)
                                 <th colspan="9" style="text-align: center">{{ $bidang->nama_bidang }}</th>
                             @endforeach --}}
-                            <th rowspan="2" style="text-align: center">Bidang</th>
-                            <th rowspan="2" style="text-align: center">Shift</th>
+                            <th style="text-align: center">Bidang</th>
+                            <th style="text-align: center">Shift</th>
                             {{-- <th rowspan="2" style="text-align: center">Total Poin</th> --}}
                             {{-- <th rowspan="2" style="text-align: center">Shift</th> --}}
-                            <th rowspan="2" style="text-align: center">Lokasi</th>
-                            <th rowspan="2" style="text-align: center">Foto</th>
-                            <th rowspan="2" style="text-align: center">Status</th>
-                            <th rowspan="2" style="text-align: center">Poin</th>
-                            <th rowspan="2" style="text-align: center">Tanggal Konfirmasi</th>
+                            <th style="text-align: center">Lokasi</th>
+                            <th style="text-align: center">Foto</th>
+                            <th style="text-align: center">Status</th>
+                            <th style="text-align: center">Poin</th>
+                            <th style="text-align: center">Tanggal Konfirmasi</th>
                             {{-- <th rowspan="2" style="text-align: center">Oleh</th> --}}
-                            <th rowspan="2" style="text-align: center">Aksi</th>
+                            <th style="text-align: center">Aksi</th>
                         </tr>
                         {{-- <tr>
                             @foreach ($shift as $s)

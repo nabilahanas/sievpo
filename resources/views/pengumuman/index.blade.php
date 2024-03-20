@@ -17,7 +17,7 @@
                     class="fas fa-plus mr-2"></i>Tambah</a>
 
             <div class="table-responsive mt-4">
-                <table id="pengumuman" class="table table-sm table-hover table-striped" style="table-layout:fixed">
+                <table id="pengumuman" class="table table-sm table-hover table-striped">
                     <thead class="thead-successv2">
                         <tr>
                             <th>Tanggal Publikasi</th>
@@ -43,10 +43,10 @@
                                 <td>{{ $item->deskripsi }}</td>
                                 <td>
                                     <button onclick="window.location='{{ route('pengumuman.edit', $item->id_pengumuman) }}'"
-                                        class="btn btn-sm btn-warning"><i class="fas fa-pen mr-2"></i>Ubah</button>
-
+                                        class="btn btn-sm btn-warning mb-2"><i class="fas fa-pen mr-2"></i>Ubah</button>
+                                    <br>
                                     <!-- Button trigger modal -->
-                                    <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal"
+                                    <button type="button" class="btn btn-sm btn-danger mb-2" data-bs-toggle="modal"
                                         data-bs-target="#hapusModal{{ $item->id_pengumuman }}"><i
                                             class="fas fa-trash mr-2"></i>Hapus
                                     </button>
@@ -116,7 +116,7 @@
                                         Tidak Ada Gambar
                                     @endif
                                 </td>
-                                <td><a href="{{ $item->deskripsi }}">Lihat Selengkapnya</a></td>
+                                <td>{{ $item->deskripsi }}</td>
                                 <td>
                                     <form action="{{ route('pengumuman.restore', $item->id_pengumuman) }}" method="POST"
                                         class="d-inline">

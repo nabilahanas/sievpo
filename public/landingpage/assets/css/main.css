@@ -953,6 +953,43 @@ section {
   border-color: var(--color-secondary);
 }
 
+.modal-content {
+  height: 90%;
+  padding: 20px;
+  border-radius: 0.5rem;
+}
+
+.modal-header {
+  color: #000;
+  border-bottom: none;
+}
+
+
+.modal-title {
+  font-weight: bold;
+}
+
+.modal-body {
+  font-size: 16px;
+  text-align: justify;
+}
+
+.modal-footer {
+  border-top: none;
+  justify-content: center;
+}
+
+.btn-close {
+  color: #fff;
+  opacity: 1;
+  font-size: 1rem;
+}
+
+.btn-outline-primary {
+  border-radius: 20px;
+  padding: 8px 15px;
+}
+
 /*--------------------------------------------------------------
 # Testimonials Section
 --------------------------------------------------------------*/

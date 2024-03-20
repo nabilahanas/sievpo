@@ -3,7 +3,7 @@ $(document).ready(function () {
     $('#evpo').DataTable({
         scrollX: true,
         scrollCollapse: true,
-        columnDefs: [{ orderable: false, targets: [1, 2, 3, 4, 5, 6, 7, 8, 10, 11, 12, 13, 14, 15, 16, 17, 19, 20, 21, 22, 23, 24, 25, 26, 28, 29, 30, 31, 32, 33, 34, 35, 40, 44] }],
+        columnDefs: [{ orderable: false, targets: [4, 8] }],
         displayLength: 25,
     });
 });
@@ -128,27 +128,22 @@ $(document).ready(function () {
     });
 
     $('.caritkaryawan').append(`
-    <form>
-    <div class="input-group mt-2 mb-4">
-        <select name="search" type="number" class="form-control" placeholder="search" aria-label="search"
-            aria-describedby="button-addon2">
-            <option>Pilih Semester</option>
-            <option value="01">Semester I (Januari-Juni)</option>
-            <option value="02">Semester II (Juli-Desember)</option>
-        </select>
-
-        <select name="search" type="number" class="form-control" placeholder="search" aria-label="search"
-            aria-describedby="button-addon2">
-            <option>Pilih Tahun</option>
-            <option value="01">2024</option>
-            <option value="02">2025</option>
-            <option value="03">2026</option>
-        </select>
-
-        <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Cari</button>
+        <div class="container">
+        <div class="input-group date" id="datarange" data-target-input="nearest">
+            <input type="text" class="form-control datetimepicker-input" data-target="#datarange"/>
+            <div class="input-group-append" data-target="#daterange" data-toggle="datetimepicker">
+                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+            </div>
+        </div>
     </div>
-    </form>
-    `);
+        `);
+
+    // Date Range Picker initialization
+    $('input[name="daterange"]').daterangepicker({
+        opens: 'left'
+    }, function (start, end, label) {
+        console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
+    });
 });
 
 // Rekap Total Bidang

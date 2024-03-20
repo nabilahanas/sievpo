@@ -16,7 +16,8 @@
             </ul>
             <div class="mt-4">
                 <div class="tab-content">
-                    {{-- Karyawan --}}
+                    
+                    <!-- KARYAWAN -->
                     <div class="active tab-pane" id="karyawan">
                         <a class="btn btn-outline-success" href="">Download
                             Excel</a>
@@ -71,7 +72,8 @@
                             </table>
                         </div>
                     </div>
-                    {{-- Bidang --}}
+
+                    <!-- BIDANG -->
                     <div class="tab-pane" id="bidang">
                         <a class="btn btn-outline-success" href="">Download
                             Excel</a>
@@ -124,7 +126,8 @@
                             </table>
                         </div>
                     </div>
-                    {{-- BKPH --}}
+
+                    <!-- BKPH -->
                     <div class="tab-pane" id="bkph">
                         <a class="btn btn-outline-success" href="">Download Excel</a>
                         <div class="table-responsive mt-4">
@@ -176,7 +179,8 @@
                             </table>
                         </div>
                     </div>
-                    {{-- KRPH --}}
+
+                    <!-- KRPH -->
                     <div class="tab-pane" id="krph">
                         <a class="btn btn-outline-success" href="">Download Excel</a>
                         <div class="table-responsive mt-4">
@@ -228,7 +232,8 @@
                             </table>
                         </div>
                     </div>
-                    {{-- ASPER --}}
+
+                    <!-- ASPER -->
                     <div class="tab-pane" id="asper">
                         <a class="btn btn-outline-success" href="">Download Excel</a>
                         <div class="table-responsive mt-4">

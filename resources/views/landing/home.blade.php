@@ -107,10 +107,13 @@
                     <p>Fitur-fitur SIEVPO untuk manajemen penilaian karyawan</p>
                 </div>
 
-                <!-- BIODATA KARYAWAN -->
                 <div class="row gy-4" data-aos="fade-up" data-aos-delay="100">
+
+
+                    <!-- BIODATA KARYAWAN -->
                     <div class="col-lg-4 col-md-6">
                         <div class="service-item  position-relative">
+                            {{-- <div id="overlay" onclick="off()"></div> --}}
                             <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#biodataModal">
                                 <div class="icon">
                                     <i class="bi bi-people-fill"></i>
@@ -138,47 +141,6 @@
                                         karyawan dengan mudah dan efisien. Dengan menggunakan menu ini, perusahaan dapat
                                         meningkatkan keakuratan data karyawan, membuat keputusan yang lebih baik terkait
                                         SDM, dan meningkatkan efisiensi dalam pengelolaan SDM.</p>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-outline-primary"
-                                            onclick="window.location='/login'">Halaman Login<i
-                                                class="fas fa-angle-double-right ml-2"></i></button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- JADWAL KERJA -->
-                    <div class="col-lg-4 col-md-6">
-                        <div class="service-item position-relative">
-                            <button type="button" class="btn" data-bs-toggle="modal"
-                                data-bs-target="#shiftingModal">
-                                <div class="icon">
-                                    <i class="bi bi-calendar3"></i>
-                                </div>
-                                <h3>Jadwal Kerja (Shifting)</h3>
-                                <p>Jadwal jam kerja atau shifting dengan mudah dan tidak rumit</p>
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- The Modal -->
-                    <div class="modal fade" id="shiftingModal" tabindex="-1" aria-labelledby="shiftingModalLabel"
-                        aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h4 class="modal-title" id="shiftingModalLabel">Jadwal Kerja (Shifting)?</h4>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <p>Menu Shifting mudah digunakan dan dipahami oleh karyawan. Proses pengaturan shifting
-                                        dapat dilakukan dengan cepat dan efisien. Menu shifting memungkinkan karyawan untuk
-                                        mendapatkan jadwal kerja secara otomatis yang sesuai dengan kebutuhan mereka. Sistem
-                                        shifting dapat membantu meningkatkan keseimbangan kehidupan kerja karyawan. Selain
-                                        itu, menu shifting dapat membantu perusahaan mengoptimalkan penggunaan sumber daya
-                                        manusia.</p>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-outline-primary"
@@ -189,162 +151,209 @@
                         </div>
                     </div>
 
-                    <!-- KEHADIRAN -->
-                    <div class="col-lg-4 col-md-6">
-                        <div class="service-item position-relative">
-                            <button type="button" class="btn" data-bs-toggle="modal"
-                                data-bs-target="#kehadiranModal">
-                                <div class="icon">
-                                    <i class="bi bi-person-fill-check"></i>
-                                </div>
-                                <h3>Kehadiran</h3>
-                                <p>Absensi karyawan lebih mudah</p>
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- The Modal -->
-                    <div class="modal fade" id="kehadiranModal" tabindex="-1" aria-labelledby="kehadiranModalLabel"
-                        aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h4 class="modal-title" id="kehadiranModalLabel">Biodata Karyawan?</h4>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <p>Menu Kehadiran menyediakan antarmuka yang mudah digunakan untuk mencata absensi
-                                        karyawan. Memungkinkan karyawan untuk mencatat absensi mereka sendiri melalui
-                                        berbagai perangkat, seperti komputer dan smartphone. Meminimalisir kesalahan dalam
-                                        pencatatan absensi serta menghemat waktu dan biaya dalam pengelolaan absensi
-                                        karyawan</p>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-outline-primary"
-                                        onclick="window.location='/login'">Halaman Login<i
-                                            class="fas fa-angle-double-right ml-2"></i></button>
-                                </div>
+                <!-- JADWAL KERJA -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="service-item position-relative">
+                        <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#shiftingModal">
+                            <div class="icon">
+                                <i class="bi bi-calendar3"></i>
                             </div>
-                        </div>
+                            <h3>Jadwal Kerja (Shifting)</h3>
+                            <p>Jadwal jam kerja atau shifting dengan mudah dan tidak rumit</p>
+                        </button>
                     </div>
+                </div>
 
-                    <!-- PELACAKAN GPS -->
-                    <div class="col-lg-4 col-md-6">
-                        <div class="service-item position-relative">
-                            <button type="button" class="btn" data-bs-toggle="modal"
-                                data-bs-target="#pelacakanModal">
-                                <div class="icon">
-                                    <i class="bi bi-geo-alt-fill"></i>
-                                </div>
-                                <h3>Pelacakan GPS</h3>
-                                <p>Ketahui posisi karyawan saat melakukan absensi</p>
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- The Modal -->
-                    <div class="modal fade" id="pelacakanModal" tabindex="-1" aria-labelledby="pelacakanModalLabel"
-                        aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h4 class="modal-title" id="pelacakanModalLabel">Pelacakan GPS?</h4>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <p>Menu Pelacakan GPS memungkinkan perusahaan untuk mengetahui posisi karyawan saat
-                                        melakukan absensi. Menu ini juga dapat membantu perusahaan dalam meningkatkan
-                                        akurasi absensi, memantau karyawan, meningkatkan keamanan, dan mengintegrasikan data
-                                        karyawan secara terpusat</p>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-outline-primary"
-                                        onclick="window.location='/login'">Halaman Login<i
-                                            class="fas fa-angle-double-right ml-2"></i></button>
-                                </div>
+                <!-- The Modal -->
+                <div class="modal fade" id="shiftingModal" tabindex="-1" aria-labelledby="shiftingModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title" id="shiftingModalLabel">Jadwal Kerja (Shifting)?</h4>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
                             </div>
-                        </div>
-                    </div>
-
-                    <!-- PENILAIAN-->
-                    <div class="col-lg-4 col-md-6">
-                        <div class="service-item position-relative">
-                            <button type="button" class="btn" data-bs-toggle="modal"
-                                data-bs-target="#penilaianModal">
-                                <div class="icon">
-                                    <i class="bi bi-clipboard-check"></i>
-                                </div>
-                                <h3>Penilaian</h3>
-                                <p>Pengisian eviden poin karyawan otomatis dan lebih cepat</p>
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- The Modal -->
-                    <div class="modal fade" id="penilaianModal" tabindex="-1" aria-labelledby="penilaianModalLabel"
-                        aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h4 class="modal-title" id="penilaianModalLabel">Penilaian?</h4>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <p>Menu Penilaian dirancang untuk membantu perusahaan dalam melakukan penilaian kinerja
-                                        karyawan dengan mudah dan efisien, serta meminimalisir kesalahan dalam penilaian
-                                        kinerja. Penilaian diatur berdasarkan jumlah poin yang diperoleh setiap karyawan.
-                                    </p>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-outline-primary"
-                                        onclick="window.location='/login'">Halaman Login<i
-                                            class="fas fa-angle-double-right ml-2"></i></button>
-                                </div>
+                            <div class="modal-body">
+                                <p>Menu Shifting mudah digunakan dan dipahami oleh karyawan. Proses pengaturan
+                                    shifting
+                                    dapat dilakukan dengan cepat dan efisien. Menu shifting memungkinkan karyawan
+                                    untuk
+                                    mendapatkan jadwal kerja secara otomatis yang sesuai dengan kebutuhan mereka.
+                                    Sistem
+                                    shifting dapat membantu meningkatkan keseimbangan kehidupan kerja karyawan.
+                                    Selain
+                                    itu, menu shifting dapat membantu perusahaan mengoptimalkan penggunaan sumber
+                                    daya
+                                    manusia.</p>
                             </div>
-                        </div>
-                    </div>
-
-                    <!-- REKAPAN DATA EVIDEN POIN -->
-                    <div class="col-lg-4 col-md-6">
-                        <div class="service-item position-relative">
-                            <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#rekapModal">
-                                <div class="icon">
-                                    <i class="bi bi-bar-chart-fill"></i>
-                                </div>
-                                <h3>Rekapan Data Eviden Poin</h3>
-                                <p>Rekapan data eviden poin karyawan tersimpan dengan baik dan mudah diakses</p>
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- The Modal -->
-                    <div class="modal fade" id="rekapModal" tabindex="-1" aria-labelledby="rekapModalLabel"
-                        aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h4 class="modal-title" id="biodataModalLabel">Rekapan Data Eviden Poin?</h4>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <p>Menu Rekap Data dapat membantu perusahaan dalam meringkas dan menganalisa data
-                                        karyawan dengan mudah, akurat, dan efisien. Memungkinkan pengguna untuk membuat
-                                        berbagai jenis laporan rekap data dengan mudah serta meminimalisisr kesalahan dalam
-                                        pembuatan</p>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-outline-primary"
-                                        onclick="window.location='/login'">Halaman Login<i
-                                            class="fas fa-angle-double-right ml-2"></i></button>
-                                </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-outline-primary"
+                                    onclick="window.location='/login'">Halaman Login<i
+                                        class="fas fa-angle-double-right ml-2"></i></button>
                             </div>
                         </div>
                     </div>
                 </div>
+
+                <!-- KEHADIRAN -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="service-item position-relative">
+                        <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#kehadiranModal">
+                            <div class="icon">
+                                <i class="bi bi-person-fill-check"></i>
+                            </div>
+                            <h3>Kehadiran</h3>
+                            <p>Absensi karyawan lebih mudah</p>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- The Modal -->
+                <div class="modal fade" id="kehadiranModal" tabindex="-1" aria-labelledby="kehadiranModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title" id="kehadiranModalLabel">Biodata Karyawan?</h4>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <p>Menu Kehadiran menyediakan antarmuka yang mudah digunakan untuk mencata absensi
+                                    karyawan. Memungkinkan karyawan untuk mencatat absensi mereka sendiri melalui
+                                    berbagai perangkat, seperti komputer dan smartphone. Meminimalisir kesalahan
+                                    dalam
+                                    pencatatan absensi serta menghemat waktu dan biaya dalam pengelolaan absensi
+                                    karyawan</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-outline-primary"
+                                    onclick="window.location='/login'">Halaman Login<i
+                                        class="fas fa-angle-double-right ml-2"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PELACAKAN GPS -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="service-item position-relative">
+                        <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#pelacakanModal">
+                            <div class="icon">
+                                <i class="bi bi-geo-alt-fill"></i>
+                            </div>
+                            <h3>Pelacakan GPS</h3>
+                            <p>Ketahui posisi karyawan saat melakukan absensi</p>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- The Modal -->
+                <div class="modal fade" id="pelacakanModal" tabindex="-1" aria-labelledby="pelacakanModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title" id="pelacakanModalLabel">Pelacakan GPS?</h4>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <p>Menu Pelacakan GPS memungkinkan perusahaan untuk mengetahui posisi karyawan saat
+                                    melakukan absensi. Menu ini juga dapat membantu perusahaan dalam meningkatkan
+                                    akurasi absensi, memantau karyawan, meningkatkan keamanan, dan mengintegrasikan
+                                    data
+                                    karyawan secara terpusat</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-outline-primary"
+                                    onclick="window.location='/login'">Halaman Login<i
+                                        class="fas fa-angle-double-right ml-2"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PENILAIAN-->
+                <div class="col-lg-4 col-md-6">
+                    <div class="service-item position-relative">
+                        <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#penilaianModal">
+                            <div class="icon">
+                                <i class="bi bi-clipboard-check"></i>
+                            </div>
+                            <h3>Penilaian</h3>
+                            <p>Pengisian eviden poin karyawan otomatis dan lebih cepat</p>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- The Modal -->
+                <div class="modal fade" id="penilaianModal" tabindex="-1" aria-labelledby="penilaianModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title" id="penilaianModalLabel">Penilaian?</h4>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <p>Menu Penilaian dirancang untuk membantu perusahaan dalam melakukan penilaian
+                                    kinerja
+                                    karyawan dengan mudah dan efisien, serta meminimalisir kesalahan dalam penilaian
+                                    kinerja. Penilaian diatur berdasarkan jumlah poin yang diperoleh setiap
+                                    karyawan.
+                                </p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-outline-primary"
+                                    onclick="window.location='/login'">Halaman Login<i
+                                        class="fas fa-angle-double-right ml-2"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- REKAPAN DATA EVIDEN POIN -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="service-item position-relative">
+                        <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#rekapModal">
+                            <div class="icon">
+                                <i class="bi bi-bar-chart-fill"></i>
+                            </div>
+                            <h3>Rekapan Data Eviden Poin</h3>
+                            <p>Rekapan data eviden poin karyawan tersimpan dengan baik dan mudah diakses</p>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- The Modal -->
+                <div class="modal fade" id="rekapModal" tabindex="-1" aria-labelledby="rekapModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title" id="biodataModalLabel">Rekapan Data Eviden Poin?</h4>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <p>Menu Rekap Data dapat membantu perusahaan dalam meringkas dan menganalisa data
+                                    karyawan dengan mudah, akurat, dan efisien. Memungkinkan pengguna untuk membuat
+                                    berbagai jenis laporan rekap data dengan mudah serta meminimalisisr kesalahan
+                                    dalam
+                                    pembuatan</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-outline-primary"
+                                    onclick="window.location='/login'">Halaman Login<i
+                                        class="fas fa-angle-double-right ml-2"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             </div>
         </section><!-- End Our Services Section -->
 

@@ -6,7 +6,7 @@
 
     <title>Dashboard</title>
 
-    <!-- Trigger pop up -->
+    {{-- <!-- Trigger pop up -->
     @if (session('just_logged_in'))
         {!! session('modal_content') !!}
         <script>
@@ -24,31 +24,32 @@
                 });
             });
         </script>
-    @endif
+    @endif --}}
 
     <!-- Modal -->
     <div class="modal fade" id="pengumumanModal" data-backdrop="static" tabindex="-1" role="dialog"
         aria-labelledby="pengumumanTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             @foreach ($pengumuman as $item)
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="pengumumanTitle">{{ $item->judul }}</h5>
+                <div class="modal1-content">
+                    <div class="modal1-header">
                         <button type="button" class="close" id="close-button" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
+                        <h4 class="modal1-title" id="pengumumanTitle">{{ $item->judul }}</h4>
+                        <p class="modal1-date">{{ \Carbon\Carbon::parse($item->tgl_publikasi)->isoFormat('D MMMM YYYY') }}
+                        </p>
                     </div>
-                    <div class="modal-body">
+                    <div class="modal1-body">
                         @if (auth()->user()->profile_pict)
-                            <img src="{{ asset('storage/gambar-pengumuman/' . $item->gambar) }}" alt="Lights"
-                                style="width:100%;">
+                            <img src="{{ asset('storage/gambar-pengumuman/' . $item->gambar) }}" alt="Lights">
                         @else
                             <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png"
-                                alt="Lights" style="width:100%;">
+                                alt="Lights">
                         @endif
                         <p>{{ $item->deskripsi }}</p>
                     </div>
-                    <div class="form-group row">
+                    {{-- <div class="form-group row">
                         <div class="offset-sm-4 col-sm-10">
                             <div class="form-check text-center">
                                 <input type="checkbox" class="form-check-input" id="check">
@@ -56,9 +57,9 @@
                                     lagi</label>
                             </div>
                         </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" id="close-modal-button">Tutup</button>
+                    </div> --}}
+                    <div class="modal1-footer">
+                        <button type="button" class="btn btn-primary" id="close-modal-button">OK</button>
                     </div>
                 </div>
             @endforeach
@@ -620,10 +621,19 @@
             </div>
         </section>
     @endif
-
 @endsection
 
-{{-- GET LOCATION USING API --}}
+<!-- JQuery -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+</script>
+
+<!-- Dropdown -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+</script>
+
+<!-- GET LOCATION USING API -->
 <script>
     function getLocation() {
         if (navigator.geolocation) {
@@ -677,13 +687,4 @@
     document.addEventListener('DOMContentLoaded', function() {
         getLocation();
     });
-</script>
-
-<!-- JQuery -->
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
-</script>
-<!-- Dropdown -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
-    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
 </script>

@@ -135,23 +135,58 @@
                                                 action="{{ url('/profile/update-profile-picture') }}"
                                                 enctype="multipart/form-data">
                                                 @csrf
-                                                <div class="col-12 col-md-8">
+                                                <div class="col-12 col-md-10">
                                                     <div class="form-group">
                                                         <label>Pilih File Foto</label>
                                                         <input class="form-control" type="file" id="profile_pict"
                                                             name="profile_pict" accept="image/*">
                                                     </div>
                                                     <div class="form-group mb-2">
-                                                        <button type="submit" class="btn btn-info2"><i
+                                                        <button type="submit" class="btn btn-sm btn-info2"><i
                                                                 class="fas fa-sync-alt mr-2"></i>Update</button>
-                                                        <button type="reset" class="btn btn-secondary"><i
-                                                                class="fas fa-sync-alt mr-2"></i>Reset</button>
+                                                        <button type="reset" class="btn btn-sm btn-secondary"><i
+                                                                class="fas fa-redo mr-2"></i>Reset</button>
 
                                                         <form action="" method="delete" class="d-inline">
                                                             @csrf
-                                                            <button class="btn btn-danger"><i
-                                                                    class="fas fa-trash mr-2"></i>Hapus
-                                                            </button>
+                                                            <button type="button" class="btn btn-sm btn-danger"
+                                                                data-bs-toggle="modal" data-bs-target="#hapusModal"><i
+                                                                    class="fas fa-trash mr-2"></i>Hapus</button>
+
+                                                            <!-- Modal -->
+                                                            <div class="modal fade" id="hapusModal" tabindex="-1"
+                                                                aria-labelledby="hapusModalLabel" aria-hidden="true">
+                                                                <div class="modal-dialog">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-header">
+                                                                            <h4 class="modal-title" id="hapusModalLabel">
+                                                                                Konfirmasi</h4>
+                                                                            <button type="button" class="close"
+                                                                                data-bs-dismiss="modal"
+                                                                                aria-label="Close">
+                                                                                <span>&times;</span>
+                                                                            </button>
+                                                                        </div>
+                                                                        <form method="POST" action="">
+                                                                            @csrf
+                                                                            @method('DELETE')
+                                                                            <div class="modal-body">
+                                                                                Foto yang dihapus <b>tidak dapat</b>
+                                                                                dipulihkan.
+                                                                                <br>Apakah Anda yakin ingin menghapus data
+                                                                                ini?
+                                                                            </div>
+                                                                            <div class="modal-footer">
+                                                                                <button type="button"
+                                                                                    class="btn btn-secondary"
+                                                                                    data-bs-dismiss="modal">Tutup</button>
+                                                                                <button type="submit"
+                                                                                    class="btn btn-danger">Yakin</button>
+                                                                            </div>
+                                                                        </form>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
                                                         </form>
                                                     </div>
                                                 </div>

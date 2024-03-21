@@ -4,14 +4,19 @@
     <title>Data Pengumuman</title>
 
     @if ($errors->any())
-        <div class="alert alert-danger">
+        <div class="alert alert-danger fade show alert-dismissible" role="alert">
+            <strong><i class="fa fa-warning" aria-hidden="true"></i></strong>
             <ul>
                 @foreach ($errors->all() as $error)
                     <li>{{ $error }}</li>
                 @endforeach
             </ul>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
         </div>
     @endif
+
 
     <div class="card card-successv2">
         <div class="card-header">
@@ -35,8 +40,7 @@
                 <div class="form-group row col-12 col-md-10">
                     <label for="gambar" class="col-sm-3 col-form-label">Gambar</label>
                     <div class="col-sm-9">
-                        <input type="file" class="form-control" id="fileInput" name="gambar" accept="image/*"
-                            >
+                        <input type="file" class="form-control" id="fileInput" name="gambar" accept="image/*">
                     </div>
                 </div>
                 <div class="form-group row col-12 col-md-10">

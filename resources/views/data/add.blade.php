@@ -4,12 +4,16 @@
     <title>Data Eviden</title>
 
     @if ($errors->any())
-        <div class="alert alert-danger">
+        <div class="alert alert-danger fade show alert-dismissible" role="alert">
+            <strong><i class="fa fa-warning" aria-hidden="true"></i></strong>
             <ul>
                 @foreach ($errors->all() as $error)
                     <li>{{ $error }}</li>
                 @endforeach
             </ul>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
         </div>
     @endif
 
@@ -17,15 +21,16 @@
         <div class="card-header">
             <i class="fas fa-plus mr-2"></i>Tambah Data Eviden
         </div>
-        <form class="form-horizontal" method="post" action="{{ route('data.store') }}" enctype="multipart/form-data">
+        <form class="form-horizontal" method="post" action="{{ route('data.store') }}"
+            enctype="multipart/form-data">
             @csrf
             <div class="card-body">
                 <div class="form-group row col-12 col-md-10">
                     <label for="id_user" class="col-sm-2 col-form-label required">Nama</label>
                     <div class="col-sm-10">
                         {{-- input untuk tampilan --}}
-                        <input type="text" class="form-control" value="{{ auth()->user()->nama_user }}"
-                            required readonly>
+                        <input type="text" class="form-control" value="{{ auth()->user()->nama_user }}" required
+                            readonly>
 
                         {{-- input untuk menyimpan nilai --}}
                         <input type="hidden" name="id_user" value="{{ auth()->user()->id_user }}">
@@ -48,7 +53,8 @@
                     <label for="tgl_waktu" class="col-sm-2 col-form-label required">Tanggal Waktu</label>
                     <div class="col-sm-10">
                         {{-- input untuk tampilan --}}
-                        <input type="text" class="form-control" name="tgl_waktu" value="{{ now()->format('d-m-Y H:i:s') }}" disabled>
+                        <input type="text" class="form-control" name="tgl_waktu"
+                            value="{{ now()->format('d-m-Y H:i:s') }}" disabled>
 
                         {{-- input untuk menyimpan nilai --}}
                         <input type="hidden" name="tgl_waktu" value="{{ now()->format('Y-m-d H:i:s') }}" required>
@@ -67,7 +73,8 @@
                     <label for="lokasi" class="col-sm-2 col-form-label required">Lokasi</label>
                     <div class="col-sm-10">
                         {{-- input untuk tampilan --}}
-                        <input type="text" class="form-control" name="lokasi" id="lokasi" value="" required readonly>
+                        <input type="text" class="form-control" name="lokasi" id="lokasi" value="" required
+                            readonly>
                         <small class="form-text text-muted">Harap tunggu hingga lokasi muncul!</small>
 
                         {{-- input untuk menyimpan nilai --}}

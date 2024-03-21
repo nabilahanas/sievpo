@@ -137,23 +137,35 @@
     </div>
     <!-- ./wrapper -->
 
-    <!-- Pop up -->
+    <!-- Modal Pengumuman -->
     <script>
-        // Periksa apakah modal telah ditutup sebelumnya
+        // Show modal when the page is fully loaded
         window.addEventListener('load', function() {
-            if (!sessionStorage.getItem('modalClosed')) {
-                // Jika belum ditutup, tampilkan modal
-                $('#pengumumanModal').modal('show');
-            }
+            $('#pengumumanModal0').modal('show');
         });
 
-        // Tangani penutupan modal
-        $('#close-button, #close-modal-button').on('click', function() {
-            // Tandai bahwa modal telah ditutup
-            sessionStorage.setItem('modalClosed', true);
+        // Handle close button click
+        $(document).on('click', '.close-modal', function() {
+            var nextModalId = $(this).data('next-modal');
+            $(this).closest('.modal').modal('hide');
+            $(nextModalId).modal('show');
         });
+
+        // Handle close button in modal header
+        $(document).on('click', '.close', function() {
+            var nextModalId = $(this).data('next-modal');
+            $(this).closest('.modal').modal('hide');
+            $(nextModalId).modal('show');
+        });
+
+        // Prevent modal from closing when clicking outside the modal
+        // $(document).ready(function() {
+        //     $('.modal').on('hide.bs.modal', function(e) {
+        //         e.preventDefault(); // Menghentikan penutupan modal
+        //     });
+        // });
     </script>
-
+    
     <!-- Dropdown -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
@@ -183,8 +195,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
     <!-- Date Range Picker JavaScript -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-    <!-- Webcam -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/webcamjs/1.0.26/webcam.min.js"></script>
+    {{-- <!-- Webcam -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/webcamjs/1.0.26/webcam.min.js"></script> --}}
 
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 

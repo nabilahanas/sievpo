@@ -7,7 +7,7 @@
 
     <div class="container-fluid">
         <div class="alert alert-success" role="alert">
-            Selamat datang, {{ auth()->user()->nama_user }}!
+            Selamat datang, <b>{{ auth()->user()->nama_user }}</b>!
         </div>
 
         <div class="card">

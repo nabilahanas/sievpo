@@ -6,11 +6,13 @@
     <title>Data Shift</title>
 
     @if ($message = Session::get('success'))
-        <div class="alert alert-success mt-3" role="alert">
-            {{ $message }}
+        <div class="alert alert-success fade show alert-dismissible" role="alert">
+            <strong><i class="fa fa-check-circle mr-2" aria-hidden="true"></i></strong> {{ $message }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
         </div>
     @endif
-
     <div class="card">
         <div class="card-body">
             <a href="{{ route('shift.add') }}" type="button" class="btn btn-primary"><i class="fas fa-plus mr-2"></i>Tambah</a>

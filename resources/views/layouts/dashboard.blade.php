@@ -27,44 +27,37 @@
     @endif --}}
 
     <!-- Modal -->
-    <div class="modal fade" id="pengumumanModal" data-backdrop="static" tabindex="-1" role="dialog"
-        aria-labelledby="pengumumanTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            @foreach ($pengumuman as $item)
-                <div class="modal1-content">
-                    <div class="modal1-header">
-                        <button type="button" class="close" id="close-button" aria-label="Close">
+    @foreach ($pengumuman as $index => $item)
+        <div class="modal fade" id="pengumumanModal{{ $index }}" data-backdrop="static" data-keyboard="false"
+            tabindex="-1" role="dialog" aria-labelledby="pengumumanTitle{{ $index }}" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="pengumumanTitle{{ $index }}">{{ $item->judul }}</h4>
+                        <button type="button" class="close" aria-label="Close" data-dismiss="modal"
+                            data-next-modal="#pengumumanModal{{ $index + 1 }}">
                             <span aria-hidden="true">&times;</span>
                         </button>
-                        <h4 class="modal1-title" id="pengumumanTitle">{{ $item->judul }}</h4>
-                        <p class="modal1-date">{{ \Carbon\Carbon::parse($item->tgl_publikasi)->isoFormat('D MMMM YYYY') }}
-                        </p>
                     </div>
-                    <div class="modal1-body">
+                    <div class="modal-body">
+                        <p class="modal-date col-md-4 ml-auto">
+                            {{ \Carbon\Carbon::parse($item->tgl_publikasi)->isoFormat('D MMMM YYYY') }}</p>
                         @if (auth()->user()->profile_pict)
-                            <img src="{{ asset('storage/gambar-pengumuman/' . $item->gambar) }}" alt="Lights">
+                            <img src="{{ asset('storage/gambar-pengumuman/' . $item->gambar) }}" alt="Pengumuman">
                         @else
                             <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png"
-                                alt="Lights">
+                                alt="Pengumuman">
                         @endif
                         <p>{{ $item->deskripsi }}</p>
                     </div>
-                    {{-- <div class="form-group row">
-                        <div class="offset-sm-4 col-sm-10">
-                            <div class="form-check text-center">
-                                <input type="checkbox" class="form-check-input" id="check">
-                                <label class="form-check-label" for="check" style="font-size: 15">Jangan tampilkan
-                                    lagi</label>
-                            </div>
-                        </div>
-                    </div> --}}
-                    <div class="modal1-footer">
-                        <button type="button" class="btn btn-primary" id="close-modal-button">OK</button>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary close-modal" data-dismiss="modal"
+                            data-next-modal="#pengumumanModal{{ $index + 1 }}">OK</button>
                     </div>
                 </div>
-            @endforeach
+            </div>
         </div>
-    </div>
+    @endforeach
 
     <!-- ADMIN -->
     @if ((auth()->user() && auth()->user()->role->nama_role == 'Admin') || auth()->user()->role->nama_role == 'Mahasiswa')

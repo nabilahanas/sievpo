@@ -6,10 +6,14 @@
     <title>Data Jabatan</title>
 
     @if ($message = Session::get('success'))
-        <div class="alert alert-success mt-3" role="alert">
-            {{ $message }}
+        <div class="alert alert-success fade show alert-dismissible" role="alert">
+            <strong><i class="fa fa-check-circle mr-2" aria-hidden="true"></i></strong> {{ $message }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
         </div>
     @endif
+
 
     <div class="card">
         <div class="card-body">
@@ -48,16 +52,18 @@
                                     <a href="{{ route('jabatan.edit', $jabatan->id_jabatan) }}" type="button"
                                         class="btn btn-sm btn-warning"><i class="fas fa-pen mr-2"></i>Ubah</a>
 
-                                        <form action="{{ $jabatan->trashed() ? route('jabatan.restore', $jabatan->id_jabatan) : route('jabatan.delete', $jabatan->id_jabatan) }}"
-                                            method="post" class="d-inline">
-                                          @csrf
-                                          @method($jabatan->trashed() ? 'POST' : 'DELETE')
-                                          <button type="submit"
-                                                  class="btn btn-sm {{ $jabatan->trashed() ? 'btn-success' : 'btn-danger' }}">
-                                              <i class="{{ $jabatan->trashed() ? 'fas fa-check-circle' : 'fas fa-times-circle' }} mr-1"></i>
-                                              {{ $jabatan->trashed() ? 'Aktifkan' : 'Nonaktifkan' }}
-                                          </button>
-                                      </form>
+                                    <form
+                                        action="{{ $jabatan->trashed() ? route('jabatan.restore', $jabatan->id_jabatan) : route('jabatan.delete', $jabatan->id_jabatan) }}"
+                                        method="post" class="d-inline">
+                                        @csrf
+                                        @method($jabatan->trashed() ? 'POST' : 'DELETE')
+                                        <button type="submit"
+                                            class="btn btn-sm {{ $jabatan->trashed() ? 'btn-success' : 'btn-danger' }}">
+                                            <i
+                                                class="{{ $jabatan->trashed() ? 'fas fa-check-circle' : 'fas fa-times-circle' }} mr-1"></i>
+                                            {{ $jabatan->trashed() ? 'Aktifkan' : 'Nonaktifkan' }}
+                                        </button>
+                                    </form>
 
                                     <!-- Button trigger modal -->
                                     {{-- <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal"

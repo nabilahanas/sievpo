@@ -6,10 +6,13 @@
 
 <a href="{{ route('role.add') }}" type="button" class="btn btn-success rounded-3">Tambah Data</a>
 
-@if($message = Session::get('success'))
-    <div class="alert alert-success mt-3" role="alert">
-        {{ $message }}
-    </div>
+@if ($message = Session::get('success'))
+<div class="alert alert-success fade show alert-dismissible" role="alert">
+    <strong><i class="fa fa-check-circle mr-2" aria-hidden="true"></i></strong> {{ $message }}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
 @endif
 
 <table class="table table-hover mt-2">

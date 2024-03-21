@@ -4,14 +4,19 @@
     <title>Data Shift</title>
 
     @if ($errors->any())
-        <div class="alert alert-danger">
+        <div class="alert alert-danger fade show alert-dismissible" role="alert">
+            <strong><i class="fa fa-warning" aria-hidden="true"></i></strong>
             <ul>
                 @foreach ($errors->all() as $error)
                     <li>{{ $error }}</li>
                 @endforeach
             </ul>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
         </div>
     @endif
+
 
     <div class="card card-successv2">
         <div class="card-header">
@@ -44,7 +49,8 @@
                 <div class="form-group row col-12 col-md-10">
                     <label for="poin" class="col-sm-2 col-form-label">Poin</label>
                     <div class="col-sm-10">
-                        <input type="number" class="form-control" name="poin" value="1" min="1" max="10" required>
+                        <input type="number" class="form-control" name="poin" value="1" min="1"
+                            max="10" required>
                     </div>
                 </div>
                 <div class="text-center">

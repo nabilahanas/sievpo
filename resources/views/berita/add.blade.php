@@ -4,14 +4,19 @@
     <title>Data Berita</title>
 
     @if ($errors->any())
-        <div class="alert alert-danger">
+        <div class="alert alert-danger fade show alert-dismissible" role="alert">
+            <strong><i class="fa fa-warning" aria-hidden="true"></i></strong>
             <ul>
                 @foreach ($errors->all() as $error)
                     <li>{{ $error }}</li>
                 @endforeach
             </ul>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
         </div>
     @endif
+
 
     <div class="card card-successv2">
         <div class="card-header">
@@ -29,21 +34,21 @@
                 <div class="form-group row col-12 col-md-10">
                     <label for="judul" class="col-sm-3 col-form-label required">Judul Berita</label>
                     <div class="col-sm-9">
-                        <input type="text" class="form-control" name="judul" id="judul" placeholder="Masukkan Judul Berita"
-                            required>
+                        <input type="text" class="form-control" name="judul" id="judul"
+                            placeholder="Masukkan Judul Berita" required>
                     </div>
                 </div>
                 <div class="form-group row col-12 col-md-10">
                     <label for="gambar" class="col-sm-3 col-form-label">Gambar</label>
                     <div class="col-sm-9">
-                        <input type="file" class="form-control" id="fileInput" name="gambar" accept="image/*"
-                            >
+                        <input type="file" class="form-control" id="fileInput" name="gambar" accept="image/*">
                     </div>
                 </div>
                 <div class="form-group row col-12 col-md-10">
                     <label for="link" class="col-sm-3 col-form-label required">Link Berita</label>
                     <div class="col-sm-9">
-                        <input type="url" class="form-control" name="deskripsi" placeholder="Masukkan Link Berita" required></input>
+                        <input type="url" class="form-control" name="deskripsi" placeholder="Masukkan Link Berita"
+                            required></input>
                     </div>
                 </div>
 

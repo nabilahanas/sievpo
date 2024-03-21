@@ -16,105 +16,115 @@
                             <th rowspan="2">Nama</th>
                             <th rowspan="2">Wilayah</th>
                             <th rowspan="2">Jabatan</th>
-                            <th colspan="9" style="text-align: center">Tanaman / Pemeliharaan /
-                                Persemaian</th>
-                            <th colspan="9" style="text-align: center">Keamanan / Patroli</th>
-                            <th colspan="9" style="text-align: center">Sosialisasi / Rapat / Apel</th>
-                            <th colspan="9" style="text-align: center">Produksi / Agroforestry / Wisata</th>
-                            <th rowspan="2">Total</th>
+
+                            @foreach ($bidang as $bidang)
+                                <th colspan="9" style="text-align: center">{{ $bidang->nama_bidang }}</th>
+                            @endforeach
                         </tr>
+
                         <tr>
-                            <th>1</th>
-                            <th>2</th>
-                            <th>3</th>
-                            <th>4</th>
-                            <th>5</th>
-                            <th>6</th>
-                            <th>7</th>
-                            <th>8</th>
+                            @foreach ($shift as $s)
+                                <th>{{ $s->nama_shift }}</th>
+                            @endforeach
                             <th>Jml</th>
 
-                            <th>1</th>
-                            <th>2</th>
-                            <th>3</th>
-                            <th>4</th>
-                            <th>5</th>
-                            <th>6</th>
-                            <th>7</th>
-                            <th>8</th>
+                            @foreach ($shift as $s)
+                                <th>{{ $s->nama_shift }}</th>
+                            @endforeach
                             <th>Jml</th>
 
-                            <th>1</th>
-                            <th>2</th>
-                            <th>3</th>
-                            <th>4</th>
-                            <th>5</th>
-                            <th>6</th>
-                            <th>7</th>
-                            <th>8</th>
+                            @foreach ($shift as $s)
+                                <th>{{ $s->nama_shift }}</th>
+                            @endforeach
                             <th>Jml</th>
 
-                            <th>1</th>
-                            <th>2</th>
-                            <th>3</th>
-                            <th>4</th>
-                            <th>5</th>
-                            <th>6</th>
-                            <th>7</th>
-                            <th>8</th>
+                            @foreach ($shift as $s)
+                                <th>{{ $s->nama_shift }}</th>
+                            @endforeach
                             <th>Jml</th>
                         </tr>
                     </thead>
 
+
                     <tbody>
-                        <tr>
-                            <th>.</th>
+                        @foreach ($poin as $item)
+                            <tr>
+                                {{-- <th>.</th> --}}
+                                <td>{{ $loop->iteration }}.</td>
+                                <td>{{ $item->data->users->nama_user }}</td>
+                                <td></td>
+                                <td>{{ $item->data->users->jabatan->nama_jabatan}}</td>
+                                {{-- <td></td> --}}
 
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                                <td>{{ $item->poin_1_11 }}</td>
+                                <td>{{ $item->poin_1_12 }}</td>
+                                <td>{{ $item->poin_1_13 }}</td>
+                                <td>{{ $item->poin_1_14 }}</td>
+                                <td>{{ $item->poin_1_15 }}</td>
+                                <td>{{ $item->poin_1_16 }}</td>
+                                <td>{{ $item->poin_1_17 }}</td>
+                                <td>{{ $item->poin_1_18 }}</td>
+                                <td>
+                                    <?php
+                                    // menjumlahkan poin
+                                    $totalbidang1 = $item->poin_1_11 + $item->poin_1_12 + $item->poin_1_13 + $item->poin_1_14 +
+                                                 $item->poin_1_15 + $item->poin_1_16 + $item->poin_1_17 + $item->poin_1_18;
+                                    ?>
+                                    {{ $totalbidang1 }}
+                                </td>
 
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                                <td>{{ $item->poin_2_11 }}</td>
+                                <td>{{ $item->poin_2_12 }}</td>
+                                <td>{{ $item->poin_2_13 }}</td>
+                                <td>{{ $item->poin_2_14 }}</td>
+                                <td>{{ $item->poin_2_15 }}</td>
+                                <td>{{ $item->poin_2_16 }}</td>
+                                <td>{{ $item->poin_2_17 }}</td>
+                                <td>{{ $item->poin_2_18 }}</td>
+                                <td>
+                                    <?php
+                                    // menjumlahkan poin
+                                    $totalbidang2 = $item->poin_2_11 + $item->poin_2_12 + $item->poin_2_13 + $item->poin_2_14 +
+                                                 $item->poin_2_15 + $item->poin_2_16 + $item->poin_2_17 + $item->poin_2_18;
+                                    ?>
+                                    {{ $totalbidang2 }}
+                                </td>
 
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                                <td>{{ $item->poin_3_11 }}</td>
+                                <td>{{ $item->poin_3_12 }}</td>
+                                <td>{{ $item->poin_3_13 }}</td>
+                                <td>{{ $item->poin_3_14 }}</td>
+                                <td>{{ $item->poin_3_15 }}</td>
+                                <td>{{ $item->poin_3_16 }}</td>
+                                <td>{{ $item->poin_3_17 }}</td>
+                                <td>{{ $item->poin_3_18 }}</td>
+                                <td>
+                                    <?php
+                                    // menjumlahkan poin
+                                    $totalbidang3 = $item->poin_3_11 + $item->poin_3_12 + $item->poin_3_13 + $item->poin_3_14 +
+                                                 $item->poin_3_15 + $item->poin_3_16 + $item->poin_3_17 + $item->poin_3_18;
+                                    ?>
+                                    {{ $totalbidang3 }}
+                                </td>
 
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
+                                <td>{{ $item->poin_4_11 }}</td>
+                                <td>{{ $item->poin_4_12 }}</td>
+                                <td>{{ $item->poin_4_13 }}</td>
+                                <td>{{ $item->poin_4_14 }}</td>
+                                <td>{{ $item->poin_4_15 }}</td>
+                                <td>{{ $item->poin_4_16 }}</td>
+                                <td>{{ $item->poin_4_17 }}</td>
+                                <td>{{ $item->poin_4_18 }}</td>
+                                <td>
+                                    <?php
+                                    // menjumlahkan poin
+                                    $totalbidang4 = $item->poin_4_11 + $item->poin_4_12 + $item->poin_4_13 + $item->poin_4_14 +
+                                                 $item->poin_4_15 + $item->poin_4_16 + $item->poin_4_17 + $item->poin_4_18;
+                                    ?>
+                                    {{ $totalbidang4 }}
+                                </td>
+                            </tr>
+                            @endforeach
                     </tbody>
                 </table>
             </div>

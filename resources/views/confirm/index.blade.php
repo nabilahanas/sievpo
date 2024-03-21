@@ -132,7 +132,7 @@
                                                         <span>&times;</span>
                                                     </button>
                                                 </div>
-                                                <form method="POST" action="{{ route('data.delete', $item->id_data) }}">
+                                                <form method="POST" action="{{ route('confirm.delete', $item->id_data) }}">
                                                     @csrf
                                                     @method('DELETE')
                                                     <div class="modal-body">

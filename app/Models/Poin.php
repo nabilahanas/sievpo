@@ -13,10 +13,16 @@ class Poin extends Model
     protected $primaryKey = 'id_poin';
     protected $fillable = [
         'poin_1_11', 'poin_1_12', 'poin_1_13', 'poin_1_14', 'poin_1_15', 'poin_1_16', 'poin_1_17', 'poin_1_18',
-        'poin_1_11', 'poin_1_12', 'poin_2_13', 'poin_2_14', 'poin_2_15', 'poin_2_16', 'poin_2_17', 'poin_2_18',
-        'poin_1_11', 'poin_1_12', 'poin_3_13', 'poin_3_14', 'poin_3_15', 'poin_3_16', 'poin_3_17', 'poin_3_18',
-        'poin_1_11', 'poin_1_12', 'poin_4_13', 'poin_4_14', 'poin_4_15', 'poin_4_16', 'poin_4_17', 'poin_4_18',
+        'poin_2_11', 'poin_2_12', 'poin_2_13', 'poin_2_14', 'poin_2_15', 'poin_2_16', 'poin_2_17', 'poin_2_18',
+        'poin_3_11', 'poin_3_12', 'poin_3_13', 'poin_3_14', 'poin_3_15', 'poin_3_16', 'poin_3_17', 'poin_3_18',
+        'poin_4_11', 'poin_4_12', 'poin_4_13', 'poin_4_14', 'poin_4_15', 'poin_4_16', 'poin_4_17', 'poin_4_18',
+        'id_data',
     ];
+
+    public function data()
+    {
+        return $this->belongsTo(Data::class, 'id_data');
+    }
 
     public $timestamp = true; 
 }

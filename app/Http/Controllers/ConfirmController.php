@@ -7,6 +7,7 @@ use App\Models\Bidang;
 use App\Models\Shift;
 use App\Models\Data;
 use Illuminate\Http\Request;
+use App\Http\Controllers\HarianController;
 
 class ConfirmController extends Controller
 {
@@ -18,6 +19,13 @@ class ConfirmController extends Controller
         $data = Data::all();
 
         return view('confirm.index', compact('bidang', 'shift', 'data'), ['key' => 'confirm']);
+    }
+
+    protected $harianController;
+
+    public function __construct(HarianController $harianController)
+    {
+        $this->harianController = $harianController;
     }
 
     public function approval($id, $status)
@@ -41,6 +49,8 @@ class ConfirmController extends Controller
             // Jika ditolak, mengupdate is_approved menjadi 'rejected' dan menetapkan poin menjadi 0
             $data->update(['is_approved' => 'rejected', 'poin' => 0]);
         }
+
+        $this->harianController->updatePoinFromData();
 
         return redirect()->route('confirm.index')->with('success', 'Laporan berhasil dinilai');
     }

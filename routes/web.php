@@ -164,13 +164,21 @@ Route::middleware('check.role:Admin,Mahasiswa')->group(function () {
         Route::post('restore/{id}', [KaryawanDBController::class, 'restore'])->name('karyawan.restore');
         Route::delete('delete/{id}', [KaryawanDBController::class, 'delete'])->name('karyawan.delete');
     });
+
+    Route::prefix("harian")->group(function () {
+        Route::get('/', [HarianController::class, 'index'])->name('harian.index');
+        Route::get('updatePoinFromData', [HarianController::class, 'updatePoinFromData'])->name('harian.updatePoinFromData');
+    });
+
+    Route::prefix("confirm")->group(function () {
+        Route::get('/', [ConfirmController::class, 'index'])->name('confirm.index');
+        Route::delete('delete/{id}', [ConfirmController::class, 'delete'])->name('confirm.delete');
+    });
 });
 
 Route::middleware('check.role:Admin,Pimpinan,Mahasiswa')->group(function () {
-    Route::get('/harian', [HarianController::class, 'index'])->name('harian');
     Route::get('/bulanan', [BulananController::class, 'index'])->name('bulanan');
     Route::get('/total', [TotalController::class, 'index'])->name('total');
-    Route::get('/confirm', [ConfirmController::class, 'index'])->name('confirm.index');
     Route::post('proses-approval/{id}/{status}', [ConfirmController::class, 'approval'])->name('approval.process');
 
 });

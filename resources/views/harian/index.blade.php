@@ -51,9 +51,9 @@
                             <tr>
                                 {{-- <th>.</th> --}}
                                 <td>{{ $loop->iteration }}.</td>
-                                <td>{{ $item->data->users->nama_user }}</td>
+                                <td>{{ $item->data->user->nama_user }}</td>
                                 <td></td>
-                                <td>{{ $item->data->users->jabatan->nama_jabatan}}</td>
+                                <td>{{ $item->data->user->jabatan->nama_jabatan}}</td>
                                 {{-- <td></td> --}}
 
                                 <td>{{ $item->poin_1_11 }}</td>

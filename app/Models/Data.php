@@ -19,7 +19,7 @@ class Data extends Model
 
     public $timestamps = true;
 
-    public function users()
+    public function user()
     {
         return $this->belongsTo(User::class, 'id_user');
     }

@@ -36,7 +36,7 @@
                         @foreach ($data as $item)
                             <tr>
                                 <td>{{ $loop->iteration }}.</td>
-                                <td>{{ $item->users->nama_user }}</td>
+                                <td>{{ $item->user->nama_user }}</td>
                                 <td>{{ $item->bidang->nama_bidang }}</td>
                                 <td>{{ $item->shift->nama_shift }}</td>
                                 <td>{{ $item->lokasi }}</td>

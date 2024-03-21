@@ -27,43 +27,15 @@
                         </tr>
                         <tr>
                             <th style="text-align: center">Tanggal Laporan</th>
-
-                            {{-- @foreach ($bidang as $bidang)
-                                <th colspan="9" style="text-align: center">{{ $bidang->nama_bidang }}</th>
-                            @endforeach --}}
                             <th style="text-align: center">Bidang</th>
                             <th style="text-align: center">Shift</th>
-                            {{-- <th rowspan="2" style="text-align: center">Total Poin</th> --}}
-                            {{-- <th rowspan="2" style="text-align: center">Shift</th> --}}
                             <th style="text-align: center">Lokasi</th>
                             <th style="text-align: center">Foto</th>
                             <th style="text-align: center">Status</th>
                             <th style="text-align: center">Poin</th>
                             <th style="text-align: center">Tanggal Konfirmasi</th>
-                            {{-- <th rowspan="2" style="text-align: center">Oleh</th> --}}
                             <th style="text-align: center">Aksi</th>
                         </tr>
-                        {{-- <tr>
-                            @foreach ($shift as $s)
-                                <th>{{ $s->nama_shift }}</th>
-                            @endforeach
-                            <th>Jml</th>
-
-                            @foreach ($shift as $s)
-                                <th>{{ $s->nama_shift }}</th>
-                            @endforeach
-                            <th>Jml</th>
-
-                            @foreach ($shift as $s)
-                                <th>{{ $s->nama_shift }}</th>
-                            @endforeach
-                            <th>Jml</th>
-
-                            @foreach ($shift as $s)
-                                <th>{{ $s->nama_shift }}</th>
-                            @endforeach
-                            <th>Jml</th>
-                        </tr> --}}
 
                     </thead>
                     <tbody>
@@ -74,70 +46,7 @@
                                 <td>{{ $item->bidang->nama_bidang}}</td>
 
                                 <td>{{ $item->shift->nama_shift }}</td>
-
-                                
-
-                                {{-- <td>{{$item->poin_1_11}}</td>
-                                <td>{{$item->poin_1_12}}</td>
-                                <td>{{$item->poin_1_13}}</td>
-                                <td>{{$item->poin_1_14}}</td>
-                                <td>{{$item->poin_1_15}}</td>
-                                <td>{{$item->poin_1_16}}</td>
-                                <td>{{$item->poin_1_17}}</td>
-                                <td>{{$item->poin_1_18}}</td>
-
-                                <td></td>
-
-                                <td>{{$item->poin_2_11}}</td>
-                                <td>{{$item->poin_2_12}}</td>
-                                <td>{{$item->poin_2_13}}</td>
-                                <td>{{$item->poin_2_14}}</td>
-                                <td>{{$item->poin_2_15}}</td>
-                                <td>{{$item->poin_2_16}}</td>
-                                <td>{{$item->poin_2_17}}</td>
-                                <td>{{$item->poin_2_18}}</td>
-
-                                <td></td>
-
-                                <td>{{$item->poin_3_11}}</td>
-                                <td>{{$item->poin_3_12}}</td>
-                                <td>{{$item->poin_3_13}}</td>
-                                <td>{{$item->poin_3_14}}</td>
-                                <td>{{$item->poin_3_15}}</td>
-                                <td>{{$item->poin_3_16}}</td>
-                                <td>{{$item->poin_3_17}}</td>
-                                <td>{{$item->poin_3_18}}</td>
-
-                                <td></td>
-
-                                <td>{{$item->poin_4_11}}</td>
-                                <td>{{$item->poin_4_12}}</td>
-                                <td>{{$item->poin_4_13}}</td>
-                                <td>{{$item->poin_4_14}}</td>
-                                <td>{{$item->poin_4_15}}</td>
-                                <td>{{$item->poin_4_16}}</td>
-                                <td>{{$item->poin_4_17}}</td>
-                                <td>{{$item->poin_4_18}}</td> --}}
-
-                                {{-- <td></td> --}}
-
-                                {{-- <td></td> --}}
-                                {{-- <td>{{ $item->shift->nama_shift }}</td> --}}
                                 <td>{{ $item->lokasi }}</td>
-                                {{-- <td>
-                                    <a href="javascript:void(0);" onclick="showFoto('{{ asset('storage/foto-eviden/' . $item->foto) }}')">
-                                        Lihat Foto
-                                    </a>
-                                    <img id="fotoPreview" src="" alt="Foto Eviden" width="150" style="display:none;">
-                                </td>
-                                
-                                <script>
-                                    function showFoto(src) {
-                                        var fotoPreview = document.getElementById('fotoPreview');
-                                        fotoPreview.src = src;
-                                        fotoPreview.style.display = 'block';
-                                    }
-                                </script>                                 --}}
 
                                 <td>
                                     <a href="" data-bs-toggle="modal" data-bs-target="#fotoModal{{$item->id_data}}">

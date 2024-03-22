@@ -164,18 +164,22 @@
                     </div>
 
                 </div>
+
                 <!-- Grafik Total -->
                 <div class="row">
                     <section class="col-lg-12">
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">
-                                    Total Poin Seluruh Karyawan Per Bulan
-                                </h3>
-                                <div></div>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <h3 class="card-title">
+                                        Total Poin Seluruh Karyawan Per Bulan
+                                    </h3>
+                                    <button class="btn btn-sm btn-outline-primary"><i class="fas fa-download"></i>
+                                        Download</button>
+                                </div>
                             </div>
                             <div class="card-body">
-                                <canvas id="pieChart" width="100" height="50"></canvas>
+                                <canvas id="adminT" height="50"></canvas>
                             </div>
                         </div>
                     </section>
@@ -186,13 +190,16 @@
                     <section class="col-lg-12">
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">
-                                    Perbandingan Rerata Poin Seluruh Karyawan, Bidang, BKPH, KRPH, dan Asper/KBKPH
-                                </h3>
-                                <div></div>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <h3 class="card-title">
+                                        Perbandingan Rerata Poin Seluruh Karyawan, Bidang, BKPH, KRPH, dan Asper/KBKPH
+                                    </h3>
+                                    <button class="btn btn-sm btn-outline-primary"><i class="fas fa-download"></i>
+                                        Download</button>
+                                </div>
                             </div>
                             <div class="card-body">
-                                <canvas id="barChart" width="50"></canvas>
+                                <canvas id="adminP" height="60"></canvas>
                             </div>
                         </div>
                     </section>
@@ -300,18 +307,22 @@
                         </div>
                     </div>
                 </div>
+
                 <!-- Grafik Total -->
                 <div class="row">
                     <section class="col-lg-12">
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">
-                                    Total Poin Seluruh Karyawan Per Bulan
-                                </h3>
-                                <div></div>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <h3 class="card-title">
+                                        Total Poin Seluruh Karyawan Per Bulan
+                                    </h3>
+                                    <button class="btn btn-sm btn-outline-primary mr-2"><i class="fas fa-download"></i>
+                                        Download</button>
+                                </div>
                             </div>
                             <div class="card-body">
-                                <canvas id="pieChart" width="100" height="50"></canvas>
+                                <canvas id="pimpinanT" height="50"></canvas>
                             </div>
                         </div>
                     </section>
@@ -322,13 +333,16 @@
                     <section class="col-lg-12">
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">
-                                    Perbandingan Rerata Poin Seluruh Karyawan, Bidang, BKPH, KRPH, dan Asper/KBKPH
-                                </h3>
-                                <div></div>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <h3 class="card-title">
+                                        Perbandingan Rerata Poin Seluruh Karyawan, Bidang, BKPH, KRPH, dan Asper/KBKPH
+                                    </h3>
+                                    <button class="btn btn-sm btn-outline-primary mr-2"><i class="fas fa-download"></i>
+                                        Download</button>
+                                </div>
                             </div>
                             <div class="card-body">
-                                <canvas id="barChart" width="50"></canvas>
+                                <canvas id="pimpinanP" height="60"></canvas>
                             </div>
                         </div>
                     </section>
@@ -513,18 +527,22 @@
                     </div>
 
                 </div>
+                
                 <!-- Grafik Total -->
                 <div class="row">
                     <section class="col-lg-12">
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">
-                                    Total Poin Seluruh Karyawan Per Bulan
-                                </h3>
-                                <div></div>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <h3 class="card-title">
+                                        Total Poin Seluruh Karyawan Per Bulan
+                                    </h3>
+                                    <button class="btn btn-sm btn-outline-primary mr-2"><i class="fas fa-download"></i>
+                                        Download</button>
+                                </div>
                             </div>
                             <div class="card-body">
-                                <canvas id="pieChart" width="100" height="50"></canvas>
+                                <canvas id="karyawanT" height="50"></canvas>
                             </div>
                         </div>
                     </section>
@@ -535,13 +553,16 @@
                     <section class="col-lg-12">
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">
-                                    Perbandingan Rerata Poin Seluruh Karyawan, Bidang, BKPH, KRPH, dan Asper/KBKPH
-                                </h3>
-                                <div></div>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <h3 class="card-title">
+                                        Perbandingan Rerata Poin Seluruh Karyawan, Bidang, BKPH, KRPH, dan Asper/KBKPH
+                                    </h3>
+                                    <button class="btn btn-sm btn-outline-primary mr-2"><i class="fas fa-download"></i>
+                                        Download</button>
+                                </div>
                             </div>
                             <div class="card-body">
-                                <canvas id="barChart" width="50"></canvas>
+                                <canvas id="karyawanP" height="60"></canvas>
                             </div>
                         </div>
                     </section>

@@ -5,7 +5,7 @@ var myLineChart = new Chart(ctxL, {
   data: {
     labels: ["January", "February", "March", "April", "May", "June", "July"],
     datasets: [{
-      label: "My First dataset",
+      label: "Total Poin",
       data: [65, 59, 80, 81, 56, 55, 40],
       backgroundColor: [
         'rgba(105, 0, 132, .2)',
@@ -14,13 +14,22 @@ var myLineChart = new Chart(ctxL, {
         'rgba(200, 99, 132, .7)',
       ],
       borderWidth: 2
-    },
-    ]
+    }]
   },
   options: {
-    responsive: true
+    responsive: true,
+    plugins: {
+      datalabels: {
+        anchor: 'end',
+        align: 'top',
+        formatter: function (value, context) {
+          return value; // Menampilkan angka data
+        }
+      }
+    }
   }
 });
+
 
 // Admin Perbandingan
 new Chart(document.getElementById("adminP"), {
@@ -28,7 +37,7 @@ new Chart(document.getElementById("adminP"), {
   "data": {
     "labels": ["Rerata Poin Seluruh Karyawan", "Rerata Poin Seluruh Bidang", "Rerata Poin Seluruh BKPH", "Rerata Poin Seluruh KRPH", "Rerata Poin Seluruh Asper/KBKPH"],
     "datasets": [{
-      "label": "My First Dataset",
+      "label": "Total Poin",
       "data": [22, 33, 55, 12, 86, 23],
       "fill": false,
       "backgroundColor": ["rgba(255, 99, 132, 0.2)", "rgba(255, 159, 64, 0.2)",

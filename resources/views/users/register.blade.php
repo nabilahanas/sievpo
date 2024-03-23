@@ -40,14 +40,16 @@
                 <div class="form-group row col-12 col-md-10">
                     <label for="no_hp" class="col-sm-2 col-form-label required">No HP</label>
                     <div class="col-sm-10">
-                        <input type="text" name="no_hp" class="form-control" Required autocomplete="off">
+                        <input type="tel" name="no_hp" class="form-control" pattern="[0-9]{10,12}"
+                            title="Masukkan nomor telepon dengan format yang benar (minimal 10 digit dan maksimal 12 digit)"
+                            Required autocomplete="off">
                     </div>
                 </div>
                 <div class="form-group row col-12 col-md-10">
                     <label for="role" class="col-sm-2 col-form-label required">Role</label>
                     <div class="col-sm-10">
-                        <select name="role" id="role" class="form-control">
-                            <option disabled selected>Pilih Role</option>
+                        <select name="role" id="role" class="custom-select" Required>
+                            <option value="" disabled selected>Pilih Role</option>
                             @foreach ($role as $role)
                                 <option value="{{ $role->id_role }}">{{ $role->nama_role }}</option>
                             @endforeach
@@ -57,8 +59,8 @@
                 <div class="form-group row col-12 col-md-10">
                     <label for="jabatan" class="col-sm-2 col-form-label required">Jabatan</label>
                     <div class="col-sm-10">
-                        <select name="jabatan" id="jabatan" class="form-control">
-                            <option disabled selected>Pilih Jabatan</option>
+                        <select name="jabatan" id="jabatan" class="custom-select" Required>
+                            <option value="" disabled selected>Pilih Jabatan</option>
                             @foreach ($jabatan as $jabatan)
                                 <option value="{{ $jabatan->id_jabatan }}">{{ $jabatan->nama_jabatan }}</option>
                             @endforeach
@@ -68,7 +70,12 @@
                 <div class="form-group row col-12 col-md-10">
                     <label for="password" class="col-sm-2 col-form-label required">Password</label>
                     <div class="col-sm-10">
-                        <input type="password" name="password" class="form-control" Required autocomplete="off">
+                        <div class="input-group">
+                            <input type="password" name="password" class="form-control"
+                                pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$"
+                                title="Password harus terdiri dari setidaknya 8 karakter, setidaknya satu huruf kecil, satu huruf besar, dan satu angka"
+                                Required autocomplete="off">
+                        </div>
                     </div>
                 </div>
                 {{-- <div class="form-group row col-12 col-md-10">

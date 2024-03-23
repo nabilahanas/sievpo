@@ -28,14 +28,13 @@
                 <div class="form-group row col-12 col-md-10">
                     <label for="nama_bidang" class="col-sm-2 col-form-label required">Nama Bidang</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="nama_bidang" placeholder="Masukkan Nama Bidang">
+                        <input type="text" class="form-control" name="nama_bidang" required>
                     </div>
                 </div>
                 <div class="form-group row col-12 col-md-10">
                     <label for="deskripsi" class="col-sm-2 col-form-label required">Deskripsi</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="deskripsi" placeholder="Masukkan Deskripsi Bidang"
-                            required>
+                        <input type="text" class="form-control" name="deskripsi" required>
                     </div>
                 </div>
                 <div class="text-center">

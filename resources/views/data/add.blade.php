@@ -21,8 +21,7 @@
         <div class="card-header">
             <i class="fas fa-plus mr-2"></i>Tambah Data Eviden
         </div>
-        <form class="form-horizontal" method="post" action="{{ route('data.store') }}"
-            enctype="multipart/form-data">
+        <form class="form-horizontal" method="post" action="{{ route('data.store') }}" enctype="multipart/form-data">
             @csrf
             <div class="card-body">
                 <div class="form-group row col-12 col-md-10">
@@ -40,8 +39,8 @@
                 <div class="form-group row col-12 col-md-10">
                     <label for="id_bidang" class="col-sm-2 col-form-label required">Bidang</label>
                     <div class="col-sm-10">
-                        <select name="id_bidang" id="" class="form-control">
-                            <option value="" disabled selected>Pilih Bidang</option>
+                        <select name="id_bidang" id="" class="custom-select" required>
+                            <option selected disabled value="">Pilih Bidang</option>
                             @foreach ($bidang as $bidang)
                                 <option value="{{ $bidang->id_bidang }}">{{ $bidang->nama_bidang }}</option>
                             @endforeach

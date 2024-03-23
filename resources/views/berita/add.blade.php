@@ -34,8 +34,7 @@
                 <div class="form-group row col-12 col-md-10">
                     <label for="judul" class="col-sm-3 col-form-label required">Judul Berita</label>
                     <div class="col-sm-9">
-                        <input type="text" class="form-control" name="judul" id="judul"
-                            placeholder="Masukkan Judul Berita" required>
+                        <input type="text" class="form-control" name="judul" id="judul" required>
                     </div>
                 </div>
                 <div class="form-group row col-12 col-md-10">
@@ -47,8 +46,7 @@
                 <div class="form-group row col-12 col-md-10">
                     <label for="link" class="col-sm-3 col-form-label required">Link Berita</label>
                     <div class="col-sm-9">
-                        <input type="url" class="form-control" name="deskripsi" placeholder="Masukkan Link Berita"
-                            required></input>
+                        <input type="url" class="form-control" name="deskripsi" required></input>
                     </div>
                 </div>
 

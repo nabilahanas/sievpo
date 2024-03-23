@@ -17,7 +17,7 @@ $(document).ready(function () {
         scrollX: true,
         scrollCollapse: true,
         paging: false,
-        columnDefs: [{ orderable: false, targets: [6, 8] }],
+        columnDefs: [{ orderable: false, targets: [6, 9] }],
     });
 
     $('.carikonfirm').append(`

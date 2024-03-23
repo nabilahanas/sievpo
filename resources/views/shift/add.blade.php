@@ -28,7 +28,7 @@
                 <div class="form-group row col-12 col-md-10">
                     <label for="nama_shift" class="col-sm-2 col-form-label required">Nama Shift</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="nama_shift" placeholder="Nama Shift" required>
+                        <input type="text" class="form-control" name="nama_shift" required>
                     </div>
                 </div>
                 <div class="form-group row col-12 col-md-10">

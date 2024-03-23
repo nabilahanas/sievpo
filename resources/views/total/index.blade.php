@@ -294,8 +294,8 @@
         </div>
     </div>
 
-    <!-- KARYAWAN -->
-    {{-- <div class="card">
+    {{-- <!-- KARYAWAN -->
+    <div class="card">
         <div class="card-body">
             <ul class="nav nav-tabs">
                 <li class="nav-item"><a class="nav-link active" href="#rkaryawan" data-toggle="tab">Rekap Karyawan</a>

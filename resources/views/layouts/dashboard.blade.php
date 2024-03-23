@@ -171,10 +171,10 @@
                         <div class="card">
                             <div class="card-header">
                                 <div class="d-flex justify-content-between align-items-center">
-                                    <h3 class="card-title">
+                                    <h3 class="card-title" style="color: #007bff; font-weight: 600;">
                                         Total Poin Seluruh Karyawan Per Bulan
                                     </h3>
-                                    <button class="btn btn-sm btn-outline-primary"><i class="fas fa-download"></i>
+                                    <button class="btn btn-sm btn-outline-primary"><i class="bi bi-download"></i>
                                         Download</button>
                                 </div>
                             </div>
@@ -191,10 +191,10 @@
                         <div class="card">
                             <div class="card-header">
                                 <div class="d-flex justify-content-between align-items-center">
-                                    <h3 class="card-title">
+                                    <h3 class="card-title" style="color: #007bff; font-weight: 600;">
                                         Perbandingan Rerata Poin Seluruh Karyawan, Bidang, BKPH, KRPH, dan Asper/KBKPH
                                     </h3>
-                                    <button class="btn btn-sm btn-outline-primary"><i class="fas fa-download"></i>
+                                    <button class="btn btn-sm btn-outline-primary"><i class="bi bi-download"></i>
                                         Download</button>
                                 </div>
                             </div>
@@ -210,7 +210,7 @@
                     <section class="col-lg-12">
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">
+                                <h3 class="card-title" style="color: #007bff; font-weight: 600;">
                                     Peta BKPH
                                 </h3>
                             </div>
@@ -314,10 +314,10 @@
                         <div class="card">
                             <div class="card-header">
                                 <div class="d-flex justify-content-between align-items-center">
-                                    <h3 class="card-title">
+                                    <h3 class="card-title" style="color: #007bff; font-weight: 600;">
                                         Total Poin Seluruh Karyawan Per Bulan
                                     </h3>
-                                    <button class="btn btn-sm btn-outline-primary mr-2"><i class="fas fa-download"></i>
+                                    <button class="btn btn-sm btn-outline-primary mr-2"><i class="bi bi-download"></i>
                                         Download</button>
                                 </div>
                             </div>
@@ -334,10 +334,10 @@
                         <div class="card">
                             <div class="card-header">
                                 <div class="d-flex justify-content-between align-items-center">
-                                    <h3 class="card-title">
+                                    <h3 class="card-title" style="color: #007bff; font-weight: 600;">
                                         Perbandingan Rerata Poin Seluruh Karyawan, Bidang, BKPH, KRPH, dan Asper/KBKPH
                                     </h3>
-                                    <button class="btn btn-sm btn-outline-primary mr-2"><i class="fas fa-download"></i>
+                                    <button class="btn btn-sm btn-outline-primary mr-2"><i class="bi bi-download"></i>
                                         Download</button>
                                 </div>
                             </div>
@@ -353,7 +353,7 @@
                     <section class="col-lg-12">
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">
+                                <h3 class="card-title" style="color: #007bff; font-weight: 600;">
                                     Peta BKPH
                                 </h3>
                             </div>
@@ -534,10 +534,10 @@
                         <div class="card">
                             <div class="card-header">
                                 <div class="d-flex justify-content-between align-items-center">
-                                    <h3 class="card-title">
+                                    <h3 class="card-title" style="color: #007bff; font-weight: 600;">
                                         Total Poin Seluruh Karyawan Per Bulan
                                     </h3>
-                                    <button class="btn btn-sm btn-outline-primary mr-2"><i class="fas fa-download"></i>
+                                    <button class="btn btn-sm btn-outline-primary mr-2"><i class="bi bi-download"></i>
                                         Download</button>
                                 </div>
                             </div>
@@ -554,10 +554,10 @@
                         <div class="card">
                             <div class="card-header">
                                 <div class="d-flex justify-content-between align-items-center">
-                                    <h3 class="card-title">
+                                    <h3 class="card-title" style="color: #007bff; font-weight: 600;">
                                         Perbandingan Rerata Poin Seluruh Karyawan, Bidang, BKPH, KRPH, dan Asper/KBKPH
                                     </h3>
-                                    <button class="btn btn-sm btn-outline-primary mr-2"><i class="fas fa-download"></i>
+                                    <button class="btn btn-sm btn-outline-primary mr-2"><i class="bi bi-download"></i>
                                         Download</button>
                                 </div>
                             </div>
@@ -573,7 +573,7 @@
                     <section class="col-lg-12">
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">
+                                <h3 class="card-title" style="color: #007bff; font-weight: 600;">
                                     Peta BKPH
                                 </h3>
                             </div>

@@ -35,7 +35,7 @@
                 <div class="form-group row col-12 col-md-10">
                     <label for="wilayah" class="col-sm-2 col-form-label required">Pilih Wilayah</label>
                     <div class="col-sm-10">
-                        <select name="wilayah" id="wilayah" class="form-control">
+                        <select name="wilayah" id="wilayah" class="custom-select" required>
                             <option value="1" {{ $jabatan->wilayah ? 'selected' : '' }}>Wilayah Barat</option>
                             <option value="0" {{ !$jabatan->wilayah ? 'selected' : '' }}>Wilayah Timur</option>
                         </select>

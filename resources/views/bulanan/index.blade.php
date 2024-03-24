@@ -119,7 +119,12 @@
                                 ?>
                                 {{ $tb4 }}</td>
 
-                            <td></td>
+                            <td>
+                                <?php
+                                $total = $tb1 + $tb2 + $tb3 + $tb4;
+                                ?>
+                                {{ $total }}
+                            </td>
                         </tr>
                         @endforeach
                         @endforeach

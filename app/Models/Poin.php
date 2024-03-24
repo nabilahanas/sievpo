@@ -21,8 +21,7 @@ class Poin extends Model
 
     public function data()
     {
-        return $this->belongsTo(Data::class, 'id_data');
+        return $this->belongsTo(Data::class, 'id_user', 'id_user');
     }
-
     public $timestamp = true; 
 }

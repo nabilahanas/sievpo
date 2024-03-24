@@ -13,16 +13,23 @@ class Data extends Model
     protected $primaryKey = 'id_data';
 
     protected $fillable = [
-        'id_user', 'id_bidang', 'id_shift', 'lokasi', 'tgl_waktu', 'foto', 'is_approved', 'poin',
+        'id_user',
+        'id_bidang',
+        'id_shift',
+        'lokasi',
+        'tgl_waktu',
+        'foto',
+        'is_approved',
+        'poin',
     ];
     protected $dates = ['tgl_waktu'];
 
     public $timestamps = true;
 
-    public function user()
-    {
-        return $this->belongsTo(User::class, 'id_user');
-    }
+    // public function user()
+    // {
+    //     return $this->belongsTo(User::class, 'id_user');
+    // }
 
     public function bidang()
     {
@@ -33,6 +40,19 @@ class Data extends Model
     {
         return $this->belongsTo(Shift::class, 'id_shift');
     }
+
+    // Model Data
+
+    public function user()
+{
+    return $this->belongsTo(User::class, 'id_user');
+}
+
+    public function poin()
+    {
+        return $this->hasOne(Poin::class, 'id_user');
+    }
+
 
     // public function lokasi()
     // {

@@ -168,6 +168,7 @@ Route::middleware('check.role:Admin,Mahasiswa')->group(function () {
     Route::prefix("harian")->group(function () {
         Route::get('/', [HarianController::class, 'index'])->name('harian.index');
         Route::get('updatePoinFromData', [HarianController::class, 'updatePoinFromData'])->name('harian.updatePoinFromData');
+        Route::get('/poin/{idUser}', [HarianController::class, 'getPoinByUser']);
     });
 
     Route::prefix("confirm")->group(function () {

@@ -19,6 +19,8 @@ class User extends Authenticatable
      * @var array<int, string>
      */
 
+     protected $table = 'users';
+     
      protected $primaryKey = 'id_user';
 
     protected $fillable = [
@@ -66,5 +68,10 @@ class User extends Authenticatable
     public function jabatan()
     {
         return $this->belongsTo(Jabatan::class, 'id_jabatan');
+    }
+
+    public function data()
+    {
+        return $this->hasMany(Data::class);
     }
 }

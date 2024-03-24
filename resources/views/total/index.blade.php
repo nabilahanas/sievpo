@@ -49,26 +49,26 @@
                                 </thead>
 
                                 <tbody>
-                                    <tr>
-                                        <th scope="row">.</th>
+                                    @foreach ($totals as $userId => $userMonths)
+                                        <tr>
+                                            <th scope="row">{{ $loop->iteration }}</th> <!-- Nomor urutan -->
+                                            <td></td><!-- Nama pengguna -->
+                                            <td></td>
+                                            <!-- Jabatan pengguna -->
 
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
+                                            @foreach (['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'] as $month)
+                                                <td>{{ $userMonths[$month] ?? 0 }}</td>
+                                                <!-- Tampilkan total poin per bulan -->
+                                            @endforeach
 
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
+                                            <td>
+                                                @php
+                                                    $totalPoin = array_sum($userMonths);
+                                                @endphp
+                                                {{ $totalPoin }} <!-- Total poin untuk pengguna -->
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
@@ -156,27 +156,27 @@
                                     </tr>
                                 </thead>
 
-                                <tbody>
-                                    <tr>
-                                        <th scope="row">.</th>
+                                {{-- <tbody>
+                                    @foreach ($totals as $userId => $userMonths)
+                                        <tr>
+                                            <th scope="row">{{ $loop->iteration }}</th> <!-- Nomor urutan -->
+                                            <td>{{ $user->nama }}</td> <!-- Nama pengguna -->
+                                            <td>{{ $user->jabatan }}</td> <!-- Jabatan pengguna -->
+                                
+                                            @foreach (['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'] as $month)
+                                                <td>{{ $userMonths[$month] ?? 0 }}</td> <!-- Tampilkan total poin per bulan -->
+                                            @endforeach
+                                
+                                            <td>
+                                                @php
+                                                    $totalPoin = array_sum($userMonths);
+                                                @endphp
+                                                {{ $totalPoin }} <!-- Total poin untuk pengguna -->
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody> --}}
 
-                                        <td></td>
-                                        <td></td>
-
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                </tbody>
                             </table>
                         </div>
                     </div>

@@ -52,6 +52,7 @@
                                 {{-- <th>.</th> --}}
                                 <td>{{ $loop->iteration }}.</td>
                                 <td>{{ $item->data->user->nama_user }}</td>
+
                                 <td></td>
                                 <td>{{ $item->data->user->jabatan->nama_jabatan}}</td>
                                 {{-- <td></td> --}}

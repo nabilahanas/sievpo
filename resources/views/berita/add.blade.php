@@ -47,6 +47,7 @@
                     <label for="link" class="col-sm-3 col-form-label required">Link Berita</label>
                     <div class="col-sm-9">
                         <input type="url" class="form-control" name="deskripsi" required></input>
+                        <small class="form-text text-muted">Contoh: https://example.com</small>
                     </div>
                 </div>
 

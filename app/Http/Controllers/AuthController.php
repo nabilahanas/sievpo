@@ -32,7 +32,7 @@ class AuthController extends Controller
             'password' => bcrypt($request->password),
         ]);
 
-        return redirect('/login')->with('success', 'Data user berhasil ditambahkan');
+        return redirect('/users')->with('success', 'Data user berhasil ditambahkan');
     }
 
     public function login()

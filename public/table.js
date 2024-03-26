@@ -117,34 +117,38 @@ $(document).ready(function () {
 });
 
 // Rekap Total Karyawan
-$(document).ready(function () {
-    $('#tkaryawan').DataTable({
-        dom: "<'row'<'col-sm-10 col-md-6 caritkaryawan'l ><'col-sm-10 col-md-6'f>>" +
-            "<'row'<'col-sm-12'tr>>" +
-            "<'row'<'col-sm-10 col-md-5'i><'col-sm-10 col-md-7'p>>",
-        scrollX: true,
-        scrollCollapse: true,
-        paging: false,
-    });
+ $(document).ready(function () {
+        $('#tkaryawan').DataTable({
+            dom: "<'row'<'col-sm-10 col-md-6 caritkaryawan'l ><'col-sm-10 col-md-6'f>>" +
+                "<'row'<'col-sm-12'tr>>" +
+                "<'row'<'col-sm-10 col-md-5'i><'col-sm-10 col-md-7'p>>",
+            scrollX: true,
+            scrollCollapse: true,
+            paging: false,
+        });
 
-    $('.caritkaryawan').append(`
-        <div class="container">
-        <div class="input-group date" id="datarange" data-target-input="nearest">
-            <input type="text" class="form-control datetimepicker-input" data-target="#datarange"/>
-            <div class="input-group-append" data-target="#daterange" data-toggle="datetimepicker">
-                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-            </div>
-        </div>
+        $('.caritkaryawan').append(`
+        <form>
+        <div class="input-group col-md-8 mt-2 mb-4">
+        <input type="month" class="form-control" name="search" placeholder="search"
+            aria-label="search" aria-describedby="button-addon2">
+        <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Cari</button>
     </div>
+        </form>
         `);
 
-    // Date Range Picker initialization
-    $('input[name="daterange"]').daterangepicker({
-        opens: 'left'
-    }, function (start, end, label) {
-        console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
+        $('#datetimepicker7').datetimepicker();
+        $('#datetimepicker8').datetimepicker({
+            useCurrent: false
+        });
+        $("#datetimepicker7").on("change.datetimepicker", function (e) {
+            $('#datetimepicker8').datetimepicker('minDate', e.date);
+        });
+        $("#datetimepicker8").on("change.datetimepicker", function (e) {
+            $('#datetimepicker7').datetimepicker('maxDate', e.date);
+        });
     });
-});
+
 
 // Rekap Total Bidang
 $(document).ready(function () {

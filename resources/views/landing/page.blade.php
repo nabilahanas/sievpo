@@ -43,8 +43,7 @@
     <header id="header" class="header d-flex align-items-center">
         <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
             <a href="/" class="logo d-flex align-items-center">
-                <img src="landingpage\assets\img\perhutani.png" alt="perhutani" width="150">
-                <h1>SIEVPO</h1>
+                <img src="landingpage\assets\img\perhutani-2.png" alt="perhutani" height="250">
             </a>
             <nav id="navbar" class="navbar">
                 <ul>
@@ -59,7 +58,6 @@
                         </ul>
                     </li>
                     <li><a href="/beritakph">Berita</a></li>
-                    {{-- <li><a href="/fitur">Fitur</a></li> --}}
                     <li><a href="/login" class="btn-perhutani">Masuk</a></li>
                 </ul>
             </nav><!-- .navbar -->
@@ -83,7 +81,8 @@
         <div class="row gy-4">
             <div class="col-lg-5 col-md-12 footer-info">
                 <a href="/" class="logo d-flex align-items-center">
-                    <span>Perhutani</span>
+                    <img src="{{ asset('landingpage/assets/img/perhutani-putih.png') }}">
+                    <img src="{{ asset('landingpage/assets/img/logo_bumn.png') }}" style="margin-left: 10px">
                 </a>
                 <p>Perhutani adalah Badan Usaha Milik Negara berbentuk Perusahaan Umum (Perum) yang memiliki tugas
                     dan wewenang untuk mengelola sumberdaya hutan negara di pulau Jawa dan Madura.</p>
@@ -114,13 +113,13 @@
             <div class="col-lg-2 col-6 footer-links">
                 <h4>Fitur</h4>
                 <ul>
-                    <li><a>Biodata Karyawan</a></li>
-                    <li><a>Jadwal Kerja (Shifting)</a></li>
-                    <li><a>Kehadiran</a></li>
-                    <li><a>Pelacakan GPS</a></li>
-                    <li><a>Penilaian</a></li>
-                    <li><a>Rekapan Data Eviden Poin</a></li>
-                </ul>
+                    <li>Biodata Karyawan</li>
+                    <li>Jadwal Kerja (Shifting)</li>
+                    <li>Kehadiran</li>
+                    <li>Pelacakan GPS</li>
+                    <li>Penilaian</li>
+                    <li>Rekapan Data Eviden Poin</li>
+                </p>
             </div>
             <div class="col-lg-3 col-md-12 footer-contact text-md-start">
                 <h4>Alamat</h4>

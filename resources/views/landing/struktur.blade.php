@@ -6,7 +6,7 @@
         <!-- ======= Breadcrumbs ======= -->
         <div class="breadcrumbs">
             <div class="page-header d-flex align-items-center"
-                style="background-image: url('https://i0.wp.com/www.perhutani.co.id/wp-content/uploads/2021/08/WhatsApp-Image-2021-08-03-at-14.35.15-2.jpeg?resize=1024%2C768&ssl=1');">
+                style="background-image: url('{{ asset('landingpage/assets/img/breadcrumb.png') }}'); background-size: cover; background-position: center;">
                 <div class="container position-relative">
                     <div class="row d-flex justify-content-center">
                         <div class="col-lg-6 text-center">
@@ -35,14 +35,14 @@
                                 <br>PERUM PERHUTANI KPH SEMARANG
                             </h3>
                             <div class="post-img">
-                                <img src="landingpage/assets/img/image-33.png" class="img-fluid mx-auto d-block"
+                                <img src="landingpage/assets/img/struktur-organisasi.png" class="img-fluid mx-auto d-block"
                                     alt="Profil Perusahaan" style="max-width: 100%">
                             </div>
                             <div class="row gy-4">
                                 <div class="col-lg-6">
                                     <div class="post-img">
                                         <img src="landingpage/assets/img/Group-476.jpg" class="img-fluid mx-auto d-block"
-                                            alt="Profil Perusahaan" style="max-width: 60%">
+                                            alt="Profil Perusahaan" style="max-width: 70%">
                                     </div>
                                 </div>
                                 <div class="col-lg-6">

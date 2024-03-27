@@ -51,6 +51,7 @@
                     <div class="col-sm-9">
                         <input type="url" class="form-control" id="deskripsi" name="deskripsi"
                             value="{{ $berita->deskripsi }}" required>
+                        <small class="form-text text-muted">Contoh: https://example.com</small>
                     </div>
                 </div>
                 <div class="text-center">

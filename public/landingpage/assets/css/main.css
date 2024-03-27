@@ -1878,43 +1878,23 @@ section {
 }
 
 .hero .btn-get-started {
-  font-family: var(--font-primary);
   font-weight: 600;
-  font-size: 15px;
-  text-align: left;
+  font-size: 14px;
+  text-align: center;
   display: inline-block;
-  padding: 12px 30px;
+  padding: 10px 25px;
   border-radius: 50px;
   transition: 0.3s;
   color: #000;
   background: var(--color-secondary);
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.08);
   border: 2px solid rgba(255, 255, 255, 0.1);
+  margin-right: 10px;
 }
 
 .hero .btn-get-started:hover {
-  border: 2px solid var(--color-secondary);
+  border: 2px solid #fff;
   background: transparent;
-  color: #fff;
-}
-
-.hero .btn-watch-video {
-  font-size: 16px;
-  transition: 0.5s;
-  margin-left: 25px;
-  color: #fff;
-  font-weight: 600;
-}
-
-.hero .btn-watch-video i {
-  color: rgba(255, 255, 255, 0.5);
-  font-size: 32px;
-  transition: 0.3s;
-  line-height: 0;
-  margin-right: 8px;
-}
-
-.hero .btn-watch-video:hover i {
   color: #fff;
 }
 
@@ -1923,8 +1903,7 @@ section {
     font-size: 36px;
   }
 
-  .hero .btn-get-started,
-  .hero .btn-watch-video {
+  .hero .btn-get-started {
     font-size: 13px;
   }
 }
@@ -2061,10 +2040,10 @@ section {
 }
 
 .blog .posts-list .title {
-  font-size: 22px;
+  font-size: 20px;
   font-weight: 700;
   padding: 0;
-  margin: 0 0 20px 0;
+  margin-bottom: 5px;
 }
 
 .blog .posts-list .title a {
@@ -2081,13 +2060,13 @@ section {
   font-weight: 600;
   text-decoration: none;
   transition: color 0.3s, text-decoration 0.3s;
+  font-size: 15px;
 }
 
 .blog .posts-list .post-meta a:hover {
   color: var(--color-primary);
   text-decoration: underline;
 }
-
 
 .blog .posts-list .post-author-img {
   width: 50px;
@@ -2102,7 +2081,19 @@ section {
 }
 
 .blog .posts-list .post-date {
-  margin-bottom: 0;
+  margin-bottom: 10px;
+  font-size: 14px;
+  color: #6c757d;
+}
+
+.blog .posts-list .article-preview {
+  font-size: 16px;
+  margin-bottom: 15px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .posts-list .row {
@@ -2433,118 +2424,6 @@ section {
 }
 
 /*--------------------------------------------------------------
-# Blog Comments
---------------------------------------------------------------*/
-.blog .comments {
-  margin-top: 30px;
-}
-
-.blog .comments .comments-count {
-  font-weight: bold;
-}
-
-.blog .comments .comment {
-  margin-top: 30px;
-  position: relative;
-}
-
-.blog .comments .comment .comment-img {
-  margin-right: 14px;
-}
-
-.blog .comments .comment .comment-img img {
-  width: 60px;
-}
-
-.blog .comments .comment h5 {
-  font-size: 16px;
-  margin-bottom: 2px;
-}
-
-.blog .comments .comment h5 a {
-  font-weight: bold;
-  color: var(--color-default);
-  transition: 0.3s;
-}
-
-.blog .comments .comment h5 a:hover {
-  color: var(--color-primary);
-}
-
-.blog .comments .comment h5 .reply {
-  padding-left: 10px;
-  color: var(--color-primary);
-}
-
-.blog .comments .comment h5 .reply i {
-  font-size: 20px;
-}
-
-.blog .comments .comment time {
-  display: block;
-  font-size: 14px;
-  color: rgba(34, 34, 34, 0.8);
-  margin-bottom: 5px;
-}
-
-.blog .comments .comment.comment-reply {
-  padding-left: 40px;
-}
-
-.blog .comments .reply-form {
-  margin-top: 30px;
-  padding: 30px;
-  box-shadow: 0 0 16px rgba(0, 0, 0, 0.1);
-  border-radius: 10px;
-}
-
-.blog .comments .reply-form h4 {
-  font-weight: bold;
-  font-size: 22px;
-}
-
-.blog .comments .reply-form p {
-  font-size: 14px;
-}
-
-.blog .comments .reply-form input {
-  border-radius: 4px;
-  padding: 10px 10px;
-  font-size: 14px;
-}
-
-.blog .comments .reply-form input:focus {
-  box-shadow: none;
-  border-color: rgba(0, 131, 116, 0.8);
-}
-
-.blog .comments .reply-form textarea {
-  border-radius: 4px;
-  padding: 10px 10px;
-  font-size: 14px;
-}
-
-.blog .comments .reply-form textarea:focus {
-  box-shadow: none;
-  border-color: rgba(0, 131, 116, 0.8);
-}
-
-.blog .comments .reply-form .form-group {
-  margin-bottom: 25px;
-}
-
-.blog .comments .reply-form .btn-primary {
-  border-radius: 50px;
-  padding: 14px 40px;
-  border: 0;
-  background-color: #fff;
-}
-
-.blog .comments .reply-form .btn-primary:hover {
-  background-color: rgba(248, 90, 64, 0.8);
-}
-
-/*--------------------------------------------------------------
 # Footer
 --------------------------------------------------------------*/
 .footer {
@@ -2623,7 +2502,7 @@ section {
 }
 
 .footer .footer-links ul li {
-  padding: 7px 0;
+  padding: 10px 0;
   display: flex;
   align-items: center;
 }

@@ -62,8 +62,8 @@
                 </ul>
             </nav><!-- .navbar -->
 
-            <i class="mobile-nav-toggle mobile-nav-show bi bi-list" style="color: #016237"></i>
-            <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x" style="color: #016237"></i>
+            <i class="mobile-nav-toggle mobile-nav-show bi bi-list" style="color: #000"></i>
+            <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x" style="color: #000"></i>
 
         </div>
     </header><!-- End Header -->
@@ -111,14 +111,11 @@
             </div>
 
             <div class="col-lg-2 col-6 footer-links">
-                <h4>Fitur</h4>
+                <h4>Tentang Sistem</h4>
                 <ul>
-                    <li>Biodata Karyawan</li>
-                    <li>Jadwal Kerja (Shifting)</li>
-                    <li>Kehadiran</li>
-                    <li>Pelacakan GPS</li>
-                    <li>Penilaian</li>
-                    <li>Rekapan Data Eviden Poin</li>
+                    <li><a href="#call-to-action">Apa itu SIEVPO?</a></li>
+                    <li><a href="#services">Berbagai Fitur SIEVPO</a></li>
+                    <li><a href="#testimonials">Keunggulan SIEVPO</a></li>
                 </p>
             </div>
             <div class="col-lg-3 col-md-12 footer-contact text-md-start">

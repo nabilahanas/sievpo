@@ -9,10 +9,14 @@
                 <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center text-center text-lg-start">
                     <h2>Sistem Informasi Eviden Poin Perum Perhutani KPH Semarang</h2>
                     <p>SIEVPO kelola data penilaian karyawan lebih mudah!</p>
-                    <div class="d-flex justify-content-center justify-content-lg-start">
-                        <a href="/datakaryawankph" class="btn-get-started">DATA KARYAWAN<i
-                                class="fas fa-angle-double-right ml-2"></i></a>
-                    </div>
+
+                </div>
+            </div>
+            <div class="row gy-5" data-aos="fade-in">
+                <div class="d-flex justify-content-center justify-content-lg-start">
+                    <a href="#call-to-action" class="btn-get-started">Apa itu SIEVPO?</a>
+                    <a href="#services" class="btn-get-started">Fitur SIEVPO</a>
+                    <a href="#testimonials" class="btn-get-started">Keunggulan SIEVPO</a>
                 </div>
             </div>
         </div>

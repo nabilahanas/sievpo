@@ -14,22 +14,13 @@ var myLineChart = new Chart(ctxL, {
         'rgba(200, 99, 132, .7)',
       ],
       borderWidth: 2
-    }]
+    },
+    ]
   },
   options: {
-    responsive: true,
-    plugins: {
-      datalabels: {
-        anchor: 'end',
-        align: 'top',
-        formatter: function (value, context) {
-          return value; // Menampilkan angka data
-        }
-      }
-    }
+    responsive: true
   }
 });
-
 
 // Admin Perbandingan
 new Chart(document.getElementById("adminP"), {

@@ -41,7 +41,7 @@
                     </div>
                     <div class="modal-body">
                         <p class="modal-date col-md-4 ml-auto">
-                            {{ \Carbon\Carbon::parse($item->tgl_publikasi)->isoFormat('D MMMM YYYY') }}</p>
+                            {{ \Carbon\Carbon::parse($item->tgl_publikasi)->locale('id')->isoFormat('D MMMM YYYY') }}</p>
                         @if (auth()->user()->profile_pict)
                             <img src="{{ asset('storage/gambar-pengumuman/' . $item->gambar) }}" alt="Pengumuman">
                         @else
@@ -51,6 +51,16 @@
                         <p>{{ $item->deskripsi }}</p>
                     </div>
                     <div class="modal-footer">
+                        <div class="row" style="margin-left: auto">
+                            <div class="col-md-12">
+                                <div class="float-right">
+                                    <label for="">
+                                        <input type="checkbox" id="">
+                                        <u>Jangan tampilkan lagi</u>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
                         <button type="button" class="btn btn-primary close-modal" data-dismiss="modal"
                             data-next-modal="#pengumumanModal{{ $index + 1 }}">OK</button>
                     </div>
@@ -527,7 +537,7 @@
                     </div>
 
                 </div>
-                
+
                 <!-- Grafik Total -->
                 <div class="row">
                     <section class="col-lg-12">

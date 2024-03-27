@@ -35,16 +35,24 @@
                             @foreach ($chunk as $item)
                                 <div class="col-xl-4 col-md-6">
                                     <article class="post-item">
-                                        <h2 class="title">
-                                            <a href="">{{ $item->judul }}</a>
+                                        <h2 class="title"
+                                            style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;">
+                                            <a href="{{ $item->deskripsi }}" target="_blank">{{ $item->judul }}</a>
                                         </h2>
-
                                         <div class="d-flex align-items-center">
                                             <div class="post-meta">
                                                 <p class="post-date">
-                                                    <time datetime="{{ $item->created_at }}">{{ $item->created_at }}</time>
+                                                    <time datetime="{{ $item->created_at }}">
+                                                        {{ \Carbon\Carbon::parse($item->created_at)->locale('id')->isoFormat('D MMMM YYYY') }}
+                                                    </time>
                                                 </p>
-                                                <p class="post-author-list">Diterbitkan oleh Administrator</p>
+                                                <div class="article-preview">
+                                                    HTML adalah bahasa yang digunakan untuk membuat halaman web. Bagi yang
+                                                    berkecimpung di dunia perangkat gadget dan ilmu komputer, pasti sudah
+                                                    tidak asing lagi dengan berbagai kode di dalamnya. HTML adalah
+                                                    kependekan dari Hypertext Markup Language.
+                                                </div>
+                                                {{-- <p class="post-author-list">Diterbitkan oleh Administrator</p> --}}
                                                 <a href="{{ $item->deskripsi }}" target="_blank">Lihat Selengkapnya</a>
                                             </div>
                                         </div>

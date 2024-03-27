@@ -21,12 +21,12 @@ class ConfirmController extends Controller
         return view('confirm.index', compact('bidang', 'shift', 'data'), ['key' => 'confirm']);
     }
 
-    protected $harianController;
+    // protected $harianController;
 
-    public function __construct(HarianController $harianController)
-    {
-        $this->harianController = $harianController;
-    }
+    // public function __construct(HarianController $harianController)
+    // {
+    //     $this->harianController = $harianController;
+    // }
 
     public function approval($id, $status)
     {
@@ -50,7 +50,7 @@ class ConfirmController extends Controller
             $data->update(['is_approved' => 'rejected', 'poin' => 0]);
         }
 
-        $this->harianController->updatePoinFromData();
+        // $this->harianController->updatePoinFromData();
 
         return redirect()->route('confirm.index')->with('success', 'Laporan berhasil dinilai');
     }

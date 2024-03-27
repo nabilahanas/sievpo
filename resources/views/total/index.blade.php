@@ -51,14 +51,15 @@
                                 <tbody>
                                     @foreach ($totals as $userId => $userMonths)
                                         <tr>
-                                            <th scope="row">{{ $loop->iteration }}</th> <!-- Nomor urutan -->
-                                            <td></td><!-- Nama pengguna -->
-                                            <td></td>
-                                            <!-- Jabatan pengguna -->
+                                        @foreach ($poin as $item)
+                                            <th scope="row">{{ $loop->iteration }}.</th>
+                                            <td>{{$item->data->user->nama_user}}</td>
+                                            <td>{{$item->data->user->jabatan->nama_jabatan}}</td>
+                                            @endforeach
 
                                             @foreach (['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'] as $month)
                                                 <td>{{ $userMonths[$month] ?? 0 }}</td>
-                                                <!-- Tampilkan total poin per bulan -->
+                                                <!-- total poin per bulan -->
                                             @endforeach
 
                                             <td>
@@ -104,26 +105,25 @@
                                 </thead>
 
                                 <tbody>
-                                    <tr>
-                                        <th scope="row">.</th>
-
-                                        <td></td>
-                                        <td></td>
-
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
+                                    @foreach ($bidang as $bidangItem)
+                                        <tr>
+                                            <th scope="row">{{ $loop->iteration }}</th>
+                                            <td>{{ $bidangItem->nama_bidang }}</td>
+                                            
+                                            @foreach (['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'] as $month)
+                                                <td>{{ $bidangTotals[$bidangItem->id_bidang][$month] ?? 0 }}</td>
+                                            @endforeach
+                                            
+                                            <td>
+                                                {{-- @php
+                                                    $totalBidang = array_sum($bidangTotals[$bidangItem->id]);
+                                                @endphp
+                                                {{ $totalBidang }} <!-- Total poin untuk bidang ini --> --}}
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                 </tbody>
+                                
                             </table>
                         </div>
                     </div>
@@ -156,26 +156,24 @@
                                     </tr>
                                 </thead>
 
-                                {{-- <tbody>
-                                    @foreach ($totals as $userId => $userMonths)
+                                <tbody>
+                                    @foreach ($bkphTotals as $bkphId => $monthlyTotals)
                                         <tr>
-                                            <th scope="row">{{ $loop->iteration }}</th> <!-- Nomor urutan -->
-                                            <td>{{ $user->nama }}</td> <!-- Nama pengguna -->
-                                            <td>{{ $user->jabatan }}</td> <!-- Jabatan pengguna -->
-                                
+                                            <th scope="row">{{ $loop->iteration }}</th>
+                                            <td>{{ $bkphId }}</td>
                                             @foreach (['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'] as $month)
-                                                <td>{{ $userMonths[$month] ?? 0 }}</td> <!-- Tampilkan total poin per bulan -->
+                                                <td>{{ $monthlyTotals[$month] ?? 0 }}</td>
                                             @endforeach
-                                
                                             <td>
                                                 @php
-                                                    $totalPoin = array_sum($userMonths);
+                                                    $totalBkph = array_sum($monthlyTotals);
                                                 @endphp
-                                                {{ $totalPoin }} <!-- Total poin untuk pengguna -->
+                                                {{ $totalBkph }} <!-- Total poin untuk bagian BKPH ini -->
                                             </td>
                                         </tr>
                                     @endforeach
-                                </tbody> --}}
+                                </tbody>
+                                
 
                             </table>
                         </div>
@@ -210,25 +208,21 @@
                                 </thead>
 
                                 <tbody>
-                                    <tr>
-                                        <th scope="row">.</th>
-
-                                        <td></td>
-                                        <td></td>
-
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
+                                    @foreach ($krphTotals as $krphId => $monthlyTotals)
+                                        <tr>
+                                            <th scope="row">{{ $loop->iteration }}</th>
+                                            <td>{{ $krphId }}</td>
+                                            @foreach (['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'] as $month)
+                                                <td>{{ $monthlyTotals[$month] ?? 0 }}</td>
+                                            @endforeach
+                                            <td>
+                                                @php
+                                                    $totalKrph = array_sum($monthlyTotals);
+                                                @endphp
+                                                {{ $totalKrph }} <!-- Total poin untuk bagian BKPH ini -->
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
@@ -265,26 +259,21 @@
                                 </thead>
 
                                 <tbody>
-                                    <tr>
-                                        <th scope="row">.</th>
-
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
+                                    @foreach ($asperTotals as $asperId => $monthlyTotals)
+                                        <tr>
+                                            <th scope="row">{{ $loop->iteration }}</th>
+                                            <td>{{ $asperId }}</td>
+                                            @foreach (['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'] as $month)
+                                                <td>{{ $monthlyTotals[$month] ?? 0 }}</td>
+                                            @endforeach
+                                            <td>
+                                                @php
+                                                    $totalAsper = array_sum($monthlyTotals);
+                                                @endphp
+                                                {{ $totalAsper }} <!-- Total poin untuk bagian BKPH ini -->
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>

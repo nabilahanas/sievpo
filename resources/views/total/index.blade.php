@@ -24,50 +24,27 @@
                             Excel</a>
                         <div class="table-responsive mt-4">
                             <table id="tkaryawan" class="table table-sm text-nowrap text-hover" style="width=100%">
-                                <thead class="thead-successv2">
+                                <thead>
                                     <tr>
-                                        <th rowspan="2">No.</th>
-                                        <th rowspan="2">Nama</th>
-                                        <th rowspan="2">Jabatan</th>
-                                        <th colspan="12" style="text-align: center">2024</th>
-                                        <th rowspan="2">Total</th>
-                                    </tr>
-                                    <tr>
-                                        <th>Januari</th>
-                                        <th>Februari</th>
-                                        <th>Maret</th>
-                                        <th>April</th>
-                                        <th>Mei</th>
-                                        <th>Juni</th>
-                                        <th>Juli</th>
-                                        <th>Agustus</th>
-                                        <th>September</th>
-                                        <th>Oktober</th>
-                                        <th>November</th>
-                                        <th>Desember</th>
+                                        <th>Nama</th>
+                                        @foreach(['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'] as $monthName)
+                                            <th>{{ $monthName }}</th>
+                                        @endforeach
                                     </tr>
                                 </thead>
-
                                 <tbody>
-                                    @foreach ($totals as $userId => $userMonths)
+                                    @foreach($users as $user)
                                         <tr>
-                                        @foreach ($poin as $item)
-                                            <th scope="row">{{ $loop->iteration }}.</th>
-                                            <td>{{$item->data->user->nama_user}}</td>
-                                            <td>{{$item->data->user->jabatan->nama_jabatan}}</td>
+                                            <td>{{ $user->nama_user }}</td>
+                                            @foreach(['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'] as $month)
+                                                <td>
+                                                    @if(isset($totalPoinPerUserPerBulan[$user->id_user][$month]))
+                                                        {{ $totalPoinPerUserPerBulan[$user->id_user][$month] }}
+                                                    @else
+                                                        0
+                                                    @endif
+                                                </td>
                                             @endforeach
-
-                                            @foreach (['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'] as $month)
-                                                <td>{{ $userMonths[$month] ?? 0 }}</td>
-                                                <!-- total poin per bulan -->
-                                            @endforeach
-
-                                            <td>
-                                                @php
-                                                    $totalPoin = array_sum($userMonths);
-                                                @endphp
-                                                {{ $totalPoin }} <!-- Total poin untuk pengguna -->
-                                            </td>
                                         </tr>
                                     @endforeach
                                 </tbody>

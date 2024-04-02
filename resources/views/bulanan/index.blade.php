@@ -11,124 +11,77 @@
                 Excel</a>
 
             <div class="table-responsive mt-4">
-                <table id="bulanan" class="table table-sm text-nowrap text-hover" style="width=100%">
+                <table id="bulanan" class="table table-sm text-nowrap text-hover table-striped" style="width=100%">
+
                     <thead class="thead-successv2">
                         <tr>
-                            <th colspan="40">Agustus 2024</th>
-                        </tr>
-                        <tr>
-                            <th rowspan="2">No.</th>
                             <th rowspan="2">Nama</th>
                             <th rowspan="2">Jabatan</th>
-
-                            @foreach ($bidang as $bidang)
-                            <th colspan="9" style="text-align: center">{{ $bidang->nama_bidang }}</th>
-                        @endforeach
-
-                            <th rowspan="2">Total</th>
+                            <th rowspan="2">Wilayah</th>
+                            @foreach ($bidang as $b)
+                                <th colspan="{{ count($shifts) + 1 }}">{{ $b->nama_bidang }}</th>
+                            @endforeach
+                            <th></th>
                         </tr>
                         <tr>
-                            @foreach ($shift as $s)
-                                <th>{{ $s->nama_shift }}</th>
+                            @foreach ($bidang as $b)
+                                @foreach ($shifts as $shift)
+                                    <th>{{ $shift->nama_shift }}</th>
+                                @endforeach
+                                <th>Jml</th> <!-- Tambahkan kolom total untuk jumlah poin per bulan -->
                             @endforeach
-                            <th>Jml</th>
-
-                            @foreach ($shift as $s)
-                                <th>{{ $s->nama_shift }}</th>
-                            @endforeach
-                            <th>Jml</th>
-
-                            @foreach ($shift as $s)
-                                <th>{{ $s->nama_shift }}</th>
-                            @endforeach
-                            <th>Jml</th>
-
-                            @foreach ($shift as $s)
-                                <th>{{ $s->nama_shift }}</th>
-                            @endforeach
-                            <th>Jml</th>
+                            <th rowspan="2">Total</th>
                         </tr>
+
                     </thead>
-
                     <tbody>
-                        @foreach($items as $idUser => $userItems)
-                            @foreach($userItems as $item)
-                                <tr>
-                                    <th scope="row">{{ $loop->parent->iteration }}.</th> <!-- Menggunakan $loop->parent->iteration untuk mendapatkan nomor iterasi dari loop yang lebih tinggi -->
-                                    <td>{{ $item->data->user->nama_user }}</td>
-                                    <td>{{ $item->data->user->jabatan->nama_jabatan }}</td>
-                                    {{-- <td></td> --}}
+                        @foreach ($users as $user)
+                            @php
+                                $total = 0;
+                            @endphp
 
-                            <td>{{ $totals['poin_1_11'] }}</td>
-                            <td>{{ $totals['poin_1_12'] }}</td>
-                            <td>{{ $totals['poin_1_13'] }}</td>
-                            <td>{{ $totals['poin_1_14'] }}</td>
-                            <td>{{ $totals['poin_1_15'] }}</td>
-                            <td>{{ $totals['poin_1_16'] }}</td>
-                            <td>{{ $totals['poin_1_17'] }}</td>
-                            <td>{{ $totals['poin_1_18'] }}</td>
-                            <td><?php
-                                // menjumlahkan poin
-                                $tb1 = $totals['poin_1_11'] + $totals['poin_1_12'] + $totals['poin_1_13'] + $totals['poin_1_14'] +
-                                $totals['poin_1_15'] + $totals['poin_1_16'] + $totals['poin_1_17'] + $totals['poin_1_18'];
-                                ?>
-                                {{ $tb1 }}</td>
-
-                            <td>{{ $totals['poin_2_11'] }}</td>
-                            <td>{{ $totals['poin_2_12'] }}</td>
-                            <td>{{ $totals['poin_2_13'] }}</td>
-                            <td>{{ $totals['poin_2_14'] }}</td>
-                            <td>{{ $totals['poin_2_15'] }}</td>
-                            <td>{{ $totals['poin_2_16'] }}</td>
-                            <td>{{ $totals['poin_2_17'] }}</td>
-                            <td>{{ $totals['poin_2_18'] }}</td>
-                            <td><?php
-                                // menjumlahkan poin
-                                $tb2 = $totals['poin_2_11'] + $totals['poin_2_12'] + $totals['poin_2_13'] + $totals['poin_2_14'] +
-                                $totals['poin_2_15'] + $totals['poin_2_16'] + $totals['poin_2_17'] + $totals['poin_2_18'];
-                                ?>
-                                {{ $tb2 }}</td>
-
-                            <td>{{ $totals['poin_3_11'] }}</td>
-                            <td>{{ $totals['poin_3_12'] }}</td>
-                            <td>{{ $totals['poin_3_13'] }}</td>
-                            <td>{{ $totals['poin_3_14'] }}</td>
-                            <td>{{ $totals['poin_3_15'] }}</td>
-                            <td>{{ $totals['poin_3_16'] }}</td>
-                            <td>{{ $totals['poin_3_17'] }}</td>
-                            <td>{{ $totals['poin_3_18'] }}</td>
-                            <td><?php
-                                // menjumlahkan poin
-                                $tb3 = $totals['poin_3_11'] + $totals['poin_3_12'] + $totals['poin_3_13'] + $totals['poin_3_14'] +
-                                $totals['poin_3_15'] + $totals['poin_3_16'] + $totals['poin_3_17'] + $totals['poin_3_18'];
-                                ?>
-                                {{ $tb3 }}</td>
-
-                            <td>{{ $totals['poin_4_11'] }}</td>
-                            <td>{{ $totals['poin_4_12'] }}</td>
-                            <td>{{ $totals['poin_4_13'] }}</td>
-                            <td>{{ $totals['poin_4_14'] }}</td>
-                            <td>{{ $totals['poin_4_15'] }}</td>
-                            <td>{{ $totals['poin_4_16'] }}</td>
-                            <td>{{ $totals['poin_4_17'] }}</td>
-                            <td>{{ $totals['poin_4_18'] }}</td>
-                            <td><?php
-                                // menjumlahkan poin
-                                $tb4 = $totals['poin_4_11'] + $totals['poin_4_12'] + $totals['poin_4_13'] + $totals['poin_4_14'] +
-                                $totals['poin_4_15'] + $totals['poin_4_16'] + $totals['poin_4_17'] + $totals['poin_4_18'];
-                                ?>
-                                {{ $tb4 }}</td>
-
-                            <td>
-                                <?php
-                                $total = $tb1 + $tb2 + $tb3 + $tb4;
-                                ?>
-                                {{ $total }}
-                            </td>
-                        </tr>
-                        @endforeach
+                            <tr>
+                                <td>{{ $user->nama_user }}</td>
+                                <td>{{ $user->jabatan->nama_jabatan }}</td>
+                                <td>
+                                    @if ($user->jabatan->wilayah == 0)
+                                        Wilayah Timur
+                                    @elseif($user->jabatan->wilayah == 1)
+                                        Wilayah Barat
+                                    @endif
+                                </td>
+                                @foreach ($bidang as $b)
+                                    @php
+                                        $jml = 0;
+                                    @endphp
+                                    @foreach ($shifts as $shift)
+                                        <td>
+                                            @php
+                                                // Inisialisasi total poin per bulan
+                                                $bulanIni = \Carbon\Carbon::now()->startOfMonth(); // Mulai dari bulan ini
+                                            @endphp
+                                            @while ($bulanIni->lte(\Carbon\Carbon::now()))
+                                                @php
+                                                    // Ambil total poin untuk user, bidang, shift, dan bulan saat ini
+                                                    $poin =
+                                                        $data[$user->id_user][$bulanIni->format('Y-m')][$b->id_bidang][
+                                                            $shift->id_shift
+                                                        ];
+                                                    echo $poin;
+                                                    $jml += $poin; // Tambahkan poin ke total poin per bulan
+                                                    $total += $poin;
+                                                    $bulanIni->addMonth(); // Lanjutkan ke bulan berikutnya
+                                                @endphp
+                                            @endwhile
+                                        </td>
+                                    @endforeach
+                                    <td>{{ $jml }}</td> <!-- Tampilkan total poin per bulan -->
+                                @endforeach
+                                <td>{{ $total }}</td>
+                            </tr>
                         @endforeach
                     </tbody>
+
                 </table>
             </div>
         </div>

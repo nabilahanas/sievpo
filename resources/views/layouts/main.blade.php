@@ -197,12 +197,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
     <!-- Date Range Picker JavaScript -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-    {{-- <!-- Webcam -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/webcamjs/1.0.26/webcam.min.js"></script> --}}
 
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
-    @stack('myscript')
+    {{-- @stack('myscript') --}}
 
 </body>
 

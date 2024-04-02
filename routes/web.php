@@ -5,15 +5,12 @@ use App\Http\Controllers\BulananController;
 use App\Http\Controllers\ConfirmController;
 use App\Http\Controllers\KaryawanDBController;
 use App\Http\Controllers\LandingController;
-use App\Http\Controllers\LokasiController;
 use App\Http\Controllers\ShiftController;
 use App\Http\Controllers\TotalController;
 use App\Http\Controllers\UserController;
-use Illuminate\Console\View\Components\Confirm;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\NavController;
-use App\Http\Controllers\WilayahController;
 use App\Http\Controllers\JabatanController;
 use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\PengumumanController;
@@ -45,8 +42,9 @@ Route::get('/fitur', [LandingController::class, 'fitur'])->name('fitur')->middle
 Route::get('/datakaryawankph', [LandingController::class, 'datakaryawan'])->name('datakaryawan')->middleware('guest');
 Route::get('/strukturkph', [LandingController::class, 'struktur'])->name('struktur')->middleware('guest');
 
-// ALL ROLES
 
+
+// ALL ROLES
 Route::middleware('check.role:Admin,Karyawan,Pimpinan,Mahasiswa')->group(function () {
     Route::get('/home', [NavController::class, 'dashboard'])->name('dashboard');
     Route::get('/get_pengumuman', [PengumumanController::class, 'get_pengumuman'])->name('get_pengumuman');
@@ -67,18 +65,11 @@ Route::middleware('check.role:Admin,Karyawan,Pimpinan,Mahasiswa')->group(functio
     });
 });
 
+
+// ADMIN
 Route::middleware('check.role:Admin,Mahasiswa')->group(function () {
     Route::get('/register', [AuthController::class, 'register'])->name('register');
     Route::post('/registered', [AuthController::class, 'registered'])->name('registered');
-
-    Route::prefix("wilayah")->group(function () {
-        Route::get('add', [WilayahController::class, 'create'])->name('wilayah.add');
-        Route::post('store', [WilayahController::class, 'store'])->name('wilayah.store');
-        Route::get('/', [WilayahController::class, 'index'])->name('wilayah.index');
-        Route::get('edit/{id}', [WilayahController::class, 'edit'])->name('wilayah.edit');
-        Route::post('update/{id}', [WilayahController::class, 'update'])->name('wilayah.update');
-        Route::delete('delete/{id}', [WilayahController::class, 'delete'])->name('wilayah.delete');
-    });
 
     Route::prefix("jabatan")->group(function () {
         Route::get('add', [JabatanController::class, 'create'])->name('jabatan.add');
@@ -145,16 +136,6 @@ Route::middleware('check.role:Admin,Mahasiswa')->group(function () {
         Route::post('restore/{id}', [ShiftController::class, 'restore'])->name('shift.restore');
     });
 
-    Route::prefix("lokasi")->group(function () {
-        Route::get('add', [LokasiController::class, 'create'])->name('lokasi.add');
-        Route::post('store', [LokasiController::class, 'store'])->name('lokasi.store');
-        Route::get('/', [LokasiController::class, 'index'])->name('lokasi.index');
-        Route::get('edit/{id}', [LokasiController::class, 'edit'])->name('lokasi.edit');
-        Route::post('update/{id}', [LokasiController::class, 'update'])->name('lokasi.update');
-        Route::delete('delete/{id}', [LokasiController::class, 'delete'])->name('lokasi.delete');
-        Route::post('restore/{id}', [LokasiController::class, 'restore'])->name('lokasi.restore');
-    });
-
     Route::prefix("karyawan")->group(function () {
         Route::get('add', [KaryawanDBController::class, 'create'])->name('karyawan.add');
         Route::post('store', [KaryawanDBController::class, 'store'])->name('karyawan.store');
@@ -167,8 +148,6 @@ Route::middleware('check.role:Admin,Mahasiswa')->group(function () {
 
     Route::prefix("harian")->group(function () {
         Route::get('/', [HarianController::class, 'index'])->name('harian.index');
-        Route::get('updatePoinFromData', [HarianController::class, 'updatePoinFromData'])->name('harian.updatePoinFromData');
-        Route::get('/poin/{idUser}', [HarianController::class, 'getPoinByUser']);
     });
 
     Route::prefix("confirm")->group(function () {
@@ -177,6 +156,7 @@ Route::middleware('check.role:Admin,Mahasiswa')->group(function () {
     });
 });
 
+//PIMPINAN
 Route::middleware('check.role:Admin,Pimpinan,Mahasiswa')->group(function () {
     Route::get('/bulanan', [BulananController::class, 'index'])->name('bulanan');
     Route::get('/total', [TotalController::class, 'index'])->name('total');

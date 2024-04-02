@@ -95,18 +95,6 @@
                             <p>Bidang</p>
                         </a>
                     </li>
-                    {{-- <li class="nav-item">
-                    <a href="/wilayah" class="nav-link {{ $key == 'wilayah' ? 'active' : '' }}">
-                        <i class="far fa-circle nav-icon"></i>
-                        <p>Wilayah</p>
-                    </a>
-                </li> --}}
-                    <li class="nav-item">
-                        <a href="/lokasi" class="nav-link {{ $key == 'lokasi' ? 'active' : '' }}">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Lokasi</p>
-                        </a>
-                    </li>
                     <li class="nav-item">
                         <a href="/shift" class="nav-link {{ $key == 'shift' ? 'active' : '' }}">
                             <i class="far fa-circle nav-icon"></i>

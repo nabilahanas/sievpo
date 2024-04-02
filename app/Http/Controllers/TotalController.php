@@ -10,20 +10,46 @@ use App\Models\Bidang;
 use App\Models\Shift;
 use App\Models\User;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
+
 
 class TotalController extends Controller
 {
-    protected $primaryKey = 'id_poin';
+    protected $primaryKey = 'id_data';
 
-    public function index(Request $request)
+    public function index()
     {
-        $currentYear = Carbon::now()->year; // Ambil tahun saat ini
+        $users = User::all();
+        $bidang = Bidang::all();
+        $shifts = Shift::all();
+
+        $data = Data::all();
+
+        $totalPoinPerUserPerBulan = [];
+
+        // Menghitung total poin per user per bulan
+        foreach ($data as $item) {
+            $bulan = Carbon::parse($item->created_at)->format('Y-m');
+            $totalPoinPerUserPerBulan[$item->id_user][$bulan] = isset($totalPoinPerUserPerBulan[$item->id_user][$bulan]) ? $totalPoinPerUserPerBulan[$item->id_user][$bulan] + $item->poin : $item->poin;
+        }
+
+        // Mengambil bulan-bulan yang ada dalam data
+        $months = Data::select(DB::raw('DATE_FORMAT(created_at, "%Y-%m") as month'))
+                        ->distinct()
+                        ->orderBy('month')
+                        ->get()
+                        ->pluck('month');
+
+    //     return view('total.index', compact('users', 'totalPoinPerUserPerBulan'), ['key'=>'total']);
+    // }
+
+
+    $currentYear = Carbon::now()->year; // Ambil tahun saat ini
 
         $poin = Poin::all();
         $bidang = Bidang::all();
         $shift = Shift::all();
-        $data = Data::all();
-        $user = User::all();
+        
 
         // Memuat relasi yang diperlukan dari model Poin
         $items = Poin::with('data.user')
@@ -142,6 +168,6 @@ class TotalController extends Controller
         }
 
 
-        return view('total.index', compact('poin', 'bidang', 'shift', 'totals', 'items', 'bidangTotals', 'bkphTotals', 'krphTotals', 'asperTotals'), ['key' => 'total']);
+        return view('total.index', compact('poin', 'bidang','months', 'shift', 'totals', 'items', 'bidangTotals', 'bkphTotals', 'krphTotals', 'asperTotals', 'totalPoinPerUserPerBulan', 'users'), ['key' => 'total']);
     }
 }

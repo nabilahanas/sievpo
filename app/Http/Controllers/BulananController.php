@@ -5,64 +5,41 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\Bidang;
 use App\Models\Shift;
-use Illuminate\Http\Request;
-use App\Models\Poin;
 use Carbon\Carbon;
 use App\Models\Data;
 use App\Models\User;
 
 class BulananController extends Controller
 {
-    protected $primaryKey = 'id_poin';
+    protected $primaryKey = 'id_data';
 
-    public function index(Request $request)
+    public function index()
     {
-        $currentMonth = Carbon::now()->month; // Ambil bulan saat ini
-        $currentYear = Carbon::now()->year; // Ambil tahun saat ini
-
-        $poin = Poin::all();
+        $users = User::all();
         $bidang = Bidang::all();
-        $shift = Shift::all();
+        $shifts = Shift::all();
 
-        $items = Poin::whereHas('data', function($query) use ($currentMonth, $currentYear) {
-            $query->whereMonth('created_at', $currentMonth)
-                  ->whereYear('created_at', $currentYear);
-        })
-        ->get()
-        ->groupBy(function($item) {
-            return $item->data->user->id_user;
-        });
+        $data = [];
 
-        foreach ($items as $userId => $userItems) {
-            // Inisialisasi total masing-masing poin untuk setiap user
-            $userTotals = [];
-            for ($i = 1; $i <= 4; $i++) {
-                for ($j = 11; $j <= 18; $j++) {
-                    $columnName = "poin_{$i}_{$j}";
-                    $userTotals[$columnName] = 0;
-                }
-            }
-        
-            // Hitung total masing-masing poin untuk setiap user
-            foreach ($userItems as $item) {
-                for ($i = 1; $i <= 4; $i++) {
-                    for ($j = 11; $j <= 18; $j++) {
-                        $columnName = "poin_{$i}_{$j}";
-                        $userTotals[$columnName] += $item->$columnName;
+        foreach ($users as $user) {
+            $bulanIni = Carbon::now()->startOfMonth();
+            while ($bulanIni->lte(Carbon::now())) {
+                foreach ($bidang as $b) {
+                    foreach ($shifts as $shift) {
+                        $data[$user->id_user][$bulanIni->format('Y-m')][$b->id_bidang][$shift->id_shift] = 0;
                     }
                 }
-            }
-        
-            // Gabungkan total poin untuk setiap user ke dalam total keseluruhan
-            foreach ($userTotals as $columnName => $total) {
-                if (!isset($totals[$columnName])) {
-                    $totals[$columnName] = 0;
-                }
-                $totals[$columnName] += $total;
+                $bulanIni->addMonth();
             }
         }
 
-        return view('bulanan.index', compact('poin','bidang','shift','totals','items'), ['key' => 'bulanan']);
-    }
+        $datas = Data::all();
 
+        foreach ($datas as $item) {
+            $bulan = Carbon::parse($item->created_at)->format('Y-m');
+            $data[$item->id_user][$bulan][$item->id_bidang][$item->id_shift] = $item->poin;
+        }
+
+        return view('bulanan.index', compact('shifts', 'users', 'data', 'bidang'), ['key' => 'bulanan']);
+    }
 }

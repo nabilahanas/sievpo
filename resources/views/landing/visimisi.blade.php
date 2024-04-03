@@ -29,19 +29,19 @@
         <section id="blog" class="blog">
             <div class="container" data-aos="fade-up">
                 <article class="blog-details text-center">
-                    <h3 class="title">VISI</h3>
+                    <h3>VISI</h3>
                     <p class="content">Menjadi Perusahaan Pengelola Hutan Berkelanjutan dan Bermanfaat Bagi Masyarakat</p>
-                    <h3 class="title">MISI</h3>
+                    <h3>MISI</h3>
                     <p class="content">
                         Mengelola Sumberdaya Hutan Secara Lestari
                         <br>Peduli Kepada Kepentingan Masyarakat dan Lingkungan
                         <br>Mengoptimalkan Bisnis Kehutanan dengan Prinsip Good Corporate Governance
                     </p>
-                    <h5 class="title" style="color: #016237">TATA NILAI AKHLAK</h5>
+                    <h3 style="color: #016237">TATA NILAI AKHLAK</h3>
                     <div class="post-img">
                         <img class="position-relative h-100"
                             src="https://i0.wp.com/www.perhutani.co.id/wp-content/uploads/2022/10/akhlak-2.png"
-                            class="img-fluid mx-auto d-block" alt="Akhlak" style="max-width: 100%; height: auto;">
+                            class="img-fluid mx-auto d-block" alt="Akhlak" style="max-width: 80%">
                     </div>
                 </article>
             </div>

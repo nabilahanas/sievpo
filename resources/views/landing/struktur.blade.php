@@ -32,13 +32,13 @@
                     <div class="row justify-content-center position-relative h-100">
                         <div class="col-md-8">
                             <h3 class="title text-center">STRUKTUR ORGANISASI
-                                <br>PERUM PERHUTANI KPH SEMARANG
+                                <br>PERUM PERHUTANI KPH SEMARANG TAHUN 2023
                             </h3>
                             <div class="post-img">
                                 <img src="landingpage/assets/img/struktur-organisasi.png" class="img-fluid mx-auto d-block"
                                     alt="Profil Perusahaan" style="max-width: 100%">
                             </div>
-                            <div class="row gy-4">
+                            {{-- <div class="row gy-4">
                                 <div class="col-lg-6">
                                     <div class="post-img">
                                         <img src="landingpage/assets/img/Group-476.jpg" class="img-fluid mx-auto d-block"
@@ -51,7 +51,7 @@
                                             alt="Profil Perusahaan" style="max-width: 100%">
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
             </div>

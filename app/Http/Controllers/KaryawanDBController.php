@@ -14,8 +14,10 @@ class KaryawanDBController extends Controller
     {
         $karyawan = Karyawan::all();
         $karyawanDeleted = Karyawan::onlyTrashed()->get();
+        
+        $totalKaryawan = Karyawan::count();
 
-        return view('karyawan.index', compact('karyawan', 'karyawanDeleted'), ['key'=>'karyawan']);
+        return view('karyawan.index', compact('karyawan', 'karyawanDeleted', 'totalKaryawan'), ['key'=>'karyawan']);
     }
 
     public function create()

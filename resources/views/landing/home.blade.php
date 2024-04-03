@@ -25,7 +25,7 @@
             <div class="container position-relative">
                 <div class="row gy-4 mt-5">
 
-                    <div class="col-xl-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="col-xl-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
                         <div class="icon-box">
                             <h2 class="counter"><span data-purecounter-start="0" data-purecounter-end="173"
                                     data-purecounter-duration="1" class="purecounter"></span></h2>
@@ -33,7 +33,7 @@
                         </div>
                     </div>
 
-                    <div class="col-xl-3 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="col-xl-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
                         <div class="icon-box">
                             <h2 class="counter"><span data-purecounter-start="0" data-purecounter-end="2"
                                     data-purecounter-duration="1" class="purecounter"></span></h2>
@@ -41,7 +41,7 @@
                         </div>
                     </div>
 
-                    <div class="col-xl-3 col-md-6" data-aos="fade-up" data-aos-delay="300">
+                    <div class="col-xl-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
                         <div class="icon-box">
                             <h2 class="counter"><span data-purecounter-start="0" data-purecounter-end="4"
                                     data-purecounter-duration="1" class="purecounter"></span></h2>
@@ -49,13 +49,13 @@
                         </div>
                     </div>
 
-                    <div class="col-xl-3 col-md-6" data-aos="fade-up" data-aos-delay="500">
+                    {{-- <div class="col-xl-3 col-md-6" data-aos="fade-up" data-aos-delay="500">
                         <div class="icon-box">
                             <h2 class="counter"><span data-purecounter-start="0" data-purecounter-end="16"
                                     data-purecounter-duration="1" class="purecounter"></span></h2>
                             <h3>Jam Kerja</h3>
                         </div>
-                    </div>
+                    </div> --}}
 
                 </div>
             </div>

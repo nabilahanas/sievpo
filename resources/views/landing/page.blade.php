@@ -116,7 +116,7 @@
                     <li><a href="#call-to-action">Apa itu SIEVPO?</a></li>
                     <li><a href="#services">Berbagai Fitur SIEVPO</a></li>
                     <li><a href="#testimonials">Keunggulan SIEVPO</a></li>
-                </p>
+                    </p>
             </div>
             <div class="col-lg-3 col-md-12 footer-contact text-md-start">
                 <h4>Alamat</h4>
@@ -128,6 +128,15 @@
                     <i class="fas fa-building mr-2"></i>(024) 354621<br>
                     <i class="fas fa-envelope mr-2"></i>kph.semarang@perhutani.co.id<br>
                 </p>
+            </div>
+        </div>
+        <div class="container mt-4">
+            <div class="copyright">
+                Copyright &copy; <?php echo date('Y'); ?> <strong><span>Perum Perhutani KPH Semarang</span></strong>. All Rights
+                Reserved
+            </div>
+            <div class="credits">
+                Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
             </div>
         </div>
     </div>

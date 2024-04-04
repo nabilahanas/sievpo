@@ -27,7 +27,7 @@
 
                     <div class="col-xl-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
                         <div class="icon-box">
-                            <h2 class="counter"><span data-purecounter-start="0" data-purecounter-end="173"
+                            <h2 class="counter"><span data-purecounter-start="0" data-purecounter-end="{{ $karyawan }}"
                                     data-purecounter-duration="1" class="purecounter"></span></h2>
                             <h3>Karyawan</h3>
                         </div>
@@ -43,7 +43,7 @@
 
                     <div class="col-xl-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
                         <div class="icon-box">
-                            <h2 class="counter"><span data-purecounter-start="0" data-purecounter-end="4"
+                            <h2 class="counter"><span data-purecounter-start="0" data-purecounter-end="{{ $bidang }}"
                                     data-purecounter-duration="1" class="purecounter"></span></h2>
                             <h3>Bidang</h3>
                         </div>

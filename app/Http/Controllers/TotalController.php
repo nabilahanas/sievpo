@@ -25,38 +25,30 @@ class TotalController extends Controller
 
         $data = Data::all();
 
-        $totalPoinPerUserPerBulan = [];
+        $poinkaryawan = [];
 
         // Menghitung total poin per user per bulan
         foreach ($data as $item) {
             $bulan = Carbon::parse($item->created_at)->format('Y-m');
-            $totalPoinPerUserPerBulan[$item->id_user][$bulan] = isset($totalPoinPerUserPerBulan[$item->id_user][$bulan]) ? $totalPoinPerUserPerBulan[$item->id_user][$bulan] + $item->poin : $item->poin;
+            $poinkaryawan[$item->id_user][$bulan] = isset($poinkaryawan[$item->id_user][$bulan]) ? $poinkaryawan[$item->id_user][$bulan] + $item->poin : $item->poin;
         }
 
         // Mengambil bulan-bulan yang ada dalam data
         $months = Data::select(DB::raw('DATE_FORMAT(created_at, "%Y-%m") as month'))
-                        ->distinct()
-                        ->orderBy('month')
-                        ->get()
-                        ->pluck('month');
-
-    //     return view('total.index', compact('users', 'totalPoinPerUserPerBulan'), ['key'=>'total']);
-    // }
+            ->distinct()
+            ->orderBy('month')
+            ->get()
+            ->pluck('month');
 
 
-    $currentYear = Carbon::now()->year; // Ambil tahun saat ini
-
-        $poin = Poin::all();
-        $bidang = Bidang::all();
-        $shift = Shift::all();
-        
+        $currentYear = Carbon::now()->year; // Ambil tahun saat ini
 
         // Memuat relasi yang diperlukan dari model Poin
-        $items = Poin::with('data.user')
+        $items = Data::with('user')
             ->whereYear('created_at', $currentYear)
             ->get()
             ->groupBy(function ($item) {
-                return $item->data->id_user;
+                return $item->id_user;
             })
             ->map(function ($userItems) {
                 return $userItems->groupBy(function ($item) {
@@ -70,7 +62,7 @@ class TotalController extends Controller
         foreach ($items as $userId => $userMonths) {
             foreach ($userMonths as $month => $userItems) {
                 // Inisialisasi total poin untuk setiap bulan
-                if (!isset ($totals[$userId][$month])) {
+                if (!isset($totals[$userId][$month])) {
                     $totals[$userId][$month] = 0;
                 }
 
@@ -103,7 +95,7 @@ class TotalController extends Controller
             $bidangId = $dataItem->id_bidang;
 
             // Tambahkan poin ke total bidang untuk bulan tersebut
-            if (!isset ($bidangTotals[$bidangId][$month])) {
+            if (!isset($bidangTotals[$bidangId][$month])) {
                 $bidangTotals[$bidangId][$month] = 0;
             }
             $bidangTotals[$bidangId][$month] += $dataItem->poin;
@@ -118,7 +110,7 @@ class TotalController extends Controller
 
             $bkphId = $item->user->jabatan->bagian;
 
-            if (!isset ($bkphTotals[$bkphId][$month])) {
+            if (!isset($bkphTotals[$bkphId][$month])) {
                 $bkphTotals[$bkphId][$month] = 0;
             }
 
@@ -139,7 +131,7 @@ class TotalController extends Controller
 
             $krphId = $krphItem->user->jabatan->klasifikasi;
 
-            if (!isset ($krphTotals[$krphId][$month])) {
+            if (!isset($krphTotals[$krphId][$month])) {
                 $krphTotals[$krphId][$month] = 0;
             }
 
@@ -160,7 +152,7 @@ class TotalController extends Controller
 
             $asperId = $asperItem->user->jabatan->klasifikasi;
 
-            if (!isset ($asperTotals[$asperId][$month])) {
+            if (!isset($asperTotals[$asperId][$month])) {
                 $asperTotals[$asperId][$month] = 0;
             }
 
@@ -168,6 +160,6 @@ class TotalController extends Controller
         }
 
 
-        return view('total.index', compact('poin', 'bidang','months', 'shift', 'totals', 'items', 'bidangTotals', 'bkphTotals', 'krphTotals', 'asperTotals', 'totalPoinPerUserPerBulan', 'users'), ['key' => 'total']);
+        return view('total.index', compact('bidang', 'months', 'shifts', 'totals', 'items', 'bidangTotals', 'bkphTotals', 'krphTotals', 'asperTotals', 'poinkaryawan', 'users'), ['key' => 'total']);
     }
 }

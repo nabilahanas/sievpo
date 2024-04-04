@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Models\Lokasi;
 use App\Models\Shift;
 use App\Models\Bidang;
 use Illuminate\Http\Request;
 use App\Models\Data;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class DataController extends Controller
@@ -18,16 +18,17 @@ class DataController extends Controller
     {
         $bidang = Bidang::all();
         $shift = Shift::all();
-        $data = Data::all();
 
-        return view('data.index', compact('bidang', 'shift', 'data'), ['key' => 'data']);
+        $user = Auth::user();
+        $data = Data::where('id_user', $user->id_user)->get();
+
+        return view('data.index', compact('data', 'user', 'bidang', 'shift', 'data'), ['key' => 'data']);
     }
 
     public function create()
     {
         $bidang = Bidang::all();
         $shift = Shift::all();
-        $lokasi = Lokasi::all();
 
         $currentDateTime = now();
         $shift = Shift::whereTime('jam_mulai', '<=', $currentDateTime->format('H:i:s'))

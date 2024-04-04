@@ -78,13 +78,13 @@
                     <div class="col-lg-3 col-6">
                         <div class="small-box bg-info">
                             <div class="inner">
-                                <h3>150</h3>
+                                <h3>{{ $total }}</h3>
                                 <p>Total Poin</p>
                             </div>
                             <div class="icon">
                                 <i class="fas fa-chart-pie"></i>
                             </div>
-                            <a href="#" class="small-box-footer">Info lebih lanjut <i
+                            <a href="/confirm" class="small-box-footer">Info lebih lanjut <i
                                     class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
@@ -92,7 +92,7 @@
                         <!-- small box -->
                         <div class="small-box bg-success">
                             <div class="inner">
-                                <h3>53</h3>
+                                <h3>{{ $approved }}</h3>
                                 <p>Laporan Diterima</p>
                             </div>
                             <div class="icon">
@@ -106,7 +106,7 @@
                         <!-- small box -->
                         <div class="small-box bg-danger">
                             <div class="inner">
-                                <h3>44</h3>
+                                <h3>{{ $rejected }}</h3>
                                 <p>Laporan Ditolak</p>
                             </div>
                             <div class="icon">
@@ -120,7 +120,7 @@
                         <!-- small box -->
                         <div class="small-box bg-warning">
                             <div class="inner">
-                                <h3>65</h3>
+                                <h3>{{ $pending }}</h3>
                                 <p>Laporan Diproses</p>
                             </div>
                             <div class="icon">
@@ -134,7 +134,7 @@
                         <!-- small box -->
                         <div class="small-box bg-primary">
                             <div class="inner">
-                                <h3>5</h3>
+                                <h3>{{ $berita }}</h3>
                                 <p>Berita</p>
                             </div>
                             <div class="icon">
@@ -148,7 +148,7 @@
                         <!-- small box -->
                         <div class="small-box bg-teal">
                             <div class="inner">
-                                <h3>65</h3>
+                                <h3> {{ $jmlpengumuman }}</h3>
                                 <p>Pengumuman</p>
                             </div>
                             <div class="icon">
@@ -162,7 +162,7 @@
                         <!-- small box -->
                         <div class="small-box bg-purple">
                             <div class="inner">
-                                <h3>65</h3>
+                                <h3>{{ $user }}</h3>
                                 <p>Total User</p>
                             </div>
                             <div class="icon">
@@ -292,7 +292,7 @@
                     <div class="col-lg-3 col-6">
                         <div class="small-box bg-info">
                             <div class="inner">
-                                <h3>150</h3>
+                                <h3>{{ $total }}</h3>
                                 <p>Total Poin</p>
                             </div>
                             <div class="icon">
@@ -306,7 +306,7 @@
                         <!-- small box -->
                         <div class="small-box bg-success">
                             <div class="inner">
-                                <h3>53</h3>
+                                <h3>{{ $user }}</h3>
                                 <p>Total User</p>
                             </div>
                             <div class="icon">
@@ -435,7 +435,7 @@
                     <div class="col-lg-3 col-6">
                         <div class="small-box bg-info">
                             <div class="inner">
-                                <h3>150</h3>
+                                <h3>{{ $poin }}</h3>
 
                                 <p>Total Poin</p>
                             </div>
@@ -450,7 +450,7 @@
                         <!-- small box -->
                         <div class="small-box bg-success">
                             <div class="inner">
-                                <h3>53</h3>
+                                <h3>{{ $approvedstatus }}</h3>
                                 <p>Laporan Diterima</p>
                             </div>
                             <div class="icon">
@@ -464,7 +464,7 @@
                         <!-- small box -->
                         <div class="small-box bg-danger">
                             <div class="inner">
-                                <h3>44</h3>
+                                <h3>{{ $rejectedstatus }}</h3>
 
                                 <p>Laporan Ditolak</p>
                             </div>
@@ -479,7 +479,7 @@
                         <!-- small box -->
                         <div class="small-box bg-warning">
                             <div class="inner">
-                                <h3>65</h3>
+                                <h3>{{ $pendingstatus }}</h3>
 
                                 <p>Laporan Diproses</p>
                             </div>
@@ -494,7 +494,7 @@
                         <!-- small box -->
                         <div class="small-box bg-primary">
                             <div class="inner">
-                                <h3>5</h3>
+                                <h3>{{ $berita }}</h3>
 
                                 <p>Berita</p>
                             </div>
@@ -509,7 +509,7 @@
                         <!-- small box -->
                         <div class="small-box bg-teal">
                             <div class="inner">
-                                <h3>65</h3>
+                                <h3>{{ $pengumuman }}</h3>
 
                                 <p>Pengumuman</p>
                             </div>
@@ -524,7 +524,7 @@
                         <!-- small box -->
                         <div class="small-box bg-purple">
                             <div class="inner">
-                                <h3>65</h3>
+                                <h3>{{ $user }}</h3>
 
                                 <p>Total User</p>
                             </div>

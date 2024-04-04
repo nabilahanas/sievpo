@@ -3,15 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Models\Bidang;
 use App\Models\Berita;
+use App\Models\User;
 use App\Models\Karyawan;
 
 class LandingController extends Controller
 {
     public function index()
     {
-        return view('landing.home', ['key'=>'landing']);
+        $karyawan = Karyawan::count();
+        $bidang = Bidang::count();
+
+        return view('landing.home',compact('karyawan','bidang'), ['key'=>'landing']);
     }
 
     public function profile()

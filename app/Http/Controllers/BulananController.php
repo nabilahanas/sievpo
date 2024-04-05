@@ -15,7 +15,10 @@ class BulananController extends Controller
 
     public function index()
     {
-        $users = User::all();
+        $currentDate = Carbon::now();
+        $currentMonth = $currentDate->format('F Y');
+
+        $users = User::where('id_role', '3')->get();
         $bidang = Bidang::all();
         $shifts = Shift::all();
 
@@ -40,6 +43,6 @@ class BulananController extends Controller
             $data[$item->id_user][$bulan][$item->id_bidang][$item->id_shift] = $item->poin;
         }
 
-        return view('bulanan.index', compact('shifts', 'users', 'data', 'bidang'), ['key' => 'bulanan']);
+        return view('bulanan.index', compact('currentMonth', 'shifts', 'users', 'data', 'bidang'), ['key' => 'bulanan']);
     }
 }

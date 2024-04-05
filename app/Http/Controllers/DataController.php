@@ -35,7 +35,7 @@ class DataController extends Controller
             ->whereTime('jam_akhir', '>=', $currentDateTime->format('H:i:s'))
             ->first();
 
-        return view('data.add', compact('bidang', 'shift', 'lokasi'), ['key' => 'data']);
+        return view('data.add', compact('bidang', 'shift'), ['key' => 'data']);
     }
 
     public function store(Request $request)

@@ -31,7 +31,6 @@ class User extends Authenticatable
         'password',
         'profile_pict',
         'id_jabatan',
-        // 'id_wilayah',
     ];
 
     /**
@@ -54,17 +53,11 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    /**
-     * Get the role that owns the user.
-     */
     public function role()
     {
         return $this->belongsTo(Role::class, 'id_role');
     }
 
-    /**
-     * Get the jabatan that owns the user.
-     */
     public function jabatan()
     {
         return $this->belongsTo(Jabatan::class, 'id_jabatan');

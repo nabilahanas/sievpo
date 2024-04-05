@@ -15,8 +15,10 @@ class HarianController extends Controller
 
     public function index()
     {
+        $now = Carbon::now();
+        $currentDate = $now->format('d F Y');;
 
-        $users = User::all();
+        $users = User::where('id_role', '3')->get();
         $bidang = Bidang::all();
         $shifts = Shift::all();
 
@@ -42,6 +44,6 @@ class HarianController extends Controller
             $data[$item->id_user][$tanggal][$item->id_bidang][$item->id_shift] = $item->poin;
         }
 
-        return view('harian.index', compact( 'shifts', 'users', 'data', 'bidang'), ['key' => 'harian']);
+        return view('harian.index', compact('currentDate','shifts', 'users', 'data', 'bidang'), ['key' => 'harian']);
     }
 }

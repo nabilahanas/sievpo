@@ -13,11 +13,14 @@
 
                     <thead class="thead-successv2">
                         <tr>
+                            <th colspan="40" class="text-center">{{ $currentDate }}</th>
+                        </tr>
+                        <tr>
                             <th rowspan="2">Nama</th>
                             <th rowspan="2">Jabatan</th>
                             <th rowspan="2">Wilayah</th>
                             @foreach ($bidang as $b)
-                                <th colspan="{{ count($shifts) + 1 }}">{{ $b->nama_bidang }}</th>
+                                <th colspan="{{ count($shifts) + 1 }}" class="text-center" >{{ $b->nama_bidang }}</th>
                             @endforeach
                             <th></th>
                         </tr>

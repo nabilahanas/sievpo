@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Models\Bidang;
 use App\Models\Shift;
 use App\Models\Data;
+use Carbon\Carbon;
+use Carbon\CarbonInterface;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Http\Request;
 
 class ConfirmController extends Controller
@@ -33,12 +36,39 @@ class ConfirmController extends Controller
         // Mengambil nilai poin dari shift atau mengatur menjadi 0 jika shift tidak ditemukan
         $poin = $shift ? $shift->poin : 0;
 
-        // Mengupdate data sesuai dengan status
+        $createdDayOfWeek = Carbon::parse($data->created_at)->dayOfWeek;
+
+        // Pengecekan status
         if ($status === 'approved') {
-            // Jika disetujui, mengupdate is_approved menjadi 'approved' dan menambahkan poin dari shift
-            $data->update(['is_approved' => 'approved', 'poin' => $data->poin + $poin]);
+            // Menambah poin tambahan untuk Sabtu dan Minggu jika status disetujui
+            if ($createdDayOfWeek === CarbonInterface::SATURDAY) {
+                $poin += 1;
+            } elseif ($createdDayOfWeek === CarbonInterface::SUNDAY) {
+                $poin += 1;
+            } else {
+                // Panggil API untuk mendapatkan daftar hari libur nasional
+                $response = Http::get('https://api-harilibur.vercel.app/api');
+
+                // Periksa apakah panggilan API berhasil
+                if ($response->successful()) {
+                    // Ambil daftar hari libur nasional dari respons
+                    $nationalHolidays = $response->json();
+
+                    // Periksa apakah tanggal dibuatnya data adalah hari libur nasional
+                    $createdDate = Carbon::parse($data->created_at)->toDateString();
+                    if (in_array($createdDate, $nationalHolidays)) {
+                        $poin += 1;
+                    }
+                }
+            }
+
+            // Update data menjadi 'approved' dan menambahkan poin dari shift hanya jika bukan Sabtu, Minggu, atau hari libur nasional
+            if ($createdDayOfWeek !== CarbonInterface::SATURDAY && $createdDayOfWeek !== CarbonInterface::SUNDAY && !in_array($createdDate, $nationalHolidays)) {
+                $data->update(['is_approved' => 'approved', 'poin' => $data->poin + $poin]);
+            } else {
+                $data->update(['is_approved' => 'approved', 'poin' => $data->poin]);
+            }
         } elseif ($status === 'rejected') {
-            // Jika ditolak, mengupdate is_approved menjadi 'rejected' dan menetapkan poin menjadi 0
             $data->update(['is_approved' => 'rejected', 'poin' => 0]);
         }
 

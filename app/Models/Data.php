@@ -26,11 +26,6 @@ class Data extends Model
 
     public $timestamps = true;
 
-    // public function user()
-    // {
-    //     return $this->belongsTo(User::class, 'id_user');
-    // }
-
     public function bidang()
     {
         return $this->belongsTo(Bidang::class, 'id_bidang');
@@ -41,12 +36,10 @@ class Data extends Model
         return $this->belongsTo(Shift::class, 'id_shift');
     }
 
-    // Model Data
-
     public function user()
-{
-    return $this->belongsTo(User::class, 'id_user');
-}
+    {
+        return $this->belongsTo(User::class, 'id_user');
+    }
 
     public function poin()
     {

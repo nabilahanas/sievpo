@@ -20,5 +20,10 @@ class Jabatan extends Model
         'klasifikasi',
     ];
 
+    public function user()
+    {
+        return $this->hasMany(User::class, 'id_jabatan');
+    }
+
     public $timestamps = true;
 }

@@ -10,30 +10,29 @@
             <a class="btn btn-outline-success" href="">Download
                 Excel</a>
 
-            <div class="table-responsive mt-4">
+            <div class="table-responsive-lg mt-4">
                 <table id="bulanan" class="table table-sm text-nowrap text-hover table-striped" style="width=100%">
 
                     <thead class="thead-successv2">
                         <tr>
-                            <th colspan="40" class="text-center">{{ $currentMonth }}</th>
+                            <th rowspan="3">Nama</th>
+                            <th rowspan="3">Jabatan</th>
+                            <th rowspan="3">Wilayah</th>
+                            <th colspan="36" class="text-center">{{ $currentMonth }}</th>
+                            <th rowspan="3">Total</th>
                         </tr>
                         <tr>
-                            <th rowspan="2">Nama</th>
-                            <th rowspan="2">Jabatan</th>
-                            <th rowspan="2">Wilayah</th>
                             @foreach ($bidang as $b)
                                 <th colspan="{{ count($shifts) + 1 }}" class="text-center">{{ $b->nama_bidang }}</th>
                             @endforeach
-                            <th></th>
                         </tr>
                         <tr>
                             @foreach ($bidang as $b)
                                 @foreach ($shifts as $shift)
                                     <th>{{ $shift->nama_shift }}</th>
                                 @endforeach
-                                <th>Jml</th> <!-- Tambahkan kolom total untuk jumlah poin per bulan -->
+                                <th>Jml</th>
                             @endforeach
-                            <th rowspan="2">Total</th>
                         </tr>
 
                     </thead>

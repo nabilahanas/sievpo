@@ -45,11 +45,4 @@ class Data extends Model
     {
         return $this->hasOne(Poin::class, 'id_user');
     }
-
-
-    // public function lokasi()
-    // {
-    //     return $this->belongsTo(Lokasi::class, 'id_lokasi');
-    // }
-
 }

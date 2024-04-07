@@ -18,7 +18,7 @@ class TotalController extends Controller
         $user = User::where('id_role', '3')->get();
         $bidang = Bidang::all();
         $data = Data::all();
-        $jabatan = Jabatan::all();
+        
         $currentYear = Carbon::now()->year; 
         $data1 = Data::whereYear('created_at', $currentYear)->get();
 
@@ -54,9 +54,11 @@ class TotalController extends Controller
 
         // POIN PER BKPH
         $bkphTotals = [];
-        $datas = Data::with('user.jabatan')->get();
+        $jabatan = Jabatan::groupBy('bagian')
+                ->select('bagian')
+                ->get();
 
-        foreach ($datas as $dataItem) {
+        foreach ($data as $dataItem) {
             $month = $dataItem->created_at->format('F');
 
             $bkphId = $dataItem->user->jabatan->bagian;
@@ -69,18 +71,17 @@ class TotalController extends Controller
 
 
         // POIN PER KRPH
-        $krphTotals = [];
+        $jabatan1 = User::with('jabatan')
+                ->join('jabatan', 'users.id_jabatan', '=', 'jabatan.id_jabatan')
+                ->where('jabatan.klasifikasi', 'KRPH')
+                ->get();
 
-        $datas1 = Data::whereHas('user', function ($query) {
-            $query->whereHas('jabatan', function ($query) {
-                $query->where('klasifikasi','KRPH');
-            });
-        });
+        $krphTotals = [];
         
-        foreach ($datas1 as $dataItem) {
+        foreach ($data as $dataItem) {
             $month = $dataItem->created_at->format('F');
 
-            $krphId = $dataItem->user->jabatan->id_jabatan;
+            $krphId = $dataItem->user->nama_user;
 
             if (!isset($krphTotals[$krphId][$month])) {
                 $krphTotals[$krphId][$month] = 0;
@@ -88,14 +89,20 @@ class TotalController extends Controller
             $krphTotals[$krphId][$month] += $dataItem->poin;
         }
 
+        
+
 
         // POIN PER ASPER
+        $jabatan2 = User::with('jabatan')
+                ->join('jabatan', 'users.id_jabatan', '=', 'jabatan.id_jabatan')
+                ->where('jabatan.klasifikasi', 'ASPER')
+                ->get();
         $asperTotals = [];
 
-        foreach ($datas as $dataItem) {
+        foreach ($data as $dataItem) {
             $month = $dataItem->created_at->format('F');
 
-            $asperId = $dataItem->user->jabatan->klasifikasi;
+            $asperId = $dataItem->user->nama_user;
 
             if (!isset($asperTotals[$asperId][$month])) {
                 $asperTotals[$asperId][$month] = 0;
@@ -103,6 +110,6 @@ class TotalController extends Controller
             $asperTotals[$asperId][$month] += $dataItem->poin;
         }
 
-        return view('total.index', compact('user', 'data', 'datas','jabatan', 'bidang', 'currentYear', 'karyawanTotals', 'bidangTotals', 'bkphTotals', 'krphTotals', 'asperTotals'), ['key' => 'total']);
+        return view('total.index', compact('user', 'data', 'jabatan','jabatan1','jabatan2', 'bidang', 'currentYear', 'karyawanTotals', 'bidangTotals', 'bkphTotals', 'krphTotals', 'asperTotals'), ['key' => 'total']);
     }
 }

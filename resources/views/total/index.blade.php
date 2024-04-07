@@ -44,7 +44,6 @@
                                             <td>{{ $UItem->nama_user }}</td>
                                             @foreach (['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'] as $month)
                                                 @php
-                                                    // Periksa apakah karyawan memiliki poin untuk bulan ini
                                                     $poin = isset($karyawanTotals[$UItem->nama_user][$month]) ? $karyawanTotals[$UItem->nama_user][$month] : 0;
                                                 @endphp
                                                 <td>{{ $poin }}</td>
@@ -52,7 +51,6 @@
                                 
                                             <td>
                                                 @php
-                                                    // Jumlahkan semua poin untuk pengguna ini
                                                     $userTotal = isset($karyawanTotals[$UItem->nama_user]) ? array_sum($karyawanTotals[$UItem->nama_user]) : 0;
                                                 @endphp
                                                 {{ $userTotal }}
@@ -93,7 +91,6 @@
                                             <td>{{ $BItem->nama_bidang }}</td>
                                             @foreach (['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'] as $month)
                                                 @php
-                                                    // Periksa apakah karyawan memiliki poin untuk bulan ini
                                                     $poin = isset($bidangTotals[$BItem->nama_bidang][$month]) ? $bidangTotals[$BItem->nama_bidang][$month] : 0;
                                                 @endphp
                                                 <td>{{ $poin }}</td>
@@ -101,7 +98,6 @@
                                 
                                             <td>
                                                 @php
-                                                    // Jumlahkan semua poin untuk pengguna ini
                                                     $bidangTotal = isset($bidangTotals[$BItem->nama_bidang]) ? array_sum($bidangTotals[$BItem->nama_bidang]) : 0;
                                                 @endphp
                                                 {{ $bidangTotal }}
@@ -134,20 +130,18 @@
                                 </thead>
                                 
                                 <tbody>
-                                    @foreach($user as $item)
+                                    @foreach($jabatan as $item)
                                         <tr>
                                             <td scope="row">{{ $loop->iteration }}</td>
-                                            <td>{{ $item->jabatan->bagian }}</td>
+                                            <td>{{ $item->bagian }}</td>
                                             @foreach (['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'] as $month)
                                                 @php
-                                                    // Periksa apakah karyawan memiliki poin untuk bulan ini
                                                     $poin = isset($bkphTotals[$item->bagian][$month]) ? $bkphTotals[$item->bagian][$month] : 0;
                                                 @endphp
                                                 <td>{{ $poin }}</td>
                                             @endforeach
                                             <td>
                                                 @php
-                                                    // Jumlahkan semua poin untuk bagian ini
                                                     $bkphTotal = isset($bkphTotals[$item->bagian]) ? array_sum($bkphTotals[$item->bagian]) : 0;
                                                 @endphp
                                                 {{ $bkphTotal }}
@@ -171,6 +165,7 @@
                                 <thead class="thead-successv2">
                                     <tr>
                                         <th rowspan="2">No.</th>
+                                        <th rowspan="2">Nama</th>
                                         <th rowspan="2">Nama KRPH</th>
                                         <th colspan="12" style="text-align: center">{{ $currentYear }}</th>
                                         <th rowspan="2">Total</th>
@@ -183,22 +178,21 @@
                                 </thead>
 
                                 <tbody>
-                                    @foreach($jabatan as $krph)
+                                    @foreach($jabatan1 as $krph)
                                         <tr>
                                             <td scope="row">{{ $loop->iteration }}</td>
-                                            <td>{{ $krph->klasifikasi }}</td>
+                                            <td>{{ $krph->nama_user}}</td>
+                                            <td>{{ $krph->jabatan->nama_jabatan }}</td>
                                             @foreach (['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'] as $month)
                                                 @php
-                                                    // Periksa apakah karyawan memiliki poin untuk bulan ini
-                                                    $poin = isset($krphTotals[$krph->bagian][$month]) ? $krphTotals[$krph->bagian][$month] : 0;
+                                                    $poin = isset($krphTotals[$krph->nama_user][$month]) ? $krphTotals[$krph->nama_user][$month] : 0;
                                                 @endphp
                                                 <td>{{ $poin }}</td>
                                             @endforeach
                                 
                                             <td>
                                                 @php
-                                                    // Jumlahkan semua poin untuk pengguna ini
-                                                    $krphTotal = isset($krphTotals[$krph->bagian]) ? array_sum($krphTotals[$krph->bagian]) : 0;
+                                                    $krphTotal = isset($krphTotals[$krph->nama_user]) ? array_sum($krphTotals[$krph->nama_user]) : 0;
                                                 @endphp
                                                 {{ $krphTotal }}
                                             </td>
@@ -231,23 +225,21 @@
                                 </thead>
 
                                 <tbody>
-                                    @foreach($user as $asper)
+                                    @foreach($jabatan2 as $asper)
                                         <tr>
                                             <td scope="row">{{ $loop->iteration }}</td>
                                             <td>{{ $asper->nama_user}}</td>
-                                            <td>{{ $asper->jabatan->klasifikasi }}</td>
+                                            <td>{{ $asper->jabatan->nama_jabatan }}</td>
                                             @foreach (['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'] as $month)
                                                 @php
-                                                    // Periksa apakah karyawan memiliki poin untuk bulan ini
-                                                    $poin = isset($asperTotals[$asper->bagian][$month]) ? $asperTotals[$asper->bagian][$month] : 0;
+                                                    $poin = isset($asperTotals[$asper->nama_user][$month]) ? $asperTotals[$asper->nama_user][$month] : 0;
                                                 @endphp
                                                 <td>{{ $poin }}</td>
                                             @endforeach
                                 
                                             <td>
                                                 @php
-                                                    // Jumlahkan semua poin untuk bagian ini
-                                                    $asperTotal = isset($asperTotals[$asper->bagian]) ? array_sum($asperTotals[$asper->bagian]) : 0;
+                                                    $asperTotal = isset($asperTotals[$asper->nama_user]) ? array_sum($asperTotals[$asper->nama_user]) : 0;
                                                 @endphp
                                                 {{ $asperTotal }}
                                             </td>

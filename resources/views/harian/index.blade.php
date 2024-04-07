@@ -29,7 +29,7 @@
                                 @foreach ($shifts as $shift)
                                     <th>{{ $shift->nama_shift }}</th>
                                 @endforeach
-                                <th>Jml</th> <!-- Tambahkan kolom total untuk jumlah poin per bulan -->
+                                <th>Jml</th>
                             @endforeach
                         </tr>
 

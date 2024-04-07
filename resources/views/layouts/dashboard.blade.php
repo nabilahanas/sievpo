@@ -509,7 +509,7 @@
                         <!-- small box -->
                         <div class="small-box bg-teal">
                             <div class="inner">
-                                <h3>{{ $pengumuman }}</h3>
+                                <h3>{{ $jmlpengumuman }}</h3>
 
                                 <p>Pengumuman</p>
                             </div>

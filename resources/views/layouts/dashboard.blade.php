@@ -121,7 +121,7 @@
                         <div class="small-box bg-warning">
                             <div class="inner">
                                 <h3>{{ $pending }}</h3>
-                                <p>Laporan Diproses</p>
+                                <p>Laporan Perlu Diproses</p>
                             </div>
                             <div class="icon">
                                 <i class="fas fa-retweet"></i>

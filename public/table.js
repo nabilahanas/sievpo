@@ -44,11 +44,12 @@ $(document).ready(function () {
         dom: "<'row'<'col-sm-12 col-md-6 cariharian'l ><'col-sm-12 col-md-6'f>>" +
             "<'row'<'col-sm-12'tr>>" +
             "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
-        scrollX: true,
+            scrollY: 600,
+            scrollX: true,
         scrollCollapse: true,
         paging: false,
         columnDefs: [{ visible: false, targets: groupColumn },
-        { orderable: false, targets: [4, 5, 6, 7, 8, 9, 10, 11, 13, 14, 15, 16, 17, 18, 19, 20, 22, 23, 24, 25, 26, 27, 28, 29, 31, 32, 33, 34, 35, 36, 37, 38] }],
+        { orderable: false, targets: [3, 4, 5, 6, 7, 8, 9, 10, 12, 13, 14, 15, 16, 17, 18, 19, 21, 22, 23, 24, 25, 26, 27, 28, 30, 31, 32, 33, 34, 35, 36, 37] }],
         // { visible: false, targets: -1, }],
         order: [[groupColumn, 'asc']],
         drawCallback: function (settings) {
@@ -94,7 +95,8 @@ $(document).ready(function () {
 
 // Rekap Bulanan
 $(document).ready(function () {
-    $('#bulanan').DataTable({
+    var groupColumn = 2;
+    var table = $('#bulanan').DataTable({
         dom: "<'row'<'col-sm-10 col-md-6 caribulanan'l ><'col-sm-10 col-md-6'f>>" +
             "<'row'<'col-sm-12'tr>>" +
             "<'row'<'col-sm-10 col-md-5'i><'col-sm-10 col-md-7'p>>",
@@ -102,51 +104,143 @@ $(document).ready(function () {
         scrollX: true,
         scrollCollapse: true,
         paging: false,
-        columnDefs: [{ orderable: false, targets: [3, 4, 5, 6, 7, 8, 9, 10, 12, 13, 14, 15, 16, 17, 18, 19, 21, 22, 23, 24, 25, 26, 27, 28, 30, 31, 32, 33, 34, 35, 36, 37] }],
-    });
+        columnDefs: [{ visible: false, targets: groupColumn },
+            { orderable: false, targets: [3, 4, 5, 6, 7, 8, 9, 10, 12, 13, 14, 15, 16, 17, 18, 19, 21, 22, 23, 24, 25, 26, 27, 28, 30, 31, 32, 33, 34, 35, 36, 37] }],
+            order: [[groupColumn, 'asc']],
+            drawCallback: function (settings) {
+                var api = this.api();
+                var rows = api.rows({ page: 'current' }).nodes();
+                var last = null;
+    
+                api
+                    .column(groupColumn, { page: 'current' })
+                    .data()
+                    .each(function (group, i) {
+                        if (last !== group) {
+                            $(rows)
+                                .eq(i)
+                                .before('<tr class="group"><td colspan="39">' + group + '</td></tr>');
+    
+                            last = group;
+                        }
+                    });
+            },
+    
+        });
 
-    $('.caribulanan').append(`
-    <form>
-    <div class="input-group col-md-8 mt-2 mb-4">
-        <input type="month" class="form-control" name="search" placeholder="search"
-            aria-label="search" aria-describedby="button-addon2">
-        <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Cari</button>
-    </div>
-    </form>
+        $(".caribulanan").append(`
+        <form id="bkaryawan">
+            <div class="input-group col-md-8 mt-2 mb-4">
+                <select class="form-control" name="bulan" aria-label="bulan" aria-describedby="button-addon2">
+                <option selected disabled value="">Pilih Bulan</option>
+                    <option value="01">Januari</option>
+                    <option value="02">Februari</option>
+                    <option value="03">Maret</option>
+                    <option value="04">April</option>
+                    <option value="05">Mei</option>
+                    <option value="06">Juni</option>
+                    <option value="07">Juli</option>
+                    <option value="08">Agustus</option>
+                    <option value="09">September</option>
+                    <option value="10">Oktober</option>
+                    <option value="11">November</option>
+                    <option value="12">Desember</option>
+                </select>
+                <select name="tahun" class="form-control">
+                    <option selected disabled value="">Pilih Tahun</option>
+                </select>
+                <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Cari</button>
+            </div>
+        </form>
     `);
-});
+
+    const currentYear = new Date().getFullYear();
+    const yearsOption = [currentYear, currentYear - 1, currentYear - 2];
+    $('select[name="tahun"]').append(
+        yearsOption
+            .map((year) => `<option value="${year}">${year}</option>`)
+            .join("")
+    );
+    
+        $("#bkaryawan").on("click", "tr.group", function () {
+            var currentOrder = table.order()[0];
+            if (currentOrder[0] === groupColumn && currentOrder[1] === "asc") {
+                table.order([groupColumn, "desc"]).draw();
+            } else {
+                table.order([groupColumn, "asc"]).draw();
+            }
+        });
+    });
 
 // Rekap Total Karyawan
  $(document).ready(function () {
-        $('#tkaryawan').DataTable({
+    var groupColumn = 2;
+        var table = $('#tkaryawan').DataTable({
             dom: "<'row'<'col-sm-10 col-md-6 caritkaryawan'l ><'col-sm-10 col-md-6'f>>" +
                 "<'row'<'col-sm-12'tr>>" +
                 "<'row'<'col-sm-10 col-md-5'i><'col-sm-10 col-md-7'p>>",
-            scrollX: true,
+                scrollY: 600,
+                scrollX: true,
             scrollCollapse: true,
             paging: false,
+            columnDefs: [{ visible: false, targets: groupColumn },
+                ],
+                order: [[groupColumn, 'asc']],
+                drawCallback: function (settings) {
+                    var api = this.api();
+                    var rows = api.rows({ page: 'current' }).nodes();
+                    var last = null;
+        
+                    api
+                        .column(groupColumn, { page: 'current' })
+                        .data()
+                        .each(function (group, i) {
+                            if (last !== group) {
+                                $(rows)
+                                    .eq(i)
+                                    .before('<tr class="group"><td colspan="39">' + group + '</td></tr>');
+        
+                                last = group;
+                            }
+                        });
+                },
         });
 
         $('.caritkaryawan').append(`
-        <form>
-        <div class="input-group col-md-8 mt-2 mb-4">
-        <input type="month" class="form-control" name="search" placeholder="search"
-            aria-label="search" aria-describedby="button-addon2">
-        <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Cari</button>
-    </div>
+        <form id="tkar">
+            <div class="input-group mt-2 mb-4">
+                <select name="search" type="number" class="form-control" placeholder="search" aria-label="search"
+                    aria-describedby="button-addon2">
+                    <option selected disabled value="">Pilih Semester</option>
+                    <option value="01">Semester I (Januari-Juni)</option>
+                    <option value="02">Semester II (Juli-Desember)</option>
+                </select>
+
+                <select name="year" class="form-control">
+                    <option selected disabled value="">Pilih Tahun</option>
+                </select>
+
+                <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Cari</button>
+            </div>
         </form>
         `);
 
-        $('#datetimepicker7').datetimepicker();
-        $('#datetimepicker8').datetimepicker({
-            useCurrent: false
-        });
-        $("#datetimepicker7").on("change.datetimepicker", function (e) {
-            $('#datetimepicker8').datetimepicker('minDate', e.date);
-        });
-        $("#datetimepicker8").on("change.datetimepicker", function (e) {
-            $('#datetimepicker7').datetimepicker('maxDate', e.date);
-        });
+        const currentYear = new Date().getFullYear();
+    const yearsOption = [currentYear, currentYear - 1, currentYear - 2];
+    $('select[name="year"]').append(
+        yearsOption
+            .map((year) => `<option value="${year}">${year}</option>`)
+            .join("")
+    );
+
+    $("#tkar").on("click", "tr.group", function () {
+        var currentOrder = table.order()[0];
+        if (currentOrder[0] === groupColumn && currentOrder[1] === "asc") {
+            table.order([groupColumn, "desc"]).draw();
+        } else {
+            table.order([groupColumn, "asc"]).draw();
+        }
+    });
     });
 
 

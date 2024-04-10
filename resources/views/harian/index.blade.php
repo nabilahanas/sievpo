@@ -21,7 +21,7 @@
                         </tr>
                         <tr>
                             @foreach ($bidang as $b)
-                                <th colspan="{{ count($shifts) + 1 }}" class="text-center" >{{ $b->nama_bidang }}</th>
+                                <th colspan="{{ count($shifts) + 1 }}" class="text-center">{{ $b->nama_bidang }}</th>
                             @endforeach
                         </tr>
                         <tr>
@@ -56,20 +56,23 @@
                                     @foreach ($shifts as $shift)
                                         <td>
                                             @php
-                                                $hariIni = \Carbon\Carbon::now()->startOfDay();
+                                                $searchDate = request()->has('search')
+                                                    ? Carbon\Carbon::parse(request()->search)->startOfDay()
+                                                    : Carbon\Carbon::now()->startOfDay();
+                                                $poin = isset(
+                                                    $data[$user->id_user][$searchDate->format('Y-m-d')][$b->id_bidang][
+                                                        $shift->id_shift
+                                                    ],
+                                                )
+                                                    ? $data[$user->id_user][$searchDate->format('Y-m-d')][
+                                                        $b->id_bidang
+                                                    ][$shift->id_shift]
+                                                    : 0;
+                                                $jml += $poin;
+                                                $total += $poin;
+                                                $searchDate->addDay();
                                             @endphp
-                                            @while ($hariIni->lte(\Carbon\Carbon::now()))
-                                                @php
-                                                    $poin =
-                                                        $data[$user->id_user][$hariIni->format('Y-m-d')][$b->id_bidang][
-                                                            $shift->id_shift
-                                                        ];
-                                                    echo $poin;
-                                                    $jml += $poin;
-                                                    $total += $poin;
-                                                    $hariIni->addDay();
-                                                @endphp
-                                            @endwhile
+                                            {{ $poin }}
                                         </td>
                                     @endforeach
                                     <td>{{ $jml }}</td>
@@ -78,6 +81,7 @@
                             </tr>
                         @endforeach
                     </tbody>
+
 
                 </table>
             </div>

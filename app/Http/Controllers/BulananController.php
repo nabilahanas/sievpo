@@ -8,12 +8,13 @@ use App\Models\Shift;
 use Carbon\Carbon;
 use App\Models\Data;
 use App\Models\User;
+use Illuminate\Http\Request;
 
 class BulananController extends Controller
 {
     protected $primaryKey = 'id_data';
 
-    public function index()
+    public function index(Request $request)
     {
         $currentDate = Carbon::now();
         $currentMonth = $currentDate->format('F Y');
@@ -24,24 +25,32 @@ class BulananController extends Controller
 
         $data = [];
 
-        foreach ($users as $user) {
-            $bulanIni = Carbon::now()->startOfMonth();
-            while ($bulanIni->lte(Carbon::now())) {
-                foreach ($bidang as $b) {
-                    foreach ($shifts as $shift) {
-                        $data[$user->id_user][$bulanIni->format('Y-m')][$b->id_bidang][$shift->id_shift] = 0;
-                    }
-                }
-                $bulanIni->addMonth();
-            }
-        }
+        if ($request->has('bulan') && $request->has('tahun')) {
+            $searchMonth = Carbon::createFromDate($request->tahun, $request->bulan, 1);
+            $datas = Data::whereYear('created_at', $searchMonth->year)
+                ->whereMonth('created_at', $searchMonth->month)
+                ->get();
 
-        $datas = Data::all();
+            $currentMonth = $searchMonth->format('F Y');
+        } else {
+            $datas = Data::all();
+        }
 
         foreach ($datas as $item) {
-            $bulan = Carbon::parse($item->created_at)->format('Y-m');
-            $data[$item->id_user][$bulan][$item->id_bidang][$item->id_shift] = $item->poin;
+            $bulan = Carbon::parse($item->created_at)->format('m-Y');
+            $userId = $item->id_user;
+            $bidangId = $item->id_bidang;
+            $shiftId = $item->id_shift;
+            $poin = $item->poin;
+
+            if (!isset($data[$userId][$bulan][$bidangId][$shiftId])) {
+                $data[$userId][$bulan][$bidangId][$shiftId] = 0;
+            }
+
+            $data[$userId][$bulan][$bidangId][$shiftId] += $poin;
         }
+
+        // dd($data);
 
         return view('bulanan.index', compact('currentMonth', 'shifts', 'users', 'data', 'bidang'), ['key' => 'bulanan']);
     }

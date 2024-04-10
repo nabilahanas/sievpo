@@ -154,12 +154,22 @@ Route::middleware('check.role:Admin,Mahasiswa')->group(function () {
         Route::get('/', [ConfirmController::class, 'index'])->name('confirm.index');
         Route::delete('delete/{id}', [ConfirmController::class, 'delete'])->name('confirm.delete');
     });
+
+    Route::prefix("bulanan")->group(function(){
+        Route::get('/', [BulananController::class, 'index'])->name('bulanan.index');
+    });
+
+    Route::prefix("total")->group(function (){
+        Route::get('/', [TotalController::class, 'index'])->name('total.index');
+        // Route::get('tbidang', [TotalController::class, 'tbidang'])->name('total.tbidang');
+        // Route::get('tbkph', [TotalController::class, 'tbkph'])->name('total.tbkph');
+        // Route::get('tkrph', [TotalController::class, 'tkrph'])->name('total.tkrph');
+        // Route::get('tasper', [TotalController::class, 'tasper'])->name('total.tasper');
+    });
 });
 
 //PIMPINAN
 Route::middleware('check.role:Admin,Pimpinan,Mahasiswa')->group(function () {
-    Route::get('/bulanan', [BulananController::class, 'index'])->name('bulanan');
-    Route::get('/total', [TotalController::class, 'index'])->name('total');
     Route::post('proses-approval/{id}/{status}', [ConfirmController::class, 'approval'])->name('approval.process');
 
 });

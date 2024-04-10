@@ -9,8 +9,8 @@
     <div class="card">
         <div class="card-body">
             <ul class="nav nav-tabs">
-                <li class="nav-item"><a class="nav-link active" href="#karyawan" data-toggle="tab">Rekap Karyawan</a></li>
-                <li class="nav-item"><a class="nav-link" href="#bidang" data-toggle="tab">Rekap Bidang</a></li>
+                <li class="nav-item"><a class="nav-link active" href="#kar" data-toggle="tab">Rekap Karyawan</a></li>
+                <li class="nav-item"><a class="nav-link" href="#bid" data-toggle="tab">Rekap Bidang</a></li>
                 <li class="nav-item"><a class="nav-link" href="#bkph" data-toggle="tab">Rekap BKPH</a></li>
                 <li class="nav-item"><a class="nav-link" href="#krph" data-toggle="tab">Rekap KRPH</a></li>
                 <li class="nav-item"><a class="nav-link" href="#asper" data-toggle="tab">Rekap Asper/KBKPH</a></li>
@@ -19,7 +19,7 @@
                 <div class="tab-content">
 
                     <!-- KARYAWAN -->
-                    <div class="active tab-pane" id="karyawan">
+                    <div class="active tab-pane" id="kar">
                         <a class="btn btn-outline-success" href="">Download
                             Excel</a>
                         <div class="table-responsive-lg mt-4">
@@ -28,6 +28,7 @@
                                     <tr>
                                         <th rowspan="2">No.</th>
                                         <th rowspan="2">Nama</th>
+                                        <th rowspan="2">Wilayah</th>
                                         <th colspan="12" style="text-align: center">{{ $currentYear }}</th>
                                         <th rowspan="2">Total</th>
                                     </tr>
@@ -42,6 +43,13 @@
                                         <tr>
                                             <td scope="row">{{ $loop->iteration }}.</td>
                                             <td>{{ $UItem->nama_user }}</td>
+                                            <td>
+                                                @if ($UItem->jabatan->wilayah == 0)
+                                                    Wilayah Timur
+                                                @elseif($UItem->jabatan->wilayah == 1)
+                                                    Wilayah Barat
+                                                @endif
+                                            </td>
                                             @foreach (['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'] as $month)
                                                 @php
                                                     $poin = isset($karyawanTotals[$UItem->nama_user][$month]) ? $karyawanTotals[$UItem->nama_user][$month] : 0;
@@ -65,7 +73,7 @@
                     </div>
 
                     <!-- BIDANG -->
-                    <div class="tab-pane" id="bidang">
+                    <div class="tab-pane" id="bid">
                         <a class="btn btn-outline-success" href="">Download
                             Excel</a>
                         <div class="table-responsive-lg mt-4">

@@ -24,33 +24,31 @@ class HarianController extends Controller
         $bidang = Bidang::all();
         $shifts = Shift::all();
 
+        $data = [];
+
         if ($request->has('search')) {
             $searchDate = Carbon::parse($request->search)->format('Y-m-d');
             $datas = Data::whereDate('created_at', $searchDate)->get();
-
             $currentDate = Carbon::parse($request->search)->format('d F Y');
         } else {
             $datas = Data::all();
         }
-
-        $data = [];
-
-        foreach ($users as $user) {
-            $hariIni = Carbon::now()->startOfDay();
-            while ($hariIni->lte(Carbon::now())) {
-                foreach ($bidang as $b) {
-                    foreach ($shifts as $shift) {
-                        $data[$user->id_user][$hariIni->format('Y-m-d')][$b->id_bidang][$shift->id_shift] = 0;
-                    }
-                }
-                $hariIni->addDay();
-            }
-        }
-
+    
         foreach ($datas as $item) {
             $tanggal = Carbon::parse($item->created_at)->format('Y-m-d');
-            $data[$item->id_user][$tanggal][$item->id_bidang][$item->id_shift] = $item->poin;
+            $userId = $item->id_user;
+            $bidangId = $item->id_bidang;
+            $shiftId = $item->id_shift;
+            $poin = $item->poin;
+    
+            if (!isset($data[$userId][$tanggal][$bidangId][$shiftId])) {
+                $data[$userId][$tanggal][$bidangId][$shiftId] = 0;
+            }
+    
+            $data[$userId][$tanggal][$bidangId][$shiftId] += $poin;
         }
+
+        // dd($data);
 
         return view('harian.index', compact('currentDate', 'shifts', 'users', 'data', 'bidang'), ['key' => 'harian']);
     }

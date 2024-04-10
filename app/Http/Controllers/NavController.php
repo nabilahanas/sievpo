@@ -17,7 +17,7 @@ class NavController extends Controller
         $total = Data::count('poin');
         $approved = Data::where('is_approved', 'approved')->count();
         $rejected = Data::where('is_approved', 'rejected')->count();
-        $pending = Data::where('is_approved', 'rejected')->count();
+        $pending = Data::where('is_approved', 'pending')->count();
         $berita = Berita::count();
         $jmlpengumuman = Pengumuman::count();
         $user = User::count();

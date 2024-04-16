@@ -22,9 +22,9 @@
                 auth()->user()->role->nama_role == 'Pimpinan' ||
                 auth()->user()->role->nama_role == 'Mahasiswa')
             <li
-                class="nav-item {{ $key == 'harian' || $key == 'bulanan' || $key == 'total' ? 'menu-is-opening menu-open' : '' }}">
+                class="nav-item {{ $key == 'harian' || $key == 'bulanan' || $key == 'tkaryawan' ? 'menu-is-opening menu-open' : '' }}">
                 <a href="{{ url('#') }}"
-                    class="nav-link {{ $key == 'harian' || $key == 'bulanan' || $key == 'total' ? 'active' : '' }}">
+                    class="nav-link {{ $key == 'harian' || $key == 'bulanan' || $key == 'tkaryawan' ? 'active' : '' }}">
                     <i class="nav-icon fas fa-table"></i>
                     <p>
                         Rekap Data
@@ -45,7 +45,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="/total" class="nav-link {{ $key == 'total' ? 'active' : '' }}">
+                        <a href="/total" class="nav-link {{ $key == 'tkaryawan' ? 'active' : '' }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Total</p>
                         </a>

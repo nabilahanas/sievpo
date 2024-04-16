@@ -8,57 +8,147 @@ use App\Models\Data;
 use App\Models\User;
 use Carbon\Carbon;
 use App\Models\Jabatan;
+use Illuminate\Http\Request;
 
 class TotalController extends Controller
 {
     protected $primaryKey = 'id_data';
 
-    public function index()
+    public function karyawan(Request $request)
     {
+        $currentYear = Carbon::now()->year;
+
         $user = User::where('id_role', '3')->get();
         $bidang = Bidang::all();
-        $data = Data::all();
-        
-        $currentYear = Carbon::now()->year; 
-        $data1 = Data::whereYear('created_at', $currentYear)->get();
 
-        //POIN PER KARYAWAN
         $karyawanTotals = [];
 
-        foreach ($data as $dataItem) {
+        if ($request->has('semester') && $request->has('year')) {
+            $semester = $request->semester;
+            $year = $request->year;
+
+            if ($semester == 01) {
+                $startMonth = 1;
+                $endMonth = 7;
+            } else {
+                $startMonth = 8;
+                $endMonth = 12;
+            }
+
+            $searchStart = Carbon::createFromDate($year, $startMonth, 1);
+
+            $searchEnd = Carbon::createFromDate($year, $endMonth, 1)->endOfMonth();
+
+            $datas = Data::whereBetween('created_at', [$searchStart, $searchEnd])->get();
+
+            $currentYear = $searchStart->format('Y');
+        } else {
+            $datas = Data::all();
+        }
+
+        foreach ($datas as $dataItem) {
             $month = $dataItem->created_at->format('F');
 
-            $userId = $dataItem->user->nama_user;
+            $userId = $dataItem->id_user;
 
-            // Tambahkan poin ke total bidang untuk bulan tersebut
             if (!isset($karyawanTotals[$userId][$month])) {
                 $karyawanTotals[$userId][$month] = 0;
             }
             $karyawanTotals[$userId][$month] += $dataItem->poin;
         }
 
+        return view('total.karyawan', compact('user','request', 'bidang', 'currentYear', 'karyawanTotals'), ['key' => 'tkaryawan']);
+    }
 
-        //POIN PER BIDANG
+    public function bidang(Request $request)
+    {
+        $currentYear = Carbon::now()->year;
+
+        $user = User::where('id_role', '3')->get();
+        $bidang = Bidang::all();
+
         $bidangTotals = [];
 
-        foreach ($data as $dataItem) {
+        if ($request->has('semester') && $request->has('year')) {
+            $semester = $request->semester;
+            $year = $request->year;
+
+            if ($semester == 01) {
+                $startMonth = 1;
+                $endMonth = 7;
+            } else {
+                $startMonth = 8;
+                $endMonth = 12;
+            }
+
+            $searchStart = Carbon::createFromDate($year, $startMonth, 1);
+
+            $searchEnd = Carbon::createFromDate($year, $endMonth, 1)->endOfMonth();
+
+            $datas = Data::whereBetween('created_at', [$searchStart, $searchEnd])->get();
+
+            $currentYear = $searchStart->format('Y');
+        } else {
+            $datas = Data::all();
+        }
+
+        foreach ($datas as $dataItem) {
             $month = $dataItem->created_at->format('F');
 
-            $bidangId = $dataItem->bidang->nama_bidang;
+            $bidangId = $dataItem->id_bidang;
 
             if (!isset($bidangTotals[$bidangId][$month])) {
                 $bidangTotals[$bidangId][$month] = 0;
             }
             $bidangTotals[$bidangId][$month] += $dataItem->poin;
         }
+       
+        return view('total.bidang', compact('user','request', 'bidang', 'currentYear', 'bidangTotals'), ['key' => 'tbidang']);
+    }
 
-        // POIN PER BKPH
+    public function bkph(Request $request)
+    {
+        $currentYear = Carbon::now()->year;
+
+        $user = User::where('id_role', '3')->get();
+        $bidang = Bidang::all();
+
         $bkphTotals = [];
-        $jabatan = Jabatan::groupBy('bagian')
-                ->select('bagian')
-                ->get();
 
-        foreach ($data as $dataItem) {
+        $jabatan = Jabatan::groupBy('bagian')
+            ->select('bagian')
+            ->get();
+
+            // $jabatan = Jabatan::whereNotIn('bagian', ['sistem'])
+            // ->groupBy('bagian')
+            // ->select('bagian')
+            // ->get();
+
+
+            if ($request->has('semester') && $request->has('year')) {
+                $semester = $request->semester;
+                $year = $request->year;
+    
+                if ($semester == 01) {
+                    $startMonth = 1;
+                    $endMonth = 7;
+                } else {
+                    $startMonth = 8;
+                    $endMonth = 12;
+                }
+    
+                $searchStart = Carbon::createFromDate($year, $startMonth, 1);
+    
+                $searchEnd = Carbon::createFromDate($year, $endMonth, 1)->endOfMonth();
+    
+                $datas = Data::whereBetween('created_at', [$searchStart, $searchEnd])->get();
+    
+                $currentYear = $searchStart->format('Y');
+            } else {
+                $datas = Data::all();
+            }
+
+        foreach ($datas as $dataItem) {
             $month = $dataItem->created_at->format('F');
 
             $bkphId = $dataItem->user->jabatan->bagian;
@@ -69,19 +159,50 @@ class TotalController extends Controller
             $bkphTotals[$bkphId][$month] += $dataItem->poin;
         }
 
+        return view('total.bkph', compact('user', 'request', 'jabatan', 'bidang', 'currentYear', 'bkphTotals'), ['key' => 'tbkph']);
+    }
 
-        // POIN PER KRPH
+    public function krph(Request $request)
+    {
+        $currentYear = Carbon::now()->year;
+
+        $user = User::where('id_role', '3')->get();
+        $bidang = Bidang::all();
+
         $jabatan1 = User::with('jabatan')
-                ->join('jabatan', 'users.id_jabatan', '=', 'jabatan.id_jabatan')
-                ->where('jabatan.klasifikasi', 'KRPH')
-                ->get();
+            ->join('jabatan', 'users.id_jabatan', '=', 'jabatan.id_jabatan')
+            ->where('jabatan.klasifikasi', 'KRPH')
+            ->get();
 
         $krphTotals = [];
-        
-        foreach ($data as $dataItem) {
+
+        if ($request->has('semester') && $request->has('year')) {
+            $semester = $request->semester;
+            $year = $request->year;
+
+            if ($semester == 01) {
+                $startMonth = 1;
+                $endMonth = 7;
+            } else {
+                $startMonth = 8;
+                $endMonth = 12;
+            }
+
+            $searchStart = Carbon::createFromDate($year, $startMonth, 1);
+
+            $searchEnd = Carbon::createFromDate($year, $endMonth, 1)->endOfMonth();
+
+            $datas = Data::whereBetween('created_at', [$searchStart, $searchEnd])->get();
+
+            $currentYear = $searchStart->format('Y');
+        } else {
+            $datas = Data::all();
+        }
+
+        foreach ($datas as $dataItem) {
             $month = $dataItem->created_at->format('F');
 
-            $krphId = $dataItem->user->nama_user;
+            $krphId = $dataItem->user->id_user;
 
             if (!isset($krphTotals[$krphId][$month])) {
                 $krphTotals[$krphId][$month] = 0;
@@ -89,20 +210,51 @@ class TotalController extends Controller
             $krphTotals[$krphId][$month] += $dataItem->poin;
         }
 
-        
+        return view('total.krph', compact('user', 'request', 'jabatan1', 'bidang', 'currentYear', 'krphTotals'), ['key' => 'tkrph']);
+    }
 
+    public function asper(Request $request)
+    {
+        $currentYear = Carbon::now()->year;
 
-        // POIN PER ASPER
+        $user = User::where('id_role', '3')->get();
+        $bidang = Bidang::all();
+
         $jabatan2 = User::with('jabatan')
-                ->join('jabatan', 'users.id_jabatan', '=', 'jabatan.id_jabatan')
-                ->where('jabatan.klasifikasi', 'ASPER')
-                ->get();
+            ->join('jabatan', 'users.id_jabatan', '=', 'jabatan.id_jabatan')
+            ->where('jabatan.klasifikasi', 'ASPER')
+            ->get();
+
         $asperTotals = [];
 
-        foreach ($data as $dataItem) {
+        if ($request->has('semester') && $request->has('year')) {
+            $semester = $request->semester;
+            $year = $request->year;
+
+            if ($semester == 01) {
+                $startMonth = 1;
+                $endMonth = 7;
+            } else {
+                $startMonth = 8;
+                $endMonth = 12;
+            }
+
+            $searchStart = Carbon::createFromDate($year, $startMonth, 1);
+
+            $searchEnd = Carbon::createFromDate($year, $endMonth, 1)->endOfMonth();
+
+            $datas = Data::whereBetween('created_at', [$searchStart, $searchEnd])->get();
+
+            $currentYear = $searchStart->format('Y');
+        } else {
+            $datas = Data::all();
+        }
+
+
+        foreach ($datas as $dataItem) {
             $month = $dataItem->created_at->format('F');
 
-            $asperId = $dataItem->user->nama_user;
+            $asperId = $dataItem->user->id_user;
 
             if (!isset($asperTotals[$asperId][$month])) {
                 $asperTotals[$asperId][$month] = 0;
@@ -110,6 +262,6 @@ class TotalController extends Controller
             $asperTotals[$asperId][$month] += $dataItem->poin;
         }
 
-        return view('total.index', compact('user', 'data', 'jabatan','jabatan1','jabatan2', 'bidang', 'currentYear', 'karyawanTotals', 'bidangTotals', 'bkphTotals', 'krphTotals', 'asperTotals'), ['key' => 'total']);
+        return view('total.asper', compact('user', 'request', 'jabatan2', 'bidang', 'currentYear', 'asperTotals'), ['key' => 'tasper']);
     }
 }

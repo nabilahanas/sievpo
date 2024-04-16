@@ -160,11 +160,11 @@ Route::middleware('check.role:Admin,Mahasiswa')->group(function () {
     });
 
     Route::prefix("total")->group(function (){
-        Route::get('/', [TotalController::class, 'index'])->name('total.index');
-        // Route::get('tbidang', [TotalController::class, 'tbidang'])->name('total.tbidang');
-        // Route::get('tbkph', [TotalController::class, 'tbkph'])->name('total.tbkph');
-        // Route::get('tkrph', [TotalController::class, 'tkrph'])->name('total.tkrph');
-        // Route::get('tasper', [TotalController::class, 'tasper'])->name('total.tasper');
+        Route::get('/', [TotalController::class, 'karyawan'])->name('total.karyawan');
+        Route::get('bidang', [TotalController::class, 'bidang'])->name('total.bidang');
+        Route::get('bkph', [TotalController::class, 'bkph'])->name('total.bkph');
+        Route::get('krph', [TotalController::class, 'krph'])->name('total.krph');
+        Route::get('asper', [TotalController::class, 'asper'])->name('total.asper');
     });
 });
 

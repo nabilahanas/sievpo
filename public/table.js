@@ -1,6 +1,6 @@
 // Data Eviden Poin
 $(document).ready(function () {
-    $('#evpo').DataTable({
+    $("#evpo").DataTable({
         scrollX: true,
         scrollCollapse: true,
         columnDefs: [{ orderable: false, targets: [4, 8] }],
@@ -10,8 +10,9 @@ $(document).ready(function () {
 
 // Konfirmasi Data
 $(document).ready(function () {
-    $('#konfirm').DataTable({
-        dom: "<'row'<'col-sm-10 col-md-6 carikonfirm'l ><'col-sm-10 col-md-6'f>>" +
+    $("#konfirm").DataTable({
+        dom:
+            "<'row'<'col-sm-10 col-md-6 carikonfirm'l ><'col-sm-10 col-md-6'f>>" +
             "<'row'<'col-sm-12'tr>>" +
             "<'row'<'col-sm-10 col-md-5'i><'col-sm-10 col-md-7'p>>",
         scrollX: true,
@@ -20,7 +21,7 @@ $(document).ready(function () {
         columnDefs: [{ orderable: false, targets: [6, 9] }],
     });
 
-    $('.carikonfirm').append(`
+    $(".carikonfirm").append(`
     <form>
     <div class="input-group mt-2 mb-4">
         <select name="search" type="number" class="form-control" placeholder="search" aria-label="search"
@@ -40,31 +41,43 @@ $(document).ready(function () {
 // Rekap Harian
 $(document).ready(function () {
     var groupColumn = 2;
-    var table = $('#harian').DataTable({
-        dom: "<'row'<'col-sm-12 col-md-6 cariharian'l ><'col-sm-12 col-md-6'f>>" +
+    var table = $("#harian").DataTable({
+        dom:
+            "<'row'<'col-sm-12 col-md-6 cariharian'l ><'col-sm-12 col-md-6'f>>" +
             "<'row'<'col-sm-12'tr>>" +
             "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
-            scrollY: 600,
-            scrollX: true,
+        scrollY: 600,
+        scrollX: true,
         scrollCollapse: true,
         paging: false,
-        columnDefs: [{ visible: false, targets: groupColumn },
-        { orderable: false, targets: [3, 4, 5, 6, 7, 8, 9, 10, 12, 13, 14, 15, 16, 17, 18, 19, 21, 22, 23, 24, 25, 26, 27, 28, 30, 31, 32, 33, 34, 35, 36, 37] }],
+        columnDefs: [
+            { visible: false, targets: groupColumn },
+            {
+                orderable: false,
+                targets: [
+                    3, 4, 5, 6, 7, 8, 9, 10, 12, 13, 14, 15, 16, 17, 18, 19, 21,
+                    22, 23, 24, 25, 26, 27, 28, 30, 31, 32, 33, 34, 35, 36, 37,
+                ],
+            },
+        ],
         // { visible: false, targets: -1, }],
-        order: [[groupColumn, 'asc']],
+        order: [[groupColumn, "asc"]],
         drawCallback: function (settings) {
             var api = this.api();
-            var rows = api.rows({ page: 'current' }).nodes();
+            var rows = api.rows({ page: "current" }).nodes();
             var last = null;
 
-            api
-                .column(groupColumn, { page: 'current' })
+            api.column(groupColumn, { page: "current" })
                 .data()
                 .each(function (group, i) {
                     if (last !== group) {
                         $(rows)
                             .eq(i)
-                            .before('<tr class="group"><td colspan="39">' + group + '</td></tr>');
+                            .before(
+                                '<tr class="group"><td colspan="39">' +
+                                    group +
+                                    "</td></tr>"
+                            );
 
                         last = group;
                     }
@@ -72,7 +85,7 @@ $(document).ready(function () {
         },
     });
 
-    $('.cariharian').append(`
+    $(".cariharian").append(`
         <form>
             <div class="input-group col-md-8 mt-2 mb-4">
                 <input type="date" class="form-control" name="search" placeholder="search"
@@ -83,12 +96,12 @@ $(document).ready(function () {
     `);
 
     // Order by the grouping
-    $('#hkaryawan').on('click', 'tr.group', function () {
+    $("#hkaryawan").on("click", "tr.group", function () {
         var currentOrder = table.order()[0];
-        if (currentOrder[0] === groupColumn && currentOrder[1] === 'asc') {
-            table.order([groupColumn, 'desc']).draw();
+        if (currentOrder[0] === groupColumn && currentOrder[1] === "asc") {
+            table.order([groupColumn, "desc"]).draw();
         } else {
-            table.order([groupColumn, 'asc']).draw();
+            table.order([groupColumn, "asc"]).draw();
         }
     });
 });
@@ -96,39 +109,50 @@ $(document).ready(function () {
 // Rekap Bulanan
 $(document).ready(function () {
     var groupColumn = 2;
-    var table = $('#bulanan').DataTable({
-        dom: "<'row'<'col-sm-10 col-md-6 caribulanan'l ><'col-sm-10 col-md-6'f>>" +
+    var table = $("#bulanan").DataTable({
+        dom:
+            "<'row'<'col-sm-10 col-md-6 caribulanan'l ><'col-sm-10 col-md-6'f>>" +
             "<'row'<'col-sm-12'tr>>" +
             "<'row'<'col-sm-10 col-md-5'i><'col-sm-10 col-md-7'p>>",
         scrollY: 600,
         scrollX: true,
         scrollCollapse: true,
         paging: false,
-        columnDefs: [{ visible: false, targets: groupColumn },
-            { orderable: false, targets: [3, 4, 5, 6, 7, 8, 9, 10, 12, 13, 14, 15, 16, 17, 18, 19, 21, 22, 23, 24, 25, 26, 27, 28, 30, 31, 32, 33, 34, 35, 36, 37] }],
-            order: [[groupColumn, 'asc']],
-            drawCallback: function (settings) {
-                var api = this.api();
-                var rows = api.rows({ page: 'current' }).nodes();
-                var last = null;
-    
-                api
-                    .column(groupColumn, { page: 'current' })
-                    .data()
-                    .each(function (group, i) {
-                        if (last !== group) {
-                            $(rows)
-                                .eq(i)
-                                .before('<tr class="group"><td colspan="39">' + group + '</td></tr>');
-    
-                            last = group;
-                        }
-                    });
+        columnDefs: [
+            { visible: false, targets: groupColumn },
+            {
+                orderable: false,
+                targets: [
+                    3, 4, 5, 6, 7, 8, 9, 10, 12, 13, 14, 15, 16, 17, 18, 19, 21,
+                    22, 23, 24, 25, 26, 27, 28, 30, 31, 32, 33, 34, 35, 36, 37,
+                ],
             },
-    
-        });
+        ],
+        order: [[groupColumn, "asc"]],
+        drawCallback: function (settings) {
+            var api = this.api();
+            var rows = api.rows({ page: "current" }).nodes();
+            var last = null;
 
-        $(".caribulanan").append(`
+            api.column(groupColumn, { page: "current" })
+                .data()
+                .each(function (group, i) {
+                    if (last !== group) {
+                        $(rows)
+                            .eq(i)
+                            .before(
+                                '<tr class="group"><td colspan="39">' +
+                                    group +
+                                    "</td></tr>"
+                            );
+
+                        last = group;
+                    }
+                });
+        },
+    });
+
+    $(".caribulanan").append(`
         <form id="bkaryawan">
             <div class="input-group col-md-8 mt-2 mb-4">
                 <select class="form-control" name="bulan" aria-label="bulan" aria-describedby="button-addon2">
@@ -161,55 +185,58 @@ $(document).ready(function () {
             .map((year) => `<option value="${year}">${year}</option>`)
             .join("")
     );
-    
-        $("#bkaryawan").on("click", "tr.group", function () {
-            var currentOrder = table.order()[0];
-            if (currentOrder[0] === groupColumn && currentOrder[1] === "asc") {
-                table.order([groupColumn, "desc"]).draw();
-            } else {
-                table.order([groupColumn, "asc"]).draw();
-            }
-        });
+
+    $("#bkaryawan").on("click", "tr.group", function () {
+        var currentOrder = table.order()[0];
+        if (currentOrder[0] === groupColumn && currentOrder[1] === "asc") {
+            table.order([groupColumn, "desc"]).draw();
+        } else {
+            table.order([groupColumn, "asc"]).draw();
+        }
     });
+});
 
 // Rekap Total Karyawan
- $(document).ready(function () {
+$(document).ready(function () {
     var groupColumn = 2;
-        var table = $('#tkaryawan').DataTable({
-            dom: "<'row'<'col-sm-10 col-md-6 caritkaryawan'l ><'col-sm-10 col-md-6'f>>" +
-                "<'row'<'col-sm-12'tr>>" +
-                "<'row'<'col-sm-10 col-md-5'i><'col-sm-10 col-md-7'p>>",
-                scrollY: 600,
-                scrollX: true,
-            scrollCollapse: true,
-            paging: false,
-            columnDefs: [{ visible: false, targets: groupColumn },
-                ],
-                order: [[groupColumn, 'asc']],
-                drawCallback: function (settings) {
-                    var api = this.api();
-                    var rows = api.rows({ page: 'current' }).nodes();
-                    var last = null;
-        
-                    api
-                        .column(groupColumn, { page: 'current' })
-                        .data()
-                        .each(function (group, i) {
-                            if (last !== group) {
-                                $(rows)
-                                    .eq(i)
-                                    .before('<tr class="group"><td colspan="39">' + group + '</td></tr>');
-        
-                                last = group;
-                            }
-                        });
-                },
-        });
+    var table = $("#tkaryawan").DataTable({
+        dom:
+            "<'row'<'col-sm-10 col-md-6 caritkaryawan'l ><'col-sm-10 col-md-6'f>>" +
+            "<'row'<'col-sm-12'tr>>" +
+            "<'row'<'col-sm-10 col-md-5'i><'col-sm-10 col-md-7'p>>",
+        scrollY: 600,
+        scrollX: true,
+        scrollCollapse: true,
+        paging: false,
+        columnDefs: [{ visible: false, targets: groupColumn }],
+        order: [[groupColumn, "asc"]],
+        drawCallback: function (settings) {
+            var api = this.api();
+            var rows = api.rows({ page: "current" }).nodes();
+            var last = null;
 
-        $('.caritkaryawan').append(`
+            api.column(groupColumn, { page: "current" })
+                .data()
+                .each(function (group, i) {
+                    if (last !== group) {
+                        $(rows)
+                            .eq(i)
+                            .before(
+                                '<tr class="group"><td colspan="39">' +
+                                    group +
+                                    "</td></tr>"
+                            );
+
+                        last = group;
+                    }
+                });
+        },
+    });
+
+    $(".caritkaryawan").append(`
         <form id="tkar">
             <div class="input-group mt-2 mb-4">
-                <select name="search" type="number" class="form-control" placeholder="search" aria-label="search"
+                <select name="semester" type="number" class="form-control" placeholder="search" aria-label="search"
                     aria-describedby="button-addon2">
                     <option selected disabled value="">Pilih Semester</option>
                     <option value="01">Semester I (Januari-Juni)</option>
@@ -225,7 +252,7 @@ $(document).ready(function () {
         </form>
         `);
 
-        const currentYear = new Date().getFullYear();
+    const currentYear = new Date().getFullYear();
     const yearsOption = [currentYear, currentYear - 1, currentYear - 2];
     $('select[name="year"]').append(
         yearsOption
@@ -241,13 +268,13 @@ $(document).ready(function () {
             table.order([groupColumn, "asc"]).draw();
         }
     });
-    });
-
+});
 
 // Rekap Total Bidang
 $(document).ready(function () {
-    $('#tbidang').DataTable({
-        dom: "<'row'<'col-sm-12 col-md-6 caritbidang'l ><'col-sm-12 col-md-6'f>>" +
+    $("#tbidang").DataTable({
+        dom:
+            "<'row'<'col-sm-12 col-md-6 caritbidang'l ><'col-sm-12 col-md-6'f>>" +
             "<'row'<'col-sm-12'tr>>" +
             "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
         scrollX: true,
@@ -255,44 +282,49 @@ $(document).ready(function () {
         paging: false,
     });
 
-    $('.caritbidang').append(`
-    <form>
-    <div class="input-group mt-2 mb-4">
-        <select name="search" type="number" class="form-control" placeholder="search" aria-label="search"
-            aria-describedby="button-addon2">
-            <option>Pilih Semester</option>
-            <option value="01">Semester I (Januari-Juni)</option>
-            <option value="02">Semester II (Juli-Desember)</option>
-        </select>
+    $(".caritbidang").append(`
+    <form id="tbidang">
+            <div class="input-group mt-2 mb-4">
+                <select name="semester" type="number" class="form-control" placeholder="search" aria-label="search"
+                    aria-describedby="button-addon2">
+                    <option selected disabled value="">Pilih Semester</option>
+                    <option value="01">Semester I (Januari-Juni)</option>
+                    <option value="02">Semester II (Juli-Desember)</option>
+                </select>
 
-        <select name="search" type="number" class="form-control" placeholder="search" aria-label="search"
-            aria-describedby="button-addon2">
-            <option>Pilih Tahun</option>
-            <option value="01">2024</option>
-            <option value="02">2025</option>
-            <option value="03">2026</option>
-        </select>
+                <select name="year" class="form-control">
+                    <option selected disabled value="">Pilih Tahun</option>
+                </select>
 
-        <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Cari</button>
-    </div>
-    </form>
+                <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Cari</button>
+            </div>
+        </form>
     `);
 
+    const currentYear = new Date().getFullYear();
+    const yearsOption = [currentYear, currentYear - 1, currentYear - 2];
+    $('select[name="year"]').append(
+        yearsOption
+            .map((year) => `<option value="${year}">${year}</option>`)
+            .join("")
+    );
+
     // Order by the grouping
-    $('#tbidang').on('click', 'tr.group', function () {
+    $("#tbidang").on("click", "tr.group", function () {
         var currentOrder = table.order()[0];
-        if (currentOrder[0] === groupColumn && currentOrder[1] === 'asc') {
-            table.order([groupColumn, 'desc']).draw();
+        if (currentOrder[0] === groupColumn && currentOrder[1] === "asc") {
+            table.order([groupColumn, "desc"]).draw();
         } else {
-            table.order([groupColumn, 'asc']).draw();
+            table.order([groupColumn, "asc"]).draw();
         }
     });
 });
 
 // Rekap Total BKPH
 $(document).ready(function () {
-    $('#tbkph').DataTable({
-        dom: "<'row'<'col-sm-12 col-md-6 caritbkph'l ><'col-sm-12 col-md-6'f>>" +
+    $("#tbkph").DataTable({
+        dom:
+            "<'row'<'col-sm-12 col-md-6 caritbkph'l ><'col-sm-12 col-md-6'f>>" +
             "<'row'<'col-sm-12'tr>>" +
             "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
         scrollX: true,
@@ -300,44 +332,49 @@ $(document).ready(function () {
         paging: false,
     });
 
-    $('.caritbkph').append(`
-    <form>
-    <div class="input-group mt-2 mb-4">
-        <select name="search" type="number" class="form-control" placeholder="search" aria-label="search"
-            aria-describedby="button-addon2">
-            <option>Pilih Semester</option>
-            <option value="01">Semester I (Januari-Juni)</option>
-            <option value="02">Semester II (Juli-Desember)</option>
-        </select>
+    $(".caritbkph").append(`
+    <form id="tbkph">
+            <div class="input-group mt-2 mb-4">
+                <select name="semester" type="number" class="form-control" placeholder="search" aria-label="search"
+                    aria-describedby="button-addon2">
+                    <option selected disabled value="">Pilih Semester</option>
+                    <option value="01">Semester I (Januari-Juni)</option>
+                    <option value="02">Semester II (Juli-Desember)</option>
+                </select>
 
-        <select name="search" type="number" class="form-control" placeholder="search" aria-label="search"
-            aria-describedby="button-addon2">
-            <option>Pilih Tahun</option>
-            <option value="01">2024</option>
-            <option value="02">2025</option>
-            <option value="03">2026</option>
-        </select>
+                <select name="year" class="form-control">
+                    <option selected disabled value="">Pilih Tahun</option>
+                </select>
 
-        <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Cari</button>
-    </div>
-    </form>
+                <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Cari</button>
+            </div>
+        </form>
     `);
 
+    const currentYear = new Date().getFullYear();
+    const yearsOption = [currentYear, currentYear - 1, currentYear - 2];
+    $('select[name="year"]').append(
+        yearsOption
+            .map((year) => `<option value="${year}">${year}</option>`)
+            .join("")
+    );
+
     // Order by the grouping
-    $('#tbkph').on('click', 'tr.group', function () {
+    $("#tbkph").on("click", "tr.group", function () {
         var currentOrder = table.order()[0];
-        if (currentOrder[0] === groupColumn && currentOrder[1] === 'asc') {
-            table.order([groupColumn, 'desc']).draw();
+        if (currentOrder[0] === groupColumn && currentOrder[1] === "asc") {
+            table.order([groupColumn, "desc"]).draw();
         } else {
-            table.order([groupColumn, 'asc']).draw();
+            table.order([groupColumn, "asc"]).draw();
         }
     });
 });
 
 // Rekap Total KRPH
 $(document).ready(function () {
-    $('#tkrph').DataTable({
-        dom: "<'row'<'col-sm-12 col-md-6 caritkrph'l ><'col-sm-12 col-md-6'f>>" +
+    $("#tkrph").DataTable({
+        dom:
+            "<'row'<'col-sm-12 col-md-6 caritkrph'l ><'col-sm-12 col-md-6'f>>" +
             "<'row'<'col-sm-12'tr>>" +
             "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
         scrollX: true,
@@ -345,44 +382,48 @@ $(document).ready(function () {
         paging: false,
     });
 
-    $('.caritkrph').append(`
-    <form>
-    <div class="input-group mt-2 mb-4">
-        <select name="search" type="number" class="form-control" placeholder="search" aria-label="search"
-            aria-describedby="button-addon2">
-            <option>Pilih Semester</option>
-            <option value="01">Semester I (Januari-Juni)</option>
-            <option value="02">Semester II (Juli-Desember)</option>
-        </select>
+    $(".caritkrph").append(`
+    <form id="tkrph">
+            <div class="input-group mt-2 mb-4">
+                <select name="semester" type="number" class="form-control" placeholder="search" aria-label="search"
+                    aria-describedby="button-addon2">
+                    <option selected disabled value="">Pilih Semester</option>
+                    <option value="01">Semester I (Januari-Juni)</option>
+                    <option value="02">Semester II (Juli-Desember)</option>
+                </select>
 
-        <select name="search" type="number" class="form-control" placeholder="search" aria-label="search"
-            aria-describedby="button-addon2">
-            <option>Pilih Tahun</option>
-            <option value="01">2024</option>
-            <option value="02">2025</option>
-            <option value="03">2026</option>
-        </select>
+                <select name="year" class="form-control">
+                    <option selected disabled value="">Pilih Tahun</option>
+                </select>
 
-        <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Cari</button>
-    </div>
-    </form>
+                <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Cari</button>
+            </div>
+        </form>
     `);
 
+    const currentYear = new Date().getFullYear();
+    const yearsOption = [currentYear, currentYear - 1, currentYear - 2];
+    $('select[name="year"]').append(
+        yearsOption
+            .map((year) => `<option value="${year}">${year}</option>`)
+            .join("")
+    );
     // Order by the grouping
-    $('#tkrph').on('click', 'tr.group', function () {
+    $("#tkrph").on("click", "tr.group", function () {
         var currentOrder = table.order()[0];
-        if (currentOrder[0] === groupColumn && currentOrder[1] === 'asc') {
-            table.order([groupColumn, 'desc']).draw();
+        if (currentOrder[0] === groupColumn && currentOrder[1] === "asc") {
+            table.order([groupColumn, "desc"]).draw();
         } else {
-            table.order([groupColumn, 'asc']).draw();
+            table.order([groupColumn, "asc"]).draw();
         }
     });
 });
 
 // Rekap Total Asper/KBKPH
 $(document).ready(function () {
-    $('#tasper').DataTable({
-        dom: "<'row'<'col-sm-12 col-md-6 caritasper'l ><'col-sm-12 col-md-6'f>>" +
+    $("#tasper").DataTable({
+        dom:
+            "<'row'<'col-sm-12 col-md-6 caritasper'l ><'col-sm-12 col-md-6'f>>" +
             "<'row'<'col-sm-12'tr>>" +
             "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
         scrollX: true,
@@ -390,283 +431,287 @@ $(document).ready(function () {
         paging: false,
     });
 
-    $('.caritasper').append(`
-    <form>
-    <div class="input-group mt-2 mb-4">
-        <select name="search" type="number" class="form-control" placeholder="search" aria-label="search"
-            aria-describedby="button-addon2">
-            <option>Pilih Semester</option>
-            <option value="01">Semester I (Januari-Juni)</option>
-            <option value="02">Semester II (Juli-Desember)</option>
-        </select>
+    $(".caritasper").append(`
+    <form id="tasper">
+            <div class="input-group mt-2 mb-4">
+                <select name="semester" type="number" class="form-control" placeholder="search" aria-label="search"
+                    aria-describedby="button-addon2">
+                    <option selected disabled value="">Pilih Semester</option>
+                    <option value="01">Semester I (Januari-Juni)</option>
+                    <option value="02">Semester II (Juli-Desember)</option>
+                </select>
 
-        <select name="search" type="number" class="form-control" placeholder="search" aria-label="search"
-            aria-describedby="button-addon2">
-            <option>Pilih Tahun</option>
-            <option value="01">2024</option>
-            <option value="02">2025</option>
-            <option value="03">2026</option>
-        </select>
+                <select name="year" class="form-control">
+                    <option selected disabled value="">Pilih Tahun</option>
+                </select>
 
-        <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Cari</button>
-    </div>
-    </form>
+                <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Cari</button>
+            </div>
+        </form>
     `);
 
+    const currentYear = new Date().getFullYear();
+    const yearsOption = [currentYear, currentYear - 1, currentYear - 2];
+    $('select[name="year"]').append(
+        yearsOption
+            .map((year) => `<option value="${year}">${year}</option>`)
+            .join("")
+    );
+
     // Order by the grouping
-    $('#tasper').on('click', 'tr.group', function () {
+    $("#tasper").on("click", "tr.group", function () {
         var currentOrder = table.order()[0];
-        if (currentOrder[0] === groupColumn && currentOrder[1] === 'asc') {
-            table.order([groupColumn, 'desc']).draw();
+        if (currentOrder[0] === groupColumn && currentOrder[1] === "asc") {
+            table.order([groupColumn, "desc"]).draw();
         } else {
-            table.order([groupColumn, 'asc']).draw();
+            table.order([groupColumn, "asc"]).draw();
         }
     });
 });
 
 // User
 $(document).ready(function () {
-    var table = $('#user').DataTable({
+    var table = $("#user").DataTable({
         scrollCollapse: true,
         columnDefs: [{ orderable: false, targets: 6 }],
         displayLength: 25,
     });
 
     // Order by the grouping
-    $('#user').on('click', 'tr.group', function () {
+    $("#user").on("click", "tr.group", function () {
         var currentOrder = table.order()[0];
-        if (currentOrder[0] === groupColumn && currentOrder[1] === 'asc') {
-            table.order([groupColumn, 'desc']).draw();
+        if (currentOrder[0] === groupColumn && currentOrder[1] === "asc") {
+            table.order([groupColumn, "desc"]).draw();
         } else {
-            table.order([groupColumn, 'asc']).draw();
+            table.order([groupColumn, "asc"]).draw();
         }
     });
 });
 
 // Riwayat User
 $(document).ready(function () {
-    var table = $('#ruser').DataTable({
+    var table = $("#ruser").DataTable({
         scrollCollapse: true,
         columnDefs: [{ orderable: false, targets: 6 }],
         displayLength: 25,
     });
 
     // Order by the grouping
-    $('#ruser').on('click', 'tr.group', function () {
+    $("#ruser").on("click", "tr.group", function () {
         var currentOrder = table.order()[0];
-        if (currentOrder[0] === groupColumn && currentOrder[1] === 'asc') {
-            table.order([groupColumn, 'desc']).draw();
+        if (currentOrder[0] === groupColumn && currentOrder[1] === "asc") {
+            table.order([groupColumn, "desc"]).draw();
         } else {
-            table.order([groupColumn, 'asc']).draw();
+            table.order([groupColumn, "asc"]).draw();
         }
     });
 });
 
 // Karyawan
 $(document).ready(function () {
-    var table = $('#karyawan').DataTable({
+    var table = $("#karyawan").DataTable({
         columnDefs: [{ orderable: false, targets: 3 }],
         scrollCollapse: true,
         displayLength: 25,
     });
 
     // Order by the grouping
-    $('#karyawan').on('click', 'tr.group', function () {
+    $("#karyawan").on("click", "tr.group", function () {
         var currentOrder = table.order()[0];
-        if (currentOrder[0] === groupColumn && currentOrder[1] === 'asc') {
-            table.order([groupColumn, 'desc']).draw();
+        if (currentOrder[0] === groupColumn && currentOrder[1] === "asc") {
+            table.order([groupColumn, "desc"]).draw();
         } else {
-            table.order([groupColumn, 'asc']).draw();
+            table.order([groupColumn, "asc"]).draw();
         }
     });
 });
 
 // Riwayat Karyawan
 $(document).ready(function () {
-    var table = $('#rkaryawan').DataTable({
+    var table = $("#rkaryawan").DataTable({
         columnDefs: [{ orderable: false, targets: 3 }],
         scrollCollapse: true,
         displayLength: 25,
     });
 
     // Order by the grouping
-    $('#rkaryawan').on('click', 'tr.group', function () {
+    $("#rkaryawan").on("click", "tr.group", function () {
         var currentOrder = table.order()[0];
-        if (currentOrder[0] === groupColumn && currentOrder[1] === 'asc') {
-            table.order([groupColumn, 'desc']).draw();
+        if (currentOrder[0] === groupColumn && currentOrder[1] === "asc") {
+            table.order([groupColumn, "desc"]).draw();
         } else {
-            table.order([groupColumn, 'asc']).draw();
+            table.order([groupColumn, "asc"]).draw();
         }
     });
 });
 
 // Jabatan
 $(document).ready(function () {
-    var table = $('#jabatan').DataTable({
+    var table = $("#jabatan").DataTable({
         columnDefs: [{ orderable: false, targets: 4 }],
         scrollCollapse: true,
         displayLength: 25,
     });
 
     // Order by the grouping
-    $('#jabatan').on('click', 'tr.group', function () {
+    $("#jabatan").on("click", "tr.group", function () {
         var currentOrder = table.order()[0];
-        if (currentOrder[0] === groupColumn && currentOrder[1] === 'asc') {
-            table.order([groupColumn, 'desc']).draw();
+        if (currentOrder[0] === groupColumn && currentOrder[1] === "asc") {
+            table.order([groupColumn, "desc"]).draw();
         } else {
-            table.order([groupColumn, 'asc']).draw();
+            table.order([groupColumn, "asc"]).draw();
         }
     });
 });
 
 // Bidang
 $(document).ready(function () {
-    var table = $('#bidang').DataTable({
+    var table = $("#bidang").DataTable({
         scrollCollapse: true,
         columnDefs: [{ orderable: false, targets: 3 }],
         displayLength: 25,
     });
 
     // Order by the grouping
-    $('#bidang').on('click', 'tr.group', function () {
+    $("#bidang").on("click", "tr.group", function () {
         var currentOrder = table.order()[0];
-        if (currentOrder[0] === groupColumn && currentOrder[1] === 'asc') {
-            table.order([groupColumn, 'desc']).draw();
+        if (currentOrder[0] === groupColumn && currentOrder[1] === "asc") {
+            table.order([groupColumn, "desc"]).draw();
         } else {
-            table.order([groupColumn, 'asc']).draw();
+            table.order([groupColumn, "asc"]).draw();
         }
     });
 });
 
 // Wilayah
 $(document).ready(function () {
-    var table = $('#wilayah').DataTable({
+    var table = $("#wilayah").DataTable({
         scrollCollapse: true,
         columnDefs: [{ orderable: false, targets: 4 }],
         displayLength: 25,
     });
 
     // Order by the grouping
-    $('#wilayah').on('click', 'tr.group', function () {
+    $("#wilayah").on("click", "tr.group", function () {
         var currentOrder = table.order()[0];
-        if (currentOrder[0] === groupColumn && currentOrder[1] === 'asc') {
-            table.order([groupColumn, 'desc']).draw();
+        if (currentOrder[0] === groupColumn && currentOrder[1] === "asc") {
+            table.order([groupColumn, "desc"]).draw();
         } else {
-            table.order([groupColumn, 'asc']).draw();
+            table.order([groupColumn, "asc"]).draw();
         }
     });
 });
 
 //Lokasi
 $(document).ready(function () {
-    var table = $('#lokasi').DataTable({
+    var table = $("#lokasi").DataTable({
         scrollCollapse: true,
         columnDefs: [{ orderable: false, targets: 4 }],
         displayLength: 25,
     });
 
     // Order by the grouping
-    $('#lokasi').on('click', 'tr.group', function () {
+    $("#lokasi").on("click", "tr.group", function () {
         var currentOrder = table.order()[0];
-        if (currentOrder[0] === groupColumn && currentOrder[1] === 'asc') {
-            table.order([groupColumn, 'desc']).draw();
+        if (currentOrder[0] === groupColumn && currentOrder[1] === "asc") {
+            table.order([groupColumn, "desc"]).draw();
         } else {
-            table.order([groupColumn, 'asc']).draw();
+            table.order([groupColumn, "asc"]).draw();
         }
     });
 });
 
 // Shift
 $(document).ready(function () {
-    var table = $('#shift').DataTable({
+    var table = $("#shift").DataTable({
         scrollCollapse: true,
         columnDefs: [{ orderable: false, targets: 5 }],
         displayLength: 25,
     });
 
     // Order by the grouping
-    $('#shift').on('click', 'tr.group', function () {
+    $("#shift").on("click", "tr.group", function () {
         var currentOrder = table.order()[0];
-        if (currentOrder[0] === groupColumn && currentOrder[1] === 'asc') {
-            table.order([groupColumn, 'desc']).draw();
+        if (currentOrder[0] === groupColumn && currentOrder[1] === "asc") {
+            table.order([groupColumn, "desc"]).draw();
         } else {
-            table.order([groupColumn, 'asc']).draw();
+            table.order([groupColumn, "asc"]).draw();
         }
     });
 });
 
 // Berita
 $(document).ready(function () {
-    var table = $('#berita').DataTable({
+    var table = $("#berita").DataTable({
         scrollCollapse: true,
         columnDefs: [{ orderable: false, targets: [2, 3, 4] }],
         displayLength: 25,
     });
 
     // Order by the grouping
-    $('#berita').on('click', 'tr.group', function () {
+    $("#berita").on("click", "tr.group", function () {
         var currentOrder = table.order()[0];
-        if (currentOrder[0] === groupColumn && currentOrder[1] === 'asc') {
-            table.order([groupColumn, 'desc']).draw();
+        if (currentOrder[0] === groupColumn && currentOrder[1] === "asc") {
+            table.order([groupColumn, "desc"]).draw();
         } else {
-            table.order([groupColumn, 'asc']).draw();
+            table.order([groupColumn, "asc"]).draw();
         }
     });
 });
 
 // Riwayat Berita
 $(document).ready(function () {
-    var table = $('#rberita').DataTable({
+    var table = $("#rberita").DataTable({
         scrollCollapse: true,
         columnDefs: [{ orderable: false, targets: [2, 3, 4] }],
         displayLength: 25,
     });
 
     // Order by the grouping
-    $('#berita').on('click', 'tr.group', function () {
+    $("#berita").on("click", "tr.group", function () {
         var currentOrder = table.order()[0];
-        if (currentOrder[0] === groupColumn && currentOrder[1] === 'asc') {
-            table.order([groupColumn, 'desc']).draw();
+        if (currentOrder[0] === groupColumn && currentOrder[1] === "asc") {
+            table.order([groupColumn, "desc"]).draw();
         } else {
-            table.order([groupColumn, 'asc']).draw();
+            table.order([groupColumn, "asc"]).draw();
         }
     });
 });
 
 // Pengumuman
 $(document).ready(function () {
-    var table = $('#pengumuman').DataTable({
+    var table = $("#pengumuman").DataTable({
         scrollCollapse: true,
         columnDefs: [{ orderable: false, targets: [2, 3, 4] }],
         displayLength: 25,
     });
 
     // Order by the grouping
-    $('#pengumuman').on('click', 'tr.group', function () {
+    $("#pengumuman").on("click", "tr.group", function () {
         var currentOrder = table.order()[0];
-        if (currentOrder[0] === groupColumn && currentOrder[1] === 'asc') {
-            table.order([groupColumn, 'desc']).draw();
+        if (currentOrder[0] === groupColumn && currentOrder[1] === "asc") {
+            table.order([groupColumn, "desc"]).draw();
         } else {
-            table.order([groupColumn, 'asc']).draw();
+            table.order([groupColumn, "asc"]).draw();
         }
     });
 });
 
 // Riwayat Pengumuman
 $(document).ready(function () {
-    var table = $('#rpengumuman').DataTable({
+    var table = $("#rpengumuman").DataTable({
         scrollCollapse: true,
         columnDefs: [{ orderable: false, targets: [2, 3, 4] }],
         displayLength: 25,
     });
 
     // Order by the grouping
-    $('#rpengumuman').on('click', 'tr.group', function () {
+    $("#rpengumuman").on("click", "tr.group", function () {
         var currentOrder = table.order()[0];
-        if (currentOrder[0] === groupColumn && currentOrder[1] === 'asc') {
-            table.order([groupColumn, 'desc']).draw();
+        if (currentOrder[0] === groupColumn && currentOrder[1] === "asc") {
+            table.order([groupColumn, "desc"]).draw();
         } else {
-            table.order([groupColumn, 'asc']).draw();
+            table.order([groupColumn, "asc"]).draw();
         }
     });
 });

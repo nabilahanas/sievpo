@@ -1,4 +1,4 @@
-@extends('layouts.main')
+{{-- @extends('layouts.main')
 
 @section('title', 'Rekap Total')
 
@@ -355,4 +355,4 @@
             </div>
         </div>
     </div> --}}
-@endsection
+@endsection --}}

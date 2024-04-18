@@ -5,6 +5,7 @@ use App\Http\Controllers\BulananController;
 use App\Http\Controllers\ConfirmController;
 use App\Http\Controllers\KaryawanDBController;
 use App\Http\Controllers\LandingController;
+use App\Http\Controllers\MingguanController;
 use App\Http\Controllers\ShiftController;
 use App\Http\Controllers\TotalController;
 use App\Http\Controllers\UserController;
@@ -155,21 +156,27 @@ Route::middleware('check.role:Admin,Mahasiswa')->group(function () {
         Route::delete('delete/{id}', [ConfirmController::class, 'delete'])->name('confirm.delete');
     });
 
+    Route::prefix("mingguan")->group(function(){
+        Route::get('/', [MingguanController::class, 'index'])->name('mingguan.index');
+    });
+
     Route::prefix("bulanan")->group(function(){
         Route::get('/', [BulananController::class, 'index'])->name('bulanan.index');
     });
 
     Route::prefix("total")->group(function (){
-        Route::get('/', [TotalController::class, 'karyawan'])->name('total.karyawan');
+        Route::get('karyawan', [TotalController::class, 'karyawan'])->name('total.karyawan');
         Route::get('bidang', [TotalController::class, 'bidang'])->name('total.bidang');
         Route::get('bkph', [TotalController::class, 'bkph'])->name('total.bkph');
         Route::get('krph', [TotalController::class, 'krph'])->name('total.krph');
         Route::get('asper', [TotalController::class, 'asper'])->name('total.asper');
     });
+
+    Route::post('proses-approval/{id}/{status}', [ConfirmController::class, 'approval'])->name('approval.process');
 });
 
 //PIMPINAN
 Route::middleware('check.role:Admin,Pimpinan,Mahasiswa')->group(function () {
-    Route::post('proses-approval/{id}/{status}', [ConfirmController::class, 'approval'])->name('approval.process');
+    
 
 });

@@ -106,6 +106,76 @@ $(document).ready(function () {
     });
 });
 
+// Rekap Mingguan
+$(document).ready(function () {
+    var groupColumn = 2;
+    var table = $("#mingguan").DataTable({
+        dom:
+            "<'row'<'col-sm-12 col-md-6 carimingguan'l ><'col-sm-12 col-md-6'f>>" +
+            "<'row'<'col-sm-12'tr>>" +
+            "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+        scrollY: 600,
+        scrollX: true,
+        scrollCollapse: true,
+        paging: false,
+        columnDefs: [
+            { visible: false, targets: groupColumn },
+            {
+                orderable: false,
+                targets: [
+                    3, 4, 5, 6, 7, 8, 9, 10, 12, 13, 14, 15, 16, 17, 18, 19, 21,
+                    22, 23, 24, 25, 26, 27, 28, 30, 31, 32, 33, 34, 35, 36, 37,
+                ],
+            },
+        ],
+        // { visible: false, targets: -1, }],
+        order: [[groupColumn, "asc"]],
+        drawCallback: function (settings) {
+            var api = this.api();
+            var rows = api.rows({ page: "current" }).nodes();
+            var last = null;
+
+            api.column(groupColumn, { page: "current" })
+                .data()
+                .each(function (group, i) {
+                    if (last !== group) {
+                        $(rows)
+                            .eq(i)
+                            .before(
+                                '<tr class="group"><td colspan="39">' +
+                                    group +
+                                    "</td></tr>"
+                            );
+
+                        last = group;
+                    }
+                });
+        },
+    });
+
+    $(".carimingguan").append(`
+    <form>
+        <div class="input-group col-md-8 mt-2 mb-4">
+            <input type="date" class="form-control" name="start_date" placeholder="Tanggal Mulai"
+                aria-label="Tanggal Mulai" aria-describedby="button-addon2">
+            <input type="date" class="form-control" name="end_date" placeholder="Tanggal Akhir"
+                aria-label="Tanggal Akhir" aria-describedby="button-addon2">
+            <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Cari</button>
+        </div>
+    </form>
+`);
+
+    // Order by the grouping
+    $("#mkaryawan").on("click", "tr.group", function () {
+        var currentOrder = table.order()[0];
+        if (currentOrder[0] === groupColumn && currentOrder[1] === "asc") {
+            table.order([groupColumn, "desc"]).draw();
+        } else {
+            table.order([groupColumn, "asc"]).draw();
+        }
+    });
+});
+
 // Rekap Bulanan
 $(document).ready(function () {
     var groupColumn = 2;

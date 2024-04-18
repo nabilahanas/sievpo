@@ -22,9 +22,9 @@
                 auth()->user()->role->nama_role == 'Pimpinan' ||
                 auth()->user()->role->nama_role == 'Mahasiswa')
             <li
-                class="nav-item {{ $key == 'harian' || $key == 'bulanan' || $key == 'tkaryawan' ? 'menu-is-opening menu-open' : '' }}">
+                class="nav-item {{ $key == 'harian' || $key == 'mingguan' || $key == 'bulanan' || $key == 'tkaryawan' ? 'menu-is-opening menu-open' : '' }}">
                 <a href="{{ url('#') }}"
-                    class="nav-link {{ $key == 'harian' || $key == 'bulanan' || $key == 'tkaryawan' ? 'active' : '' }}">
+                    class="nav-link {{ $key == 'harian' || $key == 'mingguan' || $key == 'bulanan' || $key == 'tkaryawan' ? 'active' : '' }}">
                     <i class="nav-icon fas fa-table"></i>
                     <p>
                         Rekap Data
@@ -36,6 +36,12 @@
                         <a href="/harian" class="nav-link {{ $key == 'harian' ? 'active' : '' }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Harian</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/mingguan" class="nav-link {{ $key == 'mingguan' ? 'active' : '' }}">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Mingguan</p>
                         </a>
                     </li>
                     <li class="nav-item">

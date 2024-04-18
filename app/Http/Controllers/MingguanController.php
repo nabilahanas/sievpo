@@ -17,8 +17,8 @@ class MingguanController extends Controller
     public function index(Request $request)
     {
         $now = Carbon::now();
-        $start_date = $now->startOfWeek(); // Hari Senin dari minggu ini
-        $end_date = $start_date->copy()->endOfWeek(); // Akhir Minggu dari minggu ini
+        $start_date = $now->startOfWeek();
+        $end_date = $start_date->copy()->endOfWeek();
 
         $currentDate = $now->format('d F Y');
 
@@ -27,8 +27,8 @@ class MingguanController extends Controller
         $shifts = Shift::all();
 
         $data = [];
-        $start_date = null;
-        $end_date = null;
+        // $start_date = null;
+        // $end_date = null;
 
         if ($request->has('start_date') && $request->has('end_date')) {
             $start_date = Carbon::parse($request->start_date)->startOfDay();

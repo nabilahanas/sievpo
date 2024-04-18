@@ -8,14 +8,16 @@
                 </p>
             </a>
         </li>
-        <li class="nav-item">
-            <a href="/data" class="nav-link {{ $key == 'data' ? 'active' : '' }}">
-                <i class="nav-icon far fa-edit"></i>
-                <p>
-                    Data Eviden Poin
-                </p>
-            </a>
-        </li>
+        @if (auth()->user()->role->nama_role == 'Karyawan')
+            <li class="nav-item">
+                <a href="/data" class="nav-link {{ $key == 'data' ? 'active' : '' }}">
+                    <i class="nav-icon far fa-edit"></i>
+                    <p>
+                        Data Eviden Poin
+                    </p>
+                </a>
+            </li>
+        @endif
 
         @if (
             (auth()->user() && auth()->user()->role->nama_role == 'Admin') ||

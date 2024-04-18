@@ -16,7 +16,7 @@
                             <th rowspan="3">Nama</th>
                             <th rowspan="3">Jabatan</th>
                             <th rowspan="3">Wilayah</th>
-                            <th colspan="36" class="text-center">{{ $start_date->format('d/m/Y') }} - {{ $end_date->format('d/m/Y') }} </th>
+                            <th colspan="36" class="text-center">{{ $start_date->format('d F Y') }} - {{ $end_date->format('d F Y') }} </th>
                             <th rowspan="3">Total</th>
                         </tr>
                         <tr>
@@ -92,6 +92,9 @@
                                 @endforeach
                                 <td>{{ $total }}</td>
                             </tr>
+                            {{-- <tr colspan="">
+
+                            </tr> --}}
                         @endforeach
                     </tbody>
 

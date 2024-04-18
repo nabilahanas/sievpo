@@ -51,7 +51,7 @@
                         <p>{{ $item->deskripsi }}</p>
                     </div>
                     <div class="modal-footer">
-                        <div class="row" style="margin-left: auto">
+                        {{-- <div class="row" style="margin-left: auto">
                             <div class="col-md-12">
                                 <div class="float-right">
                                     <label for="">
@@ -60,7 +60,7 @@
                                     </label>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                         <button type="button" class="btn btn-primary close-modal" data-dismiss="modal"
                             data-next-modal="#pengumumanModal{{ $index + 1 }}">OK</button>
                     </div>
@@ -215,7 +215,7 @@
                     </section>
                 </div>
 
-                <!-- Maps -->
+                {{-- <!-- Maps -->
                 <div class="row">
                     <section class="col-lg-12">
                         <div class="card">
@@ -278,7 +278,7 @@
                             </div>
                         </div>
                     </section>
-                </div>
+                </div> --}}
             </div>
         </section>
     @endif
@@ -358,7 +358,7 @@
                     </section>
                 </div>
 
-                <!-- Maps -->
+                {{-- <!-- Maps -->
                 <div class="row">
                     <section class="col-lg-12">
                         <div class="card">
@@ -421,7 +421,7 @@
                             </div>
                         </div>
                     </section>
-                </div>
+                </div> --}}
             </div>
         </section>
     @endif
@@ -578,7 +578,7 @@
                     </section>
                 </div>
 
-                <!-- Maps -->
+                {{-- <!-- Maps -->
                 <div class="row">
                     <section class="col-lg-12">
                         <div class="card">
@@ -641,7 +641,7 @@
                             </div>
                         </div>
                     </section>
-                </div>
+                </div> --}}
             </div>
         </section>
     @endif

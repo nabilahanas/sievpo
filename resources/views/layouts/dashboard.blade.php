@@ -215,6 +215,26 @@
                     </section>
                 </div>
 
+                <!-- Grafik Perbandingan -->
+                <div class="row">
+                    <section class="col-lg-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <h3 class="card-title" style="color: #007bff; font-weight: 600;">
+                                        Perbandingan Total Eviden Poin per Bulan Tahun 2024
+                                    </h3>
+                                    <button class="btn btn-sm btn-outline-primary"><i class="bi bi-download"></i>
+                                        Download</button>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <canvas id="barChart" height="60"></canvas>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
                 {{-- <!-- Maps -->
                 <div class="row">
                     <section class="col-lg-12">

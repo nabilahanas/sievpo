@@ -135,9 +135,9 @@
                 Copyright &copy; <?php echo date('Y'); ?> <strong><span>Perum Perhutani KPH Semarang</span></strong>. All Rights
                 Reserved.
             </div>
-            <div class="credits">
+            {{-- <div class="credits">
                 Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-            </div>
+            </div> --}}
         </div>
     </div>
 </footer>

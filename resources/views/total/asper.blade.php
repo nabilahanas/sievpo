@@ -1,8 +1,8 @@
-@extends('total.page')
+@extends('layouts.main')
 
 @section('title', 'Rekap Total Asper/KBKPH')
 
-@section('tab_content')
+@section('content')
 
     <title>Rekap Total Asper/KBKPH</title>
 

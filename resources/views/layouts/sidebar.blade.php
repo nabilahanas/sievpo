@@ -24,9 +24,9 @@
                 auth()->user()->role->nama_role == 'Pimpinan' ||
                 auth()->user()->role->nama_role == 'Mahasiswa')
             <li
-                class="nav-item {{ $key == 'harian' || $key == 'bulanan' || $key == 'total' || $key == 'total/bidang' || $key == 'total/bkph' || $key == 'total/krph' || $key == 'total/asper' ? 'menu-is-opening menu-open' : '' }}">
+                class="nav-item {{ $key == 'harian' || $key == 'mingguan' || $key == 'bulanan' || $key == 'tkaryawan' || $key == 'tbidang' || $key == 'tbkph' || $key == 'tkrph' || $key == 'tasper' ? 'menu-is-opening menu-open' : '' }}">
                 <a href="{{ url('#') }}"
-                    class="nav-link {{ $key == 'harian' || $key == 'bulanan' || $key == 'total' || $key == 'total/bidang' || $key == 'total/bkph' || $key == 'total/krph' || $key == 'total/asper' ? 'active' : '' }}">
+                    class="nav-link {{ $key == 'harian' || $key == 'mingguan' || $key == 'bulanan' || $key == 'tkaryawan' || $key == 'tbidang' || $key == 'tbkph' || $key == 'tkrph' || $key == 'tasper' ? 'active' : '' }}">
                     <i class="nav-icon fas fa-table"></i>
                     <p>
                         Rekap Data
@@ -61,31 +61,31 @@
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="/total" class="nav-link {{ $key == 'total' ? 'active' : '' }}">
+                                <a href="/total/karyawan" class="nav-link {{ $key == 'tkaryawan' ? 'active' : '' }}">
                                     <i class="far fa-dot-circle nav-icon"></i>
                                     <p>Karyawan</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="/total/bidang" class="nav-link {{ $key == 'total/bidang' ? 'active' : '' }}">
+                                <a href="/total/bidang" class="nav-link {{ $key == 'tbidang' ? 'active' : '' }}">
                                     <i class="far fa-dot-circle nav-icon"></i>
                                     <p>Bidang</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="/total/bkph" class="nav-link {{ $key == 'total/bkph' ? 'active' : '' }}">
+                                <a href="/total/bkph" class="nav-link {{ $key == 'tbkph' ? 'active' : '' }}">
                                     <i class="far fa-dot-circle nav-icon"></i>
                                     <p>BKPH</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="/total/krph" class="nav-link {{ $key == 'total/krph' ? 'active' : '' }}">
+                                <a href="/total/krph" class="nav-link {{ $key == 'tkrph' ? 'active' : '' }}">
                                     <i class="far fa-dot-circle nav-icon"></i>
                                     <p>KRPH</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="/total/asper" class="nav-link {{ $key == 'total/asper' ? 'active' : '' }}">
+                                <a href="/total/asper" class="nav-link {{ $key == 'tasper' ? 'active' : '' }}">
                                     <i class="far fa-dot-circle nav-icon"></i>
                                     <p>Asper/KBKPH</p>
                                 </a>

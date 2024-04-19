@@ -86,10 +86,6 @@
                     <div class="col-sm-10">
                         <input class="form-control" type="file" id="foto" name="foto" accept="image/*" required>
                         <small class="form-text text-muted">Foto <b>wajib</b> memiliki timestamp!</small>
-                    </div>
-                </div>
-                <div class="form-group row col-12 col-md-10">
-                    <div class="col-sm-10">
                         <img src="https://www.svgrepo.com/show/508699/landscape-placeholder.svg" class="img-fluid"
                             style="max-width: 320px;">
                     </div>

@@ -6,7 +6,8 @@
 
     <title>Rekap Total Karyawan</title>
 
-    <div class="active tab-pane" id="kar">
+<div class="card">
+    <div class="card-body">
         <a class="btn btn-outline-success" href="">Download
             Excel</a>
         <div class="table-responsive-lg mt-4">
@@ -73,9 +74,9 @@
                             <td>{{ $UItem->nama_user }}</td>
                             <td>
                                 @if ($UItem->jabatan->wilayah == 0)
-                                    Wilayah Timur
+                                    WILAYAH TIMUR
                                 @elseif($UItem->jabatan->wilayah == 1)
-                                    Wilayah Barat
+                                    WILAYAH BARAT
                                 @endif
                             </td>
                             @foreach ($monthsToShow as $month)
@@ -102,12 +103,13 @@
                 </tbody>
                 <tfoot>
                     <tr>
-                        <th colspan="14" style="text-align:right">Total:</th>
+                        <th colspan="" style="text-align:right">Total:</th>
                         <th>{{ $grandTotal }}</th>
                     </tr>
                 </tfoot>
             </table>
         </div>
     </div>
+</div>
 
 @endsection

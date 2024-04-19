@@ -6,7 +6,6 @@
 
     <title>Rekap Total BKPH</title>
 
-    {{-- <div class="tab-pane" id="bkph"> --}}
     <div class="card">
         <div class="card-body">
             <a class="btn btn-outline-success" href="">Download Excel</a>

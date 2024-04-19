@@ -120,7 +120,7 @@
                                     {{-- EDIT FOTO PROFILE --}}
                                     <div class="tab-pane" id="editfoto">
                                         <div class="row">
-                                            <div class="col-12 col-md-3">
+                                            {{-- <div class="col-12 col-md-3">
                                                 @if (auth()->user()->profile_pict)
                                                     <img src="{{ asset('storage/profile-pict/' . auth()->user()->profile_pict) }}"
                                                         alt="Profile Picture" class="rounded-circle img-fluid"
@@ -130,7 +130,7 @@
                                                         alt="Profile Picture" class="rounded-circle img-fluid"
                                                         style="max-width: 150px">
                                                 @endif
-                                            </div>
+                                            </div> --}}
                                             <form class="form-horizontal" method="post"
                                                 action="{{ url('/profile/update-profile-picture') }}"
                                                 enctype="multipart/form-data">

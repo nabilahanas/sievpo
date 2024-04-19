@@ -190,13 +190,13 @@ $(document).ready(function () {
         paging: false,
         columnDefs: [
             { visible: false, targets: groupColumn },
-            {
-                orderable: false,
-                targets: [
-                    3, 4, 5, 6, 7, 8, 9, 10, 12, 13, 14, 15, 16, 17, 18, 19, 21,
-                    22, 23, 24, 25, 26, 27, 28, 30, 31, 32, 33, 34, 35, 36, 37,
-                ],
-            },
+            // {
+            //     orderable: false,
+            //     targets: [
+            //         3, 4, 5, 6, 7, 8, 9, 10, 12, 13, 14, 15, 16, 17, 18, 19, 21,
+            //         22, 23, 24, 25, 26, 27, 28, 30, 31, 32, 33, 34, 35, 36, 37,
+            //     ],
+            // },
         ],
         order: [[groupColumn, "asc"]],
         drawCallback: function (settings) {
@@ -220,40 +220,6 @@ $(document).ready(function () {
                     }
                 });
         },
-
-        footerCallback: function (row, data, start, end, display) {
-            var api = this.api();
-
-            // Remove the formatting to get integer data for summation
-            var intVal = function (i) {
-                return typeof i === 'string'
-                    ? i.replace(/[\$,]/g, '') * 1
-                    : typeof i === 'number'
-                        ? i
-                        : 0;
-            };
-
-            // Total over all pages
-            total = api
-                .column(4)
-                .data()
-                .reduce(function (a, b) {
-                    return intVal(a) + intVal(b);
-                }, 0);
-
-            // Total over this page
-            pageTotal = api
-                .column(4, { page: 'current' })
-                .data()
-                .reduce(function (a, b) {
-                    return intVal(a) + intVal(b);
-                }, 0);
-
-            // Update footer
-            $(api.column(4).footer()).html(
-                '$' + pageTotal + ' ( $' + total + ' total)'
-            );
-        }
     });
 
     $(".caribulanan").append(`

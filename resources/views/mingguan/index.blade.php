@@ -47,9 +47,9 @@
                                 <td>{{ $user->jabatan->nama_jabatan }}</td>
                                 <td>
                                     @if ($user->jabatan->wilayah == 0)
-                                        Wilayah Timur
+                                        WILAYAH TIMUR
                                     @elseif($user->jabatan->wilayah == 1)
-                                        Wilayah Barat
+                                        WILAYAH BARAT
                                     @endif
                                 </td>
                                 @foreach ($bidang as $b)

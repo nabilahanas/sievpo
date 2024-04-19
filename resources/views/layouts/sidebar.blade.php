@@ -52,8 +52,10 @@
                             <p>Bulanan</p>
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">
+                    <li
+                        class="nav-item {{ $key == 'tkaryawan' || $key == 'tbidang' || $key == 'tbkph' || $key == 'tkrph' || $key == 'tasper' ? 'menu-is-opening menu-open' : '' }}">
+                        <a href="#"
+                            class="nav-link {{ $key == 'tkaryawan' || $key == 'tbidang' || $key == 'tbkph' || $key == 'tkrph' || $key == 'tasper' ? 'active' : '' }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Total
                                 <i class="right fas fa-angle-left"></i>

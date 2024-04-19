@@ -6,62 +6,63 @@
 
     <title>Rekap Total Asper/KBKPH</title>
 
-    <div class="tab-pane" id="asper">
-        <a class="btn btn-outline-success" href="">Download Excel</a>
-        <div class="table-responsive-lg mt-4">
-            <table id="tasper" class="table table-sm text-nowrap table-hover table-striped" style="width: 100%">
-                <thead class="thead-successv2">
-                    <tr>
-                        <th rowspan="2">No.</th>
-                        <th rowspan="2">Nama Karyawan</th>
-                        <th rowspan="2">Asper/KBKPH</th>
-                        @php
-                            $monthsToShow = [];
-                            if ($request->has('semester') && $request->has('year')) {
-                                $semester = $request->semester;
-                                $monthsToShow =
-                                    $semester == 1
-                                        ? ['January', 'February', 'March', 'April', 'May', 'June']
-                                        : ['July', 'August', 'September', 'October', 'November', 'December'];
-                            } else {
-                                $monthsToShow = [
-                                    'January',
-                                    'February',
-                                    'March',
-                                    'April',
-                                    'May',
-                                    'June',
-                                    'July',
-                                    'August',
-                                    'September',
-                                    'October',
-                                    'November',
-                                    'December',
-                                ];
-                            }
-                        @endphp
-                        <th colspan="{{ count($monthsToShow) }}" style="text-align: center">{{ $currentYear }}</th>
-                        <th rowspan="2">Total</th>
-                    </tr>
-                    <tr>
-                        @if ($request->has('semester') && $request->has('year'))
+    <div class="card">
+        <div class="card-body">
+            <a class="btn btn-outline-success" href="">Download Excel</a>
+            <div class="table-responsive-lg mt-4">
+                <table id="tasper" class="table table-sm text-nowrap table-hover table-striped" style="width: 100%">
+                    <thead class="thead-successv2">
+                        <tr>
+                            <th rowspan="2">No.</th>
+                            <th rowspan="2">Nama Karyawan</th>
+                            <th rowspan="2">Asper/KBKPH</th>
                             @php
-                                $semester = $request->semester;
-                                $monthsToShow =
-                                    $semester == 01
-                                        ? ['January', 'February', 'March', 'April', 'May', 'June']
-                                        : ['July', 'August', 'September', 'October', 'November', 'December'];
+                                $monthsToShow = [];
+                                if ($request->has('semester') && $request->has('year')) {
+                                    $semester = $request->semester;
+                                    $monthsToShow =
+                                        $semester == 1
+                                            ? ['January', 'February', 'March', 'April', 'May', 'June']
+                                            : ['July', 'August', 'September', 'October', 'November', 'December'];
+                                } else {
+                                    $monthsToShow = [
+                                        'January',
+                                        'February',
+                                        'March',
+                                        'April',
+                                        'May',
+                                        'June',
+                                        'July',
+                                        'August',
+                                        'September',
+                                        'October',
+                                        'November',
+                                        'December',
+                                    ];
+                                }
                             @endphp
-                            @foreach ($monthsToShow as $monthName)
-                                <th>{{ $monthName }}</th>
-                            @endforeach
-                        @else
-                            @foreach (['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'] as $monthName)
-                                <th>{{ $monthName }}</th>
-                            @endforeach
-                        @endif
-                    </tr>
-                </thead>
+                            <th colspan="{{ count($monthsToShow) }}" style="text-align: center">{{ $currentYear }}</th>
+                            <th rowspan="2">Total</th>
+                        </tr>
+                        <tr>
+                            @if ($request->has('semester') && $request->has('year'))
+                                @php
+                                    $semester = $request->semester;
+                                    $monthsToShow =
+                                        $semester == 01
+                                            ? ['January', 'February', 'March', 'April', 'May', 'June']
+                                            : ['July', 'August', 'September', 'October', 'November', 'December'];
+                                @endphp
+                                @foreach ($monthsToShow as $monthName)
+                                    <th>{{ $monthName }}</th>
+                                @endforeach
+                            @else
+                                @foreach (['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'] as $monthName)
+                                    <th>{{ $monthName }}</th>
+                                @endforeach
+                            @endif
+                        </tr>
+                    </thead>
 
                 <tbody>
                     @php

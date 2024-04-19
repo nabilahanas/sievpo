@@ -490,52 +490,6 @@
                                     class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-6">
-                        <!-- small box -->
-                        <div class="small-box bg-primary">
-                            <div class="inner">
-                                <h3>{{ $berita }}</h3>
-
-                                <p>Berita</p>
-                            </div>
-                            <div class="icon">
-                                <i class="far fa-newspaper"></i>
-                            </div>
-                            <a href="/berita" class="small-box-footer">Info lebih lanjut <i
-                                    class="fas fa-arrow-circle-right"></i></a>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-6">
-                        <!-- small box -->
-                        <div class="small-box bg-teal">
-                            <div class="inner">
-                                <h3>{{ $jmlpengumuman }}</h3>
-
-                                <p>Pengumuman</p>
-                            </div>
-                            <div class="icon">
-                                <i class="fas fa-bullhorn"></i>
-                            </div>
-                            <a href="/pengumuman" class="small-box-footer">Info lebih lanjut <i
-                                    class="fas fa-arrow-circle-right"></i></a>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-6">
-                        <!-- small box -->
-                        <div class="small-box bg-purple">
-                            <div class="inner">
-                                <h3>{{ $user }}</h3>
-
-                                <p>Total User</p>
-                            </div>
-                            <div class="icon">
-                                <i class="fas fa-users"></i>
-                            </div>
-                            <a href="/users" class="small-box-footer">Info lebih lanjut <i
-                                    class="fas fa-arrow-circle-right"></i></a>
-                        </div>
-                    </div>
-
                 </div>
 
                 <!-- Grafik Total -->

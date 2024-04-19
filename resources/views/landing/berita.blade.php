@@ -38,10 +38,10 @@
                                         <div class="post-img">
                                             @if ($item->gambar)
                                                 <img src="{{ asset('storage/gambar-berita/' . $item->gambar) }}"
-                                                    alt="Gambar Berita" class="img-fluid" max-width="200">
+                                                    alt="Gambar Berita" class="img-fluid">
                                             @else
                                                 <img src="https://www.perhutani.co.id/wp-content/themes/perhutani2022/assets/images/default-cover.jpg"
-                                                    alt="Default Image" class="img-fluid" max-width="200">
+                                                    alt="Default Image" class="img-fluid">
                                             @endif
                                         </div>
                                         <h2 class="title"
@@ -74,8 +74,9 @@
 
                 <div class="blog-pagination">
                     <ul class="justify-content-center">
-                        <li><a href="#"><i class="bi bi-arrow-left mr-2"></i>Sebelumnya</a></li>
-                        <li><a href="#">Selanjutnya<i class="bi bi-arrow-right ml-2"></i></a></li>
+                        <li><a href="#"><i class="bi bi-arrow-left"></i></a></li>
+                        <li><a href="#">1</a></li>
+                        <li><a href="#"><i class="bi bi-arrow-right"></i></a></li>
                     </ul>
                 </div>
             </div>

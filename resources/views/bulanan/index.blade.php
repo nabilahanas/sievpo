@@ -42,6 +42,9 @@
                     </thead>
 
                     <tbody>
+                        @php
+                            $grandTotal = 0;
+                        @endphp
                         @foreach ($users as $user)
                             @php
                                 $total = 0;
@@ -79,12 +82,22 @@
 
                                 <td>{{ $total }}</td>
                             </tr>
+                            @php
+                            $grandTotal += $total;
+                        @endphp
                         @endforeach
                     </tbody>
                     <tfoot>
                         <tr>
-                            <th colspan="38" style="text-align:right">Total:</th>
-                            <th></th>
+                            @php
+                                $daysInMonth =
+                                    $request->has('bulan') && $request->has('tahun')
+                                        ? Carbon\Carbon::create($request->tahun, $request->bulan)->daysInMonth
+                                        : Carbon\Carbon::now()->daysInMonth;
+                                $colspan = $daysInMonth + 2; // 3 kolom pertama untuk Nama, Jabatan, dan Wilayah
+                            @endphp
+                            <th colspan="{{ $colspan }}" style="text-align:right">Total:</th>
+                            <th>{{ $grandTotal }}</th>
                         </tr>
                     </tfoot>
 

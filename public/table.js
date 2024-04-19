@@ -46,9 +46,9 @@ $(document).ready(function () {
             "<'row'<'col-sm-12 col-md-6 cariharian'l ><'col-sm-12 col-md-6'f>>" +
             "<'row'<'col-sm-12'tr>>" +
             "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
-        scrollY: 600,
+        // scrollY: 600,
         scrollX: true,
-        scrollCollapse: true,
+        // scrollCollapse: true,
         paging: false,
         columnDefs: [
             { visible: false, targets: groupColumn },

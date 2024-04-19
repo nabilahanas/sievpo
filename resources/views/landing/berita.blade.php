@@ -35,6 +35,15 @@
                             @foreach ($chunk as $item)
                                 <div class="col-xl-4 col-md-6">
                                     <article class="post-item">
+                                        <div class="post-img">
+                                            @if ($item->gambar)
+                                                <img src="{{ asset('storage/gambar-berita/' . $item->gambar) }}"
+                                                    alt="Gambar Berita" class="img-fluid" max-width="200">
+                                            @else
+                                                <img src="https://www.perhutani.co.id/wp-content/themes/perhutani2022/assets/images/default-cover.jpg"
+                                                    alt="Default Image" class="img-fluid" max-width="200">
+                                            @endif
+                                        </div>
                                         <h2 class="title"
                                             style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;">
                                             <a href="{{ $item->deskripsi }}" target="_blank">{{ $item->judul }}</a>

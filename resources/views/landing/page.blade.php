@@ -133,7 +133,7 @@
         <div class="container mt-4">
             <div class="copyright">
                 Copyright &copy; <?php echo date('Y'); ?> <strong><span>Perum Perhutani KPH Semarang</span></strong>. All Rights
-                Reserved
+                Reserved.
             </div>
             <div class="credits">
                 Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>

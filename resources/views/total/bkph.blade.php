@@ -89,7 +89,12 @@
                             </tr>
                         @endforeach
                     </tbody>
-
+                    <tfoot>
+                        <tr>
+                            <th colspan="14" style="text-align:right">Total:</th>
+                            <th></th>
+                        </tr>
+                    </tfoot>
                 </table>
             </div>
         </div>

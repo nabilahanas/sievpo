@@ -2015,7 +2015,7 @@ section {
 # Blog Posts List
 --------------------------------------------------------------*/
 .blog .posts-list article {
-  padding: 30px;
+  padding: 20px;
   height: 100%;
   border-radius: 10px;
   border: 1px solid #6c757d;
@@ -2029,8 +2029,8 @@ section {
 
 
 .blog .posts-list .post-img {
-  max-height: 240px;
-  margin: -30px -30px 15px -30px;
+  /* max-height: 240px; */
+  margin: -20px -20px 10px -20px;
   overflow: hidden;
 }
 
@@ -2041,7 +2041,7 @@ section {
 }
 
 .blog .posts-list .title {
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 700;
   padding: 0;
   margin-bottom: 5px;
@@ -2061,24 +2061,12 @@ section {
   font-weight: 600;
   text-decoration: none;
   transition: color 0.3s, text-decoration 0.3s;
-  font-size: 15px;
+  font-size: 14px;
 }
 
 .blog .posts-list .post-meta a:hover {
   color: var(--color-primary);
   text-decoration: underline;
-}
-
-.blog .posts-list .post-author-img {
-  width: 50px;
-  border-radius: 50%;
-  margin-right: 15px;
-}
-
-.blog .posts-list .post-author-list {
-  margin-bottom: 5px;
-  font-size: 14px;
-  color: #3c3c3c;
 }
 
 .blog .posts-list .post-date {

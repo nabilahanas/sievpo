@@ -4,7 +4,7 @@
 
 @section('content')
 
-<title>Rekap Total Karyawan</title>
+    <title>Rekap Total Karyawan</title>
 
     <div class="active tab-pane" id="kar">
         <a class="btn btn-outline-success" href="">Download
@@ -64,6 +64,9 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @php
+                        $grandTotal = 0;
+                    @endphp
                     @foreach ($user as $UItem)
                         <tr>
                             <td scope="row">{{ $loop->iteration }}.</td>
@@ -92,12 +95,15 @@
                                 {{ $userTotal }}
                             </td>
                         </tr>
+                        @php
+                            $grandTotal += $userTotal;
+                        @endphp
                     @endforeach
                 </tbody>
                 <tfoot>
                     <tr>
                         <th colspan="14" style="text-align:right">Total:</th>
-                        <th></th>
+                        <th>{{ $grandTotal }}</th>
                     </tr>
                 </tfoot>
             </table>

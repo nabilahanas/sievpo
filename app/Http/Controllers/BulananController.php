@@ -27,9 +27,9 @@ class BulananController extends Controller
 
         if ($request->has('bulan') && $request->has('tahun')) {
             $searchMonth = Carbon::createFromDate($request->tahun, $request->bulan, 1);
-            $datas = Data::whereYear('created_at', $searchMonth->year)
-                ->whereMonth('created_at', $searchMonth->month)
-                ->get();
+            $startDate = $searchMonth->startOfMonth();
+            $endDate = $searchMonth->endOfMonth();
+            $datas = Data::whereBetween('created_at', [$startDate, $endDate])->get();
 
             $currentMonth = $searchMonth->format('F Y');
         } else {
@@ -37,21 +37,18 @@ class BulananController extends Controller
         }
 
         foreach ($datas as $item) {
-            $bulan = Carbon::parse($item->created_at)->format('m-Y');
+            $tanggal = Carbon::parse($item->created_at)->format('d-m-Y');
             $userId = $item->id_user;
-            $bidangId = $item->id_bidang;
-            $shiftId = $item->id_shift;
-            $poin = $item->poin;
 
-            if (!isset($data[$userId][$bulan][$bidangId][$shiftId])) {
-                $data[$userId][$bulan][$bidangId][$shiftId] = 0;
+            if (!isset($data[$userId][$tanggal])) {
+                $data[$userId][$tanggal] = 0;
             }
 
-            $data[$userId][$bulan][$bidangId][$shiftId] += $poin;
+            $data[$userId][$tanggal] += $item->poin;
         }
 
         // dd($data);
 
-        return view('bulanan.index', compact('currentMonth', 'shifts', 'users', 'data', 'bidang'), ['key' => 'bulanan']);
+        return view('bulanan.index', compact('currentMonth','request', 'shifts', 'users', 'data', 'bidang'), ['key' => 'bulanan']);
     }
 }

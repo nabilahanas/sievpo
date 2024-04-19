@@ -15,27 +15,32 @@
 
                     <thead class="thead-successv2">
                         <tr>
-                            <th rowspan="3">Nama</th>
-                            <th rowspan="3">Jabatan</th>
-                            <th rowspan="3">Wilayah</th>
-                            <th colspan="36" class="text-center">{{ $currentMonth }}</th>
-                            <th rowspan="3">Total</th>
+                            <th rowspan="2">Nama</th>
+                            <th rowspan="2">Jabatan</th>
+                            <th rowspan="2">Wilayah</th>
+                            @php
+                                $daysInMonth =
+                                    $request->has('bulan') && $request->has('tahun')
+                                        ? Carbon\Carbon::create($request->tahun, $request->bulan)->daysInMonth
+                                        : Carbon\Carbon::now()->daysInMonth;
+                                $colspan = $daysInMonth; // 3 kolom pertama untuk Nama, Jabatan, dan Wilayah
+                            @endphp
+                            <th colspan="{{ $colspan }}" class="text-center">{{ $currentMonth }}</th>
+                            <th rowspan="2">Total</th>
                         </tr>
                         <tr>
-                            @foreach ($bidang as $b)
-                                <th colspan="{{ count($shifts) + 1 }}" class="text-center">{{ $b->nama_bidang }}</th>
-                            @endforeach
+                            @php
+                                $daysInMonth =
+                                    $request->has('bulan') && $request->has('tahun')
+                                        ? Carbon\Carbon::create($request->tahun, $request->bulan)->daysInMonth
+                                        : Carbon\Carbon::now()->daysInMonth;
+                            @endphp
+                            @for ($day = 1; $day <= $daysInMonth; $day++)
+                                <th>{{ $day }}</th>
+                            @endfor
                         </tr>
-                        <tr>
-                            @foreach ($bidang as $b)
-                                @foreach ($shifts as $shift)
-                                    <th>{{ $shift->nama_shift }}</th>
-                                @endforeach
-                                <th>Jml</th>
-                            @endforeach
-                        </tr>
-
                     </thead>
+
                     <tbody>
                         @foreach ($users as $user)
                             @php
@@ -52,32 +57,26 @@
                                         WILAYAH BARAT
                                     @endif
                                 </td>
-                                @foreach ($bidang as $b)
+                                @for ($day = 1; $day <= $daysInMonth; $day++)
                                     @php
-                                        $jml = 0;
-                                    @endphp
-                                    @foreach ($shifts as $shift)
-                                        <td>
-                                            @php
-                                                $searchMonth = request()->has('search')
-                                                    ? Carbon\Carbon::parse(request()->search)->startOfDay()
-                                                    : Carbon\Carbon::now()->startOfDay();
-                                                $bulan = $searchMonth->format('m-Y');
-                                                $poin = isset(
-                                                    $data[$user->id_user][$bulan][$b->id_bidang][$shift->id_shift],
-                                                )
-                                                    ? $data[$user->id_user][$bulan][$b->id_bidang][$shift->id_shift]
-                                                    : 0;
+                                        $tanggal =
+                                            isset($request->tahun) && isset($request->bulan)
+                                                ? Carbon\Carbon::createFromDate(
+                                                    $request->tahun,
+                                                    $request->bulan,
+                                                    $day,
+                                                )->format('d-m-Y')
+                                                : Carbon\Carbon::createFromDate(date('Y'), date('m'), $day)->format(
+                                                    'd-m-Y',
+                                                );
 
-                                                echo $poin;
-                                                $jml += $poin;
-                                                $total += $poin;
-                                                $searchMonth->addMonth();
-                                            @endphp
-                                        </td>
-                                    @endforeach
-                                    <td>{{ $jml }}</td>
-                                @endforeach
+                                        $userId = $user->id_user;
+                                        $poin = isset($data[$userId][$tanggal]) ? $data[$userId][$tanggal] : 0;
+                                        $total += $poin;
+                                    @endphp
+                                    <td>{{ $poin }}</td>
+                                @endfor
+
                                 <td>{{ $total }}</td>
                             </tr>
                         @endforeach
@@ -88,6 +87,7 @@
                             <th></th>
                         </tr>
                     </tfoot>
+
                 </table>
             </div>
         </div>

@@ -64,6 +64,9 @@
                 </thead>
 
                 <tbody>
+                    @php
+                            $grandTotal = 0;
+                        @endphp
                     @foreach ($jabatan2 as $asper)
                         <tr>
                             <td scope="row">{{ $loop->iteration }}</td>
@@ -86,12 +89,15 @@
                                 {{ $asperTotal }}
                             </td>
                         </tr>
+                        @php
+                                $grandTotal += $asperTotal;
+                            @endphp
                     @endforeach
                 </tbody>
                 <tfoot>
                     <tr>
                         <th colspan="15" style="text-align:right">Total:</th>
-                        <th></th>
+                        <th>{{ $grandTotal }}</th>
                     </tr>
                 </tfoot>
             </table>

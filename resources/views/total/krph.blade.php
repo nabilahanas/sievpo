@@ -65,6 +65,9 @@
                     </thead>
 
                     <tbody>
+                        @php
+                            $grandTotal = 0;
+                        @endphp
                         @foreach ($jabatan1 as $krph)
                             <tr>
                                 <td scope="row">{{ $loop->iteration }}</td>
@@ -87,12 +90,15 @@
                                     {{ $krphTotal }}
                                 </td>
                             </tr>
+                            @php
+                                $grandTotal += $krphTotal;
+                            @endphp
                         @endforeach
                     </tbody>
                     <tfoot>
                         <tr>
                             <th colspan="15" style="text-align:right">Total:</th>
-                            <th></th>
+                            <th>{{ $grandTotal }}</th>
                         </tr>
                     </tfoot>
                 </table>

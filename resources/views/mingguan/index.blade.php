@@ -35,6 +35,9 @@
 
                     </thead>
                     <tbody>
+                        @php
+                            $grandTotal = 0;
+                        @endphp
                         @foreach ($users as $user)
                             @php
                                 $total = 0;
@@ -92,13 +95,17 @@
                                 @endforeach
                                 <td>{{ $total }}</td>
                             </tr>
-                            {{-- <tr colspan="">
-
-                            </tr> --}}
+                            @php
+                                $grandTotal += $total;
+                            @endphp
                         @endforeach
                     </tbody>
-
-
+                    <tfoot>
+                        <tr>
+                            <th colspan="38" style="text-align:right">Total:</th>
+                            <th>{{ $grandTotal }}</th>
+                        </tr>
+                    </tfoot>
                 </table>
             </div>
         </div>

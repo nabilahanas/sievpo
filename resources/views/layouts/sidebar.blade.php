@@ -1,5 +1,5 @@
 <nav class="mt-2">
-    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="true">
         <li class="nav-item">
             <a href="/home" class="nav-link @if ($key == 'dashboard' && !request()->is('register')) active @endif">
                 <i class="nav-icon fas fa-tachometer-alt"></i>

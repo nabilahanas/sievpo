@@ -222,7 +222,7 @@
                             <div class="card-header">
                                 <div class="d-flex justify-content-between align-items-center">
                                     <h3 class="card-title" style="color: #007bff; font-weight: 600;">
-                                        Perbandingan Total Eviden Poin per Bulan Tahun 2024
+                                        Perbandingan Total Eviden Poin per Bulan Tahun</span>
                                     </h3>
                                     <button class="btn btn-sm btn-outline-primary"><i class="bi bi-download"></i>
                                         Download</button>
@@ -631,7 +631,7 @@
     integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
 </script>
 
-<!-- GET LOCATION USING API -->
+{{-- <!-- GET LOCATION USING API -->
 <script>
     function getLocation() {
         if (navigator.geolocation) {
@@ -685,4 +685,4 @@
     document.addEventListener('DOMContentLoaded', function() {
         getLocation();
     });
-</script>
+</script> --}}

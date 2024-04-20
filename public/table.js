@@ -653,44 +653,6 @@ $(document).ready(function () {
     });
 });
 
-// Wilayah
-$(document).ready(function () {
-    var table = $("#wilayah").DataTable({
-        scrollCollapse: true,
-        columnDefs: [{ orderable: false, targets: 4 }],
-        displayLength: 25,
-    });
-
-    // Order by the grouping
-    $("#wilayah").on("click", "tr.group", function () {
-        var currentOrder = table.order()[0];
-        if (currentOrder[0] === groupColumn && currentOrder[1] === "asc") {
-            table.order([groupColumn, "desc"]).draw();
-        } else {
-            table.order([groupColumn, "asc"]).draw();
-        }
-    });
-});
-
-//Lokasi
-$(document).ready(function () {
-    var table = $("#lokasi").DataTable({
-        scrollCollapse: true,
-        columnDefs: [{ orderable: false, targets: 4 }],
-        displayLength: 25,
-    });
-
-    // Order by the grouping
-    $("#lokasi").on("click", "tr.group", function () {
-        var currentOrder = table.order()[0];
-        if (currentOrder[0] === groupColumn && currentOrder[1] === "asc") {
-            table.order([groupColumn, "desc"]).draw();
-        } else {
-            table.order([groupColumn, "asc"]).draw();
-        }
-    });
-});
-
 // Shift
 $(document).ready(function () {
     var table = $("#shift").DataTable({

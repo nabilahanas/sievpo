@@ -22,22 +22,22 @@
                                     $semester = $request->semester;
                                     $monthsToShow =
                                         $semester == 1
-                                            ? ['January', 'February', 'March', 'April', 'May', 'June']
-                                            : ['July', 'August', 'September', 'October', 'November', 'December'];
+                                            ? ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni']
+                                            : ['Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
                                 } else {
                                     $monthsToShow = [
-                                        'January',
-                                        'February',
-                                        'March',
+                                        'Januari',
+                                        'Februari',
+                                        'Maret',
                                         'April',
-                                        'May',
-                                        'June',
-                                        'July',
-                                        'August',
+                                        'Mei',
+                                        'Juni',
+                                        'Juli',
+                                        'Agustus',
                                         'September',
-                                        'October',
+                                        'Oktober',
                                         'November',
-                                        'December',
+                                        'Desember',
                                     ];
                                 }
                             @endphp
@@ -50,14 +50,14 @@
                                     $semester = $request->semester;
                                     $monthsToShow =
                                         $semester == 01
-                                            ? ['January', 'February', 'March', 'April', 'May', 'June']
-                                            : ['July', 'August', 'September', 'October', 'November', 'December'];
+                                            ? ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni']
+                                            : ['Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
                                 @endphp
                                 @foreach ($monthsToShow as $monthName)
                                     <th>{{ $monthName }}</th>
                                 @endforeach
                             @else
-                                @foreach (['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'] as $monthName)
+                                @foreach (['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'] as $monthName)
                                     <th>{{ $monthName }}</th>
                                 @endforeach
                             @endif

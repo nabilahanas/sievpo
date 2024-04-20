@@ -48,7 +48,7 @@
                 <div class="form-group row col-12 col-md-10">
                     <label for="role" class="col-sm-2 col-form-label required">Role</label>
                     <div class="col-sm-10">
-                        <select name="role" id="role" class="custom-select" Required>
+                        <select name="role" class="custom-select" Required>
                             <option value="" disabled selected>Pilih Role</option>
                             @foreach ($role as $role)
                                 <option value="{{ $role->id_role }}">{{ $role->nama_role }}</option>
@@ -59,7 +59,7 @@
                 <div class="form-group row col-12 col-md-10">
                     <label for="jabatan" class="col-sm-2 col-form-label required">Jabatan</label>
                     <div class="col-sm-10">
-                        <select name="jabatan" id="jabatan" class="custom-select" Required>
+                        <select name="jabatan" class="custom-select" Required>
                             <option value="" disabled selected>Pilih Jabatan</option>
                             @foreach ($jabatan as $jabatan)
                                 <option value="{{ $jabatan->id_jabatan }}">{{ $jabatan->nama_jabatan }}</option>

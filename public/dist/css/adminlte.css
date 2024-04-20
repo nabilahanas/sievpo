@@ -622,6 +622,10 @@ pre code {
   margin-left: auto;
 }
 
+div.container {
+  width: 80%;
+}
+
 @media (min-width: 576px) {
 
   .container,

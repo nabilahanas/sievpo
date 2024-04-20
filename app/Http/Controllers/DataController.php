@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 use App\Models\Data;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
+
 
 class DataController extends Controller
 {
@@ -47,12 +49,8 @@ class DataController extends Controller
             'lokasi' => 'required',
             'tgl_waktu' => 'required|date_format:Y-m-d H:i:s',
             'foto' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            // 'is_approved' => 'required|in:approved,rejected',
         ]);
 
-        // $request->merge(['is_approved' => 'pending']);
-
-        // Mengisi nilai default tgl_waktu dengan waktu saat ini jika tidak ada yang diinput
         $data = $request->except('tgl_waktu');
         $data['tgl_waktu'] = $request->input('tgl_waktu', now());
 
@@ -66,6 +64,11 @@ class DataController extends Controller
 
             // Simpan nama file ke dalam data
             $data['foto'] = $filename;
+
+            // $image = Image::make($image);
+            // $metadata = $image->exif();
+
+            // $data['metadata'] = $metadata;
         } else {
             // Jika tidak ada gambar, atur 'gambar' menjadi null atau sesuai kebutuhan
             $data['foto'] = null;

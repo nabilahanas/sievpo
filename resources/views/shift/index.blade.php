@@ -15,7 +15,7 @@
     @endif
     <div class="card">
         <div class="card-body">
-            {{-- <a href="{{ route('shift.add') }}" type="button" class="btn btn-primary"><i class="fas fa-plus mr-2"></i>Tambah</a> --}}
+            <a href="{{ route('shift.add') }}" type="button" class="btn btn-primary"><i class="fas fa-plus mr-2"></i>Tambah</a>
 
             <div class="table-responsive mt-4">
                 <table id="shift" class="table table-sm text-nowrap table-hover table-striped" style="width: 100%">
@@ -41,7 +41,7 @@
                                     <a href="{{ route('shift.edit', $shift->id_shift) }}" type="button"
                                         class="btn btn-sm btn-warning"><i class="fas fa-pen mr-2"></i>Ubah</a>
 
-                                        {{-- <form action="{{ $shift->trashed() ? route('shift.restore', $shift->id_shift) : route('shift.delete', $shift->id_shift) }}"
+                                        <form action="{{ $shift->trashed() ? route('shift.restore', $shift->id_shift) : route('shift.delete', $shift->id_shift) }}"
                                             method="post" class="d-inline">
                                           @csrf
                                           @method($shift->trashed() ? 'POST' : 'DELETE')
@@ -50,7 +50,7 @@
                                               <i class="{{ $shift->trashed() ? 'fas fa-check-circle' : 'fas fa-times-circle' }} mr-1"></i>
                                               {{ $shift->trashed() ? 'Aktifkan' : 'Nonaktifkan' }}
                                           </button>
-                                      </form> --}}
+                                      </form>
                                 </td>
                             </tr>
                         @endforeach

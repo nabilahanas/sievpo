@@ -17,12 +17,17 @@ class AuthController extends Controller
         $role = Role::all();
         $jabatan = Jabatan::all();
 
-        return view('users/register', compact('role','jabatan'), ['key' => 'dashboard']);
+        return view('users/register', compact('role', 'jabatan'), ['key' => 'dashboard']);
     }
 
 
     public function registered(Request $request)
     {
+        $existingUser = User::where('nip', $request->nip)->first();
+        if ($existingUser) {
+            return redirect()->back()->withInput()->withErrors(['nip' => 'Pengguna sudah terdaftar.']);
+        }
+
         $users = User::create([
             'nama_user' => $request->nama_user,
             'nip' => $request->nip,

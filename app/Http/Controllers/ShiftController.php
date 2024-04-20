@@ -32,6 +32,11 @@ class ShiftController extends Controller
             'poin' => 'required',
         ]);
 
+        $existingShift = Shift::where('nama_shift', $request->nama_shift)->exists();
+        if ($existingShift) {
+            return redirect()->back()->withInput()->withErrors(['nama_shift' => 'Shift sudah terdaftar.']);
+        }
+
         $data = $request->all();
 
         $data['jam_mulai'] = date('H:i:s', strtotime($data['jam_mulai']));

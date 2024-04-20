@@ -39,7 +39,7 @@
                 <div class="form-group row col-12 col-md-10">
                     <label for="id_bidang" class="col-sm-2 col-form-label required">Bidang</label>
                     <div class="col-sm-10">
-                        <select name="id_bidang" id="" class="custom-select" required>
+                        <select name="id_bidang" class="custom-select" required>
                             <option selected disabled value="">Pilih Bidang</option>
                             @foreach ($bidang as $bidang)
                                 <option value="{{ $bidang->id_bidang }}">{{ $bidang->nama_bidang }}</option>

@@ -30,32 +30,24 @@
             <div class="container" data-aos="fade-up">
                 <article class="blog-details">
                     <div class="row justify-content-center position-relative h-100">
-                        <div class="col-md-8">
-                            <h3 class="title text-center">STRUKTUR ORGANISASI
-                                <br>PERUM PERHUTANI KPH SEMARANG TAHUN 2023
-                            </h3>
-                            <div class="post-img">
-                                <img src="landingpage/assets/img/struktur-organisasi.png" class="img-fluid mx-auto d-block"
-                                    alt="Profil Perusahaan" style="max-width: 100%">
+                        <h3 class="title text-center">STRUKTUR ORGANISASI
+                            <br>PERUM PERHUTANI KPH SEMARANG TAHUN 2023
+                        </h3>
+                        <div class="post-img">
+                            <a href="landingpage/assets/img/struktur_organisasi.png" data-gallery="portfolio-gallery-app"
+                                class="glightbox"><img src="landingpage/assets/img/struktur_organisasi.png"
+                                    class="img-fluid" alt="Struktur Organisasi"></a>
+                        </div>
+                        {{-- <div class="col-md-12">
+                            <p class="text-center" style="font-size: 10px">Klik gambar untuk memperbesar</p>
+                        </div> --}}
+                        <div class="row gy-4">
+                            <div class="col-lg-5">
+                                <img src="landingpage/assets/img/keterangan.jpg" class="img-fluid" style="max-width: 50%">
                             </div>
-                            {{-- <div class="row gy-4">
-                                <div class="col-lg-6">
-                                    <div class="post-img">
-                                        <img src="landingpage/assets/img/Group-476.jpg" class="img-fluid mx-auto d-block"
-                                            alt="Profil Perusahaan" style="max-width: 70%">
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="post-img">
-                                        <img src="landingpage/assets/img/Group-243.jpg" class="img-fluid mx-auto d-block"
-                                            alt="Profil Perusahaan" style="max-width: 100%">
-                                    </div>
-                                </div>
-                            </div> --}}
                         </div>
                     </div>
-            </div>
-            </article>
+                </article>
             </div>
         </section>
     </main>

@@ -182,14 +182,14 @@
                             <div class="card-header">
                                 <div class="d-flex justify-content-between align-items-center">
                                     <h3 class="card-title" style="color: #007bff; font-weight: 600;">
-                                        Total Poin Seluruh Karyawan Per Bulan
+                                        Total Eviden Poin per Bulan Tahun xxxx
                                     </h3>
                                     <button class="btn btn-sm btn-outline-primary"><i class="bi bi-download"></i>
                                         Download</button>
                                 </div>
                             </div>
                             <div class="card-body">
-                                <canvas id="adminT" height="50"></canvas>
+                                <canvas id="barChart" height="60"></canvas>
                             </div>
                         </div>
                     </section>
@@ -215,7 +215,7 @@
                     </section>
                 </div>
 
-                <!-- Grafik Perbandingan -->
+                {{-- <!-- Grafik Perbandingan -->
                 <div class="row">
                     <section class="col-lg-12">
                         <div class="card">
@@ -233,7 +233,7 @@
                             </div>
                         </div>
                     </section>
-                </div>
+                </div> --}}
 
                 {{-- <!-- Maps -->
                 <div class="row">

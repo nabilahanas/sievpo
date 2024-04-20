@@ -2110,12 +2110,11 @@ section {
 
 .blog .blog-details .post-img {
   /* margin: 30px 30px 20px 30px; */
-  text-align: centers;
+  text-align: center;
 }
 
 .blog .blog-details .post-img img {
-  max-width: 100%;
-  height: auto;
+  width: 100%;
 }
 
 .blog .blog-details .title {

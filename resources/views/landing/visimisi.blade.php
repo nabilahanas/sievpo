@@ -41,7 +41,7 @@
                     <div class="post-img">
                         <img class="position-relative h-100"
                             src="https://i0.wp.com/www.perhutani.co.id/wp-content/uploads/2022/10/akhlak-2.png"
-                            class="img-fluid mx-auto d-block" alt="Akhlak" style="max-width: 80%">
+                            class="img-fluid mx-auto d-block" alt="Akhlak" style="max-width: 70%">
                     </div>
                 </article>
             </div>

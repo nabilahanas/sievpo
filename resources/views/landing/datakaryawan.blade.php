@@ -32,8 +32,8 @@
                     <h3 class="title text-center">DATABASE KARYAWAN PERUM PERHUTANI AGUSTUS 2023
                         <br>KPH SEMARANG DIVISI REGIONAL JAWA TENGAH
                     </h3>
-                    <div class="col-md-8 offset-md-2 mt-4">
-                        <table class="table table-striped table-responsive">
+                    <div class="offset-2 mt-4">
+                        <table class="table table-striped table-responsive" style="display: inline-block; max-width: 80%">
                             <thead class="thead-perhutani">
                                 <tr>
                                     <th scope="col">No.</th>

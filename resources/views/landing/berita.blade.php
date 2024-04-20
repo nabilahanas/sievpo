@@ -41,7 +41,7 @@
                                                     alt="Gambar Berita" class="img-fluid">
                                             @else
                                                 <img src="https://www.perhutani.co.id/wp-content/themes/perhutani2022/assets/images/default-cover.jpg"
-                                                    alt="Default Image" class="img-fluid">
+                                                    alt="Default Image" class="img-fluid" style="margin-top: -20px; margin-left: 20px; display: block; transform: scale(1.2)">
                                             @endif
                                         </div>
                                         <h2 class="title"

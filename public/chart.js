@@ -1,27 +1,42 @@
-// Admin Total
-var ctxL = document.getElementById("adminT").getContext('2d');
-var myLineChart = new Chart(ctxL, {
-  type: 'line',
-  data: {
-    labels: ["January", "February", "March", "April", "May", "June", "July"],
-    datasets: [{
-      label: "Total Poin",
-      data: [65, 59, 80, 81, 56, 55, 40],
-      backgroundColor: [
-        'rgba(105, 0, 132, .2)',
-      ],
-      borderColor: [
-        'rgba(200, 99, 132, .7)',
-      ],
-      borderWidth: 2,
-      fill: false,
-    },
-    ]
-  },
-  options: {
-    responsive: true
-  }
-});
+// // Admin Total
+// var currentDate = new Date();
+
+// var monthNames = [
+//   "Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli",
+//   "Agustus", "September", "Oktober", "November", "Desember"
+// ];
+
+// var currentMonthIndex = currentDate.getMonth();
+
+// var labels = [];
+
+// for (var i = 0; i <= currentMonthIndex; i++) {
+//   labels.push(monthNames[i]);
+// }
+
+// var ctxL = document.getElementById("adminT").getContext('2d');
+// var myLineChart = new Chart(ctxL, {
+//   type: 'line',
+//   data: {
+//     labels: labels,
+//     datasets: [{
+//       label: "Total Poin",
+//       data: [65, 59, 80, 81, 56, 55, 40],
+//       backgroundColor: [
+//         'rgba(105, 0, 132, .2)',
+//       ],
+//       borderColor: [
+//         'rgba(200, 99, 132, .7)',
+//       ],
+//       borderWidth: 2,
+//       fill: false,
+//     },
+//     ]
+//   },
+//   options: {
+//     responsive: true
+//   }
+// });
 
 // Admin Perbandingan
 new Chart(document.getElementById("adminP"), {

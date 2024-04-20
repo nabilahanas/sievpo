@@ -14,11 +14,20 @@ use Illuminate\Http\Request;
 class ConfirmController extends Controller
 {
     protected $primaryKey = 'id_data';
-    public function index()
+    public function index(Request $request)
     {
         $bidang = Bidang::all();
         $shift = Shift::all();
-        $data = Data::all();
+        $dataQuery = Data::query(); // Inisialisasi query builder
+
+        if ($request->has('search')) {
+            $search = $request->input('search');
+            // Filter data berdasarkan kata kunci pencarian pada kolom 'is_approved'
+            $dataQuery->where('is_approved', $search);
+        }
+
+        // Ambil data yang telah difilter
+        $data = $dataQuery->get();
 
         return view('confirm.index', compact('bidang', 'shift', 'data'), ['key' => 'confirm']);
     }

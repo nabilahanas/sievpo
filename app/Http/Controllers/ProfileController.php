@@ -14,7 +14,7 @@ class ProfileController extends Controller
     public function index()
     {
         $users = User::all();
-        return view('users.profile', compact('users'), ['key'=>'users']);
+        return view('users.profile', compact('users'), ['key' => 'users']);
     }
 
     public function updateProfilePicture(Request $request)
@@ -39,7 +39,7 @@ class ProfileController extends Controller
             $users->update(['profile_pict' => $filename]);
         }
 
-        return redirect()->route('profile.updateProfilePicture')->with('success', 'Foto profil berhasil diubah');
+        return redirect()->route('profile.index')->with('success', 'Foto profil berhasil diubah');
     }
 
     public function updatePassword(Request $request)
@@ -59,6 +59,18 @@ class ProfileController extends Controller
         // Update the password
         $users->update(['password' => bcrypt($request->new_password)]);
 
-        return redirect()->route('profile.updatePassword')->with('success', 'Password berhasil diubah');
+        return redirect()->route('profile.index')->with('success', 'Password berhasil diubah');
     }
+
+    public function deleteProfilePicture()
+    {
+        $user = Auth::user();
+
+        // Hapus referensi foto profil dari database
+        $user->update(['profile_pict' => null]);
+
+        return redirect()->route('profile.index')->with('success', 'Foto profil berhasil dihapus');
+    }
+
+
 }

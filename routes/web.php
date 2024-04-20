@@ -53,9 +53,9 @@ Route::middleware('check.role:Admin,Karyawan,Pimpinan,Mahasiswa')->group(functio
 
     Route::prefix("profile")->group(function () {
         Route::get('/', [ProfileController::class, 'index'])->name('profile.index');
-        Route::post('update-profile-picture', [ProfileController::class, 'updateProfilePicture'])
-            ->name('profile.updateProfilePicture');
+        Route::post('update-profile-picture', [ProfileController::class, 'updateProfilePicture'])->name('profile.update-profile-picture');
         Route::post('update-password', [ProfileController::class, 'updatePassword'])->name('profile.update-password');
+        Route::get('delete-profile-picture', [ProfileController::class, 'deleteProfilePicture'])->name('profile.delete-profile-picture');
     });
 
     Route::prefix("data")->group(function () {

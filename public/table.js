@@ -27,9 +27,9 @@ $(document).ready(function () {
         <select name="search" type="number" class="form-control" placeholder="search" aria-label="search"
             aria-describedby="button-addon2">
             <option>Pilih Status</option>
-            <option value="01">Diproses</option>
-            <option value="02">Diterima</option>
-            <option value="03">Ditolak</option>
+            <option value="pending">Diproses</option>
+            <option value="approved">Diterima</option>
+            <option value="rejected">Ditolak</option>
         </select>
 
         <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Cari</button>

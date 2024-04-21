@@ -28,14 +28,14 @@
                 <div class="form-group row col-12 col-md-10">
                     <label for="nama" class="col-sm-2 col-form-label required">Nama Karyawan</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="nama" name="nama"
+                        <input type="text" class="form-control" name="nama"
                             value="{{ $karyawan->nama }}" required>
                     </div>
                 </div>
                 <div class="form-group row col-12 col-md-10">
                     <label for="jabatan" class="col-sm-2 col-form-label required">Jabatan</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="jabatan" name="jabatan"
+                        <input type="text" class="form-control" name="jabatan"
                             value="{{ $karyawan->jabatan }}" required>
                     </div>
                 </div>

@@ -44,7 +44,7 @@ class KaryawanDBController extends Controller
 
     public function edit($id)
     {
-        $karaywan = Karyawan::find($id);
+        $karyawan = Karyawan::find($id);
         return view('karyawan.edit', compact('karyawan'), ['key' => 'karyawan']);
     }
 

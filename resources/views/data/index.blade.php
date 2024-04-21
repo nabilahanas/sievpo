@@ -61,7 +61,7 @@
                                                         alt="Foto Eviden" width="700" class="img-fluid">
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <button type="button" class="btn btn-primary"
+                                                    <button type="button" class="btn btn-sm btn-successv2"
                                                         data-bs-dismiss="modal">Tutup</button>
                                                 </div>
                                                 </form>

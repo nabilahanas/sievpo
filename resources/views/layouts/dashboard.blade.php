@@ -318,7 +318,7 @@
                             <div class="icon">
                                 <i class="fas fa-chart-pie"></i>
                             </div>
-                            <a href="#" class="small-box-footer">Info lebih lanjut <i
+                            <a href="total" class="small-box-footer">Info lebih lanjut <i
                                     class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
@@ -462,7 +462,7 @@
                             <div class="icon">
                                 <i class="fas fa-chart-pie"></i>
                             </div>
-                            <a href="#" class="small-box-footer">Info lebih lanjut <i
+                            <a href="/data" class="small-box-footer">Info lebih lanjut <i
                                     class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
@@ -476,7 +476,7 @@
                             <div class="icon">
                                 <i class="fas fa-thumbs-up"></i>
                             </div>
-                            <a href="/confirm" class="small-box-footer">Info lebih lanjut <i
+                            <a href="/data" class="small-box-footer">Info lebih lanjut <i
                                     class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
@@ -491,7 +491,7 @@
                             <div class="icon">
                                 <i class="fas fa-thumbs-down"></i>
                             </div>
-                            <a href="/confirm" class="small-box-footer">Info lebih lanjut <i
+                            <a href="/data" class="small-box-footer">Info lebih lanjut <i
                                     class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
@@ -506,7 +506,7 @@
                             <div class="icon">
                                 <i class="fas fa-retweet"></i>
                             </div>
-                            <a href="/confirm" class="small-box-footer">Info lebih lanjut <i
+                            <a href="/data" class="small-box-footer">Info lebih lanjut <i
                                     class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>

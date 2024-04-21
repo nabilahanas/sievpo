@@ -56,6 +56,11 @@ class BeritaController extends Controller
             $data['gambar'] = null;
         }
 
+        $existingBerita = Berita::where('judul', $request->judul)->exists();
+        if ($existingBerita) {
+            return redirect()->back()->withInput()->withErrors(['judul' => 'Berita sudah terdata.']);
+        }
+
         Berita::create($data);
 
         return redirect()->route('berita.index')->with('success', 'Data berita berhasil ditambahkan');

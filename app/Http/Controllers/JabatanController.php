@@ -13,12 +13,12 @@ class JabatanController extends Controller
     public function index()
     {
         $jabatan = Jabatan::withTrashed()->get();
-        return view('jabatan.index', compact('jabatan'), ['key'=>'jabatan']);
+        return view('jabatan.index', compact('jabatan'), ['key' => 'jabatan']);
     }
 
     public function create()
     {
-        return view('jabatan.add', ['key'=>'jabatan']);
+        return view('jabatan.add', ['key' => 'jabatan']);
     }
 
     public function store(Request $request)
@@ -30,16 +30,21 @@ class JabatanController extends Controller
             'klasifikasi' => 'required',
         ]);
 
-        $data = $request->all();
-        Jabatan::create($data);
+        $existingJabatan = Jabatan::where('nama_jabatan', $request->nama_jabatan)->exists();
+        if ($existingJabatan) {
+            return redirect()->back()->withInput()->withErrors(['nama_jabatan' => 'Nama jabatan sudah terdaftar.']);
+        }
+
+        Jabatan::create($request->all());
 
         return redirect()->route('jabatan.index')->with('success', 'Data jabatan berhasil ditambahkan');
     }
 
+
     public function edit($id)
     {
         $jabatan = Jabatan::find($id);
-        return view('jabatan.edit', compact('jabatan'), ['key'=>'jabatan']);
+        return view('jabatan.edit', compact('jabatan'), ['key' => 'jabatan']);
     }
 
     public function update(Request $request, $id)
@@ -52,12 +57,12 @@ class JabatanController extends Controller
         ]);
         $jabatan = Jabatan::find($id);
         $jabatan->update([
-            'nama_jabatan' => $request -> nama_jabatan,
-            'wilayah' => $request -> wilayah,
-            'bagian' => $request -> bagian,
-            'klasifikasi' => $request -> klasifikasi,
+            'nama_jabatan' => $request->nama_jabatan,
+            'wilayah' => $request->wilayah,
+            'bagian' => $request->bagian,
+            'klasifikasi' => $request->klasifikasi,
         ]);
-        
+
         return redirect()->route('jabatan.index')->with('success', 'Data jabatan berhasil diubah');
     }
 
@@ -72,7 +77,7 @@ class JabatanController extends Controller
     public function delete($id)
     {
         $jabatan = Jabatan::find($id);
-        $jabatan -> delete();
+        $jabatan->delete();
 
         return redirect()->route('jabatan.index')->with('success', 'Data jabatan berhasil dinonaktifkan');
     }

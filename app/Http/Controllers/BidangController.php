@@ -29,9 +29,12 @@ class BidangController extends Controller
             'deskripsi' => 'required',
         ]);
 
-        $data = $request->all();
-        Bidang::create($data);
-        echo "Data berhasil ditambahkan" .PHP_EOL;
+        $existingBidang = Bidang::where('nama_bidang', $request->nama_bidang)->exists();
+        if ($existingBidang) {
+            return redirect()->back()->withInput()->withErrors(['nama_bidang' => 'Bidang sudah terdaftar.']);
+        }
+
+        Bidang::create($request->all());
 
         return redirect()->route('bidang.index')->with('success', 'Data bidang berhasil ditambahkan');
     }

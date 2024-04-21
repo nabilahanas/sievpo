@@ -53,8 +53,12 @@ class PengumumanController extends Controller
             $data['gambar'] = null;
         }
 
+        $existingPengumuman = Pengumuman::where('judul', $request->judul)->exists();
+        if ($existingPengumuman) {
+            return redirect()->back()->withInput()->withErrors(['judul' => 'Pengumuman sudah terdata.']);
+        }
+
         Pengumuman::create($data);
-        // echo "Data berhasil ditambahkan" . PHP_EOL;
 
         return redirect()->route('pengumuman.index')->with('success', 'Data pengumuman berhasil ditambahkan');
 

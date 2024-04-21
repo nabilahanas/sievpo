@@ -34,13 +34,16 @@
                 <div class="form-group row col-12 col-md-10">
                     <label for="judul" class="col-sm-3 col-form-label required">Judul Pengumuman</label>
                     <div class="col-sm-9">
-                        <input type="text" class="form-control" name="judul" required>
+                        <input type="text" class="form-control" name="judul" required maxlength="40">
+                        <small class="form-text text-muted">Maksimum 40 karakter</small>
                     </div>
                 </div>
                 <div class="form-group row col-12 col-md-10">
                     <label for="gambar" class="col-sm-3 col-form-label">Gambar</label>
                     <div class="col-sm-9">
-                        <input type="file" class="form-control" id="fileInput" name="gambar" accept="image/*">
+                        <input type="file" class="form-control" id="fileInput" name="gambar"
+                            accept="image/jpeg, image/png, image/jpg, image/svg">
+                        <small class="form-text text-muted">Gambar harus bertipe: jpeg, png, jpg, atau svg</small>
                     </div>
                 </div>
                 <div class="form-group row col-12 col-md-10">

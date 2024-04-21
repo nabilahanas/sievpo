@@ -102,7 +102,7 @@
                     </tbody>
                     <tfoot>
                         <tr>
-                            <th colspan="38" style="text-align:right">Total:</th>
+                            <th colspan="{{ (count($bidang) * (count($shifts) + 1)) + 3 }}" style="text-align:right">Total:</th>
                             <th>{{ $grandTotal }}</th>
                         </tr>
                     </tfoot>

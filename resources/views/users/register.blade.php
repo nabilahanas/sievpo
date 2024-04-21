@@ -28,7 +28,7 @@
                 <div class="form-group row col-12 col-md-10">
                     <label for="nama_user" class="col-sm-2 col-form-label required">Nama</label>
                     <div class="col-sm-10">
-                        <input type="text" name="nama_user" class="form-control" autofocus Required autocomplete="off">
+                        <input type="text" name="nama_user" class="form-control" Required autocomplete="off">
                     </div>
                 </div>
                 <div class="form-group row col-12 col-md-10">
@@ -43,6 +43,7 @@
                         <input type="tel" name="no_hp" class="form-control" pattern="[0-9]{10,12}"
                             title="Masukkan nomor telepon dengan format yang benar (minimal 10 digit dan maksimal 12 digit)"
                             Required autocomplete="off">
+                            <small class="form-text text-muted">Contoh: 08xxxxxxxxx</small>
                     </div>
                 </div>
                 <div class="form-group row col-12 col-md-10">

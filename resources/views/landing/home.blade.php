@@ -330,8 +330,8 @@
                                 <div class="icon">
                                     <i class="bi bi-bar-chart-fill"></i>
                                 </div>
-                                <h3>Rekapan Data Eviden Poin</h3>
-                                <p>Rekapan data eviden poin karyawan tersimpan dengan baik dan mudah diakses</p>
+                                <h3>Rekap Data Eviden Poin</h3>
+                                <p>Rekap data eviden poin karyawan tersimpan dengan baik dan mudah diakses</p>
                             </button>
                         </div>
                     </div>

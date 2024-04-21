@@ -10,7 +10,7 @@
     <div class="card-body">
         <a class="btn btn-outline-success" href="">Download
             Excel</a>
-        <div class="table-responsive-lg mt-4">
+        <div class="table-responsive-lg mt-4"  style="overflow-x: auto;">
             <table id="tkaryawan" class="table table-sm text-nowrap text-hover table-striped" style="width=100%">
                 <thead class="thead-successv2">
                     <tr>
@@ -64,7 +64,7 @@
                         @endif
                     </tr>
                 </thead>
-                <tbody>
+                <tbody style="overflow-x: auto;">
                     @php
                         $grandTotal = 0;
                     @endphp
@@ -103,7 +103,7 @@
                 </tbody>
                 <tfoot>
                     <tr>
-                        <th colspan="" style="text-align:right">Total:</th>
+                        <th colspan="{{ count($monthsToShow) + 3 }}" style="text-align:right">Total:</th>
                         <th>{{ $grandTotal }}</th>
                     </tr>
                 </tfoot>

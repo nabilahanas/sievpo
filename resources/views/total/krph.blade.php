@@ -97,7 +97,7 @@
                     </tbody>
                     <tfoot>
                         <tr>
-                            <th colspan="15" style="text-align:right">Total:</th>
+                            <th colspan="{{ count($monthsToShow) + 3 }}" style="text-align:right">Total:</th>
                             <th>{{ $grandTotal }}</th>
                         </tr>
                     </tfoot>

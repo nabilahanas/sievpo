@@ -2090,6 +2090,8 @@ div.container {
 
 .modal-title {
   font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
   /* text-align: center; */
 }
 

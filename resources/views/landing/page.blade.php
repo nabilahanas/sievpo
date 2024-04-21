@@ -125,7 +125,7 @@
                     <i class="fas fa-map-marker-alt mr-2"></i>Jl. Cipto No. 99, Semarang, Kode Pos:
                     50552<br>
                     <i class="fas fa-phone-alt mr-2"></i>(024) 254326<br>
-                    <i class="fas fa-building mr-2"></i>(024) 354621<br>
+                    <i class="fas fa-fax mr-2"></i>(024) 354621<br>
                     <i class="fas fa-envelope mr-2"></i>kph.semarang@perhutani.co.id<br>
                 </p>
             </div>

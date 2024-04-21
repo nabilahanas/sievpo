@@ -33,7 +33,7 @@
             <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title" id="pengumumanTitle{{ $index }}">{{ $item->judul }}</h4>
+                        <h4 class="modal-title" id="pengumumanTitle{{ $index }}" style="font-size: 20px">{{ $item->judul }}</h4>
                         <button type="button" class="close" aria-label="Close" data-dismiss="modal"
                             data-next-modal="#pengumumanModal{{ $index + 1 }}">
                             <span aria-hidden="true">&times;</span>
@@ -61,7 +61,7 @@
                                 </div>
                             </div>
                         </div> --}}
-                        <button type="button" class="btn btn-primary close-modal" data-dismiss="modal"
+                        <button type="button" class="btn btn-successv2 close-modal" data-dismiss="modal"
                             data-next-modal="#pengumumanModal{{ $index + 1 }}">OK</button>
                     </div>
                 </div>
@@ -182,7 +182,7 @@
                             <div class="card-header">
                                 <div class="d-flex justify-content-between align-items-center">
                                     <h3 class="card-title" style="color: #007bff; font-weight: 600;">
-                                        Total Eviden Poin per Bulan Tahun xxxx
+                                        Total Eviden Poin per Bulan Tahun <span id="currentYear"></span>
                                     </h3>
                                     <button class="btn btn-sm btn-outline-primary"><i class="bi bi-download"></i>
                                         Download</button>

@@ -37,14 +37,16 @@
                     <label for="judul" class="col-sm-3 col-form-label required">Judul Pengumuman</label>
                     <div class="col-sm-9">
                         <input type="text" class="form-control" id="judul" name="judul"
-                            value="{{ $pengumuman->judul }}" required>
+                            value="{{ $pengumuman->judul }}" required maxlength="40">
+                        <small class="form-text text-muted">Maksimum 40 karakter</small>
                     </div>
                 </div>
                 <div class="form-group row col-12 col-md-10">
                     <label for="gambar" class="col-sm-3 col-form-label">Gambar</label>
                     <div class="col-sm-9">
                         <input type="file" class="form-control" id="gambar" name="gambar"
-                            value="{{ $pengumuman->gambar }}">
+                            value="{{ $pengumuman->gambar }}" accept="image/jpeg, image/png, image/jpg, image/svg">
+                        <small class="form-text text-muted">Gambar harus bertipe: jpeg, png, jpg, atau gif</small>
                     </div>
                 </div>
                 <div class="form-group row col-12 col-md-10">

@@ -48,7 +48,7 @@ class AuthController extends Controller
                 'password' => $request->password,
             ])
         ) {
-            return redirect('/login');
+            return redirect('/login')->with('error', 'NIP atau password yang Anda masukkan salah!');
         } else {
 
             $request->session()->put('just_logged_in', true);

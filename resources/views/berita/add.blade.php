@@ -40,7 +40,8 @@
                 <div class="form-group row col-12 col-md-10">
                     <label for="gambar" class="col-sm-3 col-form-label">Gambar</label>
                     <div class="col-sm-9">
-                        <input type="file" class="form-control" id="fileInput" name="gambar" accept="image/*">
+                        <input type="file" class="form-control" id="fileInput" name="gambar" accept="image/jpeg, image/png, image/jpg, image/svg">
+                        <small class="form-text text-muted">Gambar harus bertipe: jpeg, png, jpg, atau svg</small>
                     </div>
                 </div>
                 <div class="form-group row col-12 col-md-10">

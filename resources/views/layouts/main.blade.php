@@ -159,13 +159,14 @@
             $(this).closest('.modal').modal('hide');
             $(nextModalId).modal('show');
         });
+    </script>
 
-        // Prevent modal from closing when clicking outside the modal
-        // $(document).ready(function() {
-        //     $('.modal').on('hide.bs.modal', function(e) {
-        //         e.preventDefault(); // Menghentikan penutupan modal
-        //     });
-        // });
+    <script>
+        // Mendapatkan tahun saat ini
+        var currentYear = new Date().getFullYear();
+
+        // Mengisi tahun saat ini ke dalam elemen dengan id "currentYear"
+        document.getElementById('currentYear').innerText = currentYear;
     </script>
 
     <!-- Dropdown -->
@@ -189,11 +190,11 @@
     <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.3.5/js/dataTables.buttons.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.3.5/js/buttons.html5.min.js"></script>
-    <script src="{{ asset('/') }}table.js"></script>
+    <script src="{{ asset('/') }}script/table.js"></script>
     <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
     <script src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
     <!-- Chart -->
-    <script src="{{ asset('/') }}chart.js"></script>
+    <script src="{{ asset('/') }}script/chart.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
     <!-- Date Range Picker JavaScript -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>

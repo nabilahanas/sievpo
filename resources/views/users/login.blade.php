@@ -18,7 +18,7 @@
 
 @if ($errors->any())
     <div class="alert alert-danger fade show alert-dismissible" role="alert">
-        <strong><i class="fa fa-warning" aria-hidden="true"></i></strong> 
+        <strong><i class="fa fa-warning" aria-hidden="true"></i></strong>
         <ul>
             @foreach ($errors->all() as $error)
                 <li>{{ $error }}</li>
@@ -58,7 +58,9 @@
                                 <p class="login-box-msg" style="font-size: 14px">Sistem Informasi Eviden
                                     Poin
                                 </p>
-
+                                @if ($message = Session::get('error'))
+                                    <div class="alert alert-danger" role="alert" style="font-size: 13px">{{ $message }}</div>
+                                @endif
                                 <div class="input-group mb-3">
                                     <input type="text" name="nip" class="form-control" placeholder="NIP" required
                                         autocomplete="off" autofocus>
@@ -78,8 +80,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group col-12">
-                                    <input class="btn btn-successv2 btn-block"
-                                        type="submit" value="Login">
+                                    <input class="btn btn-successv2 btn-block" type="submit" value="Login">
                                 </div>
                             </form>
                         </div>

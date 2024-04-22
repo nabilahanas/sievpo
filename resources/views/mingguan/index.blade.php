@@ -7,7 +7,7 @@
 
     <div class="card">
         <div class="card-body">
-            <a class="btn btn-outline-success" href="">Download Excel</a>
+            <a class="btn btn-outline-success" href="{{ route('mingguan.export') }}?{{ request()->has('start_date') && request()->has('end_date') ? 'start_date=' . request()->start_date . '&end_date=' . request()->end_date : '' }}">Download Excel</a>
             <div class="table-responsive-lg mt-4">
                 <table id="mingguan" class="table table-sm text-nowrap table-hover table-striped" style="width: 100%">
 
@@ -16,7 +16,7 @@
                             <th rowspan="3">Nama</th>
                             <th rowspan="3">Jabatan</th>
                             <th rowspan="3">Wilayah</th>
-                            <th colspan="36" class="text-center">{{ $start_date->format('d F Y') }} - {{ $end_date->format('d F Y') }} </th>
+                            <th colspan="{{ count($bidang) * (count($shifts) + 1)}}" class="text-center">{{ $start_date->format('d F Y') }} - {{ $end_date->format('d F Y') }} </th>
                             <th rowspan="3">Total</th>
                         </tr>
                         <tr>

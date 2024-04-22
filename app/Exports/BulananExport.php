@@ -1,27 +1,27 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Exports;
 
-use App\Http\Controllers\Controller;
+use Illuminate\Contracts\View\View;
+use Maatwebsite\Excel\Concerns\FromView;
 use App\Models\Bidang;
 use App\Models\Shift;
 use Carbon\Carbon;
 use App\Models\Data;
 use App\Models\User;
-use Illuminate\Http\Request;
-use App\Exports\BulananExport;
-use Maatwebsite\Excel\Facades\Excel;
 
-class BulananController extends Controller
+class BulananExport implements FromView
 {
-    protected $primaryKey = 'id_data';
+    protected $start_date;
+    protected $end_date;
 
-    public function export(Request $request) 
+    public function __construct($start_date, $end_date)
     {
-        return Excel::download(new BulananExport($request->bulan, $request->tahun), 'Rekap Bulanan.xlsx');
+        $this->start_date = $start_date;
+        $this->end_date = $end_date;
     }
 
-    public function index(Request $request)
+    public function view(): View
     {
         $currentDate = Carbon::now();
         $currentMonth = $currentDate->format('F Y');
@@ -32,8 +32,8 @@ class BulananController extends Controller
 
         $data = [];
 
-        if ($request->has('bulan') && $request->has('tahun')) {
-            $searchMonth = Carbon::createFromDate($request->tahun, $request->bulan, 1);
+        if (request()->has('bulan') && request()->has('tahun')) {
+            $searchMonth = Carbon::createFromDate(request()->tahun, request()->bulan, 1);
             $startDate = $searchMonth->startOfMonth();
             $endDate = $searchMonth->endOfMonth();
             $datas = Data::whereBetween('created_at', [$startDate, $endDate])->get();
@@ -54,8 +54,6 @@ class BulananController extends Controller
             $data[$userId][$tanggal] += $item->poin;
         }
 
-        // dd($data);
-
-        return view('bulanan.index', compact('currentMonth','request', 'shifts', 'users', 'data', 'bidang'), ['key' => 'bulanan']);
+        return view('exports.bulanan', compact('currentMonth','shifts', 'users', 'data', 'bidang'), ['key' => 'bulanan']);
     }
 }

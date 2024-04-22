@@ -7,7 +7,7 @@
 
     <div class="card">
         <div class="card-body">
-            <a class="btn btn-outline-success" href="">Download
+            <a class="btn btn-outline-success" href="{{ route('bulanan.export') }}?{{ request()->has('bulan') && request()->has('tahun') ? 'bulan=' . request()->bulan . '&tahun=' . request()->tahun : '' }}">Download
                 Excel</a>
 
             <div class="table-responsive-lg mt-4">

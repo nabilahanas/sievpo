@@ -7,7 +7,16 @@
 
     <div class="card">
         <div class="card-body">
-            <a class="btn btn-outline-success" href="">Download Excel</a>
+            @php
+                // Ambil nilai dari segmen kedua pada URL jika tersedia
+                $searchDate = request()->segment(2);
+            @endphp
+
+            <a class="btn btn-outline-success"
+                href="{{ route('harian.export') }}?search={{ request()->has('search') ? request()->search : now()->format('Y-m-d') }}">Download
+                Excel</a>
+
+
             <div class="table-responsive-lg mt-4">
                 <table id="harian" class="table table-sm text-nowrap table-hover table-striped" style="width: 100%">
 
@@ -16,7 +25,7 @@
                             <th rowspan="3">Nama</th>
                             <th rowspan="3">Jabatan</th>
                             <th rowspan="3">Wilayah</th>
-                            <th colspan="36" class="text-center">{{ $currentDate }}</th>
+                            <th colspan="{{ count($bidang) * (count($shifts) + 1)}}" class="text-center">{{ $currentDate }}</th>
                             <th rowspan="3">Total</th>
                         </tr>
                         <tr>
@@ -89,7 +98,8 @@
                     </tbody>
                     <tfoot>
                         <tr>
-                            <th colspan="{{ (count($bidang) * (count($shifts) + 1)) + 3 }}" style="text-align:right">Total:</th>
+                            <th colspan="{{ count($bidang) * (count($shifts) + 1) + 3 }}" style="text-align:right">Total:
+                            </th>
                             <th>{{ $grandTotal }}</th>
                         </tr>
                     </tfoot>

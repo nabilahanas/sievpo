@@ -9,11 +9,41 @@ use App\Models\User;
 use Carbon\Carbon;
 use App\Models\Jabatan;
 use Illuminate\Http\Request;
+use App\Exports\TKaryawanExport;
+use App\Exports\TBidangExport;
+use App\Exports\TbkphExport;
+use App\Exports\TkrphExport;
+use App\Exports\TasperExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class TotalController extends Controller
 {
     protected $primaryKey = 'id_data';
 
+    public function exportkaryawan(Request $request) 
+    {
+        return Excel::download(new TKaryawanExport($request->semester, $request->year), 'Total Karyawan.xlsx');
+    }
+
+    public function exportbidang(Request $request) 
+    {
+        return Excel::download(new TBidangExport($request->semester, $request->year), 'Total Bidang.xlsx');
+    }
+
+    public function exportbkph(Request $request) 
+    {
+        return Excel::download(new TbkphExport($request->semester, $request->year), 'Total BKPH.xlsx');
+    }
+
+    public function exportkrph(Request $request) 
+    {
+        return Excel::download(new TkrphExport($request->semester, $request->year), 'Total KRPH.xlsx');
+    }
+
+    public function exportasper(Request $request) 
+    {
+        return Excel::download(new TasperExport($request->semester, $request->year), 'Total AsperKBKPH.xlsx');
+    }
     public function karyawan(Request $request)
     {
         $currentYear = Carbon::now()->year;

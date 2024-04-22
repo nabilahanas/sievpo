@@ -9,10 +9,17 @@ use App\Models\Bidang;
 use app\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use App\Exports\HarianExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class HarianController extends Controller
 {
     protected $primaryKey = 'id_data';
+
+    public function export(Request $request) 
+    {
+        return Excel::download(new HarianExport($request->search), 'Rekap Harian.xlsx');
+    }
 
     public function index(Request $request)
     {
@@ -33,18 +40,18 @@ class HarianController extends Controller
         } else {
             $datas = Data::all();
         }
-    
+
         foreach ($datas as $item) {
             $tanggal = Carbon::parse($item->created_at)->format('Y-m-d');
             $userId = $item->id_user;
             $bidangId = $item->id_bidang;
             $shiftId = $item->id_shift;
             $poin = $item->poin;
-    
+
             if (!isset($data[$userId][$tanggal][$bidangId][$shiftId])) {
                 $data[$userId][$tanggal][$bidangId][$shiftId] = 0;
             }
-    
+
             $data[$userId][$tanggal][$bidangId][$shiftId] += $poin;
         }
 

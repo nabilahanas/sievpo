@@ -149,6 +149,7 @@ Route::middleware('check.role:Admin,Mahasiswa')->group(function () {
 
     Route::prefix("harian")->group(function () {
         Route::get('/', [HarianController::class, 'index'])->name('harian.index');
+        Route::get('export/{search?}', [HarianController::class, 'export'])->name('harian.export');
     });
 
     Route::prefix("confirm")->group(function () {
@@ -158,10 +159,12 @@ Route::middleware('check.role:Admin,Mahasiswa')->group(function () {
 
     Route::prefix("mingguan")->group(function(){
         Route::get('/', [MingguanController::class, 'index'])->name('mingguan.index');
+        Route::get('export/{search?}', [MingguanController::class, 'export'])->name('mingguan.export');
     });
 
     Route::prefix("bulanan")->group(function(){
         Route::get('/', [BulananController::class, 'index'])->name('bulanan.index');
+        Route::get('export/{search?}', [BulananController::class, 'export'])->name('bulanan.export');
     });
 
     Route::prefix("total")->group(function (){
@@ -170,6 +173,12 @@ Route::middleware('check.role:Admin,Mahasiswa')->group(function () {
         Route::get('bkph', [TotalController::class, 'bkph'])->name('total.bkph');
         Route::get('krph', [TotalController::class, 'krph'])->name('total.krph');
         Route::get('asper', [TotalController::class, 'asper'])->name('total.asper');
+
+        Route::get('exportkaryawan/{search?}', [TotalController::class, 'exportkaryawan'])->name('total.exportkaryawan');
+        Route::get('exportbidang/{search?}', [TotalController::class, 'exportbidang'])->name('total.exportbidang');
+        Route::get('exportbkph/{search?}', [TotalController::class, 'exportbkph'])->name('total.exportbkph');
+        Route::get('exportkrph/{search?}', [TotalController::class, 'exportkrph'])->name('total.exportkrph');
+        Route::get('exportasper/{search?}', [TotalController::class, 'exportasper'])->name('total.exportasper');
     });
 
     Route::post('proses-approval/{id}/{status}', [ConfirmController::class, 'approval'])->name('approval.process');

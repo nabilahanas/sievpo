@@ -9,10 +9,17 @@ use App\Models\Bidang;
 use app\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use App\Exports\MingguanExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class MingguanController extends Controller
 {
     protected $primaryKey = 'id_data';
+
+    public function export(Request $request) 
+    {
+        return Excel::download(new MingguanExport($request->start_date, $request->end_date), 'Rekap Mingguan.xlsx');
+    }
 
     public function index(Request $request)
     {

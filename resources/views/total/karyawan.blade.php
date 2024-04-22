@@ -8,7 +8,7 @@
 
 <div class="card">
     <div class="card-body">
-        <a class="btn btn-outline-success" href="">Download
+        <a class="btn btn-outline-success" href="{{ route('total.exportkaryawan') }}?{{ request()->has('semester') && request()->has('year') ? 'semester=' . request()->semester . '&year=' . request()->year : 'search=' . '' }}">Download
             Excel</a>
         <div class="table-responsive-lg mt-4"  style="overflow-x: auto;">
             <table id="tkaryawan" class="table table-sm text-nowrap text-hover table-striped" style="width=100%">

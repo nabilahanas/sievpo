@@ -86,10 +86,14 @@
                     <div class="col-sm-10">
                         <input class="form-control" type="file" id="foto" name="foto" accept="image/*" required>
                         <small class="form-text text-danger">Foto <b>wajib</b> memiliki timestamp!</small>
-                        <img src="https://www.svgrepo.com/show/508699/landscape-placeholder.svg" class="img-fluid"
-                            style="max-width: 320px;">
+                        @if(isset($data['foto'])) <!-- Check if image exists in data -->
+                            <img src="{{ asset('foto-eviden/' . $data['foto']) }}" class="img-fluid" id="previewImage" style="max-width: 320px;">
+                        @else
+                            <img src="https://www.svgrepo.com/show/508699/landscape-placeholder.svg" class="img-fluid" id="previewImage" style="max-width: 320px;">
+                        @endif
                     </div>
                 </div>
+                
 
                 <div class="text-center">
                     <button type="submit" class="btn btn-primary"><i class="fas fa-save mr-2"></i>Simpan</button>
@@ -102,6 +106,21 @@
     </div>
 
     {{-- GET LOCATION USING API --}}
+
+    <script>
+        document.getElementById('foto').addEventListener('change', function(e) {
+            var file = e.target.files[0];
+            var reader = new FileReader();
+    
+            reader.onload = function(e) {
+                document.getElementById('previewImage').setAttribute('src', e.target.result);
+            }
+    
+            reader.readAsDataURL(file);
+        });
+    </script>
+
+
     <script>
         function getLocation() {
             if (navigator.geolocation) {

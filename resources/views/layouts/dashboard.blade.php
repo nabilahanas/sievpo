@@ -33,7 +33,8 @@
             <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title" id="pengumumanTitle{{ $index }}" style="font-size: 20px">{{ $item->judul }}</h4>
+                        <h4 class="modal-title" id="pengumumanTitle{{ $index }}" style="font-size: 20px">
+                            {{ $item->judul }}</h4>
                         <button type="button" class="close" aria-label="Close" data-dismiss="modal"
                             data-next-modal="#pengumumanModal{{ $index + 1 }}">
                             <span aria-hidden="true">&times;</span>
@@ -42,12 +43,13 @@
                     <div class="modal-body">
                         <p class="modal-date col-md-4 ml-auto">
                             {{ \Carbon\Carbon::parse($item->tgl_publikasi)->locale('id')->isoFormat('D MMMM YYYY') }}</p>
-                        @if (auth()->user()->profile_pict)
+                        @if ($item->gambar)
                             <img src="{{ asset('storage/gambar-pengumuman/' . $item->gambar) }}" alt="Pengumuman">
                         @else
                             <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png"
                                 alt="Pengumuman">
                         @endif
+
                         <p>{{ $item->deskripsi }}</p>
                     </div>
                     <div class="modal-footer">

@@ -51,4 +51,9 @@ class LandingController extends Controller
     {
         return view('landing.fitur', ['key'=>'landing']);
     }
+
+    // public function wilayahbidang()
+    // {
+    //     return view('landing.wilayahbidang', ['key'=>'landing']);
+    // }
 }

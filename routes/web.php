@@ -32,16 +32,17 @@ use App\Http\Controllers\HarianController;
 */
 
 // PUBLIC
-Route::get('/', [LandingController::class, 'index'])->name('landing.home')->middleware('guest');
+Route::get('/', [LandingController::class, 'index'])->name('landing.home');
 Route::get('/login', [AuthController::class, 'login'])->name('login')->middleware('guest');
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::post('/ceklogin', [AuthController::class, 'ceklogin'])->name('ceklogin');
-Route::get('/profilekph', [LandingController::class, 'profile'])->name('profile')->middleware('guest');
-Route::get('/visimisikph', [LandingController::class, 'visimisi'])->name('visimisi')->middleware('guest');
-Route::get('/beritakph', [LandingController::class, 'berita'])->name('berita')->middleware('guest');
-Route::get('/fitur', [LandingController::class, 'fitur'])->name('fitur')->middleware('guest');
-Route::get('/datakaryawankph', [LandingController::class, 'datakaryawan'])->name('datakaryawan')->middleware('guest');
-Route::get('/strukturkph', [LandingController::class, 'struktur'])->name('struktur')->middleware('guest');
+Route::get('/profilekph', [LandingController::class, 'profile'])->name('profile');
+Route::get('/visimisikph', [LandingController::class, 'visimisi'])->name('visimisi');
+Route::get('/beritakph', [LandingController::class, 'berita'])->name('berita');
+Route::get('/fitur', [LandingController::class, 'fitur'])->name('fitur');
+Route::get('/wilayah', [LandingController::class, 'wilayah'])->name('fitur');
+Route::get('/datakaryawankph', [LandingController::class, 'datakaryawan'])->name('datakaryawan');
+Route::get('/strukturkph', [LandingController::class, 'struktur'])->name('struktur');
 
 
 

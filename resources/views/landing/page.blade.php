@@ -55,6 +55,7 @@
                             <li><a href="/visimisikph">Visi, Misi, dan Tata Nilai</a></li>
                             <li><a href="/strukturkph">Struktur Organisasi</a></li>
                             <li><a href="/datakaryawankph">Data Karyawan</a></li>
+                            <li><a href="/wilayah">Wilayah dan Bidang</a></li>
                         </ul>
                     </li>
                     <li><a href="/beritakph">Berita</a></li>

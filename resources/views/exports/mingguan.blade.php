@@ -5,7 +5,8 @@
             <th rowspan="3">Nama</th>
             <th rowspan="3">Jabatan</th>
             <th rowspan="3">Wilayah</th>
-            <th colspan="{{ count($bidang) * (count($shifts) + 1)}}" class="text-center">{{ $start_date->format('d F Y') }} - {{ $end_date->format('d F Y') }} </th>
+            <th colspan="{{ count($bidang) * (count($shifts) + 1) }}" class="text-center">
+                {{ $start_date->format('d F Y') }} - {{ $end_date->format('d F Y') }} </th>
             <th rowspan="3">Total</th>
         </tr>
         <tr>
@@ -61,13 +62,13 @@
 
                                 while ($searchDate <= $end_date) {
                                     $poin += isset(
-                                        $data[$user->id_user][$searchDate->format('Y-m-d')][
-                                            $b->id_bidang
-                                        ][$shift->id_shift],
+                                        $data[$user->id_user][$searchDate->format('Y-m-d')][$b->id_bidang][
+                                            $shift->id_shift
+                                        ],
                                     )
-                                        ? $data[$user->id_user][$searchDate->format('Y-m-d')][
-                                            $b->id_bidang
-                                        ][$shift->id_shift]
+                                        ? $data[$user->id_user][$searchDate->format('Y-m-d')][$b->id_bidang][
+                                            $shift->id_shift
+                                        ]
                                         : 0;
                                     $searchDate->addDay();
                                 }
@@ -91,7 +92,49 @@
     </tbody>
     <tfoot>
         <tr>
-            <th colspan="{{ (count($bidang) * (count($shifts) + 1)) + 3 }}" style="text-align:right">Total:</th>
+            <th colspan="3" style="text-align:right">Total:</th>
+            @foreach ($bidang as $b)
+                @php
+                    $totalBidang = 0;
+                @endphp
+                @foreach ($shifts as $shift)
+                    @php
+                        $totalShift = 0;
+                    @endphp
+                    @foreach ($users as $user)
+                        @php
+                            $now = Carbon\Carbon::now();
+                            $start_date = request()->has('start_date')
+                                ? Carbon\Carbon::parse(request()->start_date)->startOfDay()
+                                : $now->startOfWeek();
+                            $end_date = request()->has('end_date')
+                                ? Carbon\Carbon::parse(request()->end_date)->endOfDay()
+                                : $now->endOfWeek();
+
+                            $searchDate = clone $start_date;
+                            $poin = 0;
+
+                            while ($searchDate <= $end_date) {
+                                $poin += isset(
+                                    $data[$user->id_user][$searchDate->format('Y-m-d')][$b->id_bidang][
+                                        $shift->id_shift
+                                    ],
+                                )
+                                    ? $data[$user->id_user][$searchDate->format('Y-m-d')][$b->id_bidang][
+                                        $shift->id_shift
+                                    ]
+                                    : 0;
+                                $searchDate->addDay();
+                            }
+
+                            $totalBidang += $poin;
+                            $totalShift += $poin;
+                        @endphp
+                    @endforeach
+                    <th>{{ $totalShift }}</th>
+                @endforeach
+                <th>{{ $totalBidang }}</th>
+            @endforeach
             <th>{{ $grandTotal }}</th>
         </tr>
     </tfoot>

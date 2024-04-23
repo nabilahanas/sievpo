@@ -8,7 +8,9 @@
 
     <div class="card">
         <div class="card-body">
-            <a class="btn btn-outline-success" href="{{ route('total.exportbkph') }}?{{ request()->has('semester') && request()->has('year') ? 'semester=' . request()->semester . '&year=' . request()->year : 'search=' . '' }}">Download Excel</a>
+            <a class="btn btn-outline-success"
+                href="{{ route('total.exportbkph') }}?{{ request()->has('semester') && request()->has('year') ? 'semester=' . request()->semester . '&year=' . request()->year : 'search=' . '' }}">Download
+                Excel</a>
             <div class="table-responsive-lg mt-4">
                 <table id="tbkph" class="table table-sm text-nowrap text-hover table-striped" style="width=100%">
                     <thead class="thead-successv2">
@@ -66,6 +68,7 @@
                     <tbody>
                         @php
                             $grandTotal = 0;
+                            $monthlyTotals = array_fill_keys($monthsToShow, 0);
                         @endphp
                         @foreach ($jabatan as $item)
                             <tr>
@@ -77,6 +80,7 @@
                                         $poin = isset($bkphTotals[$item->bagian][$month])
                                             ? $bkphTotals[$item->bagian][$month]
                                             : 0;
+                                        $monthlyTotals[$month] += $poin;
                                     @endphp
                                     <td>{{ $poin }}</td>
                                 @endforeach
@@ -96,7 +100,10 @@
                     </tbody>
                     <tfoot>
                         <tr>
-                            <th colspan="{{ count($monthsToShow) + 3 }}" style="text-align:right">Total:</th>
+                            <th colspan="3" style="text-align:right">Total:</th>
+                            @foreach ($monthlyTotals as $monthlyTotal)
+                                <th>{{ $monthlyTotal }}</th>
+                            @endforeach
                             <th>{{ $grandTotal }}</th>
                         </tr>
                     </tfoot>

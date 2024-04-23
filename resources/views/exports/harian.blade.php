@@ -56,7 +56,7 @@
                                 $poin = isset(
                                     $data[$user->id_user][$searchDate->format('Y-m-d')][$b->id_bidang][
                                         $shift->id_shift
-                                    ],
+                                    ]
                                 )
                                     ? $data[$user->id_user][$searchDate->format('Y-m-d')][
                                         $b->id_bidang
@@ -80,7 +80,32 @@
     </tbody>
     <tfoot>
         <tr>
-            <th colspan="{{ count($bidang) * (count($shifts) + 1) + 3 }}" style="text-align:right">Total:</th>
+            <th colspan="3" style="text-align:right">Total:</th>
+            @foreach($bidang as $b)
+                @php
+                    $totalBidang = 0;
+                @endphp
+                @foreach($shifts as $shift)
+                    @php
+                        $totalShift = 0;
+                    @endphp
+                    @foreach($users as $user)
+                        @php
+                            $searchDate = request()->has('search')
+                                ? Carbon\Carbon::parse(request()->search)->startOfDay()
+                                : Carbon\Carbon::now()->startOfDay();
+                            $poin = isset($data[$user->id_user][$searchDate->format('Y-m-d')][$b->id_bidang][$shift->id_shift])
+                                ? $data[$user->id_user][$searchDate->format('Y-m-d')][$b->id_bidang][$shift->id_shift]
+                                : 0;
+                            $totalBidang += $poin;
+                            $totalShift += $poin;
+                            $searchDate->addDay();
+                        @endphp
+                    @endforeach
+                    <th>{{ $totalShift }}</th>
+                @endforeach
+                <th>{{ $totalBidang }}</th>
+            @endforeach
             <th>{{ $grandTotal }}</th>
         </tr>
     </tfoot>

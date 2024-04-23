@@ -34,11 +34,11 @@ class BulananExport implements FromView
 
         if (request()->has('bulan') && request()->has('tahun')) {
             $searchMonth = Carbon::createFromDate(request()->tahun, request()->bulan, 1);
-            $startDate = $searchMonth->startOfMonth();
-            $endDate = $searchMonth->endOfMonth();
-            $datas = Data::whereBetween('created_at', [$startDate, $endDate])->get();
-
             $currentMonth = $searchMonth->format('F Y');
+
+            $datas = Data::whereYear('created_at', request()->tahun)
+                         ->whereMonth('created_at', request()->bulan)
+                         ->get();
         } else {
             $datas = Data::all();
         }
@@ -46,11 +46,11 @@ class BulananExport implements FromView
         foreach ($datas as $item) {
             $tanggal = Carbon::parse($item->created_at)->format('d-m-Y');
             $userId = $item->id_user;
-
+    
             if (!isset($data[$userId][$tanggal])) {
                 $data[$userId][$tanggal] = 0;
             }
-
+    
             $data[$userId][$tanggal] += $item->poin;
         }
 

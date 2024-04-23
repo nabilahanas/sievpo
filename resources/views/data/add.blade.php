@@ -105,8 +105,8 @@
         </form>
     </div>
 
-    {{-- GET LOCATION USING API --}}
 
+    {{-- PREVIEW FOTO EVIDEN --}}
     <script>
         document.getElementById('foto').addEventListener('change', function(e) {
             var file = e.target.files[0];
@@ -119,8 +119,9 @@
             reader.readAsDataURL(file);
         });
     </script>
+    
 
-
+    {{-- GET LOCATION USING API --}}
     <script>
         function getLocation() {
             if (navigator.geolocation) {
@@ -173,27 +174,5 @@
             getLocation();
         });
     </script>
-
-    {{-- @push('myscript')
-                    <script>
-                        Webcam.set({
-                            height: 240,
-                            width: 320,
-                            image_format: 'jpeg',
-                            jpeg_quality: 100,
-
-                        });
-
-                        // Define a function to attach Webcam
-                        function attachWebcam() {
-                            Webcam.attach('#img-area');
-                        }
-
-                        // Attach Webcam when the "Ambil Foto" button is clicked
-                        document.getElementById('ambil-foto-btn').addEventListener('click', function() {
-                            attachWebcam();
-                        });
-                    </script>
-                @endpush --}}
 
 @endsection

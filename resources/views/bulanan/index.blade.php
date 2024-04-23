@@ -44,6 +44,7 @@
                     <tbody>
                         @php
                             $grandTotal = 0;
+                            $dailyTotals = array_fill(1, $daysInMonth, 0);
                         @endphp
                         @foreach ($users as $user)
                             @php
@@ -76,6 +77,7 @@
                                         $userId = $user->id_user;
                                         $poin = isset($data[$userId][$tanggal]) ? $data[$userId][$tanggal] : 0;
                                         $total += $poin;
+                                        $dailyTotals[$day] += $poin;
                                     @endphp
                                     <td>{{ $poin }}</td>
                                 @endfor
@@ -89,18 +91,13 @@
                     </tbody>
                     <tfoot>
                         <tr>
-                            @php
-                                $daysInMonth =
-                                    $request->has('bulan') && $request->has('tahun')
-                                        ? Carbon\Carbon::create($request->tahun, $request->bulan)->daysInMonth
-                                        : Carbon\Carbon::now()->daysInMonth;
-                                $colspan = $daysInMonth + 2; // 3 kolom pertama untuk Nama, Jabatan, dan Wilayah
-                            @endphp
-                            <th colspan="{{ $colspan }}" style="text-align:right">Total:</th>
+                            <th colspan="3" style="text-align:right">Total:</th>
+                            @foreach ($dailyTotals as $dailyTotal)
+                                <th>{{ $dailyTotal }}</th>
+                            @endforeach
                             <th>{{ $grandTotal }}</th>
                         </tr>
                     </tfoot>
-
                 </table>
             </div>
         </div>

@@ -29,7 +29,8 @@
                     ];
                 }
             @endphp
-            <th colspan="{{ count($monthsToShow) }}" style="text-align: center">{{ request()->input('year', $currentYear) }}</th>
+            <th colspan="{{ count($monthsToShow) }}" style="text-align: center">
+                {{ request()->input('year', $currentYear) }}</th>
             <th rowspan="2">Total</th>
         </tr>
         <tr>
@@ -55,6 +56,7 @@
     <tbody>
         @php
             $grandTotal = 0;
+            $monthlyTotals = array_fill_keys($monthsToShow, 0);
         @endphp
         @foreach ($jabatan1 as $krph)
             <tr>
@@ -63,9 +65,8 @@
                 <td>{{ $krph->jabatan->nama_jabatan }}</td>
                 @foreach ($monthsToShow as $month)
                     @php
-                        $poin = isset($krphTotals[$krph->id_user][$month])
-                            ? $krphTotals[$krph->id_user][$month]
-                            : 0;
+                        $poin = isset($krphTotals[$krph->id_user][$month]) ? $krphTotals[$krph->id_user][$month] : 0;
+                        $monthlyTotals[$month] += $poin;
                     @endphp
                     <td>{{ $poin }}</td>
                 @endforeach
@@ -73,7 +74,9 @@
                     @php
                         $semesterTotal = 0;
                         foreach ($monthsToShow as $month) {
-                            $poin = isset($krphTotals[$krph->id_user][$month]) ? $krphTotals[$krph->id_user][$month] : 0;
+                            $poin = isset($krphTotals[$krph->id_user][$month])
+                                ? $krphTotals[$krph->id_user][$month]
+                                : 0;
                             $semesterTotal += $poin;
                         }
                     @endphp
@@ -87,7 +90,10 @@
     </tbody>
     <tfoot>
         <tr>
-            <th colspan="{{ count($monthsToShow) + 3 }}" style="text-align:right">Total:</th>
+            <th colspan="3" style="text-align:right">Total:</th>
+            @foreach ($monthlyTotals as $monthlyTotal)
+                <th>{{ $monthlyTotal }}</th>
+            @endforeach
             <th>{{ $grandTotal }}</th>
         </tr>
     </tfoot>

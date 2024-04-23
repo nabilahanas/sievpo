@@ -73,8 +73,8 @@
                     <div class="col-sm-10">
                         <div class="input-group">
                             <input type="password" name="password" class="form-control"
-                                pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$"
-                                title="Password harus terdiri dari setidaknya 8 karakter, setidaknya satu huruf kecil, satu huruf besar, dan satu angka"
+                                pattern="^(?=.*[a-z])(?=.*[A-Z]).{8,}$"
+                                title="Password harus terdiri dari setidaknya 8 karakter, setidaknya satu huruf kecil dan satu huruf besar"
                                 Required autocomplete="off">
                         </div>
                     </div>

@@ -68,48 +68,196 @@ new Chart(document.getElementById("adminP"), {
 });
 
 // Perbandingan Bulan
-var currentDate = new Date();
+function extractTableData() {
+  const table = document.getElementById('harian');
+  const dataRows = table.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
 
-var monthNames = [
-  "Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli",
-  "Agustus", "September", "Oktober", "November", "Desember"
-];
-
-var currentMonthIndex = currentDate.getMonth();
-
-var labels = [];
-
-for (var i = 0; i <= currentMonthIndex; i++) {
-  labels.push(monthNames[i]);
+  console.log(dataRows);
 }
 
-new Chart(document.getElementById('barChart'), {
-  type: 'bar',
-  data: {
-    labels: labels,
-    datasets: [{
-      label: '# of Votes',
-      data: [12, 19, 3, 5, 2, 3],
-      backgroundColor: [
-        'rgba(255, 99, 132, 0.2)',
-        'rgba(54, 162, 235, 0.2)',
-        'rgba(255, 206, 86, 0.2)',
-        'rgba(75, 192, 192, 0.2)',
-        'rgba(153, 102, 255, 0.2)',
-        'rgba(255, 159, 64, 0.2)'
-      ],
-      borderColor: [
-        'rgba(255,99,132,1)',
-        'rgba(54, 162, 235, 1)',
-        'rgba(255, 206, 86, 1)',
-        'rgba(75, 192, 192, 1)',
-        'rgba(153, 102, 255, 1)',
-        'rgba(255, 159, 64, 1)'
-      ],
-      borderWidth: 1,
-    }],
-  },
-});
+extractTableData();
+
+
+
+// var currentDate = new Date();
+
+// var monthNames = [
+//   "Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli",
+//   "Agustus", "September", "Oktober", "November", "Desember"
+// ];
+
+// var currentMonthIndex = currentDate.getMonth();
+
+// var labels = [];
+
+// for (var i = 0; i <= currentMonthIndex; i++) {
+//   labels.push(monthNames[i]);
+// }
+
+// new Chart(document.getElementById('barChart'), {
+//   type: 'bar',
+//   data: {
+//     labels: labels,
+//     datasets: [{
+//       label: '# of Votes',
+//       data: [12, 19, 3, 5, 2, 3],
+//       backgroundColor: [
+//         'rgba(255, 99, 132, 0.2)',
+//         'rgba(54, 162, 235, 0.2)',
+//         'rgba(255, 206, 86, 0.2)',
+//         'rgba(75, 192, 192, 0.2)',
+//         'rgba(153, 102, 255, 0.2)',
+//         'rgba(255, 159, 64, 0.2)'
+//       ],
+//       borderColor: [
+//         'rgba(255,99,132,1)',
+//         'rgba(54, 162, 235, 1)',
+//         'rgba(255, 206, 86, 1)',
+//         'rgba(75, 192, 192, 1)',
+//         'rgba(153, 102, 255, 1)',
+//         'rgba(255, 159, 64, 1)'
+//       ],
+//       borderWidth: 1,
+//     }],
+//   },
+// });
+
+
+    // // Mendapatkan nilai grandTotal dari tabel #harian di datatables
+    // var grandTotal = $('#harian tfoot th:last').text();
+
+    // // Buat label
+    // var labels = ['Total'];
+
+    // // Buat grafik batang (bar chart) menggunakan Chart.js
+    // new Chart(document.getElementById('barChart'), {
+    //     type: 'bar',
+    //     data: {
+    //         labels: labels,
+    //         datasets: [{
+    //             label: '# of Votes',
+    //             data: [grandTotal], // Gunakan nilai grandTotal sebagai data
+    //             backgroundColor: [
+    //                 'rgba(255, 99, 132, 0.2)',
+    //                 'rgba(54, 162, 235, 0.2)',
+    //                 'rgba(255, 206, 86, 0.2)',
+    //                 'rgba(75, 192, 192, 0.2)',
+    //                 'rgba(153, 102, 255, 0.2)',
+    //                 'rgba(255, 159, 64, 0.2)'
+    //             ],
+    //             borderColor: [
+    //                 'rgba(255,99,132,1)',
+    //                 'rgba(54, 162, 235, 1)',
+    //                 'rgba(255, 206, 86, 1)',
+    //                 'rgba(75, 192, 192, 1)',
+    //                 'rgba(153, 102, 255, 1)',
+    //                 'rgba(255, 159, 64, 1)'
+    //             ],
+    //             borderWidth: 1,
+    //         }],
+    //     },
+    // });
+
+
+
+
+// // Get the table data
+// const table = document.getElementById('harian');
+// const tbody = table.querySelector('tbody');
+// const rows = tbody.querySelectorAll('tr');
+
+// // Initialize arrays to store data
+// const labels = [];
+// const data = [];
+
+// // Iterate over rows to extract data
+// rows.forEach(row => {
+//     const columns = row.querySelectorAll('td');
+//     const nama = columns[0].textContent.trim();
+//     const total = parseInt(columns[columns.length - 1].textContent);
+
+//     labels.push(nama);
+//     data.push(total);
+// });
+
+// // Create the chart
+// const ctx = document.getElementById('barChart').getContext('2d');
+// const barChart = new Chart(ctx, {
+//     type: 'bar',
+//     data: {
+//         labels: labels,
+//         datasets: [{
+//             label: 'Total',
+//             data: data,
+//             backgroundColor: 'rgba(54, 162, 235, 0.2)',
+//             borderColor: 'rgba(54, 162, 235, 1)',
+//             borderWidth: 1
+//         }]
+//     },
+//     options: {
+//         scales: {
+//             yAxes: [{
+//                 ticks: {
+//                     beginAtZero: true
+//                 }
+//             }]
+//         }
+//     }
+// });
+
+//     var currentDate = new Date();
+
+// var monthNames = [
+//   "Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli",
+//   "Agustus", "September", "Oktober", "November", "Desember"
+// ];
+
+// var currentMonthIndex = currentDate.getMonth();
+
+// var labels = [];
+
+// for (var i = 0; i <= currentMonthIndex; i++) {
+//   labels.push(monthNames[i]);
+// }
+
+// // Get the table data
+// const table = document.getElementById('harian');
+// const tbody = table.querySelector('tbody');
+// const rows = tbody.querySelectorAll('tr');
+
+// // Initialize arrays to store data
+// const data = [];
+
+// // Iterate over rows to extract data
+// rows.forEach(row => {
+//     const columns = row.querySelectorAll('td');
+//     const total = parseInt(columns[columns.length - 1].textContent.trim());
+//     data.push(total);
+// });
+
+// new Chart(document.getElementById('barChart'), {
+//   type: 'bar',
+//   data: {
+//     labels: labels,
+//     datasets: [{
+//       label: 'Total',
+//       data: data,
+//       backgroundColor: 'rgba(54, 162, 235, 0.2)',
+//       borderColor: 'rgba(54, 162, 235, 1)',
+//       borderWidth: 1
+//     }]
+//   },
+//   options: {
+//     scales: {
+//       yAxes: [{
+//         ticks: {
+//           beginAtZero: true
+//         }
+//       }]
+//     }
+//   }
+// });
+
 
 // Pimpinan Total
 var ctxL = document.getElementById("pimpinanT").getContext('2d');

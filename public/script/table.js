@@ -373,7 +373,7 @@ $(document).ready(function () {
 
     const currentYear = new Date().getFullYear();
     const yearsOption = [currentYear, currentYear - 1, currentYear - 2];
-    $('select[name="year"]').append(
+    $('select[name="tahun"]').append(
         yearsOption
             .map((year) => `<option value="${year}">${year}</option>`)
             .join("")

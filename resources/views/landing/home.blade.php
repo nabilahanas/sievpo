@@ -26,11 +26,14 @@
                 <div class="row gy-4 mt-5">
 
                     <div class="col-xl-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
-                        <div class="icon-box">
-                            <h2 class="counter"><span data-purecounter-start="0" data-purecounter-end="{{ $karyawan }}"
-                                    data-purecounter-duration="1" class="purecounter"></span></h2>
-                            <h3>Karyawan</h3>
-                        </div>
+                        <a href="/datakaryawankph">
+                            <div class="icon-box">
+                                <h2 class="counter"><span data-purecounter-start="0"
+                                        data-purecounter-end="{{ $karyawan }}" data-purecounter-duration="1"
+                                        class="purecounter"></span></h2>
+                                <h3>Karyawan</h3>
+                            </div>
+                        </a>
                     </div>
 
                     <div class="col-xl-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
@@ -158,8 +161,7 @@
                     <!-- JADWAL KERJA -->
                     <div class="col-lg-4 col-md-6">
                         <div class="service-item position-relative">
-                            <button type="button" class="btn" data-bs-toggle="modal"
-                                data-bs-target="#shiftingModal">
+                            <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#shiftingModal">
                                 <div class="icon">
                                     <i class="bi bi-calendar3"></i>
                                 </div>

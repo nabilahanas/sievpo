@@ -11,6 +11,25 @@
             <a class="btn btn-outline-success"
                 href="{{ route('total.exportkrph') }}?{{ request()->has('semester') && request()->has('year') ? 'semester=' . request()->semester . '&year=' . request()->year : 'search=' . '' }}">Download
                 Excel</a>
+            <!-- Test -->
+            <div class="row mt-4">
+                <section class="col-lg-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <h3 class="card-title" style="color: #007bff; font-weight: 600;">
+                                    KRPH <?php echo date('M Y'); ?>
+                                </h3>
+                                <button class="btn btn-sm btn-outline-primary"><i class="bi bi-download"></i>
+                                    Download</button>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div id="krphPoin" height="60"></div>
+                        </div>
+                    </div>
+                </section>
+            </div>
             <div class="table-responsive-lg mt-4">
                 <table id="tkrph" class="table table-sm text-nowrap text-hover table-striped" style="width=100%">
                     <thead class="thead-successv2">
@@ -113,4 +132,42 @@
         </div>
     </div>
 
+@endsection
+
+@section('script')
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script>
+        Highcharts.chart('krphPoin', {
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: 'Grafik Eviden Poin KRPH',
+                align: 'center'
+            },
+            xAxis: {
+                categories: {!! json_encode($categories) !!},
+                crosshair: true,
+                // accessibility: {
+                //     description: 'Countries'
+                // }
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'Poin'
+                }
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
+                }
+            },
+            series: [{
+                name: 'Poin',
+                data: [406, 260, 107, 683, 275, 145]
+            }, ]
+        });
+    </script>
 @endsection

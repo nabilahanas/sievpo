@@ -212,9 +212,9 @@ class TotalController extends Controller
 
             if ($semester == 01) {
                 $startMonth = 1;
-                $endMonth = 7;
+                $endMonth = 6;
             } else {
-                $startMonth = 8;
+                $startMonth = 7;
                 $endMonth = 12;
             }
 
@@ -240,7 +240,27 @@ class TotalController extends Controller
             $krphTotals[$krphId][$month] += $dataItem->poin;
         }
 
-        return view('total.krph', compact('user', 'request', 'jabatan1', 'bidang', 'currentYear', 'krphTotals'), ['key' => 'tkrph']);
+        // Highcharts
+        $categories = [];
+        $data = [];
+
+        foreach($user as $u){
+            $categories[] = $u -> nama_user;
+
+        }
+        foreach($datas as $dataItem){
+            $data[] = $dataItem->poin;
+        }
+        // $data[] = $dataItem->poin;
+
+        // foreach ($krphTotals as $userId => $monthlyPoin) {
+        //     $data[$userId] = array_sum($monthlyPoin);
+        // }
+
+        // dd($categories);
+        // dd($data);
+
+        return view('total.krph', compact('user', 'request', 'jabatan1', 'bidang', 'currentYear', 'krphTotals', 'categories', 'data'), ['key' => 'tkrph']);
     }
 
     public function asper(Request $request)

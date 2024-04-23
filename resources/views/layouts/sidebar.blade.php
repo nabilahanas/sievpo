@@ -47,7 +47,7 @@
                         </a>
                     </li>
                     <li class="nav-item {{ $key == 'bkaryawan' || $key == 'bbidang' || $key == 'bbkph' || $key == 'bkrph' || $key == 'basper' ? 'menu-is-opening menu-open' : '' }}">
-                        <a href="/bulanan" class="nav-link {{ $key == 'bkaryawan' || $key == 'bbidang' || $key == 'bbkph' || $key == 'tkrph' || $key == 'basper' ? 'active' : '' }}">
+                        <a href="#" class="nav-link {{ $key == 'bkaryawan' || $key == 'bbidang' || $key == 'bbkph' || $key == 'tkrph' || $key == 'basper' ? 'active' : '' }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Bulanan
                                 <i class="right fas fa-angle-left"></i>
@@ -55,31 +55,31 @@
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="/total/karyawan" class="nav-link {{ $key == 'bkaryawan' ? 'active' : '' }}">
+                                <a href="/bulanan/karyawan" class="nav-link {{ $key == 'bkaryawan' ? 'active' : '' }}">
                                     <i class="far fa-dot-circle nav-icon"></i>
                                     <p>Karyawan</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="/total/bidang" class="nav-link {{ $key == 'bbidang' ? 'active' : '' }}">
+                                <a href="/bulanan/bidang" class="nav-link {{ $key == 'bbidang' ? 'active' : '' }}">
                                     <i class="far fa-dot-circle nav-icon"></i>
                                     <p>Bidang</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="/total/bkph" class="nav-link {{ $key == 'bbkph' ? 'active' : '' }}">
+                                <a href="/bulanan/bkph" class="nav-link {{ $key == 'bbkph' ? 'active' : '' }}">
                                     <i class="far fa-dot-circle nav-icon"></i>
                                     <p>BKPH</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="/total/krph" class="nav-link {{ $key == 'bkrph' ? 'active' : '' }}">
+                                <a href="/bulanan/krph" class="nav-link {{ $key == 'bkrph' ? 'active' : '' }}">
                                     <i class="far fa-dot-circle nav-icon"></i>
                                     <p>KRPH</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="/total/asper" class="nav-link {{ $key == 'basper' ? 'active' : '' }}">
+                                <a href="/bulanan/asper" class="nav-link {{ $key == 'basper' ? 'active' : '' }}">
                                     <i class="far fa-dot-circle nav-icon"></i>
                                     <p>Asper/KBKPH</p>
                                 </a>

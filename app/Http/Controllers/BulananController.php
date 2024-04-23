@@ -8,8 +8,13 @@ use App\Models\Shift;
 use Carbon\Carbon;
 use App\Models\Data;
 use App\Models\User;
+use App\Models\Jabatan;
 use Illuminate\Http\Request;
-use App\Exports\BulananExport;
+use App\Exports\BKaryawanExport;
+use App\Exports\BBidangExport;
+use App\Exports\BbkphExport;
+use App\Exports\BkrphExport;
+use App\Exports\BasperExport;
 use Maatwebsite\Excel\Facades\Excel;
 
 class BulananController extends Controller
@@ -18,10 +23,30 @@ class BulananController extends Controller
 
     public function export(Request $request) 
     {
-        return Excel::download(new BulananExport($request->bulan, $request->tahun), 'Rekap Bulanan.xlsx');
+        return Excel::download(new BKaryawanExport($request->bulan, $request->tahun), 'Bulanan Karyawan.xlsx');
     }
 
-    public function index(Request $request)
+    public function exportbidang(Request $request) 
+    {
+        return Excel::download(new BBidangExport($request->bulan, $request->tahun), 'Bulanan Bidang.xlsx');
+    }
+
+    public function exportbkph(Request $request) 
+    {
+        return Excel::download(new BbkphExport($request->bulan, $request->tahun), 'Bulanan BKPH.xlsx');
+    }
+
+    public function exportkrph(Request $request) 
+    {
+        return Excel::download(new BkrphExport($request->bulan, $request->tahun), 'Bulanan KRPH.xlsx');
+    }
+
+    public function exportasper(Request $request) 
+    {
+        return Excel::download(new BasperExport($request->bulan, $request->tahun), 'Bulanan AsperKBKPH.xlsx');
+    }
+
+    public function karyawan(Request $request)
     {
         $currentDate = Carbon::now();
         $currentMonth = $currentDate->format('F Y');
@@ -57,10 +82,177 @@ class BulananController extends Controller
             $data[$userId][$tanggal] += $item->poin;
         }
     
-        // dd($data);
-    
-        return view('bulanan.index', compact('currentMonth', 'request', 'shifts', 'users', 'data', 'bidang'), ['key' => 'bulanan']);
+        return view('bulanan.karyawan', compact('currentMonth', 'request', 'shifts', 'users', 'data', 'bidang'), ['key' => 'bkaryawan']);
     }
     
+    public function bidang(Request $request)
+    {
+        $currentDate = Carbon::now();
+        $currentMonth = $currentDate->format('F Y');
+    
+        $users = User::where('id_role', '3')->get();
+        $bidang = Bidang::all();
+        $shifts = Shift::all();
+    
+        $data = [];
+    
+        if ($request->has('bulan') && $request->has('tahun')) {
+            $searchMonth = Carbon::createFromDate($request->tahun, $request->bulan, 1);
+            $currentMonth = $searchMonth->format('F Y');
+    
+            // Ambil semua data untuk bulan yang diminta
+            $datas = Data::whereYear('created_at', $request->tahun)
+                         ->whereMonth('created_at', $request->bulan)
+                         ->get();
+        } else {
+            // Jika tidak ada bulan dan tahun yang diminta, ambil semua data
+            $datas = Data::all();
+        }
+
+        foreach ($datas as $item) {
+            $tanggal = Carbon::parse($item->created_at)->format('d-m-Y');
+            $bidangId = $item->id_bidang;
+    
+            if (!isset($data[$bidangId][$tanggal])) {
+                $data[$bidangId][$tanggal] = 0;
+            }
+    
+            $data[$bidangId][$tanggal] += $item->poin;
+        }
+
+        return view ('bulanan.bidang', compact('request', 'bidang', 'currentMonth', 'data'), ['key' => 'bbidang']);
+    }
+
+    public function bkph(Request $request)
+    {
+        $currentDate = Carbon::now();
+        $currentMonth = $currentDate->format('F Y');
+    
+        $users = User::where('id_role', '3')->get();
+        $bidang = Bidang::all();
+        $shifts = Shift::all();
+    
+        $data = [];
+
+        $jabatan = Jabatan::groupBy('bagian')
+            ->select('bagian')
+            ->get();
+    
+        if ($request->has('bulan') && $request->has('tahun')) {
+            $searchMonth = Carbon::createFromDate($request->tahun, $request->bulan, 1);
+            $currentMonth = $searchMonth->format('F Y');
+    
+            // Ambil semua data untuk bulan yang diminta
+            $datas = Data::whereYear('created_at', $request->tahun)
+                         ->whereMonth('created_at', $request->bulan)
+                         ->get();
+        } else {
+            // Jika tidak ada bulan dan tahun yang diminta, ambil semua data
+            $datas = Data::all();
+        }
+
+        foreach ($datas as $item) {
+            $tanggal = Carbon::parse($item->created_at)->format('d-m-Y');
+            $bkphId = $item->user->jabatan->bagian;
+    
+            if (!isset($data[$bkphId][$tanggal])) {
+                $data[$bkphId][$tanggal] = 0;
+            }
+    
+            $data[$bkphId][$tanggal] += $item->poin;
+        }
+
+
+
+        return view ('bulanan.bkph', compact('request', 'jabatan', 'bidang', 'currentMonth', 'data'), ['key' => 'bbkph']);
+    }
+
+    public function krph(Request $request)
+    {
+        $currentDate = Carbon::now();
+        $currentMonth = $currentDate->format('F Y');
+    
+        $users = User::where('id_role', '3')->get();
+        $bidang = Bidang::all();
+        $shifts = Shift::all();
+
+        $jabatan1 = User::with('jabatan')
+            ->join('jabatan', 'users.id_jabatan', '=', 'jabatan.id_jabatan')
+            ->where('jabatan.klasifikasi', 'KRPH')
+            ->get();
+    
+        $data = [];
+    
+        if ($request->has('bulan') && $request->has('tahun')) {
+            $searchMonth = Carbon::createFromDate($request->tahun, $request->bulan, 1);
+            $currentMonth = $searchMonth->format('F Y');
+    
+            // Ambil semua data untuk bulan yang diminta
+            $datas = Data::whereYear('created_at', $request->tahun)
+                         ->whereMonth('created_at', $request->bulan)
+                         ->get();
+        } else {
+            // Jika tidak ada bulan dan tahun yang diminta, ambil semua data
+            $datas = Data::all();
+        }
+
+        foreach ($datas as $item) {
+            $tanggal = Carbon::parse($item->created_at)->format('d-m-Y');
+            $krphId = $item->user->id_user;
+    
+            if (!isset($data[$krphId][$tanggal])) {
+                $data[$krphId][$tanggal] = 0;
+            }
+    
+            $data[$krphId][$tanggal] += $item->poin;
+        }
+
+        return view ('bulanan.krph', compact('request', 'jabatan1', 'bidang', 'currentMonth', 'data'), ['key' => 'bkrph']);
+    }
+
+    public function asper(Request $request)
+    {
+        $currentDate = Carbon::now();
+        $currentMonth = $currentDate->format('F Y');
+    
+        $users = User::where('id_role', '3')->get();
+        $bidang = Bidang::all();
+        $shifts = Shift::all();
+
+        $jabatan2 = User::with('jabatan')
+            ->join('jabatan', 'users.id_jabatan', '=', 'jabatan.id_jabatan')
+            ->where('jabatan.klasifikasi', 'ASPER')
+            ->get();
+    
+        $data = [];
+    
+        if ($request->has('bulan') && $request->has('tahun')) {
+            $searchMonth = Carbon::createFromDate($request->tahun, $request->bulan, 1);
+            $currentMonth = $searchMonth->format('F Y');
+    
+            // Ambil semua data untuk bulan yang diminta
+            $datas = Data::whereYear('created_at', $request->tahun)
+                         ->whereMonth('created_at', $request->bulan)
+                         ->get();
+        } else {
+            // Jika tidak ada bulan dan tahun yang diminta, ambil semua data
+            $datas = Data::all();
+        }
+
+        foreach ($datas as $item) {
+            $tanggal = Carbon::parse($item->created_at)->format('d-m-Y');
+            $asperId = $item->user->id_user;
+    
+            if (!isset($data[$asperId][$tanggal])) {
+                $data[$asperId][$tanggal] = 0;
+            }
+    
+            $data[$asperId][$tanggal] += $item->poin;
+        }
+
+
+
+        return view ('bulanan.asper', compact('request', 'jabatan2', 'bidang', 'currentMonth', 'data'), ['key' => 'basper']);
+    }
 
 }

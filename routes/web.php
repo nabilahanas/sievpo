@@ -164,8 +164,17 @@ Route::middleware('check.role:Admin,Mahasiswa')->group(function () {
     });
 
     Route::prefix("bulanan")->group(function(){
-        Route::get('/', [BulananController::class, 'index'])->name('bulanan.index');
-        Route::get('export/{search?}', [BulananController::class, 'export'])->name('bulanan.export');
+        Route::get('karyawan', [BulananController::class, 'karyawan'])->name('bulanan.karyawan');
+        Route::get('bidang', [BulananController::class, 'bidang'])->name('bulanan.bidang');
+        Route::get('bkph', [BulananController::class, 'bkph'])->name('bulanan.bkph');
+        Route::get('krph', [BulananController::class, 'krph'])->name('bulanan.krph');
+        Route::get('asper', [BulananController::class, 'asper'])->name('bulanan.asper');
+
+        Route::get('export/{search?}', [BulananController::class, 'export'])->name('bulanan.exportkaryawan');
+        Route::get('exportbidang/{search?}', [BulananController::class, 'exportbidang'])->name('bulanan.exportbidang');
+        Route::get('exportbkph/{search?}', [BulananController::class, 'exportbkph'])->name('bulanan.exportbkph');
+        Route::get('exportkrph/{search?}', [BulananController::class, 'exportkrph'])->name('bulanan.exportkrph');
+        Route::get('exportasper/{search?}', [BulananController::class, 'exportasper'])->name('bulanan.exportasper');
     });
 
     Route::prefix("total")->group(function (){

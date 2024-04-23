@@ -266,6 +266,236 @@ $(document).ready(function () {
     });
 });
 
+// Rekap Bulanan Bidang
+$(document).ready(function () {
+    $("#bbidang").DataTable({
+        dom:
+            "<'row'<'col-sm-10 col-md-6 caribbidang'l ><'col-sm-10 col-md-6'f>>" +
+            "<'row'<'col-sm-12'tr>>" +
+            "<'row'<'col-sm-10 col-md-5'i><'col-sm-10 col-md-7'p>>",
+        scrollY: 600,
+        scrollX: true,
+        scrollCollapse: true,
+        paging: false,
+    });
+
+    $(".caribbidang").append(`
+        <form id="bbidang">
+            <div class="input-group col-md-8 mt-2 mb-4">
+                <select class="form-control" name="bulan" aria-label="bulan" aria-describedby="button-addon2">
+                <option selected disabled value="">Pilih Bulan</option>
+                    <option value="01">Januari</option>
+                    <option value="02">Februari</option>
+                    <option value="03">Maret</option>
+                    <option value="04">April</option>
+                    <option value="05">Mei</option>
+                    <option value="06">Juni</option>
+                    <option value="07">Juli</option>
+                    <option value="08">Agustus</option>
+                    <option value="09">September</option>
+                    <option value="10">Oktober</option>
+                    <option value="11">November</option>
+                    <option value="12">Desember</option>
+                </select>
+                <select name="tahun" class="form-control">
+                    <option selected disabled value="">Pilih Tahun</option>
+                </select>
+                <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Cari</button>
+            </div>
+        </form>
+    `);
+
+    const currentYear = new Date().getFullYear();
+    const yearsOption = [currentYear, currentYear - 1, currentYear - 2];
+    $('select[name="tahun"]').append(
+        yearsOption
+            .map((year) => `<option value="${year}">${year}</option>`)
+            .join("")
+    );
+
+    $("#bbidang").on("click", "tr.group", function () {
+        var currentOrder = table.order()[0];
+        if (currentOrder[0] === groupColumn && currentOrder[1] === "asc") {
+            table.order([groupColumn, "desc"]).draw();
+        } else {
+            table.order([groupColumn, "asc"]).draw();
+        }
+    });
+});
+
+// Rekap Total BKPH
+$(document).ready(function () {
+    $("#bbkph").DataTable({
+        dom:
+            "<'row'<'col-sm-10 col-md-6 caribbkph'l ><'col-sm-10 col-md-6'f>>" +
+            "<'row'<'col-sm-12'tr>>" +
+            "<'row'<'col-sm-10 col-md-5'i><'col-sm-10 col-md-7'p>>",
+        scrollY: 600,
+        scrollX: true,
+        scrollCollapse: true,
+        paging: false,
+    });
+
+    $(".caribbkph").append(`
+        <form id="bbkph">
+            <div class="input-group col-md-8 mt-2 mb-4">
+                <select class="form-control" name="bulan" aria-label="bulan" aria-describedby="button-addon2">
+                <option selected disabled value="">Pilih Bulan</option>
+                    <option value="01">Januari</option>
+                    <option value="02">Februari</option>
+                    <option value="03">Maret</option>
+                    <option value="04">April</option>
+                    <option value="05">Mei</option>
+                    <option value="06">Juni</option>
+                    <option value="07">Juli</option>
+                    <option value="08">Agustus</option>
+                    <option value="09">September</option>
+                    <option value="10">Oktober</option>
+                    <option value="11">November</option>
+                    <option value="12">Desember</option>
+                </select>
+                <select name="tahun" class="form-control">
+                    <option selected disabled value="">Pilih Tahun</option>
+                </select>
+                <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Cari</button>
+            </div>
+        </form>
+    `);
+
+    const currentYear = new Date().getFullYear();
+    const yearsOption = [currentYear, currentYear - 1, currentYear - 2];
+    $('select[name="tahun"]').append(
+        yearsOption
+            .map((year) => `<option value="${year}">${year}</option>`)
+            .join("")
+    );
+
+    $("#bbkph").on("click", "tr.group", function () {
+        var currentOrder = table.order()[0];
+        if (currentOrder[0] === groupColumn && currentOrder[1] === "asc") {
+            table.order([groupColumn, "desc"]).draw();
+        } else {
+            table.order([groupColumn, "asc"]).draw();
+        }
+    });
+});
+
+// Rekap Bulanan KRPH
+$(document).ready(function () {
+    $("#bkrph").DataTable({
+        dom:
+            "<'row'<'col-sm-10 col-md-6 caribkrph'l ><'col-sm-10 col-md-6'f>>" +
+            "<'row'<'col-sm-12'tr>>" +
+            "<'row'<'col-sm-10 col-md-5'i><'col-sm-10 col-md-7'p>>",
+        scrollY: 600,
+        scrollX: true,
+        scrollCollapse: true,
+        paging: false,
+    });
+
+    $(".caribkrph").append(`
+        <form id="bkrph">
+            <div class="input-group col-md-8 mt-2 mb-4">
+                <select class="form-control" name="bulan" aria-label="bulan" aria-describedby="button-addon2">
+                <option selected disabled value="">Pilih Bulan</option>
+                    <option value="01">Januari</option>
+                    <option value="02">Februari</option>
+                    <option value="03">Maret</option>
+                    <option value="04">April</option>
+                    <option value="05">Mei</option>
+                    <option value="06">Juni</option>
+                    <option value="07">Juli</option>
+                    <option value="08">Agustus</option>
+                    <option value="09">September</option>
+                    <option value="10">Oktober</option>
+                    <option value="11">November</option>
+                    <option value="12">Desember</option>
+                </select>
+                <select name="tahun" class="form-control">
+                    <option selected disabled value="">Pilih Tahun</option>
+                </select>
+                <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Cari</button>
+            </div>
+        </form>
+    `);
+
+    const currentYear = new Date().getFullYear();
+    const yearsOption = [currentYear, currentYear - 1, currentYear - 2];
+    $('select[name="tahun"]').append(
+        yearsOption
+            .map((year) => `<option value="${year}">${year}</option>`)
+            .join("")
+    );
+
+    $("#bkrph").on("click", "tr.group", function () {
+        var currentOrder = table.order()[0];
+        if (currentOrder[0] === groupColumn && currentOrder[1] === "asc") {
+            table.order([groupColumn, "desc"]).draw();
+        } else {
+            table.order([groupColumn, "asc"]).draw();
+        }
+    });
+});
+
+// Rekap Bulanan Asper/KBKPH
+$(document).ready(function () {
+    $("#basper").DataTable({
+        dom:
+            "<'row'<'col-sm-10 col-md-6 caribasper'l ><'col-sm-10 col-md-6'f>>" +
+            "<'row'<'col-sm-12'tr>>" +
+            "<'row'<'col-sm-10 col-md-5'i><'col-sm-10 col-md-7'p>>",
+        scrollY: 600,
+        scrollX: true,
+        scrollCollapse: true,
+        paging: false,
+    });
+
+    $(".caribasper").append(`
+        <form id="basper">
+            <div class="input-group col-md-8 mt-2 mb-4">
+                <select class="form-control" name="bulan" aria-label="bulan" aria-describedby="button-addon2">
+                <option selected disabled value="">Pilih Bulan</option>
+                    <option value="01">Januari</option>
+                    <option value="02">Februari</option>
+                    <option value="03">Maret</option>
+                    <option value="04">April</option>
+                    <option value="05">Mei</option>
+                    <option value="06">Juni</option>
+                    <option value="07">Juli</option>
+                    <option value="08">Agustus</option>
+                    <option value="09">September</option>
+                    <option value="10">Oktober</option>
+                    <option value="11">November</option>
+                    <option value="12">Desember</option>
+                </select>
+                <select name="tahun" class="form-control">
+                    <option selected disabled value="">Pilih Tahun</option>
+                </select>
+                <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Cari</button>
+            </div>
+        </form>
+    `);
+
+    const currentYear = new Date().getFullYear();
+    const yearsOption = [currentYear, currentYear - 1, currentYear - 2];
+    $('select[name="tahun"]').append(
+        yearsOption
+            .map((year) => `<option value="${year}">${year}</option>`)
+            .join("")
+    );
+
+    $("#basper").on("click", "tr.group", function () {
+        var currentOrder = table.order()[0];
+        if (currentOrder[0] === groupColumn && currentOrder[1] === "asc") {
+            table.order([groupColumn, "desc"]).draw();
+        } else {
+            table.order([groupColumn, "asc"]).draw();
+        }
+    });
+});
+
+
+// REKAP TOTAL
 // Rekap Total Karyawan
 $(document).ready(function () {
     var groupColumn = 2;

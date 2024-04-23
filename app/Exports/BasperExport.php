@@ -10,7 +10,7 @@ use Carbon\Carbon;
 use App\Models\Data;
 use App\Models\User;
 
-class BulananExport implements FromView
+class BasperExport implements FromView
 {
     protected $start_date;
     protected $end_date;
@@ -30,6 +30,11 @@ class BulananExport implements FromView
         $bidang = Bidang::all();
         $shifts = Shift::all();
 
+        $jabatan2 = User::with('jabatan')
+            ->join('jabatan', 'users.id_jabatan', '=', 'jabatan.id_jabatan')
+            ->where('jabatan.klasifikasi', 'ASPER')
+            ->get();
+
         $data = [];
 
         if (request()->has('bulan') && request()->has('tahun')) {
@@ -45,15 +50,15 @@ class BulananExport implements FromView
 
         foreach ($datas as $item) {
             $tanggal = Carbon::parse($item->created_at)->format('d-m-Y');
-            $userId = $item->id_user;
+            $asperId = $item->user->id_user;
     
-            if (!isset($data[$userId][$tanggal])) {
-                $data[$userId][$tanggal] = 0;
+            if (!isset($data[$asperId][$tanggal])) {
+                $data[$asperId][$tanggal] = 0;
             }
     
-            $data[$userId][$tanggal] += $item->poin;
+            $data[$asperId][$tanggal] += $item->poin;
         }
 
-        return view('exports.bulanan', compact('currentMonth','shifts', 'users', 'data', 'bidang'), ['key' => 'bulanan']);
+        return view('exports.rekapbulanan.basper', compact('currentMonth', 'jabatan2' ,'shifts', 'users', 'data', 'bidang'), ['key' => 'bulanan']);
     }
 }

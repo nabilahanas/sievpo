@@ -13,7 +13,7 @@
                     Excel</a>
 
                 <div class="table-responsive-lg mt-4">
-                    <table id="bulanan" class="table table-sm text-nowrap text-hover table-striped" style="width=100%">
+                    <table id="bulanan" class="table table-sm text-nowrap text-hover table-striped" style="width: 100%">
 
                         <thead class="thead-successv2">
                             <tr>
@@ -110,7 +110,7 @@
         <div class="card">
             <div class="card-body">
                 <div class="table-responsive-lg mt-4">
-                    <table id="bkaryawanpim" class="table table-sm text-nowrap text-hover table-striped" style="width=100%">
+                    <table id="bkaryawanpim" class="table table-sm text-nowrap text-hover table-striped" style="width: 100%">
 
                         <thead class="thead-successv2">
                             <tr>

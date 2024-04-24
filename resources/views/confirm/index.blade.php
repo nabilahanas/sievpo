@@ -54,32 +54,7 @@
                                             <div class="modal-content">
                                                 <div class="modal-body">
                                                     <img src="{{ $item->foto ? asset('storage/foto-eviden/' . $item->foto) : '' }}"
-                                                        alt="Foto Eviden" width="400">
-                                                    <div class="table-responsive">
-                                                        <table class="table">
-                                                            <tr>
-                                                                <th style="width:50%">Nama</th>
-                                                                <td>$250.30</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th>Waktu</th>
-                                                                <td>$10.34</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th>Dimensi</th>
-                                                                <td>$5.80</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th>Ukuran</th>
-                                                                <td>$265.24</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th>Perangkat</th>
-                                                                <td>$265.24</td>
-                                                            </tr>
-                                                        </table>
-                                                    </div>
-                                                </div>
+                                                        alt="Foto Eviden" width="500">
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-sm btn-successv2"
                                                         data-bs-dismiss="modal">Tutup</button>

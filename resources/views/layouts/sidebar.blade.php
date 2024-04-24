@@ -27,7 +27,7 @@
             <li
                 class="nav-item {{ $key == 'harian' || $key == 'mingguan' || $key == 'bkaryawan' || $key == 'bbidang' || $key == 'bbkph' || $key == 'bkrph' || $key == 'basper' || $key == 'tkaryawan' || $key == 'tbidang' || $key == 'tbkph' || $key == 'tkrph' || $key == 'tasper' ? 'menu-is-opening menu-open' : '' }}">
                 <a href="{{ url('#') }}"
-                    class="nav-link {{ $key == 'harian' || $key == 'mingguan' || $key == 'bulanan' || $key == 'tkaryawan' || $key == 'tbidang' || $key == 'tbkph' || $key == 'tkrph' || $key == 'tasper' ? 'active' : '' }}">
+                    class="nav-link {{ $key == 'harian' || $key == 'mingguan' || $key == 'bkaryawan' || $key == 'bbidang' || $key == 'bbkph' || $key == 'bkrph' || $key == 'basper' || $key == 'tkaryawan' || $key == 'tbidang' || $key == 'tbkph' || $key == 'tkrph' || $key == 'tasper' ? 'active' : '' }}">
                     <i class="nav-icon fas fa-table"></i>
                     <p>
                         Rekap Data
@@ -140,7 +140,7 @@
             <li
                 class="nav-item {{ $key == 'harian' || $key == 'mingguan' || $key == 'bkaryawan' || $key == 'bbidang' || $key == 'bbkph' || $key == 'bkrph' || $key == 'basper' || $key == 'tkaryawan' || $key == 'tbidang' || $key == 'tbkph' || $key == 'tkrph' || $key == 'tasper' ? 'menu-is-opening menu-open' : '' }}">
                 <a href="{{ url('#') }}"
-                    class="nav-link {{ $key == 'harian' || $key == 'mingguan' || $key == 'bulanan' || $key == 'tkaryawan' || $key == 'tbidang' || $key == 'tbkph' || $key == 'tkrph' || $key == 'tasper' ? 'active' : '' }}">
+                    class="nav-link {{ $key == 'harian' || $key == 'mingguan' || $key == 'bkaryawan' || $key == 'bbidang' || $key == 'bbkph' || $key == 'bkrph' || $key == 'basper' || $key == 'tkaryawan' || $key == 'tbidang' || $key == 'tbkph' || $key == 'tkrph' || $key == 'tasper' ? 'active' : '' }}">
                     <i class="nav-icon fas fa-table"></i>
                     <p>
                         Rekap Data

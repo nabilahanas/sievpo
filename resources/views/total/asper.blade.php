@@ -154,7 +154,7 @@
                         <tbody>
                             @foreach ($jabatan2 as $asper)
                                 <tr>
-                                    <td scope="row">{{ $loop->iteration }}.</td>
+                                    <td>{{ $loop->iteration }}.</td>
                                     <td>{{ $asper->nama_user }}</td>
                                     <td>{{ $asper->jabatan->nama_jabatan }}</td>
                                     <td></td>

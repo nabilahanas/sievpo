@@ -117,7 +117,7 @@
         <div class="card">
             <div class="card-body">
                 <div class="table-responsive-lg mt-4">
-                    <table id="tbidangpim" class="table table-sm text-nowrap text-hover table-striped" style="width=100%">
+                    <table id="tbidangpim" class="table table-sm text-nowrap text-hover table-striped" style="width: 100%">
                         <thead class="thead-successv2">
                             <tr>
                                 <th>No.</th>

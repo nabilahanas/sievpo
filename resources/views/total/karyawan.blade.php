@@ -142,8 +142,8 @@
     @if (auth()->user() && auth()->user()->role->nama_role == 'Pimpinan')
         <div class="card">
             <div class="card-body">
-                <div class="table-responsive-lg mt-4" style="overflow-x: auto;">
-                    <table id="tkaryawanpim" class="table table-sm text-nowrap text-hover table-striped" style="width=100%">
+                <div class="table-responsive mt-4">
+                    <table id="tkaryawanpim" class="table table-sm text-nowrap text-hover table-striped" style="width: 100%">
                         <thead class="thead-successv2">
                             <tr>
                                 <th>No.</th>
@@ -158,7 +158,7 @@
                                 <tr>
                                     <td>{{ $loop->iteration }}.</td>
                                     <td>{{ $UItem->nama_user }}</td>
-                                    <td></td>
+                                    <td>{{ $UItem->nama_jabatan }}</td>
                                     <td></td>
                                     <td></td>
                             @endforeach

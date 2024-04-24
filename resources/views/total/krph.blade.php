@@ -137,62 +137,75 @@
     @if (auth()->user() && auth()->user()->role->nama_role == 'Pimpinan')
         <div class="card">
             <div class="card-body">
-                <div class="table-responsive-lg mt-4">
-                    <table id="tkrphpim" class="table table-sm text-nowrap text-hover table-striped" style="width: 100%">
-                        <thead class="thead-successv2">
-                            <tr>
-                                <th>No.</th>
-                                <th>Nama Karyawan</th>
-                                <th>Nama KRPH</th>
-                                <th>Total Poin</th>
-                                <th>Ranking</th>
-                            </tr>
-                        </thead>
-
-                        <tbody style="overflow-x: auto;">
-                            @php
-                                $monthsToShow = [];
-                                // Mengurutkan pengguna berdasarkan total poin
-                                $sortedKRPH = $jabatan1->sortByDesc(function ($krph) use ($krphTotals) {
-                                    return isset($krphTotals[$krph->id_user])
-                                        ? array_sum($krphTotals[$krph->id_user])
-                                        : 0;
-                                });
-
-                                // Menginisialisasi peringkat
-                                $ranking = 1;
-                            @endphp
-
-                            @foreach ($sortedKRPH as $krph)
+                <div class="card">
+                    <div class="card-body">
+                        <div id="tKrphPim" height="60"></div>
+                    </div>
+                </div>
+                    <div class="table-responsive-lg mt-4">
+                        <table id="tkrphpim" class="table table-sm text-nowrap text-hover table-striped"
+                            style="width: 100%">
+                            <thead class="thead-successv2">
                                 <tr>
-                                    <td scope="row">{{ $loop->iteration }}.</td>
-                                    <td>{{ $krph->nama_user }}</td>
-                                    <td>{{ $krph->jabatan->nama_jabatan }}</td>
-                                    <td>
-                                        @php
-                                           $krphTotal = isset($krphTotals[$krph->id_user])
+                                    <th>No.</th>
+                                    <th>Nama Karyawan</th>
+                                    <th>Nama KRPH</th>
+                                    <th>Total Poin</th>
+                                    <th>Ranking</th>
+                                </tr>
+                            </thead>
+
+                            <tbody style="overflow-x: auto;">
+                                @php
+                                    $monthsToShow = [];
+                                    // Mengurutkan pengguna berdasarkan total poin
+                                    $sortedKRPH = $jabatan1->sortByDesc(function ($krph) use ($krphTotals) {
+                                        return isset($krphTotals[$krph->id_user])
                                             ? array_sum($krphTotals[$krph->id_user])
                                             : 0;
-                                        @endphp
-                                        {{ $krphTotal }}
-                                    </td>
-                                    <td> {{ $ranking }} </td>
-                                </tr>
-                                @php
-                                    $ranking++;
+                                    });
+
+                                    // Menginisialisasi peringkat
+                                    $ranking = 1;
+
+                                    $pieData = [];
+                                    foreach ($sortedKRPH as $krph) {
+                                        $krphTotal = isset($krphTotals[$krph->id_user])
+                                            ? array_sum($krphTotals[$krph->id_user])
+                                            : 0;
+                                        $pieData[] = ['name' => $krph->nama_user, 'y' => $krphTotal];
+                                    }
                                 @endphp
-                            @endforeach
-                        </tbody>
-                    </table>
+
+                                @foreach ($sortedKRPH as $krph)
+                                    <tr>
+                                        <td scope="row">{{ $loop->iteration }}.</td>
+                                        <td>{{ $krph->nama_user }}</td>
+                                        <td>{{ $krph->jabatan->nama_jabatan }}</td>
+                                        <td>
+                                            @php
+                                                $krphTotal = isset($krphTotals[$krph->id_user])
+                                                    ? array_sum($krphTotals[$krph->id_user])
+                                                    : 0;
+                                            @endphp
+                                            {{ $krphTotal }}
+                                        </td>
+                                        <td> {{ $ranking }} </td>
+                                    </tr>
+                                    @php
+                                        $ranking++;
+                                    @endphp
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
-        </div>
     @endif
 
 @endsection
 
 @section('script')
-    <script src="https://code.highcharts.com/highcharts.js"></script>
     @if ((auth()->user() && auth()->user()->role->nama_role == 'Admin') || auth()->user()->role->nama_role == 'Mahasiswa')
         <script>
             Highcharts.chart('krphPoin', {
@@ -226,4 +239,50 @@
             });
         </script>
     @endif
+
+    @if (auth()->user() && auth()->user()->role->nama_role == 'Pimpinan')
+    <script>
+        Highcharts.chart('tKrphPim', {
+            chart: {
+                type: 'pie'
+            },
+            title: {
+                text: 'Ranking KRPH <?php echo date('M Y'); ?>',
+                align: 'left',
+                style: {
+                    color: '#007bff'
+                }
+            },
+            // plotOptions: {
+            //     series: {
+            //         allowPointSelect: true,
+            //         cursor: 'pointer',
+            //         dataLabels: [{
+            //             enabled: true,
+            //             distance: 20
+            //         }, {
+            //             enabled: true,
+            //             distance: -40,
+            //             format: '{point.percentage:.1f}%',
+            //             style: {
+            //                 fontSize: '1.2em',
+            //                 textOutline: 'none',
+            //                 opacity: 0.7
+            //             },
+            //             filter: {
+            //                 operator: '>',
+            //                 property: 'percentage',
+            //                 value: 10
+            //             }
+            //         }]
+            //     }
+            // },
+            series: [{
+                name: 'Poin',
+                colorByPoint: true,
+                data: {!! json_encode($pieData) !!}
+            }]
+        });
+    </script>
+@endif
 @endsection

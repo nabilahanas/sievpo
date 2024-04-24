@@ -103,6 +103,11 @@
     @if (auth()->user() && auth()->user()->role->nama_role == 'Pimpinan')
         <div class="card">
             <div class="card-body">
+                <div class="card">
+                    <div class="card-body">
+                        <div id="bBkphPim" height="60"></div>
+                    </div>
+                </div>
                 <div class="table-responsive-lg mt-4">
                     <table id="bbkph" class="table table-sm text-nowrap text-hover table-striped" style="width: 100%">
 
@@ -124,7 +129,7 @@
                                         $request->has('bulan') && $request->has('tahun')
                                             ? Carbon\Carbon::create($request->tahun, $request->bulan)->daysInMonth
                                             : Carbon\Carbon::now()->daysInMonth;
-                        
+
                                     for ($day = 1; $day <= $daysInMonth; $day++) {
                                         $tanggal =
                                             isset($request->tahun) && isset($request->bulan)
@@ -136,32 +141,57 @@
                                                 : Carbon\Carbon::createFromDate(date('Y'), date('m'), $day)->format(
                                                     'd-m-Y',
                                                 );
-                        
+
                                         $jabatanId = $item->bagian;
-                                        $poin = isset($data[$jabatanId][$tanggal])
-                                            ? $data[$jabatanId][$tanggal]
-                                            : 0;
+                                        $poin = isset($data[$jabatanId][$tanggal]) ? $data[$jabatanId][$tanggal] : 0;
                                         $total += $poin;
                                     }
                                     return $total;
                                 });
-                        
+
                                 // Menginisialisasi peringkat
                                 $ranking = 1;
+
+                                $pieData = [];
+                                foreach ($sortedUsers as $users) {
+                                    $total = 0;
+                                    $daysInMonth =
+                                        $request->has('bulan') && $request->has('tahun')
+                                            ? Carbon\Carbon::create($request->tahun, $request->bulan)->daysInMonth
+                                            : Carbon\Carbon::now()->daysInMonth;
+
+                                    for ($day = 1; $day <= $daysInMonth; $day++) {
+                                        $tanggal =
+                                            isset($request->tahun) && isset($request->bulan)
+                                                ? Carbon\Carbon::createFromDate(
+                                                    $request->tahun,
+                                                    $request->bulan,
+                                                    $day,
+                                                )->format('d-m-Y')
+                                                : Carbon\Carbon::createFromDate(date('Y'), date('m'), $day)->format(
+                                                    'd-m-Y',
+                                                );
+
+                                        $jabatanId = $users->bagian;
+                                        $poin = isset($data[$jabatanId][$tanggal]) ? $data[$jabatanId][$tanggal] : 0;
+                                        $total += $poin;
+                                    }
+                                    $pieData[] = ['name' => $users->bagian, 'y' => $total];
+                                }
                             @endphp
-                        
+
                             @foreach ($sortedUsers as $item)
                                 <tr>
                                     <td>{{ $loop->iteration }}.</td>
                                     <td>{{ $item->bagian }}</td>
-                        
+
                                     @php
                                         $total = 0;
                                         $daysInMonth =
                                             $request->has('bulan') && $request->has('tahun')
                                                 ? Carbon\Carbon::create($request->tahun, $request->bulan)->daysInMonth
                                                 : Carbon\Carbon::now()->daysInMonth;
-                        
+
                                         for ($day = 1; $day <= $daysInMonth; $day++) {
                                             $tanggal =
                                                 isset($request->tahun) && isset($request->bulan)
@@ -173,7 +203,7 @@
                                                     : Carbon\Carbon::createFromDate(date('Y'), date('m'), $day)->format(
                                                         'd-m-Y',
                                                     );
-                        
+
                                             $jabatanId = $item->bagian;
                                             $poin = isset($data[$jabatanId][$tanggal])
                                                 ? $data[$jabatanId][$tanggal]
@@ -191,10 +221,58 @@
                                 @endphp
                             @endforeach
                         </tbody>
-                        
+
                     </table>
                 </div>
             </div>
         </div>
+    @endif
+@endsection
+
+@section('script')
+    @if (auth()->user() && auth()->user()->role->nama_role == 'Pimpinan')
+        <script>
+            Highcharts.chart('bBkphPim', {
+                chart: {
+                    type: 'pie'
+                },
+                title: {
+                    text: 'Ranking BKPH <?php echo date('M Y'); ?>',
+                    align: 'left',
+                    style: {
+                        color: '#007bff'
+                    }
+                },
+                // plotOptions: {
+                //     series: {
+                //         allowPointSelect: true,
+                //         cursor: 'pointer',
+                //         dataLabels: [{
+                //             enabled: true,
+                //             distance: 20
+                //         }, {
+                //             enabled: true,
+                //             distance: -40,
+                //             format: '{point.percentage:.1f}%',
+                //             style: {
+                //                 fontSize: '1.2em',
+                //                 textOutline: 'none',
+                //                 opacity: 0.7
+                //             },
+                //             filter: {
+                //                 operator: '>',
+                //                 property: 'percentage',
+                //                 value: 10
+                //             }
+                //         }]
+                //     }
+                // },
+                series: [{
+                    name: 'Poin',
+                    colorByPoint: true,
+                    data: {!! json_encode($pieData) !!}
+                }]
+            });
+        </script>
     @endif
 @endsection

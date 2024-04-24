@@ -127,14 +127,37 @@
                             </tr>
                         </thead>
 
-                        <tbody>
-                            @foreach ($bidang as $BItem)
+                        <tbody style="overflow-x: auto;">
+                            @php
+                                $monthsToShow = [];
+                                // Mengurutkan pengguna berdasarkan total poin
+                                $sortedBidang = $bidang->sortByDesc(function ($BItem) use ($bidangTotals) {
+                                    return isset($bidangTotals[$BItem->id_bidang])
+                                        ? array_sum($bidangTotals[$BItem->id_bidang])
+                                        : 0;
+                                });
+
+                                // Menginisialisasi peringkat
+                                $ranking = 1;
+                            @endphp
+
+                            @foreach ($sortedBidang as $BItem)
                                 <tr>
-                                    <td>{{ $loop->iteration }}.</td>
+                                    <td scope="row">{{ $loop->iteration }}.</td>
                                     <td>{{ $BItem->nama_bidang }}</td>
-                                    <td></td>
-                                    <td></td>
+                                    <td>
+                                        @php
+                                            $bidangTotal = isset($bidangTotals[$BItem->id_bidang])
+                                                ? array_sum($bidangTotals[$BItem->id_bidang])
+                                                : 0;
+                                        @endphp
+                                        {{ $bidangTotal }}
+                                    </td>
+                                    <td> {{ $ranking }} </td>
                                 </tr>
+                                @php
+                                    $ranking++;
+                                @endphp
                             @endforeach
                         </tbody>
                     </table>

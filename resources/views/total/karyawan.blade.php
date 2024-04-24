@@ -143,7 +143,8 @@
         <div class="card">
             <div class="card-body">
                 <div class="table-responsive mt-4">
-                    <table id="tkaryawanpim" class="table table-sm text-nowrap text-hover table-striped" style="width: 100%">
+                    <table id="tkaryawanpim" class="table table-sm text-nowrap text-hover table-striped"
+                        style="width: 100%">
                         <thead class="thead-successv2">
                             <tr>
                                 <th>No.</th>
@@ -153,16 +154,41 @@
                                 <th>Ranking</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            @foreach ($user as $UItem)
+                        <tbody style="overflow-x: auto;">
+                            @php
+                                $monthsToShow = [];
+                                // Mengurutkan pengguna berdasarkan total poin
+                                $sortedUsers = $user->sortByDesc(function ($UItem) use ($karyawanTotals) {
+                                    return isset($karyawanTotals[$UItem->id_user])
+                                        ? array_sum($karyawanTotals[$UItem->id_user])
+                                        : 0;
+                                });
+
+                                // Menginisialisasi peringkat
+                                $ranking = 1;
+                            @endphp
+
+                            @foreach ($sortedUsers as $UItem)
                                 <tr>
-                                    <td>{{ $loop->iteration }}.</td>
+                                    <td scope="row">{{ $loop->iteration }}.</td>
                                     <td>{{ $UItem->nama_user }}</td>
-                                    <td>{{ $UItem->nama_jabatan }}</td>
-                                    <td></td>
-                                    <td></td>
+                                    <td>{{ $UItem->jabatan->nama_jabatan}}</td>
+                                    <td>
+                                        @php
+                                            $userTotal = isset($karyawanTotals[$UItem->id_user])
+                                                ? array_sum($karyawanTotals[$UItem->id_user])
+                                                : 0;
+                                        @endphp
+                                        {{ $userTotal }}
+                                    </td>
+                                    <td> {{ $ranking }} </td>
+                                </tr>
+                                @php
+                                    $ranking++;
+                                @endphp
                             @endforeach
                         </tbody>
+
                     </table>
                 </div>
             </div>
@@ -171,38 +197,38 @@
 @endsection
 
 @section('script')
-@if ((auth()->user() && auth()->user()->role->nama_role == 'Admin') || auth()->user()->role->nama_role == 'Mahasiswa')
-    <script src="https://code.highcharts.com/highcharts.js"></script>
-    <script>
-        Highcharts.chart('bulanPoin', {
-            chart: {
-                type: 'column'
-            },
-            title: {
-                text: 'Grafik Eviden Poin Bulanan',
-                align: 'center'
-            },
-            xAxis: {
-                categories: {!! json_encode($monthsToShow) !!},
-                crosshair: true,
-            },
-            yAxis: {
-                min: 0,
+    @if ((auth()->user() && auth()->user()->role->nama_role == 'Admin') || auth()->user()->role->nama_role == 'Mahasiswa')
+        <script src="https://code.highcharts.com/highcharts.js"></script>
+        <script>
+            Highcharts.chart('bulanPoin', {
+                chart: {
+                    type: 'column'
+                },
                 title: {
-                    text: 'Poin'
-                }
-            },
-            plotOptions: {
-                column: {
-                    pointPadding: 0.2,
-                    borderWidth: 0
-                }
-            },
-            series: [{
-                name: 'Poin',
-                data: {!! json_encode(array_values($monthlyTotals)) !!}
-            }]
-        });
-    </script>
-@endif
+                    text: 'Grafik Eviden Poin Bulanan',
+                    align: 'center'
+                },
+                xAxis: {
+                    categories: {!! json_encode($monthsToShow) !!},
+                    crosshair: true,
+                },
+                yAxis: {
+                    min: 0,
+                    title: {
+                        text: 'Poin'
+                    }
+                },
+                plotOptions: {
+                    column: {
+                        pointPadding: 0.2,
+                        borderWidth: 0
+                    }
+                },
+                series: [{
+                    name: 'Poin',
+                    data: {!! json_encode(array_values($monthlyTotals)) !!}
+                }]
+            });
+        </script>
+    @endif
 @endsection

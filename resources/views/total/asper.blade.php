@@ -151,15 +151,38 @@
                             </tr>
                         </thead>
 
-                        <tbody>
-                            @foreach ($jabatan2 as $asper)
+                        <tbody style="overflow-x: auto;">
+                            @php
+                                $monthsToShow = [];
+                                // Mengurutkan pengguna berdasarkan total poin
+                                $sortedAsper = $jabatan2->sortByDesc(function ($asper) use ($asperTotals) {
+                                    return isset($asperTotals[$asper->id_user])
+                                        ? array_sum($asperTotals[$asper->id_user])
+                                        : 0;
+                                });
+
+                                // Menginisialisasi peringkat
+                                $ranking = 1;
+                            @endphp
+
+                            @foreach ($sortedAsper as $asper)
                                 <tr>
-                                    <td>{{ $loop->iteration }}.</td>
+                                    <td scope="row">{{ $loop->iteration }}.</td>
                                     <td>{{ $asper->nama_user }}</td>
                                     <td>{{ $asper->jabatan->nama_jabatan }}</td>
-                                    <td></td>
-                                    <td></td>
+                                    <td>
+                                        @php
+                                           $asperTotal = isset($asperTotals[$asper->id_user])
+                                                ? array_sum($asperTotals[$asper->id_user])
+                                                : 0;
+                                        @endphp
+                                        {{ $asperTotal }}
+                                    </td>
+                                    <td> {{ $ranking }} </td>
                                 </tr>
+                                @php
+                                    $ranking++;
+                                @endphp
                             @endforeach
                         </tbody>
                     </table>

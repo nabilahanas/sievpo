@@ -37,19 +37,24 @@
                     </div>
 
                     <div class="col-xl-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
-                        <div class="icon-box">
-                            <h2 class="counter"><span data-purecounter-start="0" data-purecounter-end="2"
-                                    data-purecounter-duration="1" class="purecounter"></span></h2>
-                            <h3>Wilayah</h3>
-                        </div>
+                        <a href="/wilayah">
+                            <div class="icon-box">
+                                <h2 class="counter"><span data-purecounter-start="0" data-purecounter-end="2"
+                                        data-purecounter-duration="1" class="purecounter"></span></h2>
+                                <h3>Wilayah</h3>
+                            </div>
+                        </a>
                     </div>
 
                     <div class="col-xl-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
-                        <div class="icon-box">
-                            <h2 class="counter"><span data-purecounter-start="0" data-purecounter-end="{{ $bidang }}"
-                                    data-purecounter-duration="1" class="purecounter"></span></h2>
-                            <h3>Bidang</h3>
-                        </div>
+                        <a href="/wilayah">
+                            <div class="icon-box">
+                                <h2 class="counter"><span data-purecounter-start="0"
+                                        data-purecounter-end="{{ $bidang }}" data-purecounter-duration="1"
+                                        class="purecounter"></span></h2>
+                                <h3>Bidang</h3>
+                            </div>
+                        </a>
                     </div>
 
                     {{-- <div class="col-xl-3 col-md-6" data-aos="fade-up" data-aos-delay="500">
@@ -161,7 +166,8 @@
                     <!-- JADWAL KERJA -->
                     <div class="col-lg-4 col-md-6">
                         <div class="service-item position-relative">
-                            <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#shiftingModal">
+                            <button type="button" class="btn" data-bs-toggle="modal"
+                                data-bs-target="#shiftingModal">
                                 <div class="icon">
                                     <i class="bi bi-calendar3"></i>
                                 </div>

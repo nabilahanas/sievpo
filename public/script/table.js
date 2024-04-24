@@ -1385,7 +1385,7 @@ $(document).ready(function () {
 // Jabatan
 $(document).ready(function () {
     var table = $("#jabatan").DataTable({
-        columnDefs: [{ orderable: false, targets: 4 }],
+        columnDefs: [{ orderable: false, targets: 5 }],
         scrollCollapse: true,
         displayLength: 25,
     });

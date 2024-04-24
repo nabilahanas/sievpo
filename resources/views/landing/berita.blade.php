@@ -30,7 +30,7 @@
             <div class="container" data-aos="fade-up">
 
                 <div class="row gy-4 posts-list">
-                    @foreach ($berita->chunk(3) as $chunk)
+                    @foreach ($beritalanding->chunk(3) as $chunk)
                         <div class="row">
                             @foreach ($chunk as $item)
                                 <div class="col-xl-4 col-md-6">
@@ -49,22 +49,41 @@
                                             style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;">
                                             <a href="{{ $item->deskripsi }}" target="_blank">{{ $item->judul }}</a>
                                         </h2>
+
                                         <div class="article-preview">
                                             @php
                                                 // Mendapatkan HTML dari setiap berita
-                                                // $beritaContent = [];
-                                                $html = $beritaContent[$item->id_berita];
-                            
+                                                $htmlContent = $beritaContent[$item->id_berita];
+
                                                 // Jika HTML tersedia, lakukan proses parsing
-                                                if ($html) {
-                                                    // Mencari elemen pertama dengan tag <p> untuk mendapatkan paragraf pertama
-                                                    $preview = $html->find('p', 0)->plaintext;
-                                                    echo $preview; // Menampilkan preview dari konten HTML
+                                                if ($htmlContent) {
+                                                    // Temukan posisi awal tag <p>
+                                                    $start = strpos($htmlContent, '<p>');
+                                                    if ($start !== false) {
+                                                        // Temukan posisi akhir tag </p> setelah tag <p> pertama
+                                                        $end = strpos($htmlContent, '</p>', $start);
+                                                        if ($end !== false) {
+                                                            // Ambil teks di antara tag <p> dan </p>
+                                                            $preview = substr(
+                                                                $htmlContent,
+                                                                $start + 3,
+                                                                $end - $start - 3,
+                                                            );
+                                                            echo $preview; // Menampilkan preview dari konten HTML
+                                                        } else {
+                                                            echo 'Gagal mengambil konten berita.';
+                                                        }
+                                                    } else {
+                                                        echo 'Tidak ada paragraf yang ditemukan dalam konten berita.';
+                                                    }
                                                 } else {
-                                                    echo "Gagal mengambil konten berita.";
+                                                    echo 'Gagal mengambil konten berita.';
                                                 }
                                             @endphp
                                         </div>
+
+
+
                                         <a href="{{ $item->deskripsi }}" target="_blank">Lihat Selengkapnya</a>
                                     </article>
                                 </div>
@@ -75,9 +94,9 @@
 
                 <div class="blog-pagination">
                     <ul class="justify-content-center">
-                        <li><a href="#"><i class="bi bi-arrow-left"></i></a></li>
-                        <li><a href="#">1</a></li>
-                        <li><a href="#"><i class="bi bi-arrow-right"></i></a></li>
+                        <li><a href="{{ $beritalanding->previousPageUrl() }}"><i class="bi bi-arrow-left"></i></a></li>
+                        <li><a href="">{{ $beritalanding->currentPage() }}</a></li>
+                        <li><a href="{{ $beritalanding->nextPageUrl() }}"><i class="bi bi-arrow-right"></i></a></li>
                     </ul>
                 </div>
             </div>

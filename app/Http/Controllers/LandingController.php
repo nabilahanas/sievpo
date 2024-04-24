@@ -44,6 +44,8 @@ class LandingController extends Controller
     public function berita()
     {
         $berita = Berita::all();
+        $beritalanding = Berita::paginate(3);
+
 
         $beritaContent = [];
 
@@ -53,18 +55,19 @@ class LandingController extends Controller
                 $url = $item->deskripsi;
 
                 // Mendapatkan konten HTML dari URL menggunakan HtmlDomParser
-                $html = HtmlDomParser::file_get_html($url);
+                $htmlContent = file_get_contents($url);
 
                 // Simpan konten HTML dalam array
-                $beritaContent[$item->id_berita] = $html;
+                $beritaContent[$item->id_berita] = $htmlContent;
             } catch (\Exception $e) {
                 // Tangani kesalahan yang terjadi saat mengambil konten dari URL
                 // Anda dapat menentukan tindakan yang sesuai, seperti menyimpan pesan kesalahan atau memberikan nilai default
                 $beritaContent[$item->id_berita] = null;
             }
+            // dd($beritaContent);
         }
 
-        return view('landing.berita', compact('berita', 'beritaContent'), ['key' => 'landing']);
+        return view('landing.berita', compact('berita', 'beritalanding','beritaContent'), ['key' => 'landing']);
     }
 
     public function fitur()

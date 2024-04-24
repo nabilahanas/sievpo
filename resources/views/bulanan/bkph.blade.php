@@ -116,15 +116,82 @@
                         </thead>
 
                         <tbody>
-                            @foreach ($jabatan as $item)
+                            @php
+                                // Mengurutkan pengguna berdasarkan total poin
+                                $sortedUsers = $jabatan->sortByDesc(function ($item) use ($data, $request) {
+                                    $total = 0;
+                                    $daysInMonth =
+                                        $request->has('bulan') && $request->has('tahun')
+                                            ? Carbon\Carbon::create($request->tahun, $request->bulan)->daysInMonth
+                                            : Carbon\Carbon::now()->daysInMonth;
+                        
+                                    for ($day = 1; $day <= $daysInMonth; $day++) {
+                                        $tanggal =
+                                            isset($request->tahun) && isset($request->bulan)
+                                                ? Carbon\Carbon::createFromDate(
+                                                    $request->tahun,
+                                                    $request->bulan,
+                                                    $day,
+                                                )->format('d-m-Y')
+                                                : Carbon\Carbon::createFromDate(date('Y'), date('m'), $day)->format(
+                                                    'd-m-Y',
+                                                );
+                        
+                                        $jabatanId = $item->bagian;
+                                        $poin = isset($data[$jabatanId][$tanggal])
+                                            ? $data[$jabatanId][$tanggal]
+                                            : 0;
+                                        $total += $poin;
+                                    }
+                                    return $total;
+                                });
+                        
+                                // Menginisialisasi peringkat
+                                $ranking = 1;
+                            @endphp
+                        
+                            @foreach ($sortedUsers as $item)
                                 <tr>
                                     <td>{{ $loop->iteration }}.</td>
                                     <td>{{ $item->bagian }}</td>
-                                    <td></td>
-                                    <td></td>
+                        
+                                    @php
+                                        $total = 0;
+                                        $daysInMonth =
+                                            $request->has('bulan') && $request->has('tahun')
+                                                ? Carbon\Carbon::create($request->tahun, $request->bulan)->daysInMonth
+                                                : Carbon\Carbon::now()->daysInMonth;
+                        
+                                        for ($day = 1; $day <= $daysInMonth; $day++) {
+                                            $tanggal =
+                                                isset($request->tahun) && isset($request->bulan)
+                                                    ? Carbon\Carbon::createFromDate(
+                                                        $request->tahun,
+                                                        $request->bulan,
+                                                        $day,
+                                                    )->format('d-m-Y')
+                                                    : Carbon\Carbon::createFromDate(date('Y'), date('m'), $day)->format(
+                                                        'd-m-Y',
+                                                    );
+                        
+                                            $jabatanId = $item->bagian;
+                                            $poin = isset($data[$jabatanId][$tanggal])
+                                                ? $data[$jabatanId][$tanggal]
+                                                : 0;
+                                            $total += $poin;
+                                        }
+                                    @endphp
+                                    <td>{{ $total }}</td>
+                                    <!-- Menampilkan peringkat berdasarkan urutan data yang sudah diurutkan -->
+                                    <td>{{ $ranking }}</td>
                                 </tr>
+                                @php
+                                    // Meningkatkan peringkat setiap kali perulangan selesai
+                                    $ranking++;
+                                @endphp
                             @endforeach
                         </tbody>
+                        
                     </table>
                 </div>
             </div>

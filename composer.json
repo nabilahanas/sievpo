@@ -11,6 +11,7 @@
         "laravel/sanctum": "^3.3",
         "laravel/tinker": "^2.8",
         "maatwebsite/excel": "^3.1",
+        "sunra/php-simple-html-dom-parser": "^1.5",
         "twbs/bootstrap-icons": "^1.11"
     },
     "require-dev": {

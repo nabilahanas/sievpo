@@ -41,30 +41,31 @@
                                                     alt="Gambar Berita" class="img-fluid">
                                             @else
                                                 <img src="https://www.perhutani.co.id/wp-content/themes/perhutani2022/assets/images/default-cover.jpg"
-                                                    alt="Default Image" class="img-fluid" style="margin-top: -20px; margin-left: 20px; display: block; transform: scale(1.2)">
+                                                    alt="Default Image" class="img-fluid"
+                                                    style="margin-top: -20px; margin-left: 20px; display: block; transform: scale(1.2)">
                                             @endif
                                         </div>
                                         <h2 class="title"
                                             style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;">
                                             <a href="{{ $item->deskripsi }}" target="_blank">{{ $item->judul }}</a>
                                         </h2>
-                                        <div class="d-flex align-items-center">
-                                            <div class="post-meta">
-                                                <p class="post-date">
-                                                    <time datetime="{{ $item->created_at }}">
-                                                        {{ \Carbon\Carbon::parse($item->created_at)->locale('id')->isoFormat('D MMMM YYYY') }}
-                                                    </time>
-                                                </p>
-                                                <div class="article-preview">
-                                                    HTML adalah bahasa yang digunakan untuk membuat halaman web. Bagi yang
-                                                    berkecimpung di dunia perangkat gadget dan ilmu komputer, pasti sudah
-                                                    tidak asing lagi dengan berbagai kode di dalamnya. HTML adalah
-                                                    kependekan dari Hypertext Markup Language.
-                                                </div>
-                                                {{-- <p class="post-author-list">Diterbitkan oleh Administrator</p> --}}
-                                                <a href="{{ $item->deskripsi }}" target="_blank">Lihat Selengkapnya</a>
-                                            </div>
+                                        <div class="article-preview">
+                                            @php
+                                                // Mendapatkan HTML dari setiap berita
+                                                // $beritaContent = [];
+                                                $html = $beritaContent[$item->id_berita];
+                            
+                                                // Jika HTML tersedia, lakukan proses parsing
+                                                if ($html) {
+                                                    // Mencari elemen pertama dengan tag <p> untuk mendapatkan paragraf pertama
+                                                    $preview = $html->find('p', 0)->plaintext;
+                                                    echo $preview; // Menampilkan preview dari konten HTML
+                                                } else {
+                                                    echo "Gagal mengambil konten berita.";
+                                                }
+                                            @endphp
                                         </div>
+                                        <a href="{{ $item->deskripsi }}" target="_blank">Lihat Selengkapnya</a>
                                     </article>
                                 </div>
                             @endforeach

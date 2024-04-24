@@ -34,14 +34,14 @@ class TbkphExport implements FromView
 
         $bkphTotals = [];
 
-        $jabatan = Jabatan::groupBy('bagian')
+        // $jabatan = Jabatan::groupBy('bagian')
+        //     ->select('bagian')
+        //     ->get();
+
+        $jabatan = Jabatan::whereNotIn('bagian', ['sistem'])
+            ->groupBy('bagian')
             ->select('bagian')
             ->get();
-
-            // $jabatan = Jabatan::whereNotIn('bagian', ['sistem'])
-            // ->groupBy('bagian')
-            // ->select('bagian')
-            // ->get();
 
         foreach ($datas as $dataItem) {
             $month = $dataItem->created_at->format('F');

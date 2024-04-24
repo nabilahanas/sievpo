@@ -20,27 +20,27 @@ class TotalController extends Controller
 {
     protected $primaryKey = 'id_data';
 
-    public function exportkaryawan(Request $request) 
+    public function exportkaryawan(Request $request)
     {
         return Excel::download(new TKaryawanExport($request->semester, $request->year), 'Total Karyawan.xlsx');
     }
 
-    public function exportbidang(Request $request) 
+    public function exportbidang(Request $request)
     {
         return Excel::download(new TBidangExport($request->semester, $request->year), 'Total Bidang.xlsx');
     }
 
-    public function exportbkph(Request $request) 
+    public function exportbkph(Request $request)
     {
         return Excel::download(new TbkphExport($request->semester, $request->year), 'Total BKPH.xlsx');
     }
 
-    public function exportkrph(Request $request) 
+    public function exportkrph(Request $request)
     {
         return Excel::download(new TkrphExport($request->semester, $request->year), 'Total KRPH.xlsx');
     }
 
-    public function exportasper(Request $request) 
+    public function exportasper(Request $request)
     {
         return Excel::download(new TasperExport($request->semester, $request->year), 'Total AsperKBKPH.xlsx');
     }
@@ -87,7 +87,7 @@ class TotalController extends Controller
             $karyawanTotals[$userId][$month] += $dataItem->poin;
         }
 
-        return view('total.karyawan', compact('user','request', 'bidang', 'currentYear', 'karyawanTotals'), ['key' => 'tkaryawan']);
+        return view('total.karyawan', compact('user', 'request', 'bidang', 'currentYear', 'karyawanTotals'), ['key' => 'tkaryawan']);
     }
 
     public function bidang(Request $request)
@@ -132,8 +132,8 @@ class TotalController extends Controller
             }
             $bidangTotals[$bidangId][$month] += $dataItem->poin;
         }
-       
-        return view('total.bidang', compact('user','request', 'bidang', 'currentYear', 'bidangTotals'), ['key' => 'tbidang']);
+
+        return view('total.bidang', compact('user', 'request', 'bidang', 'currentYear', 'bidangTotals'), ['key' => 'tbidang']);
     }
 
     public function bkph(Request $request)
@@ -145,38 +145,38 @@ class TotalController extends Controller
 
         $bkphTotals = [];
 
-        $jabatan = Jabatan::groupBy('bagian')
+        // $jabatan = Jabatan::groupBy('bagian')
+        //     ->select('bagian')
+        //     ->get();
+
+        $jabatan = Jabatan::whereNotIn('bagian', ['sistem'])
+            ->groupBy('bagian')
             ->select('bagian')
             ->get();
 
-            // $jabatan = Jabatan::whereNotIn('bagian', ['sistem'])
-            // ->groupBy('bagian')
-            // ->select('bagian')
-            // ->get();
 
+        if ($request->has('semester') && $request->has('year')) {
+            $semester = $request->semester;
+            $year = $request->year;
 
-            if ($request->has('semester') && $request->has('year')) {
-                $semester = $request->semester;
-                $year = $request->year;
-    
-                if ($semester == 01) {
-                    $startMonth = 1;
-                    $endMonth = 7;
-                } else {
-                    $startMonth = 8;
-                    $endMonth = 12;
-                }
-    
-                $searchStart = Carbon::createFromDate($year, $startMonth, 1);
-    
-                $searchEnd = Carbon::createFromDate($year, $endMonth, 1)->endOfMonth();
-    
-                $datas = Data::whereBetween('created_at', [$searchStart, $searchEnd])->get();
-    
-                $currentYear = $searchStart->format('Y');
+            if ($semester == 01) {
+                $startMonth = 1;
+                $endMonth = 7;
             } else {
-                $datas = Data::all();
+                $startMonth = 8;
+                $endMonth = 12;
             }
+
+            $searchStart = Carbon::createFromDate($year, $startMonth, 1);
+
+            $searchEnd = Carbon::createFromDate($year, $endMonth, 1)->endOfMonth();
+
+            $datas = Data::whereBetween('created_at', [$searchStart, $searchEnd])->get();
+
+            $currentYear = $searchStart->format('Y');
+        } else {
+            $datas = Data::all();
+        }
 
         foreach ($datas as $dataItem) {
             $month = $dataItem->created_at->format('F');
@@ -243,10 +243,10 @@ class TotalController extends Controller
         // HIGHCHARTS
         $categories = [];
 
-        foreach($user as $u){
+        foreach ($user as $u) {
             if ($u->jabatan->klasifikasi == 'KRPH')
-        $categories[] = $u->nama_user;
-   
+                $categories[] = $u->nama_user;
+
         }
 
         return view('total.krph', compact('user', 'request', 'jabatan1', 'bidang', 'currentYear', 'krphTotals', 'categories'), ['key' => 'tkrph']);
@@ -304,10 +304,10 @@ class TotalController extends Controller
         // HIGHCHARTS
         $categories = [];
 
-        foreach($user as $u){
+        foreach ($user as $u) {
             if ($u->jabatan->klasifikasi == 'ASPER')
-        $categories[] = $u->nama_user;
-           
+                $categories[] = $u->nama_user;
+
         }
 
         return view('total.asper', compact('user', 'request', 'jabatan2', 'bidang', 'currentYear', 'asperTotals', 'categories'), ['key' => 'tasper']);

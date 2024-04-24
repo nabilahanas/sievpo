@@ -166,8 +166,8 @@
                     </div>
 
                 </div>
-
-                <!-- Test -->
+                
+                <!-- Chart -->
                 <div class="row">
                     <section class="col-lg-12">
                         <div class="card">
@@ -181,7 +181,7 @@
                                 </div>
                             </div>
                             <div class="card-body">
-                                <div id="krphPoin" height="60"></div>
+                                <div id="bulanPoin" height="60"></div>
                             </div>
                         </div>
                     </section>
@@ -633,6 +633,48 @@
     @endif
 @endsection
 
+@section('script')
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script>
+        // Mengambil data chart dari localStorage
+        var monthlyTotals = JSON.parse(localStorage.getItem('monthlyTotals'));
+        var monthsToShow = JSON.parse(localStorage.getItem('monthsToShow'));
+
+        // Membuat chart Highcharts
+        Highcharts.chart('bulanPoin', {
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: 'Grafik Eviden Poin Bulanan',
+                align: 'center'
+            },
+            xAxis: {
+                categories: monthsToShow,
+                crosshair: true,
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'Poin'
+                }
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
+                }
+            },
+            series: [{
+                name: 'Poin',
+                data: monthlyTotals,
+            }]
+        });
+    </script>
+@endsection
+
+
+
 <!-- JQuery -->
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
     integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
@@ -698,44 +740,3 @@
         getLocation();
     });
 </script> --}}
-
-@section('script')
-<script src="https://code.highcharts.com/highcharts.js"></script>
-<script>
-    Highcharts.chart('krphPoin', {
-    chart: {
-        type: 'column'
-    },
-    title: {
-        text: 'Grafik Eviden Poin KRPH',
-        align: 'center'
-    },
-    xAxis: {
-        categories: ['USA', 'China', 'Brazil', 'EU', 'India', 'Russia'],
-        crosshair: true,
-        // accessibility: {
-        //     description: 'Countries'
-        // }
-    },
-    yAxis: {
-        min: 0,
-        title: {
-            text: 'Poin'
-        }
-    },
-    plotOptions: {
-        column: {
-            pointPadding: 0.2,
-            borderWidth: 0
-        }
-    },
-    series: [
-        {
-            name: 'Poin',
-            data: [406, 260, 107, 683, 275, 145]
-        },
-    ]
-});
-</script>
-@endsection
-

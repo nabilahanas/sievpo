@@ -99,7 +99,7 @@
                     </tbody>
                     <tfoot>
                         <tr>
-                            <th colspan="3" style="text-align:right">Total:</th>
+                            <th colspan="2" style="text-align:right">Total:</th>
                             @foreach ($monthlyTotals as $monthlyTotal)
                                 <th>{{ $monthlyTotal }}</th>
                             @endforeach

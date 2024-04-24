@@ -11,7 +11,25 @@
             <a class="btn btn-outline-success"
                 href="{{ route('total.exportasper') }}?{{ request()->has('semester') && request()->has('year') ? 'semester=' . request()->semester . '&year=' . request()->year : 'search=' . '' }}">Download
                 Excel</a>
-
+            <!-- Chart -->
+            <div class="row mt-4">
+                <section class="col-lg-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <h3 class="card-title" style="color: #007bff; font-weight: 600;">
+                                    KRPH <?php echo date('M Y'); ?>
+                                </h3>
+                                <button class="btn btn-sm btn-outline-primary"><i class="bi bi-download"></i>
+                                    Download</button>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div id="asperPoin" height="60"></div>
+                        </div>
+                    </div>
+                </section>
+            </div>
             <div class="table-responsive-lg mt-4">
                 <table id="tasper" class="table table-sm text-nowrap table-hover table-striped" style="width: 100%">
                     <thead class="thead-successv2">
@@ -71,10 +89,11 @@
                         @php
                             $grandTotal = 0;
                             $monthlyTotals = array_fill_keys($monthsToShow, 0);
+                            $asperTotalsArray = [];
                         @endphp
                         @foreach ($jabatan2 as $asper)
                             <tr>
-                                <td scope="row">{{ $loop->iteration }}</td>
+                                <td scope="row">{{ $loop->iteration }}.</td>
                                 <td>{{ $asper->nama_user }}</td>
                                 <td>{{ $asper->jabatan->nama_jabatan }}</td>
                                 @foreach ($monthsToShow as $month)
@@ -91,6 +110,7 @@
                                         $asperTotal = isset($asperTotals[$asper->id_user])
                                             ? array_sum($asperTotals[$asper->id_user])
                                             : 0;
+                                        $asperTotalsArray[] = $asperTotal;
                                     @endphp
                                     {{ $asperTotal }}
                                 </td>
@@ -114,3 +134,38 @@
         </div>
 
     @endsection
+
+    @section('script')
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script>
+        Highcharts.chart('asperPoin', {
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: 'Grafik Eviden Poin Asper',
+                align: 'center'
+            },
+            xAxis: {
+                categories: {!! json_encode($categories) !!},
+                crosshair: true,
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'Poin'
+                }
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
+                }
+            },
+            series: [{
+                name: 'Poin',
+                data: {!! json_encode($asperTotalsArray) !!} // Gunakan data array yang berisi $krphTotal
+            }]
+        });
+    </script>
+@endsection

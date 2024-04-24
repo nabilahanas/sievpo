@@ -11,15 +11,15 @@
             <a class="btn btn-outline-success"
                 href="{{ route('total.exportkrph') }}?{{ request()->has('semester') && request()->has('year') ? 'semester=' . request()->semester . '&year=' . request()->year : 'search=' . '' }}">Download
                 Excel</a>
-            <!-- Test -->
+            <!-- Chart -->
             <div class="row mt-4">
                 <section class="col-lg-12">
                     <div class="card">
                         <div class="card-header">
                             <div class="d-flex justify-content-between align-items-center">
                                 <h3 class="card-title" style="color: #007bff; font-weight: 600;">
-                                    KRPH <?php echo date('M Y'); ?>
-                                </h3>
+                                    KRPH <?php echo \Carbon\Carbon::now()->locale('id')->isoFormat('MMMM YYYY'); ?>
+                                </h3>                                
                                 <button class="btn btn-sm btn-outline-primary"><i class="bi bi-download"></i>
                                     Download</button>
                             </div>
@@ -89,12 +89,19 @@
                         @php
                             $grandTotal = 0;
                             $monthlyTotals = array_fill_keys($monthsToShow, 0);
+                            $krphTotalsArray = []; // Inisialisasi array untuk menyimpan data $krphTotal
                         @endphp
                         @foreach ($jabatan1 as $krph)
                             <tr>
-                                <td scope="row">{{ $loop->iteration }}</td>
+                                <td scope="row">{{ $loop->iteration }}.</td>
                                 <td>{{ $krph->nama_user }}</td>
                                 <td>{{ $krph->jabatan->nama_jabatan }}</td>
+                                @php
+                                    $krphTotal = isset($krphTotals[$krph->id_user])
+                                        ? array_sum($krphTotals[$krph->id_user])
+                                        : 0;
+                                    $krphTotalsArray[] = $krphTotal; // Tambahkan $krphTotal ke dalam array
+                                @endphp
                                 @foreach ($monthsToShow as $month)
                                     @php
                                         $poin = isset($krphTotals[$krph->id_user][$month])
@@ -104,14 +111,7 @@
                                     @endphp
                                     <td>{{ $poin }}</td>
                                 @endforeach
-                                <td>
-                                    @php
-                                        $krphTotal = isset($krphTotals[$krph->id_user])
-                                            ? array_sum($krphTotals[$krph->id_user])
-                                            : 0;
-                                    @endphp
-                                    {{ $krphTotal }}
-                                </td>
+                                <td>{{ $krphTotal }}</td>
                             </tr>
                             @php
                                 $grandTotal += $krphTotal;
@@ -148,9 +148,6 @@
             xAxis: {
                 categories: {!! json_encode($categories) !!},
                 crosshair: true,
-                // accessibility: {
-                //     description: 'Countries'
-                // }
             },
             yAxis: {
                 min: 0,
@@ -166,8 +163,8 @@
             },
             series: [{
                 name: 'Poin',
-                data: [406, 260, 107, 683, 275, 145]
-            }, ]
+                data: {!! json_encode($krphTotalsArray) !!} // Gunakan data array yang berisi $krphTotal
+            }]
         });
     </script>
 @endsection

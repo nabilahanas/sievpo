@@ -24,7 +24,7 @@
                 auth()->user()->role->nama_role == 'Pimpinan' ||
                 auth()->user()->role->nama_role == 'Mahasiswa')
             <li
-                class="nav-item {{ $key == 'harian' || $key == 'mingguan' || $key == 'bulanan' || $key == 'tkaryawan' || $key == 'tbidang' || $key == 'tbkph' || $key == 'tkrph' || $key == 'tasper' ? 'menu-is-opening menu-open' : '' }}">
+                class="nav-item {{ $key == 'harian' || $key == 'mingguan' ||$key == 'bkaryawan' || $key == 'bbidang' || $key == 'bbkph' || $key == 'bkrph' || $key == 'basper' || $key == 'tkaryawan' || $key == 'tbidang' || $key == 'tbkph' || $key == 'tkrph' || $key == 'tasper' ? 'menu-is-opening menu-open' : '' }}">
                 <a href="{{ url('#') }}"
                     class="nav-link {{ $key == 'harian' || $key == 'mingguan' || $key == 'bulanan' || $key == 'tkaryawan' || $key == 'tbidang' || $key == 'tbkph' || $key == 'tkrph' || $key == 'tasper' ? 'active' : '' }}">
                     <i class="nav-icon fas fa-table"></i>
@@ -46,8 +46,10 @@
                             <p>Mingguan</p>
                         </a>
                     </li>
-                    <li class="nav-item {{ $key == 'bkaryawan' || $key == 'bbidang' || $key == 'bbkph' || $key == 'bkrph' || $key == 'basper' ? 'menu-is-opening menu-open' : '' }}">
-                        <a href="#" class="nav-link {{ $key == 'bkaryawan' || $key == 'bbidang' || $key == 'bbkph' || $key == 'tkrph' || $key == 'basper' ? 'active' : '' }}">
+                    <li
+                        class="nav-item {{ $key == 'bkaryawan' || $key == 'bbidang' || $key == 'bbkph' || $key == 'bkrph' || $key == 'basper' ? 'menu-is-opening menu-open' : '' }}">
+                        <a href="#"
+                            class="nav-link {{ $key == 'bkaryawan' || $key == 'bbidang' || $key == 'bbkph' || $key == 'tkrph' || $key == 'basper' ? 'active' : '' }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Bulanan
                                 <i class="right fas fa-angle-left"></i>

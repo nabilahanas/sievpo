@@ -240,27 +240,16 @@ class TotalController extends Controller
             $krphTotals[$krphId][$month] += $dataItem->poin;
         }
 
-        // Highcharts
+        // HIGHCHARTS
         $categories = [];
-        $data = [];
 
         foreach($user as $u){
-            $categories[] = $u -> nama_user;
-
+            if ($u->jabatan->klasifikasi == 'KRPH')
+        $categories[] = $u->nama_user;
+   
         }
-        foreach($datas as $dataItem){
-            $data[] = $dataItem->poin;
-        }
-        // $data[] = $dataItem->poin;
 
-        // foreach ($krphTotals as $userId => $monthlyPoin) {
-        //     $data[$userId] = array_sum($monthlyPoin);
-        // }
-
-        // dd($categories);
-        // dd($data);
-
-        return view('total.krph', compact('user', 'request', 'jabatan1', 'bidang', 'currentYear', 'krphTotals', 'categories', 'data'), ['key' => 'tkrph']);
+        return view('total.krph', compact('user', 'request', 'jabatan1', 'bidang', 'currentYear', 'krphTotals', 'categories'), ['key' => 'tkrph']);
     }
 
     public function asper(Request $request)
@@ -312,6 +301,15 @@ class TotalController extends Controller
             $asperTotals[$asperId][$month] += $dataItem->poin;
         }
 
-        return view('total.asper', compact('user', 'request', 'jabatan2', 'bidang', 'currentYear', 'asperTotals'), ['key' => 'tasper']);
+        // HIGHCHARTS
+        $categories = [];
+
+        foreach($user as $u){
+            if ($u->jabatan->klasifikasi == 'ASPER')
+        $categories[] = $u->nama_user;
+           
+        }
+
+        return view('total.asper', compact('user', 'request', 'jabatan2', 'bidang', 'currentYear', 'asperTotals', 'categories'), ['key' => 'tasper']);
     }
 }

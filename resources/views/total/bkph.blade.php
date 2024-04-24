@@ -72,7 +72,7 @@
                         @endphp
                         @foreach ($jabatan as $item)
                             <tr>
-                                <td scope="row">{{ $loop->iteration }}</td>
+                                <td scope="row">{{ $loop->iteration }}.</td>
                                 <td>{{ $item->bagian }}</td>
 
                                 @foreach ($monthsToShow as $month)
@@ -100,7 +100,7 @@
                     </tbody>
                     <tfoot>
                         <tr>
-                            <th colspan="3" style="text-align:right">Total:</th>
+                            <th colspan="2" style="text-align:right">Total:</th>
                             @foreach ($monthlyTotals as $monthlyTotal)
                                 <th>{{ $monthlyTotal }}</th>
                             @endforeach

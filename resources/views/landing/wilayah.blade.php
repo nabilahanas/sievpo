@@ -10,7 +10,7 @@
                 <div class="container position-relative">
                     <div class="row d-flex justify-content-center">
                         <div class="col-lg-6 text-center">
-                            <h3><b>Wilayah Kerja</b></h3>
+                            <h3><b>Wilayah dan Bidang Kerja</b></h3>
                         </div>
                     </div>
                 </div>
@@ -20,7 +20,7 @@
                     <ol>
                         <li class="breadcrumb-item"><a href="/">Beranda</a></li>
                         <li class="breadcrumb-item"><a herf="#">Tentang Kami</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Wilayah Kerja</li>
+                        <li class="breadcrumb-item active" aria-current="page">Wilayah dan Bidang Kerja</li>
                     </ol>
                 </div>
             </nav>
@@ -38,31 +38,68 @@
                                     alt="Wilayah Kerja"></a>
                         </div>
                         <div class="row gy-4">
-                            <div class="col-lg-5">
-                                <table class="table table-responsive">
-                                    <thead class="thead-perhutani">
-                                        <tr>
-                                            <th scope="col">Wilayah Barat</th>
-                                            <th scope="col">Wilayah Timur</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>Barang</td>
-                                            <td>Jembolo Selatan</td>
-                                            <td>Jembolo Utara</td>
-                                            <td>Penggaron</td>
-                                            <td>Tanggung</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Kedungjati</td>
-                                            <td>Manggar</td>
-                                            <td>Padas</td>
-                                            <td>Tempuran</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
+                            <table class="table table-responsive">
+                                <thead class="thead-perhutani">
+                                    <tr>
+                                        <th scope="col">Wilayah Barat</th>
+                                        <th scope="col">Wilayah Timur</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Barang</td>
+                                        <td>Kedungjati</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Jembolo Selatan</td>
+                                        <td>Padas</td>
+
+                                    </tr>
+                                    <tr>
+                                        <td>Jembolo Utara</td>
+                                        <td>Manggar</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Penggaron</td>
+                                        <td>Tempuran</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Tanggung</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center position-relative h-100">
+                        <h3 class="title text-center">BIDANG KERJA</h3>
+                        <div class="col-md-6 offset-2">
+                            <table class="table table-responsive">
+                                <thead class="thead-perhutani">
+                                    <tr>
+                                        <th scope="col">No.</th>
+                                        <th scope="col">Nama Bidang</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1.</td>
+                                        <td>Tanaman/Persemaian/Pemeliharaan</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2.</td>
+                                        <td>Keamanan/Patroli</td>
+
+                                    </tr>
+                                    <tr>
+                                        <td>3.</td>
+                                        <td>Sosialisasi/Rapat/Apel</td>
+                                    </tr>
+                                    <tr>
+                                        <td>4.</td>
+                                        <td>Produksi/Agroforestry/Wisata</td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </article>

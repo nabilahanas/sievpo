@@ -5,110 +5,142 @@
 @section('content')
     <title>Rekap Total Bidang</title>
 
-    <div class="card">
-        <div class="card-body">
-            <a class="btn btn-outline-success"
-                href="{{ route('total.exportbidang') }}?{{ request()->has('semester') && request()->has('year') ? 'semester=' . request()->semester . '&year=' . request()->year : 'search=' . '' }}">Download
-                Excel</a>
-            <div class="table-responsive-lg mt-4">
-                <table id="tbidang" class="table table-sm text-nowrap text-hover table-striped" style="width=100%">
-                    <thead class="thead-successv2">
-                        <tr>
-                            <th rowspan="2">No.</th>
-                            <th rowspan="2">Nama Bidang</th>
-                            @php
-                                $monthsToShow = [];
-                                if ($request->has('semester') && $request->has('year')) {
-                                    $semester = $request->semester;
-                                    $monthsToShow =
-                                        $semester == 1
-                                            ? ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni']
-                                            : ['Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
-                                } else {
-                                    $monthsToShow = [
-                                        'Januari',
-                                        'Februari',
-                                        'Maret',
-                                        'April',
-                                        'Mei',
-                                        'Juni',
-                                        'Juli',
-                                        'Agustus',
-                                        'September',
-                                        'Oktober',
-                                        'November',
-                                        'Desember',
-                                    ];
-                                }
-                            @endphp
-                            <th colspan="{{ count($monthsToShow) }}" style="text-align: center">{{ $currentYear }}</th>
-                            <th rowspan="2">Total</th>
-                        </tr>
-                        <tr>
-                            @if ($request->has('semester') && $request->has('year'))
-                                @php
-                                    $semester = $request->semester;
-                                    $monthsToShow =
-                                        $semester == 01
-                                            ? ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni']
-                                            : ['Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
-                                @endphp
-                                @foreach ($monthsToShow as $monthName)
-                                    <th>{{ $monthName }}</th>
-                                @endforeach
-                            @else
-                                @foreach (['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'] as $monthName)
-                                    <th>{{ $monthName }}</th>
-                                @endforeach
-                            @endif
-                        </tr>
-                    </thead>
-
-                    <tbody>
-                        @php
-                            $grandTotal = 0;
-                            $monthlyTotals = array_fill_keys($monthsToShow, 0);
-                        @endphp
-                        @foreach ($bidang as $BItem)
+    @if ((auth()->user() && auth()->user()->role->nama_role == 'Admin') || auth()->user()->role->nama_role == 'Mahasiswa')
+        <div class="card">
+            <div class="card-body">
+                <a class="btn btn-outline-success"
+                    href="{{ route('total.exportbidang') }}?{{ request()->has('semester') && request()->has('year') ? 'semester=' . request()->semester . '&year=' . request()->year : 'search=' . '' }}">Download
+                    Excel</a>
+                <div class="table-responsive-lg mt-4">
+                    <table id="tbidang" class="table table-sm text-nowrap text-hover table-striped" style="width=100%">
+                        <thead class="thead-successv2">
                             <tr>
-                                <td scope="row">{{ $loop->iteration }}</td>
-                                <td>{{ $BItem->nama_bidang }}</td>
-
-                                @foreach ($monthsToShow as $month)
-                                    @php
-                                        $poin = isset($bidangTotals[$BItem->id_bidang][$month])
-                                            ? $bidangTotals[$BItem->id_bidang][$month]
-                                            : 0;
-                                        $monthlyTotals[$month] += $poin;
-                                    @endphp
-                                    <td>{{ $poin }}</td>
-                                @endforeach
-                                <td>
-                                    @php
-                                        $bidangTotal = isset($bidangTotals[$BItem->id_bidang])
-                                            ? array_sum($bidangTotals[$BItem->id_bidang])
-                                            : 0;
-                                    @endphp
-                                    {{ $bidangTotal }}
-                                </td>
+                                <th rowspan="2">No.</th>
+                                <th rowspan="2">Nama Bidang</th>
+                                @php
+                                    $monthsToShow = [];
+                                    if ($request->has('semester') && $request->has('year')) {
+                                        $semester = $request->semester;
+                                        $monthsToShow =
+                                            $semester == 1
+                                                ? ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni']
+                                                : ['Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+                                    } else {
+                                        $monthsToShow = [
+                                            'Januari',
+                                            'Februari',
+                                            'Maret',
+                                            'April',
+                                            'Mei',
+                                            'Juni',
+                                            'Juli',
+                                            'Agustus',
+                                            'September',
+                                            'Oktober',
+                                            'November',
+                                            'Desember',
+                                        ];
+                                    }
+                                @endphp
+                                <th colspan="{{ count($monthsToShow) }}" style="text-align: center">{{ $currentYear }}</th>
+                                <th rowspan="2">Total</th>
                             </tr>
+                            <tr>
+                                @if ($request->has('semester') && $request->has('year'))
+                                    @php
+                                        $semester = $request->semester;
+                                        $monthsToShow =
+                                            $semester == 01
+                                                ? ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni']
+                                                : ['Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+                                    @endphp
+                                    @foreach ($monthsToShow as $monthName)
+                                        <th>{{ $monthName }}</th>
+                                    @endforeach
+                                @else
+                                    @foreach (['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'] as $monthName)
+                                        <th>{{ $monthName }}</th>
+                                    @endforeach
+                                @endif
+                            </tr>
+                        </thead>
+
+                        <tbody>
                             @php
-                                $grandTotal += $bidangTotal;
+                                $grandTotal = 0;
+                                $monthlyTotals = array_fill_keys($monthsToShow, 0);
                             @endphp
-                        @endforeach
-                    </tbody>
-                    <tfoot>
-                        <tr>
-                            <th colspan="2" style="text-align:right">Total:</th>
-                            @foreach ($monthlyTotals as $monthlyTotal)
-                                <th>{{ $monthlyTotal }}</th>
+                            @foreach ($bidang as $BItem)
+                                <tr>
+                                    <td scope="row">{{ $loop->iteration }}</td>
+                                    <td>{{ $BItem->nama_bidang }}</td>
+
+                                    @foreach ($monthsToShow as $month)
+                                        @php
+                                            $poin = isset($bidangTotals[$BItem->id_bidang][$month])
+                                                ? $bidangTotals[$BItem->id_bidang][$month]
+                                                : 0;
+                                            $monthlyTotals[$month] += $poin;
+                                        @endphp
+                                        <td>{{ $poin }}</td>
+                                    @endforeach
+                                    <td>
+                                        @php
+                                            $bidangTotal = isset($bidangTotals[$BItem->id_bidang])
+                                                ? array_sum($bidangTotals[$BItem->id_bidang])
+                                                : 0;
+                                        @endphp
+                                        {{ $bidangTotal }}
+                                    </td>
+                                </tr>
+                                @php
+                                    $grandTotal += $bidangTotal;
+                                @endphp
                             @endforeach
-                            <th>{{ $grandTotal }}</th>
-                        </tr>
-                    </tfoot>
-                </table>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th colspan="2" style="text-align:right">Total:</th>
+                                @foreach ($monthlyTotals as $monthlyTotal)
+                                    <th>{{ $monthlyTotal }}</th>
+                                @endforeach
+                                <th>{{ $grandTotal }}</th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
             </div>
         </div>
-    </div>
+    @endif
+
+    @if (auth()->user() && auth()->user()->role->nama_role == 'Pimpinan')
+        <div class="card">
+            <div class="card-body">
+                <div class="table-responsive-lg mt-4">
+                    <table id="tbidangpim" class="table table-sm text-nowrap text-hover table-striped" style="width=100%">
+                        <thead class="thead-successv2">
+                            <tr>
+                                <th>No.</th>
+                                <th>Nama Bidang</th>
+                                <th>Total Poin</th>
+                                <th>Ranking</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            @foreach ($bidang as $BItem)
+                                <tr>
+                                    <td>{{ $loop->iteration }}.</td>
+                                    <td>{{ $BItem->nama_bidang }}</td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    @endif
 
 @endsection

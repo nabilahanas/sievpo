@@ -195,7 +195,32 @@ Route::middleware('check.role:Admin,Mahasiswa')->group(function () {
 });
 
 //PIMPINAN
-Route::middleware('check.role:Admin,Pimpinan,Mahasiswa')->group(function () {
-    
+Route::middleware('check.role:Pimpinan,Admin,Mahasiswa')->group(function () {
+    Route::prefix("bulanan")->group(function(){
+        Route::get('karyawan', [BulananController::class, 'karyawan'])->name('bulanan.karyawan');
+        Route::get('bidang', [BulananController::class, 'bidang'])->name('bulanan.bidang');
+        Route::get('bkph', [BulananController::class, 'bkph'])->name('bulanan.bkph');
+        Route::get('krph', [BulananController::class, 'krph'])->name('bulanan.krph');
+        Route::get('asper', [BulananController::class, 'asper'])->name('bulanan.asper');
 
-});
+        Route::get('export/{search?}', [BulananController::class, 'export'])->name('bulanan.exportkaryawan');
+        Route::get('exportbidang/{search?}', [BulananController::class, 'exportbidang'])->name('bulanan.exportbidang');
+        Route::get('exportbkph/{search?}', [BulananController::class, 'exportbkph'])->name('bulanan.exportbkph');
+        Route::get('exportkrph/{search?}', [BulananController::class, 'exportkrph'])->name('bulanan.exportkrph');
+        Route::get('exportasper/{search?}', [BulananController::class, 'exportasper'])->name('bulanan.exportasper');
+    });
+
+    Route::prefix("total")->group(function (){
+        Route::get('karyawan', [TotalController::class, 'karyawan'])->name('total.karyawan');
+        Route::get('bidang', [TotalController::class, 'bidang'])->name('total.bidang');
+        Route::get('bkph', [TotalController::class, 'bkph'])->name('total.bkph');
+        Route::get('krph', [TotalController::class, 'krph'])->name('total.krph');
+        Route::get('asper', [TotalController::class, 'asper'])->name('total.asper');
+
+        Route::get('exportkaryawan/{search?}', [TotalController::class, 'exportkaryawan'])->name('total.exportkaryawan');
+        Route::get('exportbidang/{search?}', [TotalController::class, 'exportbidang'])->name('total.exportbidang');
+        Route::get('exportbkph/{search?}', [TotalController::class, 'exportbkph'])->name('total.exportbkph');
+        Route::get('exportkrph/{search?}', [TotalController::class, 'exportkrph'])->name('total.exportkrph');
+        Route::get('exportasper/{search?}', [TotalController::class, 'exportasper'])->name('total.exportasper');
+    });
+   });

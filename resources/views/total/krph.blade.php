@@ -6,165 +6,201 @@
 
     <title>Rekap Total KRPH</title>
 
-    <div class="card">
-        <div class="card-body">
-            <a class="btn btn-outline-success"
-                href="{{ route('total.exportkrph') }}?{{ request()->has('semester') && request()->has('year') ? 'semester=' . request()->semester . '&year=' . request()->year : 'search=' . '' }}">Download
-                Excel</a>
-            <!-- Chart -->
-            <div class="row mt-4">
-                <section class="col-lg-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <div class="d-flex justify-content-between align-items-center">
-                                <h3 class="card-title" style="color: #007bff; font-weight: 600;">
-                                    KRPH <?php echo \Carbon\Carbon::now()->locale('id')->isoFormat('MMMM YYYY'); ?>
-                                </h3>                                
-                                <button class="btn btn-sm btn-outline-primary"><i class="bi bi-download"></i>
-                                    Download</button>
+    @if ((auth()->user() && auth()->user()->role->nama_role == 'Admin') || auth()->user()->role->nama_role == 'Mahasiswa')
+        <div class="card">
+            <div class="card-body">
+                <a class="btn btn-outline-success"
+                    href="{{ route('total.exportkrph') }}?{{ request()->has('semester') && request()->has('year') ? 'semester=' . request()->semester . '&year=' . request()->year : 'search=' . '' }}">Download
+                    Excel</a>
+                <!-- Chart -->
+                <div class="row mt-4">
+                    <section class="col-lg-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <h3 class="card-title" style="color: #007bff; font-weight: 600;">
+                                        KRPH <?php echo \Carbon\Carbon::now()->locale('id')->isoFormat('MMMM YYYY'); ?>
+                                    </h3>
+                                    <button class="btn btn-sm btn-outline-primary"><i class="bi bi-download"></i>
+                                        Download</button>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div id="krphPoin" height="60"></div>
                             </div>
                         </div>
-                        <div class="card-body">
-                            <div id="krphPoin" height="60"></div>
-                        </div>
-                    </div>
-                </section>
-            </div>
-            <div class="table-responsive-lg mt-4">
-                <table id="tkrph" class="table table-sm text-nowrap text-hover table-striped" style="width=100%">
-                    <thead class="thead-successv2">
-                        <tr>
-                            <th rowspan="2">No.</th>
-                            <th rowspan="2">Nama</th>
-                            <th rowspan="2">Nama KRPH</th>
-                            @php
-                                $monthsToShow = [];
-                                if ($request->has('semester') && $request->has('year')) {
-                                    $semester = $request->semester;
-                                    $monthsToShow =
-                                        $semester == 1
-                                            ? ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni']
-                                            : ['Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
-                                } else {
-                                    $monthsToShow = [
-                                        'Januari',
-                                        'Februari',
-                                        'Maret',
-                                        'April',
-                                        'Mei',
-                                        'Juni',
-                                        'Juli',
-                                        'Agustus',
-                                        'September',
-                                        'Oktober',
-                                        'November',
-                                        'Desember',
-                                    ];
-                                }
-                            @endphp
-                            <th colspan="{{ count($monthsToShow) }}" style="text-align: center">{{ $currentYear }}</th>
-                            <th rowspan="2">Total</th>
-                        </tr>
-                        <tr>
-                            @if ($request->has('semester') && $request->has('year'))
-                                @php
-                                    $semester = $request->semester;
-                                    $monthsToShow =
-                                        $semester == 01
-                                            ? ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni']
-                                            : ['Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
-                                @endphp
-                                @foreach ($monthsToShow as $monthName)
-                                    <th>{{ $monthName }}</th>
-                                @endforeach
-                            @else
-                                @foreach (['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'] as $monthName)
-                                    <th>{{ $monthName }}</th>
-                                @endforeach
-                            @endif
-                        </tr>
-                    </thead>
-
-                    <tbody>
-                        @php
-                            $grandTotal = 0;
-                            $monthlyTotals = array_fill_keys($monthsToShow, 0);
-                            $krphTotalsArray = []; // Inisialisasi array untuk menyimpan data $krphTotal
-                        @endphp
-                        @foreach ($jabatan1 as $krph)
+                    </section>
+                </div>
+                <div class="table-responsive-lg mt-4">
+                    <table id="tkrph" class="table table-sm text-nowrap text-hover table-striped" style="width=100%">
+                        <thead class="thead-successv2">
                             <tr>
-                                <td scope="row">{{ $loop->iteration }}.</td>
-                                <td>{{ $krph->nama_user }}</td>
-                                <td>{{ $krph->jabatan->nama_jabatan }}</td>
+                                <th rowspan="2">No.</th>
+                                <th rowspan="2">Nama</th>
+                                <th rowspan="2">Nama KRPH</th>
                                 @php
-                                    $krphTotal = isset($krphTotals[$krph->id_user])
-                                        ? array_sum($krphTotals[$krph->id_user])
-                                        : 0;
-                                    $krphTotalsArray[] = $krphTotal; // Tambahkan $krphTotal ke dalam array
+                                    $monthsToShow = [];
+                                    if ($request->has('semester') && $request->has('year')) {
+                                        $semester = $request->semester;
+                                        $monthsToShow =
+                                            $semester == 1
+                                                ? ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni']
+                                                : ['Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+                                    } else {
+                                        $monthsToShow = [
+                                            'Januari',
+                                            'Februari',
+                                            'Maret',
+                                            'April',
+                                            'Mei',
+                                            'Juni',
+                                            'Juli',
+                                            'Agustus',
+                                            'September',
+                                            'Oktober',
+                                            'November',
+                                            'Desember',
+                                        ];
+                                    }
                                 @endphp
-                                @foreach ($monthsToShow as $month)
-                                    @php
-                                        $poin = isset($krphTotals[$krph->id_user][$month])
-                                            ? $krphTotals[$krph->id_user][$month]
-                                            : 0;
-                                        $monthlyTotals[$month] += $poin;
-                                    @endphp
-                                    <td>{{ $poin }}</td>
-                                @endforeach
-                                <td>{{ $krphTotal }}</td>
+                                <th colspan="{{ count($monthsToShow) }}" style="text-align: center">{{ $currentYear }}</th>
+                                <th rowspan="2">Total</th>
                             </tr>
+                            <tr>
+                                @if ($request->has('semester') && $request->has('year'))
+                                    @php
+                                        $semester = $request->semester;
+                                        $monthsToShow =
+                                            $semester == 01
+                                                ? ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni']
+                                                : ['Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+                                    @endphp
+                                    @foreach ($monthsToShow as $monthName)
+                                        <th>{{ $monthName }}</th>
+                                    @endforeach
+                                @else
+                                    @foreach (['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'] as $monthName)
+                                        <th>{{ $monthName }}</th>
+                                    @endforeach
+                                @endif
+                            </tr>
+                        </thead>
+
+                        <tbody>
                             @php
-                                $grandTotal += $krphTotal;
+                                $grandTotal = 0;
+                                $monthlyTotals = array_fill_keys($monthsToShow, 0);
+                                $krphTotalsArray = []; // Inisialisasi array untuk menyimpan data $krphTotal
                             @endphp
-                        @endforeach
-                    </tbody>
-                    <tfoot>
-                        <tr>
-                            <th colspan="3" style="text-align:right">Total:</th>
-                            @foreach ($monthlyTotals as $monthlyTotal)
-                                <th>{{ $monthlyTotal }}</th>
+                            @foreach ($jabatan1 as $krph)
+                                <tr>
+                                    <td scope="row">{{ $loop->iteration }}.</td>
+                                    <td>{{ $krph->nama_user }}</td>
+                                    <td>{{ $krph->jabatan->nama_jabatan }}</td>
+                                    @php
+                                        $krphTotal = isset($krphTotals[$krph->id_user])
+                                            ? array_sum($krphTotals[$krph->id_user])
+                                            : 0;
+                                        $krphTotalsArray[] = $krphTotal; // Tambahkan $krphTotal ke dalam array
+                                    @endphp
+                                    @foreach ($monthsToShow as $month)
+                                        @php
+                                            $poin = isset($krphTotals[$krph->id_user][$month])
+                                                ? $krphTotals[$krph->id_user][$month]
+                                                : 0;
+                                            $monthlyTotals[$month] += $poin;
+                                        @endphp
+                                        <td>{{ $poin }}</td>
+                                    @endforeach
+                                    <td>{{ $krphTotal }}</td>
+                                </tr>
+                                @php
+                                    $grandTotal += $krphTotal;
+                                @endphp
                             @endforeach
-                            <th>{{ $grandTotal }}</th>
-                        </tr>
-                    </tfoot>
-                </table>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th colspan="3" style="text-align:right">Total:</th>
+                                @foreach ($monthlyTotals as $monthlyTotal)
+                                    <th>{{ $monthlyTotal }}</th>
+                                @endforeach
+                                <th>{{ $grandTotal }}</th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
             </div>
         </div>
-    </div>
+    @endif
+
+    @if (auth()->user() && auth()->user()->role->nama_role == 'Pimpinan')
+        <div class="card">
+            <div class="card-body">
+                <div class="table-responsive-lg mt-4">
+                    <table id="tkrphpim" class="table table-sm text-nowrap text-hover table-striped" style="width=100%">
+                        <thead class="thead-successv2">
+                            <tr>
+                                <th>No.</th>
+                                <th>Nama Karyawan</th>
+                                <th>Nama KRPH</th>
+                                <th>Total Poin</th>
+                                <th>Ranking</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            @foreach ($jabatan1 as $krph)
+                                <tr>
+                                    <td>{{ $loop->iteration }}.</td>
+                                    <td>{{ $krph->nama_user }}</td>
+                                    <td>{{ $krph->jabatan->nama_jabatan }}</td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    @endif
 
 @endsection
 
 @section('script')
     <script src="https://code.highcharts.com/highcharts.js"></script>
-    <script>
-        Highcharts.chart('krphPoin', {
-            chart: {
-                type: 'column'
-            },
-            title: {
-                text: 'Grafik Eviden Poin KRPH',
-                align: 'center'
-            },
-            xAxis: {
-                categories: {!! json_encode($categories) !!},
-                crosshair: true,
-            },
-            yAxis: {
-                min: 0,
+    @if ((auth()->user() && auth()->user()->role->nama_role == 'Admin') || auth()->user()->role->nama_role == 'Mahasiswa')
+        <script>
+            Highcharts.chart('krphPoin', {
+                chart: {
+                    type: 'column'
+                },
                 title: {
-                    text: 'Poin'
-                }
-            },
-            plotOptions: {
-                column: {
-                    pointPadding: 0.2,
-                    borderWidth: 0
-                }
-            },
-            series: [{
-                name: 'Poin',
-                data: {!! json_encode($krphTotalsArray) !!} // Gunakan data array yang berisi $krphTotal
-            }]
-        });
-    </script>
+                    text: 'Grafik Eviden Poin KRPH',
+                    align: 'center'
+                },
+                xAxis: {
+                    categories: {!! json_encode($categories) !!},
+                    crosshair: true,
+                },
+                yAxis: {
+                    min: 0,
+                    title: {
+                        text: 'Poin'
+                    }
+                },
+                plotOptions: {
+                    column: {
+                        pointPadding: 0.2,
+                        borderWidth: 0
+                    }
+                },
+                series: [{
+                    name: 'Poin',
+                    data: {!! json_encode($krphTotalsArray) !!} // Gunakan data array yang berisi $krphTotal
+                }]
+            });
+        </script>
+    @endif
 @endsection

@@ -142,6 +142,11 @@
     @if (auth()->user() && auth()->user()->role->nama_role == 'Pimpinan')
         <div class="card">
             <div class="card-body">
+                <div class="card">
+                    <div class="card-body">
+                        <div id="tKaryawanPim" height="60"></div>
+                    </div>
+                </div>
                 <div class="table-responsive mt-4">
                     <table id="tkaryawanpim" class="table table-sm text-nowrap text-hover table-striped"
                         style="width: 100%">
@@ -154,7 +159,7 @@
                                 <th>Ranking</th>
                             </tr>
                         </thead>
-                        <tbody style="overflow-x: auto;">
+                        <tbody>
                             @php
                                 $monthsToShow = [];
                                 // Mengurutkan pengguna berdasarkan total poin
@@ -166,13 +171,22 @@
 
                                 // Menginisialisasi peringkat
                                 $ranking = 1;
+
+                                $pieData = [];
+                                foreach ($sortedUsers as $UItem) {
+                                    $userTotal = isset($karyawanTotals[$UItem->id_user])
+                                        ? array_sum($karyawanTotals[$UItem->id_user])
+                                        : 0;
+                                    $pieData[] = ['name' => $UItem->nama_user, 'y' => $userTotal];
+                                }
+
                             @endphp
 
                             @foreach ($sortedUsers as $UItem)
                                 <tr>
                                     <td scope="row">{{ $loop->iteration }}.</td>
                                     <td>{{ $UItem->nama_user }}</td>
-                                    <td>{{ $UItem->jabatan->nama_jabatan}}</td>
+                                    <td>{{ $UItem->jabatan->nama_jabatan }}</td>
                                     <td>
                                         @php
                                             $userTotal = isset($karyawanTotals[$UItem->id_user])
@@ -188,7 +202,6 @@
                                 @endphp
                             @endforeach
                         </tbody>
-
                     </table>
                 </div>
             </div>
@@ -227,6 +240,52 @@
                 series: [{
                     name: 'Poin',
                     data: {!! json_encode(array_values($monthlyTotals)) !!}
+                }]
+            });
+        </script>
+    @endif
+
+    @if (auth()->user() && auth()->user()->role->nama_role == 'Pimpinan')
+        <script>
+            Highcharts.chart('tKaryawanPim', {
+                chart: {
+                    type: 'pie'
+                },
+                title: {
+                    text: 'Ranking Karyawan <?php echo date('M Y'); ?>',
+                    align: 'left',
+                    style: {
+                        color: '#007bff'
+                    }
+                },
+                // plotOptions: {
+                //     series: {
+                //         allowPointSelect: true,
+                //         cursor: 'pointer',
+                //         dataLabels: [{
+                //             enabled: true,
+                //             distance: 20
+                //         }, {
+                //             enabled: true,
+                //             distance: -40,
+                //             format: '{point.percentage:.1f}%',
+                //             style: {
+                //                 fontSize: '1.2em',
+                //                 textOutline: 'none',
+                //                 opacity: 0.7
+                //             },
+                //             filter: {
+                //                 operator: '>',
+                //                 property: 'percentage',
+                //                 value: 10
+                //             }
+                //         }]
+                //     }
+                // },
+                series: [{
+                    name: 'Poin',
+                    colorByPoint: true,
+                    data: {!! json_encode($pieData) !!}
                 }]
             });
         </script>

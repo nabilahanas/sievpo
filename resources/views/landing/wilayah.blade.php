@@ -29,6 +29,7 @@
         <section id="blog" class="blog">
             <div class="container" data-aos="fade-up">
                 <article class="blog-details">
+
                     <div class="row justify-content-center position-relative h-100">
                         <h3 class="title text-center">WILAYAH KERJA</h3>
                         <div class="post-img">
@@ -39,32 +40,21 @@
                         </div>
                         <div class="row gy-4">
                             <table class="table table-responsive">
-                                <thead class="thead-perhutani">
-                                    <tr>
-                                        <th scope="col">Wilayah Barat</th>
-                                        <th scope="col">Wilayah Timur</th>
-                                    </tr>
-                                </thead>
                                 <tbody>
-                                    <tr>
+                                    <tr class="thead-perhutani">
+                                        <th scope="row">Wilayah Barat</th>
                                         <td>Barang</td>
-                                        <td>Kedungjati</td>
-                                    </tr>
-                                    <tr>
                                         <td>Jembolo Selatan</td>
-                                        <td>Padas</td>
-
-                                    </tr>
-                                    <tr>
                                         <td>Jembolo Utara</td>
-                                        <td>Manggar</td>
-                                    </tr>
-                                    <tr>
                                         <td>Penggaron</td>
-                                        <td>Tempuran</td>
-                                    </tr>
-                                    <tr>
                                         <td>Tanggung</td>
+                                    </tr>
+                                    <tr class="thead-perhutani">
+                                        <th scope="row">Wilayah Timur</th>
+                                        <td>Kedungjati</td>
+                                        <td>Padas</td>
+                                        <td>Manggar</td>
+                                        <td>Tempuran</td>
                                     </tr>
                                 </tbody>
                             </table>

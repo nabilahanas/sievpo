@@ -1385,7 +1385,7 @@ $(document).ready(function () {
 // Jabatan
 $(document).ready(function () {
     var table = $("#jabatan").DataTable({
-        columnDefs: [{ orderable: false, targets: 4 }],
+        columnDefs: [{ orderable: false, targets: 5 }],
         scrollCollapse: true,
         displayLength: 25,
     });
@@ -1405,8 +1405,8 @@ $(document).ready(function () {
 $(document).ready(function () {
     var table = $("#bidang").DataTable({
         scrollCollapse: true,
-        columnDefs: [{ orderable: false, targets: 3 }],
         displayLength: 25,
+        paging: false,
     });
 
     // Order by the grouping
@@ -1424,8 +1424,8 @@ $(document).ready(function () {
 $(document).ready(function () {
     var table = $("#shift").DataTable({
         scrollCollapse: true,
-        columnDefs: [{ orderable: false, targets: 5 }],
         displayLength: 25,
+        paging: false,
     });
 
     // Order by the grouping

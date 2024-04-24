@@ -139,6 +139,11 @@
     @if (auth()->user() && auth()->user()->role->nama_role == 'Pimpinan')
         <div class="card">
             <div class="card-body">
+                <div class="card">
+                    <div class="card-body">
+                        <div id="tAsperPim" height="60"></div>
+                    </div>
+                </div>
                 <div class="table-responsive-lg mt-4">
                     <table id="tasperpim" class="table table-sm text-nowrap table-hover table-striped" style="width: 100%">
                         <thead class="thead-successv2">
@@ -163,6 +168,15 @@
 
                                 // Menginisialisasi peringkat
                                 $ranking = 1;
+
+                                $pieData = [];
+                                foreach ($sortedAsper as $asper) {
+                                    $asperTotal = isset($asperTotals[$asper->id_user])
+                                        ? array_sum($asperTotals[$asper->id_user])
+                                        : 0;
+                                    $pieData[] = ['name' => $asper->nama_user, 'y' => $asperTotal,
+                                    ];
+                                }
                             @endphp
 
                             @foreach ($sortedAsper as $asper)
@@ -227,4 +241,50 @@
             });
         </script>
     @endif
+
+    @if (auth()->user() && auth()->user()->role->nama_role == 'Pimpinan')
+    <script>
+        Highcharts.chart('tAsperPim', {
+            chart: {
+                type: 'pie'
+            },
+            title: {
+                text: 'Ranking Asper/KBKPH <?php echo date('M Y'); ?>',
+                align: 'left',
+                style: {
+                    color: '#007bff'
+                }
+            },
+            // plotOptions: {
+            //     series: {
+            //         allowPointSelect: true,
+            //         cursor: 'pointer',
+            //         dataLabels: [{
+            //             enabled: true,
+            //             distance: 20
+            //         }, {
+            //             enabled: true,
+            //             distance: -40,
+            //             format: '{point.percentage:.1f}%',
+            //             style: {
+            //                 fontSize: '1.2em',
+            //                 textOutline: 'none',
+            //                 opacity: 0.7
+            //             },
+            //             filter: {
+            //                 operator: '>',
+            //                 property: 'percentage',
+            //                 value: 10
+            //             }
+            //         }]
+            //     }
+            // },
+            series: [{
+                name: 'Poin',
+                colorByPoint: true,
+                data: {!! json_encode($pieData) !!}
+            }]
+        });
+    </script>
+@endif
 @endsection

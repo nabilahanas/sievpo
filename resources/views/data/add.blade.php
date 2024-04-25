@@ -87,9 +87,9 @@
                         <input class="form-control" type="file" id="foto" name="foto" accept="image/*" required>
                         <small class="form-text text-danger">Foto <b>wajib</b> memiliki timestamp!</small>
                         @if(isset($data['foto'])) <!-- Check if image exists in data -->
-                            <img src="{{ asset('foto-eviden/' . $data['foto']) }}" class="img-fluid" id="previewImage" style="max-width: 320px;">
+                            <img src="{{ asset('foto-eviden/' . $data['foto']) }}" class="img-fluid" id="previewImage" style="width: 400px;">
                         @else
-                            <img src="https://www.svgrepo.com/show/508699/landscape-placeholder.svg" class="img-fluid" id="previewImage" style="max-width: 320px;">
+                            <img class="img-fluid" id="previewImage" style="max-width: 400px;">
                         @endif
                     </div>
                 </div>

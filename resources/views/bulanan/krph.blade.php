@@ -1,9 +1,9 @@
 @extends('layouts.main')
 
-@section('title', 'Rekap Bulanan')
+@section('title', 'Rekap Bulanan KRPH')
 
 @section('content')
-    <title>Rekap Bulanan</title>
+    <title>Rekap Bulanan KRPH</title>
 
     @if ((auth()->user() && auth()->user()->role->nama_role == 'Admin') || auth()->user()->role->nama_role == 'Mahasiswa')
         <div class="card">

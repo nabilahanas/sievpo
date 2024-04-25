@@ -187,26 +187,46 @@
                     </section>
                 </div>
 
-                <!-- Grafik Perbandingan -->
                 <div class="row">
-                    <section class="col-lg-12">
-                        <div class="card">
-                            <div class="card-header">
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <h3 class="card-title" style="color: #007bff; font-weight: 600;">
-                                        Perbandingan Rerata Poin Seluruh Karyawan, Bidang, BKPH, KRPH, dan Asper/KBKPH
-                                    </h3>
-                                    <button class="btn btn-sm btn-outline-primary"><i class="bi bi-download"></i>
-                                        Download</button>
+                    <!-- KARYAWAN -->
+                    <div class="col-lg-6">
+                        <section>
+                            <div class="card">
+                                <div class="card-header">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <h3 class="card-title" style="color: #007bff; font-weight: 600;">
+                                            Total Poin Karyawan <?php echo date('M Y'); ?>
+                                        </h3>
+                                        <button class="btn btn-sm btn-outline-primary"><i class="bi bi-download"></i>
+                                            Download</button>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <canvas id="adminP1" height="60"></canvas>
                                 </div>
                             </div>
-                            <div class="card-body">
-                                <canvas id="adminP" height="60"></canvas>
+                        </section>
+                    </div>
+                    <!-- BIDANG -->
+                    <div class="col-lg-6">
+                        <section>
+                            <div class="card">
+                                <div class="card-header">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <h3 class="card-title" style="color: #007bff; font-weight: 600;">
+                                            Total Poin Bidang <?php echo date('M Y'); ?>
+                                        </h3>
+                                        <button class="btn btn-sm btn-outline-primary"><i class="bi bi-download"></i>
+                                            Download</button>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <canvas id="adminP2" height="60"></canvas>
+                                </div>
                             </div>
-                        </div>
-                    </section>
+                        </section>
+                    </div>
                 </div>
-            </div>
         </section>
     @endif
 
@@ -399,7 +419,7 @@
     <script>
         var monthsToShow = {!! json_encode($monthsToShow) !!};
         var monthlyTotals = {!! json_encode(array_values($monthlyTotals)) !!};
-    
+
         Highcharts.chart('bulanPoin', {
             chart: {
                 type: 'column'

@@ -12,6 +12,12 @@
                     href="{{ route('bulanan.exportasper') }}?{{ request()->has('bulan') && request()->has('tahun') ? 'bulan=' . request()->bulan . '&tahun=' . request()->tahun : '' }}">Download
                     Excel</a>
 
+                    <div class="card mt-4">
+                        <div class="card-body">
+                            <div id="bAsperAd" height="60"></div>
+                        </div>
+                    </div>
+
                 <div class="table-responsive-lg mt-4">
                     @if (request()->has('bulan') && request()->has('tahun'))
                         <div style="padding: 10px; font-size: 15px; font-weight: bold;">
@@ -52,6 +58,7 @@
                             @php
                                 $grandTotal = 0;
                                 $dailyTotals = array_fill(1, $daysInMonth, 0);
+                                $jabatanTotals = [];
                             @endphp
                             @foreach ($jabatan2 as $item)
                                 @php
@@ -86,6 +93,7 @@
                                     <td>{{ $total }}</td>
                                 </tr>
                                 @php
+                                    $jabatanTotals[] = $total;
                                     $grandTotal += $total;
                                 @endphp
                             @endforeach
@@ -239,6 +247,50 @@
 @endsection
 
 @section('script')
+    <!-- ADMIN -->
+    @if ((auth()->user() && auth()->user()->role->nama_role == 'Admin') || auth()->user()->role->nama_role == 'Mahasiswa')
+        <script>
+                        var currentMonth = "<?php echo $currentMonth; ?>";
+            Highcharts.chart('bAsperAd', {
+                chart: {
+                    type: 'column'
+                },
+                title: {
+                    text: 'Rekap Asper/KBKPH ' + currentMonth,
+                    align: 'center',
+                    style: {
+                        color: '#007bff'
+                    }
+                },
+                xAxis: {
+                    categories: [
+                        @foreach ($jabatan2 as $item)
+                            '{{ $item->nama_user }}',
+                        @endforeach
+                    ],
+                    crosshair: true,
+                },
+                yAxis: {
+                    min: 0,
+                    title: {
+                        text: 'Poin'
+                    }
+                },
+                plotOptions: {
+                    column: {
+                        pointPadding: 0.2,
+                        borderWidth: 0
+                    }
+                },
+                series: [{
+                    name: 'Poin',
+                    data: {!! json_encode($jabatanTotals) !!}
+                }]
+            });
+        </script>
+    @endif
+
+    <!-- PIMPINAN -->
     @if (auth()->user() && auth()->user()->role->nama_role == 'Pimpinan')
         <script>
             var currentMonth = "<?php echo $currentMonth; ?>";

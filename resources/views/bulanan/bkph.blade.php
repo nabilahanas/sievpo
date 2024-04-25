@@ -12,6 +12,12 @@
                     href="{{ route('bulanan.exportbkph') }}?{{ request()->has('bulan') && request()->has('tahun') ? 'bulan=' . request()->bulan . '&tahun=' . request()->tahun : '' }}">Download
                     Excel</a>
 
+                <div class="card mt-4">
+                    <div class="card-body">
+                        <div id="bBkphAd" height="60"></div>
+                    </div>
+                </div>
+
                 <div class="table-responsive-lg mt-4">
                     <div class="table-responsive-lg mt-4">
                         @if (request()->has('bulan') && request()->has('tahun'))
@@ -19,7 +25,8 @@
                                 Hasil Pencarian: {{ $currentMonth }}
                             </div>
                         @endif
-                        <table id="bbkph" class="table table-sm text-nowrap text-hover table-striped" style="width: 100%">
+                        <table id="bbkph" class="table table-sm text-nowrap text-hover table-striped"
+                            style="width: 100%">
 
                             <thead class="thead-successv2">
                                 <tr>
@@ -52,6 +59,7 @@
                                 @php
                                     $grandTotal = 0;
                                     $dailyTotals = array_fill(1, $daysInMonth, 0);
+                                    $jabatanTotals = []; // Array untuk menyimpan total poin bidang
                                 @endphp
                                 @foreach ($jabatan as $item)
                                     @php
@@ -88,11 +96,15 @@
 
                                         <td>{{ $total }}</td>
                                     </tr>
+
+                                    {{-- Menambahkan total poin bidang ke dalam array --}}
                                     @php
+                                        $jabatanTotals[] = ['name' => $item->bagian, 'y' => $total];
                                         $grandTotal += $total;
                                     @endphp
                                 @endforeach
                             </tbody>
+
                             <tfoot>
                                 <tr>
                                     <th colspan="2" style="text-align:right">Total:</th>
@@ -106,6 +118,7 @@
                     </div>
                 </div>
             </div>
+        </div>
     @endif
 
     @if (auth()->user() && auth()->user()->role->nama_role == 'Pimpinan')
@@ -243,6 +256,32 @@
 @endsection
 
 @section('script')
+    <!-- ADMIN -->
+    @if ((auth()->user() && auth()->user()->role->nama_role == 'Admin') || auth()->user()->role->nama_role == 'Mahasiswa')
+    <script>
+        var currentMonth = "<?php echo $currentMonth; ?>";
+
+        Highcharts.chart('bBkphAd', {
+            chart: {
+                type: 'pie'
+            },
+            title: {
+                text: 'Rekap BKPH ' + currentMonth,
+                align: 'center',
+                style: {
+                    color: '#007bff'
+                }
+            },
+            series: [{
+                name: 'Poin',
+                colorByPoint: true,
+                data: {!! json_encode($jabatanTotals) !!}
+            }]
+        });
+    </script>
+    @endif
+
+    <!-- PIMPINAN -->
     @if (auth()->user() && auth()->user()->role->nama_role == 'Pimpinan')
         <script>
             var currentMonth = "<?php echo $currentMonth; ?>";

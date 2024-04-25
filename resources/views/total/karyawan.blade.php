@@ -13,7 +13,7 @@
                     href="{{ route('total.exportkaryawan') }}?{{ request()->has('semester') && request()->has('year') ? 'semester=' . request()->semester . '&year=' . request()->year : 'search=' . '' }}">Download
                     Excel</a>
                 <!-- Chart -->
-                {{-- <div class="card">
+                {{-- <div class="card mt-4">
                     <div class="card-body">
                         <div id="tKarAd"></div>
                     </div>
@@ -200,12 +200,6 @@
         </div>
     @endif
 @endsection
-
-{{-- <script>
-    var monthlyTotals = {!! json_encode($monthlyTotals) !!};
-    var monthsToShow = {!! json_encode($monthsToShow) !!};
-</script> --}}
-
 
 @section('script')
     <!-- ADMIN -->

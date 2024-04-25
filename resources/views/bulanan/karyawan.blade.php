@@ -102,9 +102,11 @@
                                     </tr>
                                     @php
                                         $grandTotal += $total;
+                                        $user->total = $total; // Assign total to the user object for use in JavaScript
                                     @endphp
                                 @endforeach
                             </tbody>
+
                             <tfoot>
                                 <tr>
                                     <th colspan="3" style="text-align:right">Total:</th>
@@ -118,6 +120,7 @@
                     </div>
                 </div>
             </div>
+        </div>
     @endif
 
     @if (auth()->user() && auth()->user()->role->nama_role == 'Pimpinan')
@@ -261,13 +264,24 @@
     <!-- ADMIN -->
     @if ((auth()->user() && auth()->user()->role->nama_role == 'Admin') || auth()->user()->role->nama_role == 'Mahasiswa')
         <script>
+            var currentMonth = "<?php echo $currentMonth; ?>";
             Highcharts.chart('bKarAd', {
                 chart: {
                     type: 'column'
                 },
-                title: false,
+                title: {
+                    text: 'Rekap Karyawan ' + currentMonth,
+                    align: 'center',
+                    style: {
+                        color: '#007bff'
+                    }
+                },
                 xAxis: {
-                    categories: {!! json_encode($users->pluck('nama_user')) !!},
+                    categories: [
+                        @foreach ($users as $user)
+                            '{{ $user->nama_user }}',
+                        @endforeach
+                    ],
                     crosshair: true,
                 },
                 yAxis: {
@@ -284,7 +298,11 @@
                 },
                 series: [{
                     name: 'Poin',
-                    data: {!! json_encode([$total]) !!}
+                    data: [
+                        @foreach ($users as $user)
+                            {{ $user->total }},
+                        @endforeach
+                    ]
                 }]
             });
         </script>

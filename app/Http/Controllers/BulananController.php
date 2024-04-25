@@ -16,6 +16,7 @@ use App\Exports\BbkphExport;
 use App\Exports\BkrphExport;
 use App\Exports\BasperExport;
 use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\App;
 
 class BulananController extends Controller
 {
@@ -48,8 +49,9 @@ class BulananController extends Controller
 
     public function karyawan(Request $request)
     {
+        App::setLocale('id');
         $currentDate = Carbon::now();
-        $currentMonth = $currentDate->format('F Y');
+        $currentMonth = $currentDate->translatedFormat('F Y');
     
         $users = User::where('id_role', '3')->get();
         $bidang = Bidang::all();
@@ -59,7 +61,7 @@ class BulananController extends Controller
     
         if ($request->has('bulan') && $request->has('tahun')) {
             $searchMonth = Carbon::createFromDate($request->tahun, $request->bulan, 1);
-            $currentMonth = $searchMonth->format('F Y');
+            $currentMonth = $searchMonth->translatedFormat('F Y');
     
             // Ambil semua data untuk bulan yang diminta
             $datas = Data::whereYear('created_at', $request->tahun)
@@ -87,8 +89,9 @@ class BulananController extends Controller
     
     public function bidang(Request $request)
     {
+        App::setLocale('id');
         $currentDate = Carbon::now();
-        $currentMonth = $currentDate->format('F Y');
+        $currentMonth = $currentDate->translatedFormat('F Y');
     
         $users = User::where('id_role', '3')->get();
         $bidang = Bidang::all();
@@ -98,7 +101,7 @@ class BulananController extends Controller
     
         if ($request->has('bulan') && $request->has('tahun')) {
             $searchMonth = Carbon::createFromDate($request->tahun, $request->bulan, 1);
-            $currentMonth = $searchMonth->format('F Y');
+            $currentMonth = $searchMonth->translatedFormat('F Y');
     
             // Ambil semua data untuk bulan yang diminta
             $datas = Data::whereYear('created_at', $request->tahun)
@@ -125,8 +128,9 @@ class BulananController extends Controller
 
     public function bkph(Request $request)
     {
+        App::setLocale('id');
         $currentDate = Carbon::now();
-        $currentMonth = $currentDate->format('F Y');
+        $currentMonth = $currentDate->translatedFormat('F Y');
     
         $users = User::where('id_role', '3')->get();
         $bidang = Bidang::all();
@@ -140,7 +144,7 @@ class BulananController extends Controller
     
         if ($request->has('bulan') && $request->has('tahun')) {
             $searchMonth = Carbon::createFromDate($request->tahun, $request->bulan, 1);
-            $currentMonth = $searchMonth->format('F Y');
+            $currentMonth = $searchMonth->translatedFormat('F Y');
     
             // Ambil semua data untuk bulan yang diminta
             $datas = Data::whereYear('created_at', $request->tahun)
@@ -169,8 +173,9 @@ class BulananController extends Controller
 
     public function krph(Request $request)
     {
+        App::setLocale('id');
         $currentDate = Carbon::now();
-        $currentMonth = $currentDate->format('F Y');
+        $currentMonth = $currentDate->translatedFormat('F Y');
     
         $users = User::where('id_role', '3')->get();
         $bidang = Bidang::all();
@@ -185,7 +190,7 @@ class BulananController extends Controller
     
         if ($request->has('bulan') && $request->has('tahun')) {
             $searchMonth = Carbon::createFromDate($request->tahun, $request->bulan, 1);
-            $currentMonth = $searchMonth->format('F Y');
+            $currentMonth = $searchMonth->translatedFormat('F Y');
     
             // Ambil semua data untuk bulan yang diminta
             $datas = Data::whereYear('created_at', $request->tahun)
@@ -212,8 +217,9 @@ class BulananController extends Controller
 
     public function asper(Request $request)
     {
+        App::setLocale('id');
         $currentDate = Carbon::now();
-        $currentMonth = $currentDate->format('F Y');
+        $currentMonth = $currentDate->translatedFormat('F Y');
     
         $users = User::where('id_role', '3')->get();
         $bidang = Bidang::all();
@@ -228,7 +234,7 @@ class BulananController extends Controller
     
         if ($request->has('bulan') && $request->has('tahun')) {
             $searchMonth = Carbon::createFromDate($request->tahun, $request->bulan, 1);
-            $currentMonth = $searchMonth->format('F Y');
+            $currentMonth = $searchMonth->translatedFormat('F Y');
     
             // Ambil semua data untuk bulan yang diminta
             $datas = Data::whereYear('created_at', $request->tahun)
@@ -249,8 +255,6 @@ class BulananController extends Controller
     
             $data[$asperId][$tanggal] += $item->poin;
         }
-
-
 
         return view ('bulanan.asper', compact('request', 'jabatan2', 'bidang', 'currentMonth', 'data'), ['key' => 'basper']);
     }

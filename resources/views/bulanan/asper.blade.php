@@ -13,7 +13,12 @@
                     Excel</a>
 
                 <div class="table-responsive-lg mt-4">
-                    <table id="basper" class="table table-sm text-nowrap text-hover table-striped" style="width=100%">
+                    @if (request()->has('bulan') && request()->has('tahun'))
+                    <div style="padding: 10px; font-size: 15px; font-weight: bold;">
+                        Hasil Pencarian: {{ $currentMonth }}
+                    </div>
+                @endif
+                    <table id="basper" class="table table-sm text-nowrap text-hover table-striped" style="width:100%">
 
                         <thead class="thead-successv2">
                             <tr>

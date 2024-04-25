@@ -11,6 +11,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Exports\HarianExport;
 use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\App;
 
 class HarianController extends Controller
 {
@@ -23,9 +24,10 @@ class HarianController extends Controller
 
     public function index(Request $request)
     {
+        App::setLocale('id');
         $now = Carbon::now();
 
-        $currentDate = $now->format('d F Y');
+        $currentDate = $now->translatedFormat('d F Y');
 
         $users = User::where('id_role', '3')->get();
         $bidang = Bidang::all();
@@ -36,7 +38,7 @@ class HarianController extends Controller
         if ($request->has('search')) {
             $searchDate = Carbon::parse($request->search)->format('Y-m-d');
             $datas = Data::whereDate('created_at', $searchDate)->get();
-            $currentDate = Carbon::parse($request->search)->format('d F Y');
+            $currentDate = Carbon::parse($request->search)->translatedFormat('d F Y');
         } else {
             $datas = Data::all();
         }

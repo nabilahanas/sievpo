@@ -18,14 +18,22 @@
 
 
             <div class="table-responsive-lg mt-4">
+                @if (request()->has('search'))
+                    <div style="padding: 10px; font-size: 15px; font-weight: bold;">
+                        Hasil Pencarian: {{ $currentDate }}
+                    </div>
+                @endif
+
                 <table id="harian" class="table table-sm text-nowrap table-hover table-striped" style="width: 100%">
+
 
                     <thead class="thead-successv2">
                         <tr>
                             <th rowspan="3">Nama</th>
                             <th rowspan="3">Jabatan</th>
                             <th rowspan="3">Wilayah</th>
-                            <th colspan="{{ count($bidang) * (count($shifts) + 1)}}" class="text-center">{{ $currentDate }}</th>
+                            <th colspan="{{ count($bidang) * (count($shifts) + 1) }}" class="text-center">
+                                {{ $currentDate }}</th>
                             <th rowspan="3">Total</th>
                         </tr>
                         <tr>
@@ -99,21 +107,27 @@
                     <tfoot>
                         <tr>
                             <th colspan="3" style="text-align:right">Total:</th>
-                            @foreach($bidang as $b)
+                            @foreach ($bidang as $b)
                                 @php
                                     $totalBidang = 0;
                                 @endphp
-                                @foreach($shifts as $shift)
+                                @foreach ($shifts as $shift)
                                     @php
                                         $totalShift = 0;
                                     @endphp
-                                    @foreach($users as $user)
+                                    @foreach ($users as $user)
                                         @php
                                             $searchDate = request()->has('search')
                                                 ? Carbon\Carbon::parse(request()->search)->startOfDay()
                                                 : Carbon\Carbon::now()->startOfDay();
-                                            $poin = isset($data[$user->id_user][$searchDate->format('Y-m-d')][$b->id_bidang][$shift->id_shift])
-                                                ? $data[$user->id_user][$searchDate->format('Y-m-d')][$b->id_bidang][$shift->id_shift]
+                                            $poin = isset(
+                                                $data[$user->id_user][$searchDate->format('Y-m-d')][$b->id_bidang][
+                                                    $shift->id_shift
+                                                ],
+                                            )
+                                                ? $data[$user->id_user][$searchDate->format('Y-m-d')][$b->id_bidang][
+                                                    $shift->id_shift
+                                                ]
                                                 : 0;
                                             $totalBidang += $poin;
                                             $totalShift += $poin;

@@ -11,6 +11,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Exports\MingguanExport;
 use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\App;
 
 class MingguanController extends Controller
 {
@@ -23,11 +24,12 @@ class MingguanController extends Controller
 
     public function index(Request $request)
     {
+        App::setLocale('id');
         $now = Carbon::now();
         $start_date = $now->startOfWeek();
         $end_date = $start_date->copy()->endOfWeek();
 
-        $currentDate = $now->format('d F Y');
+        $currentDate = $now->translatedFormat('d F Y');
 
         $users = User::where('id_role', '3')->get();
         $bidang = Bidang::all();

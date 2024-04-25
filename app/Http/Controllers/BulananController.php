@@ -83,6 +83,13 @@ class BulananController extends Controller
     
             $data[$userId][$tanggal] += $item->poin;
         }
+
+        // // HIGHCHARTS
+        // $categories = [];
+
+        // foreach ($users as $u) {
+        //     $categories[] = $u->nama_user;
+        // }
     
         return view('bulanan.karyawan', compact('currentMonth', 'request', 'shifts', 'users', 'data', 'bidang'), ['key' => 'bkaryawan']);
     }

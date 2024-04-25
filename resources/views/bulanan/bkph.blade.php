@@ -251,7 +251,7 @@
                     type: 'pie'
                 },
                 title: {
-                    text: 'Ranking Asper/KBKPH ' + currentMonth,
+                    text: 'Ranking BKPH ' + currentMonth,
                     align: 'left',
                     style: {
                         color: '#007bff'

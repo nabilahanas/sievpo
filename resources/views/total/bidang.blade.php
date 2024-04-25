@@ -153,8 +153,8 @@
                                 $pieData = [];
                                 foreach ($sortedBidang as $UItem) {
                                     $bidangTotal = isset($bidangTotals[$UItem->id_bidang])
-                                                ? array_sum($bidangTotals[$UItem->id_bidang])
-                                                : 0;
+                                        ? array_sum($bidangTotals[$UItem->id_bidang])
+                                        : 0;
                                     $pieData[] = ['name' => $UItem->nama_bidang, 'y' => $bidangTotal];
                                 }
                             @endphp
@@ -187,26 +187,26 @@
 @endsection
 
 @section('script')
-@if (auth()->user() && auth()->user()->role->nama_role == 'Pimpinan')
-<script>
-    var currentYear = "<?php echo $currentYear; ?>";
-    Highcharts.chart('tBidangPim', {
-        chart: {
-            type: 'pie'
-        },
-        title: {
-            text: 'Ranking Bidang ' + currentYear,
-            align: 'left',
-            style: {
-                color: '#007bff'
-            }
-        },
-        series: [{
-            name: 'Poin',
-            colorByPoint: true,
-            data: {!! json_encode($pieData) !!}
-        }]
-    });
-</script>
-@endif
+    @if (auth()->user() && auth()->user()->role->nama_role == 'Pimpinan')
+        <script>
+            var currentYear = "<?php echo $currentYear; ?>";
+            Highcharts.chart('tBidangPim', {
+                chart: {
+                    type: 'pie'
+                },
+                title: {
+                    text: 'Ranking Bidang ' + currentYear,
+                    align: 'left',
+                    style: {
+                        color: '#007bff'
+                    }
+                },
+                series: [{
+                    name: 'Poin',
+                    colorByPoint: true,
+                    data: {!! json_encode($pieData) !!}
+                }]
+            });
+        </script>
+    @endif
 @endsection

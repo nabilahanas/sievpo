@@ -98,7 +98,7 @@
         <h3 class="ml-3">Riwayat Data User</h3>
         <div class="card mt-3">
             <div class="card-body table-responsive">
-                <table id="ruser" class="table table-sm table-hover table-striped">
+                <table id="ruser" class="table table-sm table-hover table-striped" style="width: 100%">
                     <thead class="thead-secondary">
                         <tr>
                             <th>Nama</th>

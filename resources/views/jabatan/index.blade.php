@@ -21,7 +21,7 @@
                     class="fas fa-plus mr-2"></i>Tambah</a>
 
             <div class="table-responsive mt-4">
-                <table id="jabatan" class="table table-sm text-nowrap table-hover table-striped">
+                <table id="jabatan" class="table table-sm text-nowrap table-hover table-striped" style="width: 100%">
                     <thead class="thead-successv2">
                         <tr>
                             <th>No.</th>

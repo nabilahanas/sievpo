@@ -8,11 +8,6 @@
     @if ((auth()->user() && auth()->user()->role->nama_role == 'Admin') || auth()->user()->role->nama_role == 'Mahasiswa')
         <div class="card">
             <div class="card-body">
-                <div class="card">
-                    <div class="card-body">
-                        <div id="bKrphAd" height="60"></div>
-                    </div>
-                </div>
                 <a class="btn btn-outline-success"
                     href="{{ route('bulanan.exportkrph') }}?{{ request()->has('bulan') && request()->has('tahun') ? 'bulan=' . request()->bulan . '&tahun=' . request()->tahun : '' }}">Download
                     Excel</a>
@@ -24,8 +19,7 @@
                                 Hasil Pencarian: {{ $currentMonth }}
                             </div>
                         @endif
-                        <table id="bkrph" class="table table-sm text-nowrap text-hover table-striped"
-                            style="width: 100%">
+                        <table id="bkrph" class="table table-sm text-nowrap text-hover table-striped" style="width: 100%">
 
                             <thead class="thead-successv2">
                                 <tr>
@@ -259,7 +253,7 @@
                     type: 'pie'
                 },
                 title: {
-                    text: 'Ranking Asper/KBKPH ' + currentMonth,
+                    text: 'Ranking KRPH ' + currentMonth,
                     align: 'left',
                     style: {
                         color: '#007bff'

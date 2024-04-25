@@ -20,7 +20,7 @@
                     class="fas fa-plus mr-2"></i>Tambah</a>
 
             <div class="table-responsive mt-4">
-                <table id="berita" class="table table-sm table-hover table-striped">
+                <table id="berita" class="table table-sm table-hover table-striped" style="width: 100%">
                     <thead class="thead-successv2">
                         <tr>
                             <th>Tanggal Publikasi</th>
@@ -96,7 +96,7 @@
         <h3 class="ml-3">Riwayat Berita</h3>
         <div class="card mt-3">
             <div class="card-body table-responsive">
-                <table id="rberita" class="table table-sm table-hover table-striped">
+                <table id="rberita" class="table table-sm table-hover table-striped" style="width: 100%">
                     <thead class="thead-secondary">
                         <tr>
                             <th>Tanggal Publikasi</th>

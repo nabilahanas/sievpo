@@ -13,24 +13,11 @@
                     href="{{ route('total.exportasper') }}?{{ request()->has('semester') && request()->has('year') ? 'semester=' . request()->semester . '&year=' . request()->year : 'search=' . '' }}">Download
                     Excel</a>
                 <!-- Chart -->
-                <div class="row mt-4">
-                    <section class="col-lg-12">
-                        <div class="card">
-                            <div class="card-header">
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <h3 class="card-title" style="color: #007bff; font-weight: 600;">
-                                        KRPH <?php echo date('M Y'); ?>
-                                    </h3>
-                                    <button class="btn btn-sm btn-outline-primary"><i class="bi bi-download"></i>
-                                        Download</button>
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <div id="asperPoin" height="60"></div>
-                            </div>
-                        </div>
-                    </section>
-                </div>
+                {{-- <div class="card">
+                    <div class="card-body">
+                        <div id="asperPoin" height="60"></div>
+                    </div>
+                </div> --}}
                 <div class="table-responsive-lg mt-4">
                     <div class="table-responsive-lg mt-4">
                         @if (request()->has('semester') && request()->has('year'))
@@ -229,7 +216,7 @@
 
 @section('script')
     <script src="https://code.highcharts.com/highcharts.js"></script>
-    @if ((auth()->user() && auth()->user()->role->nama_role == 'Admin') || auth()->user()->role->nama_role == 'Mahasiswa')
+    {{-- @if ((auth()->user() && auth()->user()->role->nama_role == 'Admin') || auth()->user()->role->nama_role == 'Mahasiswa')
         <script>
             Highcharts.chart('asperPoin', {
                 chart: {
@@ -261,7 +248,7 @@
                 }]
             });
         </script>
-    @endif
+    @endif --}}
 
     @if (auth()->user() && auth()->user()->role->nama_role == 'Pimpinan')
         <script>

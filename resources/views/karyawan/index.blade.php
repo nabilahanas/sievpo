@@ -20,7 +20,7 @@
                     class="fas fa-plus mr-2"></i>Tambah</a>
 
             <div class="table-responsive mt-4">
-                <table id="karyawan" class="table table-sm table-hover table-striped">
+                <table id="karyawan" class="table table-sm table-hover table-striped" style="width: 100%">
                     <thead class="thead-successv2">
                         <tr>
                             <th>No.</th>
@@ -87,7 +87,7 @@
         <h3 class="ml-3">Riwayat Data Karyawan</h3>
         <div class="card mt-3">
             <div class="card-body table-responsive">
-                <table id="rkaryawan" class="table table-sm table-hover table-striped">
+                <table id="rkaryawan" class="table table-sm table-hover table-striped" style="width: 100%">
                     <thead class="thead-secondary">
                         <tr>
                             <th>No.</th>

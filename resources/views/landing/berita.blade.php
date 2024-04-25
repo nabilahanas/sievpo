@@ -49,6 +49,13 @@
                                             style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;">
                                             <a href="{{ $item->deskripsi }}" target="_blank">{{ $item->judul }}</a>
                                         </h2>
+                                        <div class="post-meta">
+                                            <p class="post-date">
+                                                <time datetime="{{ $item->created_at }}">
+                                                    {{ \Carbon\Carbon::parse($item->created_at)->locale('id')->isoFormat('D MMMM YYYY') }}
+                                                </time>
+                                            </p>
+                                        </div>
 
                                         <div class="article-preview">
                                             @php

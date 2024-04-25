@@ -13,24 +13,11 @@
                     href="{{ route('total.exportkrph') }}?{{ request()->has('semester') && request()->has('year') ? 'semester=' . request()->semester . '&year=' . request()->year : 'search=' . '' }}">Download
                     Excel</a>
                 <!-- Chart -->
-                <div class="row mt-4">
-                    <section class="col-lg-12">
-                        <div class="card">
-                            <div class="card-header">
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <h3 class="card-title" style="color: #007bff; font-weight: 600;">
-                                        KRPH <?php echo \Carbon\Carbon::now()->locale('id')->isoFormat('MMMM YYYY'); ?>
-                                    </h3>
-                                    <button class="btn btn-sm btn-outline-primary"><i class="bi bi-download"></i>
-                                        Download</button>
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <div id="krphPoin" height="60"></div>
-                            </div>
-                        </div>
-                    </section>
-                </div>
+                {{-- <div class="card">
+                    <div class="card-body">
+                        <div id="krphPoin" height="60"></div>
+                    </div>
+                </div> --}}
                 <div class="table-responsive-lg mt-4">
                     @if (request()->has('semester') && request()->has('year'))
                         <div style="padding: 10px; font-size: 15px; font-weight: bold;">
@@ -147,71 +134,70 @@
                         <div id="tKrphPim" height="60"></div>
                     </div>
                 </div>
-                    <div class="table-responsive-lg mt-4">
-                        <table id="tkrphpim" class="table table-sm text-nowrap text-hover table-striped"
-                            style="width: 100%">
-                            <thead class="thead-successv2">
+                <div class="table-responsive-lg mt-4">
+                    <table id="tkrphpim" class="table table-sm text-nowrap text-hover table-striped" style="width: 100%">
+                        <thead class="thead-successv2">
+                            <tr>
+                                <th>No.</th>
+                                <th>Nama Karyawan</th>
+                                <th>Nama KRPH</th>
+                                <th>Total Poin</th>
+                                <th>Ranking</th>
+                            </tr>
+                        </thead>
+
+                        <tbody style="overflow-x: auto;">
+                            @php
+                                $monthsToShow = [];
+                                // Mengurutkan pengguna berdasarkan total poin
+                                $sortedKRPH = $jabatan1->sortByDesc(function ($krph) use ($krphTotals) {
+                                    return isset($krphTotals[$krph->id_user])
+                                        ? array_sum($krphTotals[$krph->id_user])
+                                        : 0;
+                                });
+
+                                // Menginisialisasi peringkat
+                                $ranking = 1;
+
+                                $pieData = [];
+                                foreach ($sortedKRPH as $krph) {
+                                    $krphTotal = isset($krphTotals[$krph->id_user])
+                                        ? array_sum($krphTotals[$krph->id_user])
+                                        : 0;
+                                    $pieData[] = ['name' => $krph->nama_user, 'y' => $krphTotal];
+                                }
+                            @endphp
+
+                            @foreach ($sortedKRPH as $krph)
                                 <tr>
-                                    <th>No.</th>
-                                    <th>Nama Karyawan</th>
-                                    <th>Nama KRPH</th>
-                                    <th>Total Poin</th>
-                                    <th>Ranking</th>
+                                    <td scope="row">{{ $loop->iteration }}.</td>
+                                    <td>{{ $krph->nama_user }}</td>
+                                    <td>{{ $krph->jabatan->nama_jabatan }}</td>
+                                    <td>
+                                        @php
+                                            $krphTotal = isset($krphTotals[$krph->id_user])
+                                                ? array_sum($krphTotals[$krph->id_user])
+                                                : 0;
+                                        @endphp
+                                        {{ $krphTotal }}
+                                    </td>
+                                    <td> {{ $ranking }} </td>
                                 </tr>
-                            </thead>
-
-                            <tbody style="overflow-x: auto;">
                                 @php
-                                    $monthsToShow = [];
-                                    // Mengurutkan pengguna berdasarkan total poin
-                                    $sortedKRPH = $jabatan1->sortByDesc(function ($krph) use ($krphTotals) {
-                                        return isset($krphTotals[$krph->id_user])
-                                            ? array_sum($krphTotals[$krph->id_user])
-                                            : 0;
-                                    });
-
-                                    // Menginisialisasi peringkat
-                                    $ranking = 1;
-
-                                    $pieData = [];
-                                    foreach ($sortedKRPH as $krph) {
-                                        $krphTotal = isset($krphTotals[$krph->id_user])
-                                            ? array_sum($krphTotals[$krph->id_user])
-                                            : 0;
-                                        $pieData[] = ['name' => $krph->nama_user, 'y' => $krphTotal];
-                                    }
+                                    $ranking++;
                                 @endphp
-
-                                @foreach ($sortedKRPH as $krph)
-                                    <tr>
-                                        <td scope="row">{{ $loop->iteration }}.</td>
-                                        <td>{{ $krph->nama_user }}</td>
-                                        <td>{{ $krph->jabatan->nama_jabatan }}</td>
-                                        <td>
-                                            @php
-                                                $krphTotal = isset($krphTotals[$krph->id_user])
-                                                    ? array_sum($krphTotals[$krph->id_user])
-                                                    : 0;
-                                            @endphp
-                                            {{ $krphTotal }}
-                                        </td>
-                                        <td> {{ $ranking }} </td>
-                                    </tr>
-                                    @php
-                                        $ranking++;
-                                    @endphp
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
+                            @endforeach
+                        </tbody>
+                    </table>
                 </div>
             </div>
+        </div>
     @endif
 
 @endsection
 
 @section('script')
-    @if ((auth()->user() && auth()->user()->role->nama_role == 'Admin') || auth()->user()->role->nama_role == 'Mahasiswa')
+    {{-- @if ((auth()->user() && auth()->user()->role->nama_role == 'Admin') || auth()->user()->role->nama_role == 'Mahasiswa')
         <script>
             Highcharts.chart('krphPoin', {
                 chart: {
@@ -243,28 +229,28 @@
                 }]
             });
         </script>
-    @endif
+    @endif --}}
 
     @if (auth()->user() && auth()->user()->role->nama_role == 'Pimpinan')
-    <script>
-        var currentYear = "<?php echo $currentYear; ?>";
-        Highcharts.chart('tKrphPim', {
-            chart: {
-                type: 'pie'
-            },
-            title: {
-                text: 'Ranking KRPH ' + currentYear,
-                align: 'left',
-                style: {
-                    color: '#007bff'
-                }
-            },
-            series: [{
-                name: 'Poin',
-                colorByPoint: true,
-                data: {!! json_encode($pieData) !!}
-            }]
-        });
-    </script>
-@endif
+        <script>
+            var currentYear = "<?php echo $currentYear; ?>";
+            Highcharts.chart('tKrphPim', {
+                chart: {
+                    type: 'pie'
+                },
+                title: {
+                    text: 'Ranking KRPH ' + currentYear,
+                    align: 'left',
+                    style: {
+                        color: '#007bff'
+                    }
+                },
+                series: [{
+                    name: 'Poin',
+                    colorByPoint: true,
+                    data: {!! json_encode($pieData) !!}
+                }]
+            });
+        </script>
+    @endif
 @endsection

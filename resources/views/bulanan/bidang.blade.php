@@ -241,6 +241,30 @@
 @endsection
 
 @section('script')
+    {{-- <!-- ADMIN -->
+    @if ((auth()->user() && auth()->user()->role->nama_role == 'Admin') || auth()->user()->role->nama_role == 'Mahasiswa')
+        <script>
+            var currentMonth = "<?php echo $currentMonth; ?>";
+            Highcharts.chart('bBidangPim', {
+                chart: {
+                    type: 'pie'
+                },
+                title: {
+                    text: 'Ranking Bidang ' + currentMonth,
+                    align: 'left',
+                    style: {
+                        color: '#007bff'
+                    }
+                },
+                series: [{
+                    name: 'Poin',
+                    colorByPoint: true,
+                    data: {!! json_encode($pieData) !!}
+                }]
+            });
+        </script>
+    @endif --}}
+    <!-- PIMPINAN -->
     @if (auth()->user() && auth()->user()->role->nama_role == 'Pimpinan')
         <script>
             var currentMonth = "<?php echo $currentMonth; ?>";
@@ -249,7 +273,7 @@
                     type: 'pie'
                 },
                 title: {
-                    text: 'Ranking Asper/KBKPH ' + currentMonth,
+                    text: 'Ranking Bidang ' + currentMonth,
                     align: 'left',
                     style: {
                         color: '#007bff'

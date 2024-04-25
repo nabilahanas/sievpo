@@ -206,26 +206,6 @@
                         </div>
                     </section>
                 </div>
-
-                {{-- <!-- Grafik Perbandingan -->
-                <div class="row">
-                    <section class="col-lg-12">
-                        <div class="card">
-                            <div class="card-header">
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <h3 class="card-title" style="color: #007bff; font-weight: 600;">
-                                        Perbandingan Total Eviden Poin per Bulan Tahun</span>
-                                    </h3>
-                                    <button class="btn btn-sm btn-outline-primary"><i class="bi bi-download"></i>
-                                        Download</button>
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <canvas id="barChart" height="60"></canvas>
-                            </div>
-                        </div>
-                    </section>
-                </div> --}}
             </div>
         </section>
     @endif
@@ -424,9 +404,7 @@
             chart: {
                 type: 'column'
             },
-            title: {
-                text: 'Total Poin per Bulan'
-            },
+            title: false,
             xAxis: {
                 categories: monthsToShow,
                 crosshair: true
@@ -449,47 +427,6 @@
             }]
         });
     </script>
-    
-    
-    
-
-
-    {{-- <script>
-        // Mengambil data chart dari localStorage
-        var monthlyTotals = JSON.parse(localStorage.getItem('monthlyTotals'));
-        var monthsToShow = JSON.parse(localStorage.getItem('monthsToShow'));
-
-        // Membuat chart Highcharts
-        Highcharts.chart('bulanPoin', {
-            chart: {
-                type: 'column'
-            },
-            title: {
-                text: 'Grafik Eviden Poin Bulanan',
-                align: 'center'
-            },
-            xAxis: {
-                categories: monthsToShow,
-                crosshair: true,
-            },
-            yAxis: {
-                min: 0,
-                title: {
-                    text: 'Poin'
-                }
-            },
-            plotOptions: {
-                column: {
-                    pointPadding: 0.2,
-                    borderWidth: 0
-                }
-            },
-            series: [{
-                name: 'Poin',
-                data: monthlyTotals,
-            }]
-        });
-    </script> --}}
 @endsection
 
 

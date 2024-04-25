@@ -11,6 +11,11 @@
                 <a class="btn btn-outline-success"
                     href="{{ route('bulanan.exportkaryawan') }}?{{ request()->has('bulan') && request()->has('tahun') ? 'bulan=' . request()->bulan . '&tahun=' . request()->tahun : '' }}">Download
                     Excel</a>
+                <div class="card mt-4">
+                    <div class="card-body">
+                        <div id="bKarAd" height="60"></div>
+                    </div>
+                </div>
 
                 <div class="table-responsive-lg mt-4">
                     <div class="table-responsive-lg mt-4">
@@ -19,7 +24,8 @@
                                 Hasil Pencarian: {{ $currentMonth }}
                             </div>
                         @endif
-                        <table id="bulanan" class="table table-sm text-nowrap text-hover table-striped" style="width: 100%">
+                        <table id="bulanan" class="table table-sm text-nowrap text-hover table-striped"
+                            style="width: 100%">
 
                             <thead class="thead-successv2">
                                 <tr>
@@ -252,6 +258,39 @@
 @endsection
 
 @section('script')
+    <!-- ADMIN -->
+    @if ((auth()->user() && auth()->user()->role->nama_role == 'Admin') || auth()->user()->role->nama_role == 'Mahasiswa')
+        <script>
+            Highcharts.chart('bKarAd', {
+                chart: {
+                    type: 'column'
+                },
+                title: false,
+                xAxis: {
+                    categories: {!! json_encode($users->pluck('nama_user')) !!},
+                    crosshair: true,
+                },
+                yAxis: {
+                    min: 0,
+                    title: {
+                        text: 'Poin'
+                    }
+                },
+                plotOptions: {
+                    column: {
+                        pointPadding: 0.2,
+                        borderWidth: 0
+                    }
+                },
+                series: [{
+                    name: 'Poin',
+                    data: {!! json_encode([$total]) !!}
+                }]
+            });
+        </script>
+    @endif
+
+    <!-- PIMPINAN -->
     @if (auth()->user() && auth()->user()->role->nama_role == 'Pimpinan')
         <script>
             var currentMonth = "<?php echo $currentMonth; ?>";
@@ -260,7 +299,7 @@
                     type: 'pie'
                 },
                 title: {
-                    text: 'Ranking Asper/KBKPH ' + currentMonth,
+                    text: 'Ranking Karyawan ' + currentMonth,
                     align: 'left',
                     style: {
                         color: '#007bff'

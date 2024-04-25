@@ -13,24 +13,11 @@
                     href="{{ route('total.exportkaryawan') }}?{{ request()->has('semester') && request()->has('year') ? 'semester=' . request()->semester . '&year=' . request()->year : 'search=' . '' }}">Download
                     Excel</a>
                 <!-- Chart -->
-                <div class="row mt-4">
-                    <section class="col-lg-12">
-                        <div class="card">
-                            <div class="card-header">
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <h3 class="card-title" style="color: #007bff; font-weight: 600;">
-                                        Total Eviden Poin per Bulan Tahun <?php echo date('Y'); ?>
-                                    </h3>
-                                    <button class="btn btn-sm btn-outline-primary"><i class="bi bi-download"></i>
-                                        Download</button>
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <div id="bulanPoin"></div>
-                            </div>
-                        </div>
-                    </section>
-                </div>
+                {{-- <div class="card">
+                    <div class="card-body">
+                        <div id="tKarAd"></div>
+                    </div>
+                </div> --}}
                 <div class="table-responsive-lg mt-4" style="overflow-x: auto;">
                     @if (request()->has('semester') && request()->has('year'))
                         <div style="padding: 10px; font-size: 15px; font-weight: bold;">
@@ -214,17 +201,17 @@
     @endif
 @endsection
 
-<script>
+{{-- <script>
     var monthlyTotals = {!! json_encode($monthlyTotals) !!};
     var monthsToShow = {!! json_encode($monthsToShow) !!};
-</script>
+</script> --}}
 
 
 @section('script')
     <!-- ADMIN -->
-    @if ((auth()->user() && auth()->user()->role->nama_role == 'Admin') || auth()->user()->role->nama_role == 'Mahasiswa')
+    {{-- @if ((auth()->user() && auth()->user()->role->nama_role == 'Admin') || auth()->user()->role->nama_role == 'Mahasiswa')
         <script>
-            Highcharts.chart('bulanPoin', {
+            Highcharts.chart('tKarAd', {
                 chart: {
                     type: 'column'
                 },
@@ -251,7 +238,7 @@
                 }]
             });
         </script>
-    @endif
+    @endif --}}
 
     <!-- PIMPINAN -->
     @if (auth()->user() && auth()->user()->role->nama_role == 'Pimpinan')
@@ -274,6 +261,6 @@
                     data: {!! json_encode($pieData) !!}
                 }]
             });
-        </scrip>
+        </script>
     @endif
 @endsection

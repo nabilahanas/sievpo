@@ -35,6 +35,7 @@
                     <label for="nip" class="col-sm-2 col-form-label required">NIP</label>
                     <div class="col-sm-10">
                         <input type="text" name="nip" class="form-control" Required autocomplete="off">
+                        <small class="form-text text-danger">Gunakan kode PHT di awal NIP! Contoh: PHT1234567890</small>
                     </div>
                 </div>
                 <div class="form-group row col-12 col-md-10">
@@ -43,7 +44,7 @@
                         <input type="tel" name="no_hp" class="form-control" pattern="[0-9]{10,12}"
                             title="Masukkan nomor telepon dengan format yang benar (minimal 10 digit dan maksimal 12 digit)"
                             Required autocomplete="off">
-                            <small class="form-text text-muted">Contoh: 08xxxxxxxxx</small>
+                        <small class="form-text text-muted">Contoh: 08xxxxxxxxx</small>
                     </div>
                 </div>
                 <div class="form-group row col-12 col-md-10">
@@ -77,17 +78,10 @@
                                 title="Password harus terdiri dari setidaknya 8 karakter, setidaknya satu huruf kecil dan satu huruf besar"
                                 Required autocomplete="off">
                         </div>
+                        <small class="form-text text-muted">Password harus terdiri dari setidaknya 8 karakter,
+                            setidaknya satu huruf kecil dan satu huruf besar</small>
                     </div>
                 </div>
-                {{-- <div class="form-group row col-12 col-md-10">
-                    <label for="wilayah" class="col-sm-2 col-form-label">Wilayah</label>
-                    <div class="col-sm-10">
-                        <input name="wilayah" id="wilayah" class="form-control">
-                        @foreach ($jabatan as $jabatan)
-                            <div value="{{ $jabatan->wilayah }}">{{ $jabatan->wilayah }}</div>
-                        @endforeach
-                    </div>
-                </div> --}}
                 <div class="text-center">
                     <button type="submit" class="btn btn-primary"><i class="fas fa-save mr-2"></i>Simpan</button>
                     <button type="reset" class="btn btn-secondary"><i class="fas fa-redo mr-2"></i>Reset</button>

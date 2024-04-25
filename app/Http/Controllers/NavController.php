@@ -30,6 +30,10 @@ class NavController extends Controller
         $pendingstatus = Data::where('is_approved', 'pending')->where('id_user', $users->id_user)->count();
 
         $pengumuman = Pengumuman::all();
-        return view('layouts.dashboard', compact('total', 'approved', 'rejected', 'pending', 'berita', 'jmlpengumuman', 'user', 'poin', 'approvedstatus', 'rejectedstatus', 'pendingstatus', 'pengumuman'), ['key' => 'dashboard']);
+
+        // $monthsToShow = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+        $monthlyTotals = [1, 2, 3, 4, 5, 7, 8];
+
+        return view('layouts.dashboard', compact('total', 'approved', 'rejected', 'pending', 'berita', 'jmlpengumuman', 'user', 'poin', 'approvedstatus', 'rejectedstatus', 'pendingstatus', 'pengumuman', 'monthlyTotals'), ['key' => 'dashboard']);
     }
 }

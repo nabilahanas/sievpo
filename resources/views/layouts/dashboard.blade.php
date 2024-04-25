@@ -26,7 +26,7 @@
         </script>
     @endif --}}
 
-   {{--  <!-- Modal -->
+    {{--  <!-- Modal -->
     @foreach ($pengumuman as $index => $item)
         <div class="modal fade" id="pengumumanModal{{ $index }}" data-backdrop="static" data-keyboard="false"
             tabindex="-1" role="dialog" aria-labelledby="pengumumanTitle{{ $index }}" aria-hidden="true">
@@ -166,28 +166,8 @@
                     </div>
 
                 </div>
-                
-                <!-- Chart -->
-                <div class="row">
-                    <section class="col-lg-12">
-                        <div class="card">
-                            <div class="card-header">
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <h3 class="card-title" style="color: #007bff; font-weight: 600;">
-                                        KRPH  <?php echo date('M Y'); ?>
-                                    </h3>
-                                    <button class="btn btn-sm btn-outline-primary"><i class="bi bi-download"></i>
-                                        Download</button>
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <div id="bulanPoin" height="60"></div>
-                            </div>
-                        </div>
-                    </section>
-                </div>
 
-                <!-- Grafik Total -->
+                <!-- Chart -->
                 <div class="row">
                     <section class="col-lg-12">
                         <div class="card">
@@ -201,7 +181,7 @@
                                 </div>
                             </div>
                             <div class="card-body">
-                                <canvas id="barChart" height="60"></canvas>
+                                <div id="bulanPoin" height="60"></div>
                             </div>
                         </div>
                     </section>
@@ -246,71 +226,6 @@
                         </div>
                     </section>
                 </div> --}}
-
-                {{-- <!-- Maps -->
-                <div class="row">
-                    <section class="col-lg-12">
-                        <div class="card">
-                            <div class="card-header">
-                                <h3 class="card-title" style="color: #007bff; font-weight: 600;">
-                                    Peta BKPH
-                                </h3>
-                            </div>
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-12 col-md-6">
-                                        <!-- Google map -->
-                                        <div class="embed-responsive embed-responsive-16by9">
-                                            <iframe class="embed-responsive-item"
-                                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126715.79661809531!2d110.33466291719805!3d-7.024722607632933!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e708b4d3f0d024d%3A0x1e0432b9da5cb9f2!2sSemarang%2C%20Semarang%20City%2C%20Central%20Java%2C%20Indonesia!5e0!3m2!1sen!2sus!4v1709016733840!5m2!1sen!2sus"
-                                                width="100%" height="100%" style="border:0;" allowfullscreen=""
-                                                referrerpolicy="no-referrer-when-downgrade" target=”_blank”></iframe>
-                                        </div>
-                                        <!-- Google Maps -->
-                                    </div>
-
-                                    <div class="col-12 col-md-6">
-                                        <div class="row">
-                                            <div class="col-sm-3">
-                                                <label class="mb-0">Bagian</label>
-                                            </div>
-                                            <div class="col-sm-9">
-                                                <p class="text-muted mb-0">{{ auth()->user()->jabatan->bagian ?? '' }}</p>
-                                            </div>
-                                        </div>
-                                        <hr>
-                                        <div class="row">
-                                            <div class="col-sm-3">
-                                                <label class="mb-0">Lokasi</label>
-                                            </div>
-                                            <div class="col-sm-9">
-                                                <p class="text-muted mb-0" id="subdistrict"></p>
-                                            </div>
-                                        </div>
-                                        <hr>
-                                        <div class="row">
-                                            <div class="col-sm-3">
-                                                <label class="mb-0">Latitude</label>
-                                            </div>
-                                            <div class="col-sm-9">
-                                                <p class="text-muted mb-0" id="latitude"></p>
-                                            </div>
-                                        </div>
-                                        <hr>
-                                        <div class="row">
-                                            <div class="col-sm-3">
-                                                <label class="mb-0">Longitude</label>
-                                            </div>
-                                            <div class="col-sm-9">
-                                                <p class="text-muted mb-0" id="longitude"></p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-                </div> --}}
             </div>
         </section>
     @endif
@@ -330,8 +245,6 @@
                             <div class="icon">
                                 <i class="fas fa-chart-pie"></i>
                             </div>
-                            <a href="total" class="small-box-footer">Info lebih lanjut <i
-                                    class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
                     <div class="col-lg-3 col-6">
@@ -344,8 +257,6 @@
                             <div class="icon">
                                 <i class="fas fa-users"></i>
                             </div>
-                            <a href="/confirm" class="small-box-footer">Info lebih lanjut <i
-                                    class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
                 </div>
@@ -357,14 +268,14 @@
                             <div class="card-header">
                                 <div class="d-flex justify-content-between align-items-center">
                                     <h3 class="card-title" style="color: #007bff; font-weight: 600;">
-                                        Total Poin Seluruh Karyawan Per Bulan
+                                        Total Eviden Poin per Bulan Tahun <?php echo date('Y'); ?>
                                     </h3>
                                     <button class="btn btn-sm btn-outline-primary mr-2"><i class="bi bi-download"></i>
                                         Download</button>
                                 </div>
                             </div>
                             <div class="card-body">
-                                <canvas id="pimpinanT" height="50"></canvas>
+                                <div id="bulanDP" height="50"></div>
                             </div>
                         </div>
                     </section>
@@ -389,71 +300,6 @@
                         </div>
                     </section>
                 </div>
-
-                {{-- <!-- Maps -->
-                <div class="row">
-                    <section class="col-lg-12">
-                        <div class="card">
-                            <div class="card-header">
-                                <h3 class="card-title" style="color: #007bff; font-weight: 600;">
-                                    Peta BKPH
-                                </h3>
-                            </div>
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-12 col-md-6">
-                                        <!-- Google map -->
-                                        <div class="embed-responsive embed-responsive-16by9">
-                                            <iframe class="embed-responsive-item"
-                                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126715.79661809531!2d110.33466291719805!3d-7.024722607632933!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e708b4d3f0d024d%3A0x1e0432b9da5cb9f2!2sSemarang%2C%20Semarang%20City%2C%20Central%20Java%2C%20Indonesia!5e0!3m2!1sen!2sus!4v1709016733840!5m2!1sen!2sus"
-                                                width="100%" height="100%" style="border:0;" allowfullscreen=""
-                                                referrerpolicy="no-referrer-when-downgrade" target=”_blank”></iframe>
-                                        </div>
-                                        <!-- Google Maps -->
-                                    </div>
-
-                                    <div class="col-12 col-md-6">
-                                        <div class="row">
-                                            <div class="col-sm-3">
-                                                <label class="mb-0">Bagian</label>
-                                            </div>
-                                            <div class="col-sm-9">
-                                                <p class="text-muted mb-0">{{ auth()->user()->jabatan->bagian ?? '' }}</p>
-                                            </div>
-                                        </div>
-                                        <hr>
-                                        <div class="row">
-                                            <div class="col-sm-3">
-                                                <label class="mb-0">Lokasi</label>
-                                            </div>
-                                            <div class="col-sm-9">
-                                                <p class="text-muted mb-0" id="subdistrict"></p>
-                                            </div>
-                                        </div>
-                                        <hr>
-                                        <div class="row">
-                                            <div class="col-sm-3">
-                                                <label class="mb-0">Latitude</label>
-                                            </div>
-                                            <div class="col-sm-9">
-                                                <p class="text-muted mb-0" id="latitude"></p>
-                                            </div>
-                                        </div>
-                                        <hr>
-                                        <div class="row">
-                                            <div class="col-sm-3">
-                                                <label class="mb-0">Longitude</label>
-                                            </div>
-                                            <div class="col-sm-9">
-                                                <p class="text-muted mb-0" id="longitude"></p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-                </div> --}}
             </div>
         </section>
     @endif
@@ -563,79 +409,60 @@
                         </div>
                     </section>
                 </div>
-
-                {{-- <!-- Maps -->
-                <div class="row">
-                    <section class="col-lg-12">
-                        <div class="card">
-                            <div class="card-header">
-                                <h3 class="card-title" style="color: #007bff; font-weight: 600;">
-                                    Peta BKPH
-                                </h3>
-                            </div>
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-12 col-md-6">
-                                        <!-- Google map -->
-                                        <div class="embed-responsive embed-responsive-16by9">
-                                            <iframe class="embed-responsive-item"
-                                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126715.79661809531!2d110.33466291719805!3d-7.024722607632933!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e708b4d3f0d024d%3A0x1e0432b9da5cb9f2!2sSemarang%2C%20Semarang%20City%2C%20Central%20Java%2C%20Indonesia!5e0!3m2!1sen!2sus!4v1709016733840!5m2!1sen!2sus"
-                                                width="100%" height="100%" style="border:0;" allowfullscreen=""
-                                                referrerpolicy="no-referrer-when-downgrade" target=”_blank”></iframe>
-                                        </div>
-                                        <!-- Google Maps -->
-                                    </div>
-
-                                    <div class="col-12 col-md-6">
-                                        <div class="row">
-                                            <div class="col-sm-3">
-                                                <label class="mb-0">Bagian</label>
-                                            </div>
-                                            <div class="col-sm-9">
-                                                <p class="text-muted mb-0">{{ auth()->user()->jabatan->bagian ?? '' }}</p>
-                                            </div>
-                                        </div>
-                                        <hr>
-                                        <div class="row">
-                                            <div class="col-sm-3">
-                                                <label class="mb-0">Lokasi</label>
-                                            </div>
-                                            <div class="col-sm-9">
-                                                <p class="text-muted mb-0" id="subdistrict"></p>
-                                            </div>
-                                        </div>
-                                        <hr>
-                                        <div class="row">
-                                            <div class="col-sm-3">
-                                                <label class="mb-0">Latitude</label>
-                                            </div>
-                                            <div class="col-sm-9">
-                                                <p class="text-muted mb-0" id="latitude"></p>
-                                            </div>
-                                        </div>
-                                        <hr>
-                                        <div class="row">
-                                            <div class="col-sm-3">
-                                                <label class="mb-0">Longitude</label>
-                                            </div>
-                                            <div class="col-sm-9">
-                                                <p class="text-muted mb-0" id="longitude"></p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-                </div> --}}
             </div>
         </section>
     @endif
 @endsection
 
 @section('script')
-    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <!-- ADMIN TOTAL BULAN -->
     <script>
+        // Dapatkan tanggal saat ini
+        var currentDate = new Date();
+
+        // Daftar bulan-bulan dalam format teks
+        var months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober',
+            'November', 'Desember'
+        ];
+
+        // Simpan bulan-bulan yang telah dilewati pada tahun ini
+        var monthsToShow = [];
+        for (var i = 0; i < currentDate.getMonth() + 1; i++) {
+            monthsToShow.push(months[i]);
+        }
+
+        var monthlyTotals = {!! json_encode($monthlyTotals) !!};
+
+        Highcharts.chart('bulanPoin', {
+            chart: {
+                type: 'column'
+            },
+            title: false,
+            xAxis: {
+                categories: monthsToShow,
+                crosshair: true,
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'Poin'
+                }
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
+                }
+            },
+            series: [{
+                name: 'Poin',
+                data: monthlyTotals
+            }]
+        });
+    </script>
+
+
+    {{-- <script>
         // Mengambil data chart dari localStorage
         var monthlyTotals = JSON.parse(localStorage.getItem('monthlyTotals'));
         var monthsToShow = JSON.parse(localStorage.getItem('monthsToShow'));
@@ -670,7 +497,7 @@
                 data: monthlyTotals,
             }]
         });
-    </script>
+    </script> --}}
 @endsection
 
 
@@ -684,59 +511,3 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
     integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
 </script>
-
-{{-- <!-- GET LOCATION USING API -->
-<script>
-    function getLocation() {
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(function(position) {
-                var latitude = position.coords.latitude;
-                var longitude = position.coords.longitude;
-
-                // fungsi untuk mendapatkan nama lokasi
-                getGeolocationName(latitude, longitude);
-            }, function(error) {
-                console.error('Error getting location:', error.message);
-            });
-        } else {
-            console.error('Geolocation is not supported by this browser.');
-        }
-    }
-
-    function getGeolocationName(latitude, longitude) {
-        // apikey akun geocoding
-        var apiKey = '1a6118a363944c9e83e49de502419bcd';
-
-        // URL untuk mengakses OpenCage Geocoding API
-        var apiUrl = 'https://api.opencagedata.com/geocode/v1/json?q=' + latitude + '+' + longitude + '&key=' + apiKey;
-
-        fetch(apiUrl)
-            .then(response => response.json())
-            .then(data => {
-
-                var components = data.results[0].components;
-
-                // ambil informasi desa, kecamatan, kota, dst
-                var village = components.village || "";
-                var subdistrict = components.suburb || "";
-                var city = components.city || "";
-                var county = components.county || "";
-                var state = components.state || "";
-
-                // ambil nama daerah berdasarkan prioritas
-                var areaName = village || subdistrict || city || county || state;
-
-                // isi otomatis input dengan informasi lengkap
-                document.getElementById('subdistrict').innerText = areaName;
-                document.getElementById('latitude').innerText = latitude;
-                document.getElementById('longitude').innerText = longitude;
-            })
-            .catch(error => {
-                console.error('Error fetching location name:', error);
-            });
-    }
-
-    document.addEventListener('DOMContentLoaded', function() {
-        getLocation();
-    });
-</script> --}}

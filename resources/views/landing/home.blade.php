@@ -413,17 +413,28 @@
 
         <!-- ======= Carousel Slide ======= -->
         <section id="carousel" class="carousel">
-            <div id="carouselIndicators" class="carousel slide carousel-fade" data-bs-ride="carousel"
-                data-aos="zoom-out">
+            <div id="carouselIndicators" class="carousel slide carousel-fade" data-bs-ride="true" data-aos="zoom-out">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carouselIndicators" data-bs-slide-to="0" class="active"
+                        aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carouselIndicators" data-bs-slide-to="1"
+                        aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#carouselIndicators" data-bs-slide-to="2"
+                        aria-label="Slide 3"></button>
+                </div>
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img src="https://i0.wp.com/www.perhutani.co.id/wp-content/uploads/2024/01/SMAP-WEBSITE-1.jpg?fit=1366%2C600&ssl=1"
-                            class="d-block w-100" alt="Kebijakan Anti Penyuapan">
-                    </div>
-                    <div class="carousel-item">
                         <a href="https://www.tokoperhutani.com/" target=”_blank”><img
                                 src="https://i0.wp.com/www.perhutani.co.id/wp-content/uploads/2024/01/tokophtArtboard-1@300x-50.jpg?fit=1366%2C600&ssl=1"
                                 class="d-block w-100" alt="Toko Perhutani">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://i0.wp.com/www.perhutani.co.id/wp-content/uploads/2024/01/Program-Kerja-2024.jpg"
+                            class="d-block w-100" alt="Program Kerja">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://i0.wp.com/www.perhutani.co.id/wp-content/uploads/2024/01/SMAP-WEBSITE-1.jpg?fit=1366%2C600&ssl=1"
+                            class="d-block w-100" alt="Kebijakan Anti Penyuapan">
                     </div>
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselIndicators"

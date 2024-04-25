@@ -19,14 +19,14 @@
                             <div class="card-header">
                                 <div class="d-flex justify-content-between align-items-center">
                                     <h3 class="card-title" style="color: #007bff; font-weight: 600;">
-                                        KRPH <?php echo date('M Y'); ?>
+                                        Total Eviden Poin per Bulan Tahun <?php echo date('Y'); ?>
                                     </h3>
                                     <button class="btn btn-sm btn-outline-primary"><i class="bi bi-download"></i>
                                         Download</button>
                                 </div>
                             </div>
                             <div class="card-body">
-                                <div id="bulanPoin" height="60"></div>
+                                <div id="bulanPoin"></div>
                             </div>
                         </div>
                     </section>
@@ -90,7 +90,7 @@
                                 @endif
                             </tr>
                         </thead>
-                        <tbody style="overflow-x: auto;">
+                        <tbody>
                             @php
                                 $grandTotal = 0;
                                 $monthlyTotals = array_fill_keys($monthsToShow, 0);
@@ -215,17 +215,14 @@
 @endsection
 
 @section('script')
+    <!-- ADMIN -->
     @if ((auth()->user() && auth()->user()->role->nama_role == 'Admin') || auth()->user()->role->nama_role == 'Mahasiswa')
-        <script src="https://code.highcharts.com/highcharts.js"></script>
         <script>
             Highcharts.chart('bulanPoin', {
                 chart: {
                     type: 'column'
                 },
-                title: {
-                    text: 'Grafik Eviden Poin Bulanan',
-                    align: 'center'
-                },
+                title: false,
                 xAxis: {
                     categories: {!! json_encode($monthsToShow) !!},
                     crosshair: true,
@@ -250,6 +247,7 @@
         </script>
     @endif
 
+    <!-- PIMPINAN -->
     @if (auth()->user() && auth()->user()->role->nama_role == 'Pimpinan')
         <script>
             var currentYear = "<?php echo $currentYear; ?>";
@@ -264,36 +262,12 @@
                         color: '#007bff'
                     }
                 },
-                // plotOptions: {
-                //     series: {
-                //         allowPointSelect: true,
-                //         cursor: 'pointer',
-                //         dataLabels: [{
-                //             enabled: true,
-                //             distance: 20
-                //         }, {
-                //             enabled: true,
-                //             distance: -40,
-                //             format: '{point.percentage:.1f}%',
-                //             style: {
-                //                 fontSize: '1.2em',
-                //                 textOutline: 'none',
-                //                 opacity: 0.7
-                //             },
-                //             filter: {
-                //                 operator: '>',
-                //                 property: 'percentage',
-                //                 value: 10
-                //             }
-                //         }]
-                //     }
-                // },
                 series: [{
                     name: 'Poin',
                     colorByPoint: true,
                     data: {!! json_encode($pieData) !!}
                 }]
             });
-        </script>
+        </scrip>
     @endif
 @endsection

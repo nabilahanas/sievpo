@@ -14,94 +14,98 @@
                 <div class="table-responsive-lg mt-4">
                     <div class="table-responsive-lg mt-4">
                         @if (request()->has('bulan') && request()->has('tahun'))
-                        <div style="padding: 10px; font-size: 15px; font-weight: bold;">
-                            Hasil Pencarian: {{ $currentMonth }}
-                        </div>
-                    @endif
-                    <table id="bbidang" class="table table-sm text-nowrap text-hover table-striped" style="width: 100%">
+                            <div style="padding: 10px; font-size: 15px; font-weight: bold;">
+                                Hasil Pencarian: {{ $currentMonth }}
+                            </div>
+                        @endif
+                        <table id="bbidang" class="table table-sm text-nowrap text-hover table-striped" style="width: 100%">
 
-                        <thead class="thead-successv2">
-                            <tr>
-                                <th rowspan="2">No</th>
-                                <th rowspan="2">Nama Bidang</th>
-                                {{-- <th rowspan="2">Wilayah</th> --}}
-                                @php
-                                    $daysInMonth =
-                                        $request->has('bulan') && $request->has('tahun')
-                                            ? Carbon\Carbon::create($request->tahun, $request->bulan)->daysInMonth
-                                            : Carbon\Carbon::now()->daysInMonth;
-                                    $colspan = $daysInMonth;
-                                @endphp
-                                <th colspan="{{ $colspan }}" class="text-center">{{ $currentMonth }}</th>
-                                <th rowspan="2">Total</th>
-                            </tr>
-                            <tr>
-                                @php
-                                    $daysInMonth =
-                                        $request->has('bulan') && $request->has('tahun')
-                                            ? Carbon\Carbon::create($request->tahun, $request->bulan)->daysInMonth
-                                            : Carbon\Carbon::now()->daysInMonth;
-                                @endphp
-                                @for ($day = 1; $day <= $daysInMonth; $day++)
-                                    <th>{{ $day }}</th>
-                                @endfor
-                            </tr>
-                        </thead>
-
-                        <tbody>
-                            @php
-                                $grandTotal = 0;
-                                $dailyTotals = array_fill(1, $daysInMonth, 0);
-                            @endphp
-                            @foreach ($bidang as $item)
-                                @php
-                                    $total = 0;
-                                @endphp
-
+                            <thead class="thead-successv2">
                                 <tr>
-                                    <td scope="row">{{ $loop->iteration }}.</td>
-                                    <td>{{ $item->nama_bidang }}</td>
-                                    @for ($day = 1; $day <= $daysInMonth; $day++)
-                                        @php
-                                            $tanggal =
-                                                isset($request->tahun) && isset($request->bulan)
-                                                    ? Carbon\Carbon::createFromDate(
-                                                        $request->tahun,
-                                                        $request->bulan,
-                                                        $day,
-                                                    )->format('d-m-Y')
-                                                    : Carbon\Carbon::createFromDate(date('Y'), date('m'), $day)->format(
-                                                        'd-m-Y',
-                                                    );
-
-                                            $bidangId = $item->id_bidang;
-                                            $poin = isset($data[$bidangId][$tanggal]) ? $data[$bidangId][$tanggal] : 0;
-                                            $total += $poin;
-                                            $dailyTotals[$day] += $poin;
-                                        @endphp
-                                        <td>{{ $poin }}</td>
-                                    @endfor
-
-                                    <td>{{ $total }}</td>
+                                    <th rowspan="2">No</th>
+                                    <th rowspan="2">Nama Bidang</th>
+                                    {{-- <th rowspan="2">Wilayah</th> --}}
+                                    @php
+                                        $daysInMonth =
+                                            $request->has('bulan') && $request->has('tahun')
+                                                ? Carbon\Carbon::create($request->tahun, $request->bulan)->daysInMonth
+                                                : Carbon\Carbon::now()->daysInMonth;
+                                        $colspan = $daysInMonth;
+                                    @endphp
+                                    <th colspan="{{ $colspan }}" class="text-center">{{ $currentMonth }}</th>
+                                    <th rowspan="2">Total</th>
                                 </tr>
+                                <tr>
+                                    @php
+                                        $daysInMonth =
+                                            $request->has('bulan') && $request->has('tahun')
+                                                ? Carbon\Carbon::create($request->tahun, $request->bulan)->daysInMonth
+                                                : Carbon\Carbon::now()->daysInMonth;
+                                    @endphp
+                                    @for ($day = 1; $day <= $daysInMonth; $day++)
+                                        <th>{{ $day }}</th>
+                                    @endfor
+                                </tr>
+                            </thead>
+
+                            <tbody>
                                 @php
-                                    $grandTotal += $total;
+                                    $grandTotal = 0;
+                                    $dailyTotals = array_fill(1, $daysInMonth, 0);
                                 @endphp
-                            @endforeach
-                        </tbody>
-                        <tfoot>
-                            <tr>
-                                <th colspan="2" style="text-align:right">Total:</th>
-                                @foreach ($dailyTotals as $dailyTotal)
-                                    <th>{{ $dailyTotal }}</th>
+                                @foreach ($bidang as $item)
+                                    @php
+                                        $total = 0;
+                                    @endphp
+
+                                    <tr>
+                                        <td scope="row">{{ $loop->iteration }}.</td>
+                                        <td>{{ $item->nama_bidang }}</td>
+                                        @for ($day = 1; $day <= $daysInMonth; $day++)
+                                            @php
+                                                $tanggal =
+                                                    isset($request->tahun) && isset($request->bulan)
+                                                        ? Carbon\Carbon::createFromDate(
+                                                            $request->tahun,
+                                                            $request->bulan,
+                                                            $day,
+                                                        )->format('d-m-Y')
+                                                        : Carbon\Carbon::createFromDate(
+                                                            date('Y'),
+                                                            date('m'),
+                                                            $day,
+                                                        )->format('d-m-Y');
+
+                                                $bidangId = $item->id_bidang;
+                                                $poin = isset($data[$bidangId][$tanggal])
+                                                    ? $data[$bidangId][$tanggal]
+                                                    : 0;
+                                                $total += $poin;
+                                                $dailyTotals[$day] += $poin;
+                                            @endphp
+                                            <td>{{ $poin }}</td>
+                                        @endfor
+
+                                        <td>{{ $total }}</td>
+                                    </tr>
+                                    @php
+                                        $grandTotal += $total;
+                                    @endphp
                                 @endforeach
-                                <th>{{ $grandTotal }}</th>
-                            </tr>
-                        </tfoot>
-                    </table>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th colspan="2" style="text-align:right">Total:</th>
+                                    @foreach ($dailyTotals as $dailyTotal)
+                                        <th>{{ $dailyTotal }}</th>
+                                    @endforeach
+                                    <th>{{ $grandTotal }}</th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
                 </div>
             </div>
-        </div>
     @endif
 
     @if (auth()->user() && auth()->user()->role->nama_role == 'Pimpinan')
@@ -114,6 +118,11 @@
                 </div>
 
                 <div class="table-responsive-lg mt-4">
+                    @if (request()->has('bulan') && request()->has('tahun'))
+                        <div style="padding: 10px; font-size: 15px; font-weight: bold;">
+                            Hasil Pencarian: {{ $currentMonth }}
+                        </div>
+                    @endif
                     <table id="bbidangpim" class="table table-sm text-nowrap text-hover table-striped" style="width: 100%">
                         <thead class="thead-successv2">
                             <tr>
@@ -234,12 +243,13 @@
 @section('script')
     @if (auth()->user() && auth()->user()->role->nama_role == 'Pimpinan')
         <script>
+            var currentMonth = "<?php echo $currentMonth; ?>";
             Highcharts.chart('bBidangPim', {
                 chart: {
                     type: 'pie'
                 },
                 title: {
-                    text: 'Ranking Bidang <?php echo date('M Y'); ?>',
+                    text: 'Ranking Asper/KBKPH ' + currentMonth,
                     align: 'left',
                     style: {
                         color: '#007bff'

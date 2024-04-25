@@ -192,12 +192,13 @@
 @section('script')
     @if (auth()->user() && auth()->user()->role->nama_role == 'Pimpinan')
         <script>
+            var currentYear = "<?php echo $currentYear; ?>";
             Highcharts.chart('tBkphPim', {
                 chart: {
                     type: 'pie'
                 },
                 title: {
-                    text: 'Ranking BKPH <?php echo date('M Y'); ?>',
+                    text: 'Ranking BKPH ' + currentYear,
                     align: 'left',
                     style: {
                         color: '#007bff'

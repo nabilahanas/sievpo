@@ -14,10 +14,10 @@
 
                 <div class="table-responsive-lg mt-4">
                     @if (request()->has('bulan') && request()->has('tahun'))
-                    <div style="padding: 10px; font-size: 15px; font-weight: bold;">
-                        Hasil Pencarian: {{ $currentMonth }}
-                    </div>
-                @endif
+                        <div style="padding: 10px; font-size: 15px; font-weight: bold;">
+                            Hasil Pencarian: {{ $currentMonth }}
+                        </div>
+                    @endif
                     <table id="basper" class="table table-sm text-nowrap text-hover table-striped" style="width:100%">
 
                         <thead class="thead-successv2">
@@ -114,6 +114,11 @@
                     </div>
                 </div>
                 <div class="table-responsive-lg mt-4">
+                    @if (request()->has('bulan') && request()->has('tahun'))
+                        <div style="padding: 10px; font-size: 15px; font-weight: bold;">
+                            Hasil Pencarian: {{ $currentMonth }}
+                        </div>
+                    @endif
                     <table id="basper" class="table table-sm text-nowrap text-hover table-striped" style="width: 100%">
 
                         <thead class="thead-successv2">
@@ -135,70 +140,70 @@
                                         $request->has('bulan') && $request->has('tahun')
                                             ? Carbon\Carbon::create($request->tahun, $request->bulan)->daysInMonth
                                             : Carbon\Carbon::now()->daysInMonth;
-                        
+
                                     for ($day = 1; $day <= $daysInMonth; $day++) {
                                         $tanggal =
-                                                isset($request->tahun) && isset($request->bulan)
-                                                    ? Carbon\Carbon::createFromDate(
-                                                        $request->tahun,
-                                                        $request->bulan,
-                                                        $day,
-                                                    )->format('d-m-Y')
-                                                    : Carbon\Carbon::createFromDate(date('Y'), date('m'), $day)->format(
-                                                        'd-m-Y',
-                                                    );
+                                            isset($request->tahun) && isset($request->bulan)
+                                                ? Carbon\Carbon::createFromDate(
+                                                    $request->tahun,
+                                                    $request->bulan,
+                                                    $day,
+                                                )->format('d-m-Y')
+                                                : Carbon\Carbon::createFromDate(date('Y'), date('m'), $day)->format(
+                                                    'd-m-Y',
+                                                );
 
-                                            $userId = $item->id_user;
-                                            $poin = isset($data[$userId][$tanggal]) ? $data[$userId][$tanggal] : 0;
-                                            $total += $poin;
+                                        $userId = $item->id_user;
+                                        $poin = isset($data[$userId][$tanggal]) ? $data[$userId][$tanggal] : 0;
+                                        $total += $poin;
                                     }
                                     return $total;
                                 });
-                        
+
                                 // Menginisialisasi peringkat
                                 $ranking = 1;
 
                                 $pieData = [];
                                 foreach ($sortedUsers as $item) {
-                                        $total = 0;
-                                        $daysInMonth =
-                                            $request->has('bulan') && $request->has('tahun')
-                                                ? Carbon\Carbon::create($request->tahun, $request->bulan)->daysInMonth
-                                                : Carbon\Carbon::now()->daysInMonth;
-                        
-                                        for ($day = 1; $day <= $daysInMonth; $day++) {
-                                            $tanggal =
-                                                isset($request->tahun) && isset($request->bulan)
-                                                    ? Carbon\Carbon::createFromDate(
-                                                        $request->tahun,
-                                                        $request->bulan,
-                                                        $day,
-                                                    )->format('d-m-Y')
-                                                    : Carbon\Carbon::createFromDate(date('Y'), date('m'), $day)->format(
-                                                        'd-m-Y',
-                                                    );
+                                    $total = 0;
+                                    $daysInMonth =
+                                        $request->has('bulan') && $request->has('tahun')
+                                            ? Carbon\Carbon::create($request->tahun, $request->bulan)->daysInMonth
+                                            : Carbon\Carbon::now()->daysInMonth;
 
-                                            $userId = $item->id_user;
-                                            $poin = isset($data[$userId][$tanggal]) ? $data[$userId][$tanggal] : 0;
-                                            $total += $poin;
-                                        }
-                                        $pieData[] = ['name' => $item->nama_jabatan, 'y' => $total];
+                                    for ($day = 1; $day <= $daysInMonth; $day++) {
+                                        $tanggal =
+                                            isset($request->tahun) && isset($request->bulan)
+                                                ? Carbon\Carbon::createFromDate(
+                                                    $request->tahun,
+                                                    $request->bulan,
+                                                    $day,
+                                                )->format('d-m-Y')
+                                                : Carbon\Carbon::createFromDate(date('Y'), date('m'), $day)->format(
+                                                    'd-m-Y',
+                                                );
+
+                                        $userId = $item->id_user;
+                                        $poin = isset($data[$userId][$tanggal]) ? $data[$userId][$tanggal] : 0;
+                                        $total += $poin;
                                     }
+                                    $pieData[] = ['name' => $item->nama_jabatan, 'y' => $total];
+                                }
                             @endphp
-                        
+
                             @foreach ($sortedUsers as $item)
                                 <tr>
                                     <td>{{ $loop->iteration }}.</td>
                                     <td>{{ $item->nama_user }}</td>
                                     <td>{{ $item->jabatan->nama_jabatan }}</td>
-                        
+
                                     @php
                                         $total = 0;
                                         $daysInMonth =
                                             $request->has('bulan') && $request->has('tahun')
                                                 ? Carbon\Carbon::create($request->tahun, $request->bulan)->daysInMonth
                                                 : Carbon\Carbon::now()->daysInMonth;
-                        
+
                                         for ($day = 1; $day <= $daysInMonth; $day++) {
                                             $tanggal =
                                                 isset($request->tahun) && isset($request->bulan)
@@ -236,12 +241,13 @@
 @section('script')
     @if (auth()->user() && auth()->user()->role->nama_role == 'Pimpinan')
         <script>
+            var currentMonth = "<?php echo $currentMonth; ?>";
             Highcharts.chart('bAsperPim', {
                 chart: {
                     type: 'pie'
                 },
                 title: {
-                    text: 'Ranking Asper/KBKPH <?php echo date('M Y'); ?>',
+                    text: 'Ranking Asper/KBKPH ' + currentMonth,
                     align: 'left',
                     style: {
                         color: '#007bff'

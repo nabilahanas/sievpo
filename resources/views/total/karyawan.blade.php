@@ -252,12 +252,13 @@
 
     @if (auth()->user() && auth()->user()->role->nama_role == 'Pimpinan')
         <script>
+            var currentYear = "<?php echo $currentYear; ?>";
             Highcharts.chart('tKaryawanPim', {
                 chart: {
                     type: 'pie'
                 },
                 title: {
-                    text: 'Ranking Karyawan <?php echo date('M Y'); ?>',
+                    text: 'Ranking Karyawan ' + currentYear,
                     align: 'left',
                     style: {
                         color: '#007bff'

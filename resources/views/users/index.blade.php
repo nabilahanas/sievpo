@@ -49,6 +49,8 @@
                                     @endif
                                 </td>
                                 <td>
+                                    <button onclick="window.location='{{ route('users.edit', $user->id_user) }}'"
+                                        class="btn btn-sm btn-warning"><i class="fas fa-pen mr-2"></i>Ubah</button>
                                     <!-- Button trigger modal -->
                                     <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal"
                                         data-bs-target="#hapusModal{{ $user->id_user }}">

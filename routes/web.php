@@ -116,6 +116,8 @@ Route::middleware('check.role:Admin,Mahasiswa')->group(function () {
         Route::get('/', [UserController::class, 'index'])->name('users.index');
         Route::post('restore/{id}', [UserController::class, 'restore'])->name('users.restore');
         Route::delete('delete/{id}', [UserController::class, 'delete'])->name('users.delete');
+        Route::get('edit/{id}', [UserController::class, 'edit'])->name('users.edit');
+        Route::post('update/{id}', [UserController::class, 'update'])->name('users.update');
     });
 
     Route::prefix("bidang")->group(function () {

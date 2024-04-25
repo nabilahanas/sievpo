@@ -7,6 +7,8 @@ use App\Models\Berita;
 use App\Models\User;
 use App\Models\Pengumuman;
 use App\Models\Data;
+use App\Models\Bidang;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
 class NavController extends Controller
@@ -31,9 +33,35 @@ class NavController extends Controller
 
         $pengumuman = Pengumuman::all();
 
-        // $monthsToShow = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
-        $monthlyTotals = [1, 2, 3, 4, 5, 7, 8];
+        $currentYear = Carbon::now()->year;
+        $users = User::where('id_role', '3')->get();
+        $bidang = Bidang::all();
+        $datas = Data::all();
+        $monthlyTotals = [];
 
-        return view('layouts.dashboard', compact('total', 'approved', 'rejected', 'pending', 'berita', 'jmlpengumuman', 'user', 'poin', 'approvedstatus', 'rejectedstatus', 'pendingstatus', 'pengumuman', 'monthlyTotals'), ['key' => 'dashboard']);
+        // Dapatkan bulan saat ini
+        // $currentMonth = Carbon::now()->month;
+
+        // Inisialisasi array untuk menyimpan nama-nama bulan
+        $monthsToShow = [];
+
+        // Buat array yang berisi semua nama bulan dari Januari hingga bulan saat ini
+        for ($i = 1; $i <= 12; $i++) {
+            $monthName = Carbon::createFromDate($currentYear, $i, 1)->format('F');
+            $monthsToShow[] = $monthName;
+
+            // Inisialisasi total poin untuk bulan ini jika belum ada
+            if (!isset($monthlyTotals[$monthName])) {
+                $monthlyTotals[$monthName] = 0;
+            }
+        }
+
+        // Update data poin untuk bulan-bulan yang memiliki poin
+        foreach ($datas as $dataItem) {
+            $month = $dataItem->created_at->format('F');
+            $monthlyTotals[$month] += $dataItem->poin;
+        }
+
+        return view('layouts.dashboard', compact('monthlyTotals', 'monthsToShow', 'month', 'total', 'approved', 'rejected', 'pending', 'berita', 'jmlpengumuman', 'user', 'poin', 'approvedstatus', 'rejectedstatus', 'pendingstatus', 'pengumuman'), ['key' => 'dashboard']);
     }
 }

@@ -214,6 +214,12 @@
     @endif
 @endsection
 
+<script>
+    var monthlyTotals = {!! json_encode($monthlyTotals) !!};
+    var monthsToShow = {!! json_encode($monthsToShow) !!};
+</script>
+
+
 @section('script')
     <!-- ADMIN -->
     @if ((auth()->user() && auth()->user()->role->nama_role == 'Admin') || auth()->user()->role->nama_role == 'Mahasiswa')

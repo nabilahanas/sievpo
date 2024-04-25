@@ -417,30 +417,19 @@
 @section('script')
     <!-- ADMIN TOTAL BULAN -->
     <script>
-        // Dapatkan tanggal saat ini
-        var currentDate = new Date();
-
-        // Daftar bulan-bulan dalam format teks
-        var months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober',
-            'November', 'Desember'
-        ];
-
-        // Simpan bulan-bulan yang telah dilewati pada tahun ini
-        var monthsToShow = [];
-        for (var i = 0; i < currentDate.getMonth() + 1; i++) {
-            monthsToShow.push(months[i]);
-        }
-
-        var monthlyTotals = {!! json_encode($monthlyTotals) !!};
-
+        var monthsToShow = {!! json_encode($monthsToShow) !!};
+        var monthlyTotals = {!! json_encode(array_values($monthlyTotals)) !!};
+    
         Highcharts.chart('bulanPoin', {
             chart: {
                 type: 'column'
             },
-            title: false,
+            title: {
+                text: 'Total Poin per Bulan'
+            },
             xAxis: {
                 categories: monthsToShow,
-                crosshair: true,
+                crosshair: true
             },
             yAxis: {
                 min: 0,
@@ -460,6 +449,9 @@
             }]
         });
     </script>
+    
+    
+    
 
 
     {{-- <script>

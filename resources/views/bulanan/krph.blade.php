@@ -97,11 +97,16 @@
                                     </tr>
                                     {{-- Menambahkan total poin bidang ke dalam array --}}
                                     @php
-                                        $jabatanTotals[] = $total;
+
                                         $grandTotal += $total;
+                                        $jabatanTotals[] = $total;
                                     @endphp
                                 @endforeach
                             </tbody>
+                            @php
+                                // Urutkan array total poin bidang (jabatan) secara menurun
+                                arsort($jabatanTotals);
+                            @endphp
                             <tfoot>
                                 <tr>
                                     <th colspan="3" style="text-align:right">Total:</th>
@@ -292,7 +297,7 @@
                 },
                 series: [{
                     name: 'Poin',
-                    data: {!! json_encode($jabatanTotals) !!}
+                    data: {!! json_encode(array_values($jabatanTotals)) !!}
                 }]
             });
         </script>

@@ -26,7 +26,7 @@
                             <th>No.</th>
                             <th>Nama Bidang</th>
                             <th>Deskripsi</th>
-                            {{-- <th>Aksi</th> --}}
+                            <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -35,11 +35,11 @@
                                 <td>{{ $loop->iteration }}.</td>
                                 <td>{{ $bidang->nama_bidang }}</td>
                                 <td>{{ $bidang->deskripsi }}</td>
-                                {{-- <td>
+                                <td>
                                     <a href="{{ route('bidang.edit', $bidang->id_bidang) }}" type="button"
                                         class="btn btn-sm btn-warning"><i class="fas fa-pen mr-2"></i>Ubah</a>
 
-                                    <form
+                                    {{-- <form
                                         action="{{ $bidang->trashed() ? route('bidang.restore', $bidang->id_bidang) : route('bidang.delete', $bidang->id_bidang) }}"
                                         method="post" class="d-inline">
                                         @csrf
@@ -50,8 +50,8 @@
                                                 class="{{ $bidang->trashed() ? 'fas fa-check-circle' : 'fas fa-times-circle' }} mr-1"></i>
                                             {{ $bidang->trashed() ? 'Aktifkan' : 'Nonaktifkan' }}
                                         </button>
-                                    </form>
-                                </td> --}}
+                                    </form> --}}
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>

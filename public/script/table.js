@@ -1406,6 +1406,7 @@ $(document).ready(function () {
     var table = $("#bidang").DataTable({
         scrollCollapse: true,
         displayLength: 25,
+        columnDefs: [{ orderable: false, targets: 3 }],
         paging: false,
     });
 
@@ -1425,6 +1426,7 @@ $(document).ready(function () {
     var table = $("#shift").DataTable({
         scrollCollapse: true,
         displayLength: 25,
+        columnDefs: [{ orderable: false, targets: 5 }],
         paging: false,
     });
 

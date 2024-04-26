@@ -59,6 +59,7 @@
                                 @php
                                     $grandTotal = 0;
                                     $dailyTotals = array_fill(1, $daysInMonth, 0);
+                                    $usersData = []; // Array untuk menyimpan data pengguna dengan total mereka
                                 @endphp
                                 @foreach ($users as $user)
                                     @php
@@ -103,9 +104,18 @@
                                     @php
                                         $grandTotal += $total;
                                         $user->total = $total; // Assign total to the user object for use in JavaScript
+                                        // Menyimpan data pengguna dan total mereka ke dalam array
+                                        $usersData[] = ['nama_user' => $user->nama_user, 'total' => $total];
                                     @endphp
                                 @endforeach
                             </tbody>
+
+                            @php
+                                // Urutkan array pengguna berdasarkan total mereka secara menurun
+                                usort($usersData, function ($a, $b) {
+                                    return $b['total'] - $a['total'];
+                                });
+                            @endphp
 
                             <tfoot>
                                 <tr>
@@ -276,11 +286,14 @@
                 },
                 xAxis: {
                     categories: [
-                        @foreach ($users as $user)
-                            '{{ $user->nama_user }}',
+                        @foreach ($usersData as $userData)
+                            '{{ $userData['nama_user'] }}',
                         @endforeach
                     ],
                     crosshair: true,
+                    labels: {
+                        rotation: -60,
+                    }
                 },
                 yAxis: {
                     min: 0,
@@ -297,8 +310,8 @@
                 series: [{
                     name: 'Poin',
                     data: [
-                        @foreach ($users as $user)
-                            {{ $user->total }},
+                        @foreach ($usersData as $userData)
+                            {{ $userData['total'] }},
                         @endforeach
                     ]
                 }]

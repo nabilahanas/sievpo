@@ -26,7 +26,7 @@
                             <th>Jam Mulai</th>
                             <th>Jam Akhir</th>
                             <th>Poin</th>
-                            {{-- <th>Aksi</th> --}}
+                            <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -37,11 +37,11 @@
                                 <td>{{ $shift->jam_mulai }}</td>
                                 <td>{{ $shift->jam_akhir }}</td>
                                 <td>{{ $shift->poin }}</td>
-                                {{-- <td>
+                                <td>
                                     <a href="{{ route('shift.edit', $shift->id_shift) }}" type="button"
                                         class="btn btn-sm btn-warning"><i class="fas fa-pen mr-2"></i>Ubah</a>
 
-                                    <form
+                                    {{-- <form
                                         action="{{ $shift->trashed() ? route('shift.restore', $shift->id_shift) : route('shift.delete', $shift->id_shift) }}"
                                         method="post" class="d-inline">
                                         @csrf
@@ -52,8 +52,8 @@
                                                 class="{{ $shift->trashed() ? 'fas fa-check-circle' : 'fas fa-times-circle' }} mr-1"></i>
                                             {{ $shift->trashed() ? 'Aktifkan' : 'Nonaktifkan' }}
                                         </button>
-                                    </form>
-                                </td> --}}
+                                    </form> --}}
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>

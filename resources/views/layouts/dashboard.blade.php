@@ -6,28 +6,12 @@
 
     <title>Dashboard</title>
 
-    {{-- <!-- Trigger pop up -->
-    @if (session('just_logged_in'))
-        {!! session('modal_content') !!}
-        <script>
-            $(document).ready(function() {
-                $('#pengumumanModal').modal('show').static;
-                $('#close-modal-button').on('click', function() {
-                    setTimeout(function() {
-                        $('#pengumumanModal').modal('hide');
-                    }, 0);
-                });
-                $('#close-button').on('click', function() {
-                    setTimeout(function() {
-                        $('#pengumumanModal').modal('hide');
-                    }, 0);
-                });
-            });
-        </script>
-    @endif --}}
-
-    {{--  <!-- Modal -->
+    <!-- Modal -->
     @foreach ($pengumuman as $index => $item)
+        @php
+            $modalId = "pengumumanModal{$index}";
+            $localStorageKey = "hideModal{$index}";
+        @endphp
         <div class="modal fade" id="pengumumanModal{{ $index }}" data-backdrop="static" data-keyboard="false"
             tabindex="-1" role="dialog" aria-labelledby="pengumumanTitle{{ $index }}" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
@@ -53,18 +37,25 @@
                         <p>{{ $item->deskripsi }}</p>
                     </div>
                     <div class="modal-footer">
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="dontShowAgain{{ $index }}">
+                            <label class="form-check-label" for="dontShowAgain{{ $index }}">Jangan tampilkan
+                                lagi</label>
+                        </div>
                         <button type="button" class="btn btn-successv2 close-modal" data-dismiss="modal"
                             data-next-modal="#pengumumanModal{{ $index + 1 }}">OK</button>
                     </div>
                 </div>
             </div>
         </div>
-    @endforeach --}}
+    @endforeach
 
     <!-- ADMIN -->
     @if ((auth()->user() && auth()->user()->role->nama_role == 'Admin') || auth()->user()->role->nama_role == 'Mahasiswa')
         <section class="content">
             <div class="container-fluid">
+                <button id="showModalAgain">Tampilkan Modal Lagi</button>
+
                 <!-- Small boxes (Stat box) -->
                 <div class="row">
                     <div class="col-lg-3 col-6">
@@ -174,7 +165,7 @@
                             <div class="card-header">
                                 <div class="d-flex justify-content-between align-items-center">
                                     <h3 class="card-title" style="color: #007bff; font-weight: 600;">
-                                        Total Eviden Poin per Bulan Tahun <?php echo date('Y'); ?>
+                                        Total Eviden Poin Tahun <?php echo date('Y'); ?>
                                     </h3>
                                     <button class="btn btn-sm btn-outline-primary"><i class="bi bi-download"></i>
                                         Download</button>
@@ -193,7 +184,7 @@
                             <div class="card-header">
                                 <div class="d-flex justify-content-between align-items-center">
                                     <h3 class="card-title" style="color: #007bff; font-weight: 600;">
-                                        Total Eviden Poin per Bulan Tahun <?php echo date('Y'); ?>
+                                        Rekap Karyawan <?php echo date('M Y'); ?>
                                     </h3>
                                     <button class="btn btn-sm btn-outline-primary"><i class="bi bi-download"></i>
                                         Download</button>
@@ -211,7 +202,7 @@
                             <div class="card-header">
                                 <div class="d-flex justify-content-between align-items-center">
                                     <h3 class="card-title" style="color: #007bff; font-weight: 600;">
-                                        Total Eviden Poin per Bulan Tahun <?php echo date('Y'); ?>
+                                        Rekap Bidang <?php echo date('M Y'); ?>
                                     </h3>
                                     <button class="btn btn-sm btn-outline-primary"><i class="bi bi-download"></i>
                                         Download</button>
@@ -452,6 +443,59 @@
 @endsection
 
 @section('script')
+    <!-- MODAL PENGUMUMAN -->
+    <script>
+        // // Show modal when the page is fully loaded
+        // window.addEventListener('load', function() {
+        //     $('#pengumumanModal0').modal('show');
+        // });
+
+        // Show modal when the page is fully loaded and not hidden by local storage
+        window.addEventListener('load', function() {
+            @foreach ($pengumuman as $index => $item)
+                var localStorageKey = "hideModal{{ $index }}";
+                if (!localStorage.getItem(localStorageKey)) {
+                    $('#pengumumanModal{{ $index }}').modal('show');
+                }
+            @endforeach
+        });
+
+        // Handle close button click
+        $(document).on('click', '.close-modal', function() {
+            var nextModalId = $(this).data('next-modal');
+            $(this).closest('.modal').modal('hide');
+            $(nextModalId).modal('show');
+        });
+
+        // Handle close button in modal header
+        $(document).on('click', '.close', function() {
+            var nextModalId = $(this).data('next-modal');
+            $(this).closest('.modal').modal('hide');
+            $(nextModalId).modal('show');
+        });
+
+        // Handle checkbox click
+        $(document).on('change', '.form-check-input', function() {
+            var modalId = $(this).closest('.modal').attr('id');
+            var index = modalId.substring(15); // Extract the index from modalId
+            var localStorageKey = "hideModal" + index;
+            if ($(this).prop('checked')) {
+                localStorage.setItem(localStorageKey, true);
+            } else {
+                localStorage.removeItem(localStorageKey);
+            }
+        });
+
+        // Handle button click to show modal again
+        document.getElementById('showModalAgain').addEventListener('click', function() {
+            // Hapus preferensi penyembunyian modal dari local storage
+            localStorage
+                .clear(); // Anda juga dapat menggunakan localStorage.removeItem(key) untuk menghapus kunci tertentu jika lebih spesifik
+            // Muat ulang halaman untuk menampilkan kembali modal
+            window.location.reload();
+        });
+    </script>
+
     <!-- ADMIN TOTAL BULAN -->
     <script>
         var monthsToShow = {!! json_encode($monthsToShow) !!};
@@ -485,7 +529,6 @@
         });
     </script>
 
-
     <!-- ADMIN -->
     <script>
         var usersToShow = {!! json_encode($usersToShow) !!};
@@ -497,13 +540,14 @@
             chart: {
                 type: 'column'
             },
-            title: {
-                text: 'Rekap Karyawan ' + currentMonth,
-                align: 'center',
-                style: {
-                    color: '#007bff'
-                }
-            },
+            title: false,
+            // title: {
+            //     text: 'Rekap Karyawan ' + currentMonth,
+            //     align: 'center',
+            //     style: {
+            //         color: '#007bff'
+            //     }
+            // },
             xAxis: {
                 categories: usersToShow,
                 crosshair: true,
@@ -535,13 +579,14 @@
             chart: {
                 type: 'pie'
             },
-            title: {
-                text: 'Rekap Bidang ' + currentMonth,
-                align: 'center',
-                style: {
-                    color: '#007bff'
-                }
-            },
+            title: false,
+            // title: {
+            //     text: 'Rekap Bidang ' + currentMonth,
+            //     align: 'center',
+            //     style: {
+            //         color: '#007bff'
+            //     }
+            // },
             series: [{
                 name: 'Poin',
                 colorByPoint: true,

@@ -139,28 +139,6 @@
     </div>
     <!-- ./wrapper -->
 
-    <!-- Modal Pengumuman -->
-    <script>
-        // Show modal when the page is fully loaded
-        window.addEventListener('load', function() {
-            $('#pengumumanModal0').modal('show');
-        });
-
-        // Handle close button click
-        $(document).on('click', '.close-modal', function() {
-            var nextModalId = $(this).data('next-modal');
-            $(this).closest('.modal').modal('hide');
-            $(nextModalId).modal('show');
-        });
-
-        // Handle close button in modal header
-        $(document).on('click', '.close', function() {
-            var nextModalId = $(this).data('next-modal');
-            $(this).closest('.modal').modal('hide');
-            $(nextModalId).modal('show');
-        });
-    </script>
-
     <!-- Dropdown -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">

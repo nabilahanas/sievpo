@@ -51,15 +51,14 @@ class UserController extends Controller
         $user->nip = $request->nip;
 
         // Periksa apakah password diisi atau tidak
-        if ($request->has('password')) {
-            // Jika diisi, update password
+        if ($request->has('password') && $request->password != '') {
+            // Jika diisi dan tidak kosong, update password
             $request->validate([
-                'password' => '', // Sesuaikan validasi ini sesuai kebutuhan
+                'password' => '',
             ]);
             $user->password = bcrypt($request->password);
         }
 
-        // Simpan perubahan
         $user->save();
 
         return redirect()->route('users.index')->with('success', 'Data user berhasil diubah');

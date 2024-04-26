@@ -154,7 +154,7 @@
                         <!-- small box -->
                         <div class="small-box bg-purple">
                             <div class="inner">
-                                <h3>{{ $user }}</h3>
+                                <h3>{{ $jmluser }}</h3>
                                 <p>Total User</p>
                             </div>
                             <div class="icon">
@@ -188,6 +188,43 @@
                 </div>
 
                 <div class="row">
+                    <section class="col-lg-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <h3 class="card-title" style="color: #007bff; font-weight: 600;">
+                                        Total Eviden Poin per Bulan Tahun <?php echo date('Y'); ?>
+                                    </h3>
+                                    <button class="btn btn-sm btn-outline-primary"><i class="bi bi-download"></i>
+                                        Download</button>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div id="adminP1" height="60"></div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+                <div class="row">
+                    <section class="col-lg-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <h3 class="card-title" style="color: #007bff; font-weight: 600;">
+                                        Total Eviden Poin per Bulan Tahun <?php echo date('Y'); ?>
+                                    </h3>
+                                    <button class="btn btn-sm btn-outline-primary"><i class="bi bi-download"></i>
+                                        Download</button>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div id="adminP2" height="60"></div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+                <div class="row">
                     <!-- KARYAWAN -->
                     <div class="col-lg-6">
                         <section>
@@ -202,7 +239,7 @@
                                     </div>
                                 </div>
                                 <div class="card-body">
-                                    <canvas id="adminP1" height="60"></canvas>
+                                    <canvas id="adminP" height="60"></canvas>
                                 </div>
                             </div>
                         </section>
@@ -251,7 +288,7 @@
                         <!-- small box -->
                         <div class="small-box bg-success">
                             <div class="inner">
-                                <h3>{{ $user }}</h3>
+                                <h3>{{ $jmluser }}</h3>
                                 <p>Total User</p>
                             </div>
                             <div class="icon">
@@ -447,9 +484,73 @@
             }]
         });
     </script>
+
+
+    <!-- ADMIN -->
+    <script>
+        var usersToShow = {!! json_encode($usersToShow) !!};
+        var totalPerUser = {!! json_encode(array_values($totalPerUser)) !!};
+
+        var currentMonth = "<?php echo $currentMonth; ?>";
+
+        Highcharts.chart('adminP1', {
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: 'Rekap Karyawan ' + currentMonth,
+                align: 'center',
+                style: {
+                    color: '#007bff'
+                }
+            },
+            xAxis: {
+                categories: usersToShow,
+                crosshair: true,
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'Poin'
+                }
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
+                }
+            },
+            series: [{
+                name: 'Poin',
+                data: totalPerUser
+            }]
+        });
+    </script>
+
+    <script>
+        var currentMonth = "<?php echo $currentMonth; ?>";
+        var bidangTotals = {!! json_encode($bidangTotals) !!};
+
+        Highcharts.chart('adminP2', {
+            chart: {
+                type: 'pie'
+            },
+            title: {
+                text: 'Rekap Bidang ' + currentMonth,
+                align: 'center',
+                style: {
+                    color: '#007bff'
+                }
+            },
+            series: [{
+                name: 'Poin',
+                colorByPoint: true,
+                data: bidangTotals
+            }]
+        });
+    </script>
+
 @endsection
-
-
 
 <!-- JQuery -->
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"

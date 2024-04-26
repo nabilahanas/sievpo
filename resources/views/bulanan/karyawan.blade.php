@@ -243,11 +243,9 @@
                                         }
                                     @endphp
                                     <td>{{ $total }}</td>
-                                    <!-- Menampilkan peringkat berdasarkan urutan data yang sudah diurutkan -->
                                     <td>{{ $ranking }}</td>
                                 </tr>
                                 @php
-                                    // Meningkatkan peringkat setiap kali perulangan selesai
                                     $ranking++;
                                 @endphp
                             @endforeach

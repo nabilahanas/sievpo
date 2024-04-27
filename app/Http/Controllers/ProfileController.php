@@ -11,11 +11,15 @@ use Illuminate\Support\Facades\Storage;
 
 class ProfileController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $users = User::all();
-        return view('users.profile', compact('users'), ['key' => 'users']);
+        // Mendapatkan nilai tab dari query string jika ada
+        $activeTab = $request->query('tab', 'info'); // Jika tidak ada parameter tab, maka tab "info" akan menjadi default
+
+        return view('users.profile', compact('users', 'activeTab'), ['key' => 'users']);
     }
+
 
     public function updateProfilePicture(Request $request)
     {
@@ -39,28 +43,31 @@ class ProfileController extends Controller
             $users->update(['profile_pict' => $filename]);
         }
 
-        return redirect()->route('profile.index')->with('success', 'Foto profil berhasil diubah');
+        return redirect()->route('profile.index', ['tab' => 'editfoto'])->with('success', 'Foto profil berhasil diubah');
     }
 
     public function updatePassword(Request $request)
     {
         $request->validate([
             'current_password' => 'required',
-            'new_password' => 'required|min:8|confirmed',
+            'new_password' => 'required|min:8|confirmed', // Konfirmasi dilakukan secara otomatis oleh Laravel
+        ], [
+            'new_password.confirmed' => 'Password baru dan konfirmasi password harus cocok.',
         ]);
 
         $users = Auth::user();
 
         // Check if the current password is correct
         if (!Hash::check($request->current_password, $users->password)) {
-            return redirect()->route('profile.index')->with('error', 'Password saat ini tidak sesuai.');
+            return redirect()->route('profile.index', ['tab' => 'editpass'])->with('error', 'Gagal karena Password lama tidak sesuai.');
         }
 
         // Update the password
         $users->update(['password' => bcrypt($request->new_password)]);
 
-        return redirect()->route('profile.index')->with('success', 'Password berhasil diubah');
+        return redirect()->route('profile.index', ['tab' => 'editpass'])->with('success', 'Password berhasil diubah');
     }
+
 
     public function deleteProfilePicture()
     {
@@ -69,8 +76,6 @@ class ProfileController extends Controller
         // Hapus referensi foto profil dari database
         $user->update(['profile_pict' => null]);
 
-        return redirect()->route('profile.index')->with('success', 'Foto profil berhasil dihapus');
+        return redirect()->route('profile.index', ['tab' => 'editfoto'])->with('success', 'Foto profil berhasil dihapus');
     }
-
-
 }

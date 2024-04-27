@@ -26,11 +26,15 @@ class ConfirmController extends Controller
             $dataQuery->where('is_approved', $search);
         }
 
-        // Ambil data yang telah difilter
+        // Urutkan data berdasarkan waktu masuk (created_at) dari terbaru ke terlama
+        $dataQuery->orderBy('created_at', 'desc');
+
+        // Ambil data yang telah difilter dan diurutkan
         $data = $dataQuery->get();
 
         return view('confirm.index', compact('bidang', 'shift', 'data'), ['key' => 'confirm']);
     }
+
 
     public function approval($id, $status)
     {

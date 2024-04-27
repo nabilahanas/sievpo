@@ -29,45 +29,35 @@ class MingguanController extends Controller
         $start_date = $now->startOfWeek();
         $end_date = $start_date->copy()->endOfWeek();
 
-        $currentDate = $now->translatedFormat('d F Y');
-
         $users = User::where('id_role', '3')->get();
         $bidang = Bidang::all();
         $shifts = Shift::all();
 
         $data = [];
-        // $start_date = null;
-        // $end_date = null;
 
         if ($request->has('start_date') && $request->has('end_date')) {
             $start_date = Carbon::parse($request->start_date)->startOfDay();
             $end_date = Carbon::parse($request->end_date)->endOfDay();
-
+        
             $datas = Data::whereBetween('created_at', [$start_date, $end_date])->get();
         } else {
-            $datas = Data::all();
-        }
+            $datas = Data::whereBetween('created_at', [$start_date, $end_date])->get();
+        }        
 
         foreach ($datas as $item) {
-            // Jika start_date dan end_date tidak ditentukan, atau jika item berada dalam rentang tanggal yang ditentukan
-            if (!$start_date || !$end_date || ($item->created_at->between($start_date, $end_date))) {
-                $tanggal = $item->created_at->format('Y-m-d');
+                
                 $userId = $item->id_user;
                 $bidangId = $item->id_bidang;
                 $shiftId = $item->id_shift;
                 $poin = $item->poin;
 
-                if (!isset($data[$userId][$tanggal][$bidangId][$shiftId])) {
-                    $data[$userId][$tanggal][$bidangId][$shiftId] = 0;
+                if (!isset($data[$userId][$bidangId][$shiftId])) {
+                    $data[$userId][$bidangId][$shiftId] = 0;
                 }
 
-                $data[$userId][$tanggal][$bidangId][$shiftId] += $poin;
-            }
+                $data[$userId][$bidangId][$shiftId] += $poin;
         }
-
-
-        // dd($data);
-
-        return view('mingguan.index', compact('currentDate', 'shifts', 'users', 'data', 'bidang', 'start_date', 'end_date'), ['key' => 'mingguan']);
+// dd($data);
+        return view('mingguan.index', compact('shifts', 'users', 'data', 'bidang', 'start_date', 'end_date'), ['key' => 'mingguan']);
     }
 }

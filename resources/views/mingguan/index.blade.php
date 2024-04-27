@@ -7,11 +7,14 @@
 
     <div class="card">
         <div class="card-body">
-            <a class="btn btn-outline-success" href="{{ route('mingguan.export') }}?{{ request()->has('start_date') && request()->has('end_date') ? 'start_date=' . request()->start_date . '&end_date=' . request()->end_date : '' }}">Download Excel</a>
+            <a class="btn btn-outline-success"
+                href="{{ route('mingguan.export') }}?{{ request()->has('start_date') && request()->has('end_date') ? 'start_date=' . request()->start_date . '&end_date=' . request()->end_date : '' }}">Download
+                Excel</a>
             <div class="table-responsive-lg mt-4">
                 @if (request()->has('start_date') && request()->has('end_date'))
                     <div style="padding: 10px; font-size: 15px; font-weight: bold;">
-                        Hasil Pencarian: {{ $start_date->translatedFormat('d F Y') }} - {{ $end_date->translatedFormat('d F Y') }}
+                        Hasil Pencarian: {{ $start_date->translatedFormat('d F Y') }} -
+                        {{ $end_date->translatedFormat('d F Y') }}
                     </div>
                 @endif
                 <table id="mingguan" class="table table-sm text-nowrap table-hover table-striped" style="width: 100%">
@@ -21,7 +24,9 @@
                             <th rowspan="3">Nama</th>
                             <th rowspan="3">Jabatan</th>
                             <th rowspan="3">Wilayah</th>
-                            <th colspan="{{ count($bidang) * (count($shifts) + 1)}}" class="text-center">{{ $start_date->translatedFormat('d F Y') }} - {{ $end_date->translatedFormat('d F Y') }} </th>
+                            <th colspan="{{ count($bidang) * (count($shifts) + 1) }}" class="text-center">
+                                {{ $start_date->translatedFormat('d F Y') }} - {{ $end_date->translatedFormat('d F Y') }}
+                            </th>
                             <th rowspan="3">Total</th>
                         </tr>
                         <tr>
@@ -77,14 +82,11 @@
 
                                                 while ($searchDate <= $end_date) {
                                                     $poin += isset(
-                                                        $data[$user->id_user][$searchDate->format('Y-m-d')][
-                                                            $b->id_bidang
-                                                        ][$shift->id_shift],
+                                                        $data[$user->id_user][$b->id_bidang][$shift->id_shift],
                                                     )
-                                                        ? $data[$user->id_user][$searchDate->format('Y-m-d')][
-                                                            $b->id_bidang
-                                                        ][$shift->id_shift]
+                                                        ? $data[$user->id_user][$b->id_bidang][$shift->id_shift]
                                                         : 0;
+
                                                     $searchDate->addDay();
                                                 }
 
@@ -92,8 +94,6 @@
                                                 $total += $poin;
                                             @endphp
                                             {{ $poin }}
-
-
                                         </td>
                                     @endforeach
                                     <td>{{ $jml }}</td>
@@ -125,23 +125,18 @@
                                             $end_date = request()->has('end_date')
                                                 ? Carbon\Carbon::parse(request()->end_date)->endOfDay()
                                                 : $now->endOfWeek();
-                
+
                                             $searchDate = clone $start_date;
                                             $poin = 0;
-                
+
                                             while ($searchDate <= $end_date) {
-                                                $poin += isset(
-                                                    $data[$user->id_user][$searchDate->format('Y-m-d')][$b->id_bidang][
-                                                        $shift->id_shift
-                                                    ],
-                                                )
-                                                    ? $data[$user->id_user][$searchDate->format('Y-m-d')][$b->id_bidang][
-                                                        $shift->id_shift
-                                                    ]
+                                                $poin += isset($data[$user->id_user][$b->id_bidang][$shift->id_shift])
+                                                    ? $data[$user->id_user][$b->id_bidang][$shift->id_shift]
                                                     : 0;
+
                                                 $searchDate->addDay();
                                             }
-                
+
                                             $totalBidang += $poin;
                                             $totalShift += $poin;
                                         @endphp

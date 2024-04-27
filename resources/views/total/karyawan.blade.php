@@ -214,37 +214,6 @@
 @endsection
 
 @section('script')
-    <!-- TES -->
-    <script>
-        Highcharts.chart('tes', {
-            chart: {
-                type: 'line'
-            },
-            title: false,
-            xAxis: {
-                categories: {!! json_encode($monthsToShow) !!},
-                crosshair: true
-            },
-            yAxis: {
-                min: 0,
-                title: {
-                    text: 'Poin'
-                }
-            },
-            plotOptions: {
-                column: {
-                    pointPadding: 0.2,
-                    borderWidth: 0
-                }
-            },
-            series: [{
-                name: 'Poin',
-                data: {!! json_encode($totalPoints) !!}
-            }]
-        });
-    </script>
-
-
     <!-- ADMIN -->
     {{-- @if ((auth()->user() && auth()->user()->role->nama_role == 'Admin') || auth()->user()->role->nama_role == 'Mahasiswa')
         <script>

@@ -16,7 +16,7 @@
 
     <div class="card">
         <div class="card-body">
-            <div class="table-responsive mt-4">
+            <div class="table-responsive-lg mt-4">
                 <table id="konfirm" class="table table-sm text-nowrap table-hover table-striped" style="width: 100%">
                     <thead class="thead-successv2">
                         <tr>

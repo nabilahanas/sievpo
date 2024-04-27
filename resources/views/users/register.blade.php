@@ -35,7 +35,7 @@
                     <label for="nip" class="col-sm-2 col-form-label required">NIP</label>
                     <div class="col-sm-10">
                         <input type="text" name="nip" class="form-control" Required autocomplete="off">
-                        <small class="form-text text-danger">Gunakan kode PHT di awal NIP! Contoh: PHT1234567890</small>
+                        {{-- <small class="form-text text-danger">Gunakan kode PHT di awal NIP! Contoh: PHT1234567890</small> --}}
                     </div>
                 </div>
                 <div class="form-group row col-12 col-md-10">

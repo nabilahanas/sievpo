@@ -25,7 +25,7 @@ class NavController extends Controller
         $jmlpengumuman = Pengumuman::count();
         $jmluser = User::count();
 
-        //USER LOGIN
+        // USER LOGIN
         $usersauth = Auth::user();
         $poin = Data::where('id_user', $usersauth->id_user)->count('poin');
         $approvedstatus = Data::where('is_approved', 'approved')->where('id_user', $usersauth->id_user)->count();
@@ -34,7 +34,7 @@ class NavController extends Controller
 
         $pengumuman = Pengumuman::all();
 
-        //KARYAWAN TAHUNAN
+        // KARYAWAN TAHUNAN
         $currentYear = Carbon::now()->year;
         $users = User::where('id_role', '3')->get();
         $bidang = Bidang::all();
@@ -57,43 +57,35 @@ class NavController extends Controller
             $monthlyTotals[$month] += $dataItem->poin;
         }
 
-
-        //KARYAWAN BULAN
+        // KARYAWAN BULAN
         $currentMonth = Carbon::now()->format('F Y');
-        $users = User::all();
+        $users = User::where('id_role', '3')->get();
+        $datas = Data::all(); // Assuming Data model is imported
         $usersToShow = [];
         $totalPerUser = []; 
-
+        
         foreach ($users as $user) {
             $usersToShow[] = $user->nama_user;
             $totalPerUser[$user->id_user] = 0;
         }
-
+        
         foreach ($datas as $dataItem) {
             $tanggal = Carbon::parse($dataItem->created_at);
-            $userId = $dataItem->id_user;
+            $userId = $dataItem->id_user; // Ensure id_user field exists
             $poin = $dataItem->poin;
-
+        
             if ($tanggal->format('F Y') === $currentMonth) {
-                $totalPerUser[$userId] += $poin;
+                // Check if $userId exists in $totalPerUser before incrementing
+                if(isset($totalPerUser[$userId])){
+                    $totalPerUser[$userId] += $poin;
+                }
             }
         }
+        arsort($totalPerUser);
 
+        // PERBANDINGAN KARYAWAN
+        
 
-        //PIE CHART
-        $bidangTotals = [];
-        foreach ($datas as $item) {
-            $month = $item->created_at->format('F Y');
-            $bidangId = $item->id_bidang;
-
-            if (!isset($bidangTotals[$bidangId][$month])) {
-                $bidangTotals[$bidangId][$month] = 0;
-            }
-
-            $bidangTotals[$bidangId][$month] += $item->poin;
-        }
-        // dd($bidangTotals);
-
-        return view('layouts.dashboard', compact('totalPerUser', 'usersToShow', 'bidangTotals', 'currentMonth', 'users', 'monthlyTotals', 'monthsToShow', 'month', 'total', 'approved', 'rejected', 'pending', 'berita', 'jmlpengumuman', 'jmluser', 'poin', 'approvedstatus', 'rejectedstatus', 'pendingstatus', 'pengumuman'), ['key' => 'dashboard']);
+        return view('layouts.dashboard', compact('totalPerUser', 'usersToShow', 'currentMonth', 'users', 'monthlyTotals', 'monthsToShow', 'month', 'total', 'approved', 'rejected', 'pending', 'berita', 'jmlpengumuman', 'jmluser', 'poin', 'approvedstatus', 'rejectedstatus', 'pendingstatus', 'pengumuman'), ['key' => 'dashboard']);
     }
 }

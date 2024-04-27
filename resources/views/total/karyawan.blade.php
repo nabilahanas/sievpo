@@ -18,6 +18,13 @@
                         <div id="tKarAd"></div>
                     </div>
                 </div> --}}
+
+                <div class="card mt-4">
+                    <div class="card-body">
+                        <div id="tes" height="60"></div>
+                    </div>
+                </div>
+
                 <div class="table-responsive-lg mt-4" style="overflow-x: auto;">
                     @if (request()->has('semester') && request()->has('year'))
                         <div style="padding: 10px; font-size: 15px; font-weight: bold;">
@@ -116,6 +123,11 @@
                                 @endphp
                             @endforeach
                         </tbody>
+                        @php
+                            $totalPoints = isset($karyawanTotals[auth()->user()->id_user])
+                                ? array_values($karyawanTotals[auth()->user()->id_user])
+                                : [];
+                        @endphp
                         <tfoot>
                             <tr>
                                 <th colspan="3" style="text-align:right">Total:</th>
@@ -202,6 +214,37 @@
 @endsection
 
 @section('script')
+    <!-- TES -->
+    <script>
+        Highcharts.chart('tes', {
+            chart: {
+                type: 'line'
+            },
+            title: false,
+            xAxis: {
+                categories: {!! json_encode($monthsToShow) !!},
+                crosshair: true
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'Poin'
+                }
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
+                }
+            },
+            series: [{
+                name: 'Poin',
+                data: {!! json_encode($totalPoints) !!}
+            }]
+        });
+    </script>
+
+
     <!-- ADMIN -->
     {{-- @if ((auth()->user() && auth()->user()->role->nama_role == 'Admin') || auth()->user()->role->nama_role == 'Mahasiswa')
         <script>

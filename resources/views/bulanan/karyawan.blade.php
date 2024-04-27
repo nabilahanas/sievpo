@@ -17,6 +17,12 @@
                     </div>
                 </div>
 
+                <div class="card mt-4">
+                    <div class="card-body">
+                        <div id="tesbanding" height="60"></div>
+                    </div>
+                </div>
+
                 <div class="table-responsive-lg mt-4">
                     <div class="table-responsive-lg mt-4">
                         @if (request()->has('bulan') && request()->has('tahun'))
@@ -269,6 +275,64 @@
 @endsection
 
 @section('script')
+<script>
+    Highcharts.chart('tesbanding', {
+        chart: {
+            type: 'bar'
+        },
+        title: false,
+        xAxis: {
+            categories: ['Poin'],
+            title: {
+                text: null
+            },
+            gridLineWidth: 1,
+            lineWidth: 0
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: 'Poin',
+                align: 'high'
+            },
+            labels: {
+                overflow: 'justify'
+            },
+            gridLineWidth: 0
+        },
+        plotOptions: {
+            bar: {
+                borderRadius: '50%',
+                dataLabels: {
+                    enabled: true
+                },
+                groupPadding: 0.1
+            }
+        },
+        legend: {
+            layout: 'vertical',
+            align: 'right',
+            verticalAlign: 'top',
+            x: -40,
+            y: 80,
+            floating: true,
+            borderWidth: 1,
+            backgroundColor: Highcharts.defaultOptions.legend.backgroundColor || '#FFFFFF',
+            shadow: true
+        },
+        credits: {
+            enabled: false
+        },
+        series: [{
+            name: 'Poin Anda',
+            data:  [{{ auth()->user()->total }}]
+        }, {
+            name: 'Poin Seluruh Karyawan',
+            data: [{{ $grandTotal }}]
+        }]
+    });
+</script>
+
     <!-- ADMIN -->
     @if ((auth()->user() && auth()->user()->role->nama_role == 'Admin') || auth()->user()->role->nama_role == 'Mahasiswa')
         <script>

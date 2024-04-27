@@ -143,8 +143,8 @@ $(document).ready(function () {
                             .eq(i)
                             .before(
                                 '<tr class="group"><td colspan="39">' +
-                                    group +
-                                    "</td></tr>"
+                                group +
+                                "</td></tr>"
                             );
 
                         last = group;
@@ -189,16 +189,7 @@ $(document).ready(function () {
         scrollX: true,
         scrollCollapse: true,
         paging: false,
-        columnDefs: [
-            { visible: false, targets: groupColumn },
-            // {
-            //     orderable: false,
-            //     targets: [
-            //         3, 4, 5, 6, 7, 8, 9, 10, 12, 13, 14, 15, 16, 17, 18, 19, 21,
-            //         22, 23, 24, 25, 26, 27, 28, 30, 31, 32, 33, 34, 35, 36, 37,
-            //     ],
-            // },
-        ],
+        columnDefs: [{ visible: false, targets: groupColumn }],
         order: [[groupColumn, "asc"]],
         drawCallback: function (settings) {
             var api = this.api();

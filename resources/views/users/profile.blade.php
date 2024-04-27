@@ -14,7 +14,7 @@
             <div class="container py-5">
                 <div class="row">
 
-                    {{-- TAMPILAN NAVBAR --}}
+                    <!-- TAMPILAN NAVBAR -->
                     <div class="col-12 col-md-4">
                         <div class="card mb-4">
                             <div class="card-body text-center mt-3 mb-3">
@@ -35,7 +35,7 @@
                         </div>
                     </div>
 
-                    {{-- TAMPILAN DATA USER LOGIN --}}
+                    <!-- TAMPILAN DATA USER LOGIN -->
                     <div class="col-12 col-md-8">
                         <div class="card">
                             <div class="card-body">
@@ -51,7 +51,7 @@
                             </div>
                             <div class="card-body mb-4 ml-4">
                                 <div class="tab-content">
-                                    {{-- PERSONAL INFO --}}
+                                    <!-- PERSONAL INFO -->
                                     <div class="active tab-pane" id="info">
                                         <div class="row">
                                             <div class="col-sm-3">
@@ -117,7 +117,7 @@
                                         </div>
                                     </div>
 
-                                    {{-- EDIT FOTO PROFILE --}}
+                                    <!-- EDIT FOTO PROFILE -->
                                     <div class="tab-pane" id="editfoto">
                                         <form class="form-horizontal" method="post"
                                             action="{{ route('profile.update-profile-picture') }}"
@@ -141,7 +141,7 @@
                                         </form>
                                     </div>
 
-                                    {{-- EDIT PASSWORD --}}
+                                    <!-- EDIT PASSWORD -->
                                     <div class="tab-pane" id="editpass">
                                         <form class="form-horizontal" method="post"
                                             action="{{ route('profile.update-password') }}">

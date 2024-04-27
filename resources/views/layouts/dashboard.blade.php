@@ -158,7 +158,7 @@
 
                 </div>
 
-                <!-- Chart -->
+                <!-- Grafik Total Poin -->
                 <div class="row">
                     <section class="col-lg-12">
                         <div class="card">
@@ -178,25 +178,27 @@
                     </section>
                 </div>
 
+                <!-- Grafik Karyawan -->
                 <div class="row">
                     <section class="col-lg-12">
                         <div class="card">
                             <div class="card-header">
                                 <div class="d-flex justify-content-between align-items-center">
                                     <h3 class="card-title" style="color: #007bff; font-weight: 600;">
-                                        Rekap Karyawan <?php echo date('M Y'); ?>
+                                        Rekap Poin Karyawan <?php echo date('M Y'); ?>
                                     </h3>
                                     <button class="btn btn-sm btn-outline-primary"><i class="bi bi-download"></i>
                                         Download</button>
                                 </div>
                             </div>
                             <div class="card-body">
-                                <div id="adminP1" height="60"></div>
+                                <div id="poinKar" height="60"></div>
                             </div>
                         </div>
                     </section>
                 </div>
-                <div class="row">
+
+                {{-- <div class="row">
                     <section class="col-lg-12">
                         <div class="card">
                             <div class="card-header">
@@ -213,9 +215,9 @@
                             </div>
                         </div>
                     </section>
-                </div>
+                </div> --}}
 
-                <div class="row">
+                {{-- <div class="row">
                     <!-- KARYAWAN -->
                     <div class="col-lg-6">
                         <section>
@@ -254,7 +256,7 @@
                             </div>
                         </section>
                     </div>
-                </div>
+                </div> --}}
         </section>
     @endif
 
@@ -289,41 +291,41 @@
                     </div>
                 </div>
 
-                <!-- Grafik Total -->
+                <!-- Grafik Total Poin -->
                 <div class="row">
                     <section class="col-lg-12">
                         <div class="card">
                             <div class="card-header">
                                 <div class="d-flex justify-content-between align-items-center">
                                     <h3 class="card-title" style="color: #007bff; font-weight: 600;">
-                                        Total Eviden Poin per Bulan Tahun <?php echo date('Y'); ?>
+                                        Total Eviden Poin Tahun <?php echo date('Y'); ?>
                                     </h3>
                                     <button class="btn btn-sm btn-outline-primary mr-2"><i class="bi bi-download"></i>
                                         Download</button>
                                 </div>
                             </div>
                             <div class="card-body">
-                                <div id="bulanDP" height="50"></div>
+                                <div id="bulanPoin" height="50"></div>
                             </div>
                         </div>
                     </section>
                 </div>
 
-                <!-- Grafik Perbandingan -->
+                <!-- Grafik Karyawan -->
                 <div class="row">
                     <section class="col-lg-12">
                         <div class="card">
                             <div class="card-header">
                                 <div class="d-flex justify-content-between align-items-center">
                                     <h3 class="card-title" style="color: #007bff; font-weight: 600;">
-                                        Perbandingan Rerata Poin Seluruh Karyawan, Bidang, BKPH, KRPH, dan Asper/KBKPH
+                                        Rekap Poin Karyawan <?php echo date('M Y'); ?>
                                     </h3>
                                     <button class="btn btn-sm btn-outline-primary mr-2"><i class="bi bi-download"></i>
                                         Download</button>
                                 </div>
                             </div>
                             <div class="card-body">
-                                <canvas id="pimpinanP" height="60"></canvas>
+                                <div id="poinKar" height="60"></div>
                             </div>
                         </div>
                     </section>
@@ -398,41 +400,41 @@
                     </div>
                 </div>
 
-                <!-- Grafik Total -->
+                <!-- Grafik Total Poin -->
                 <div class="row">
                     <section class="col-lg-12">
                         <div class="card">
                             <div class="card-header">
                                 <div class="d-flex justify-content-between align-items-center">
                                     <h3 class="card-title" style="color: #007bff; font-weight: 600;">
-                                        Total Poin Seluruh Karyawan Per Bulan
+                                        Total Poin Anda Tahun <?php echo date('Y'); ?>
                                     </h3>
                                     <button class="btn btn-sm btn-outline-primary mr-2"><i class="bi bi-download"></i>
                                         Download</button>
                                 </div>
                             </div>
                             <div class="card-body">
-                                <canvas id="karyawanT" height="50"></canvas>
+                                <div id="totalKar" height="60"></div>
                             </div>
                         </div>
                     </section>
                 </div>
 
-                <!-- Grafik Perbandingan -->
+                <!-- Grafik Perbandingan Poin -->
                 <div class="row">
                     <section class="col-lg-12">
                         <div class="card">
                             <div class="card-header">
                                 <div class="d-flex justify-content-between align-items-center">
                                     <h3 class="card-title" style="color: #007bff; font-weight: 600;">
-                                        Perbandingan Rerata Poin Seluruh Karyawan, Bidang, BKPH, KRPH, dan Asper/KBKPH
+                                        Perbandingan Total Poin Anda <?php echo date('M Y'); ?>
                                     </h3>
                                     <button class="btn btn-sm btn-outline-primary mr-2"><i class="bi bi-download"></i>
                                         Download</button>
                                 </div>
                             </div>
                             <div class="card-body">
-                                <canvas id="karyawanP" height="60"></canvas>
+                                <div id="bandingKar"></div>
                             </div>
                         </div>
                     </section>
@@ -496,7 +498,7 @@
         });
     </script>
 
-    <!-- ADMIN TOTAL BULAN -->
+    <!-- ADMIN PIMPINAN TOTAL BULAN -->
     <script>
         var monthsToShow = {!! json_encode($monthsToShow) !!};
         var monthlyTotals = {!! json_encode(array_values($monthlyTotals)) !!};
@@ -529,14 +531,14 @@
         });
     </script>
 
-    <!-- ADMIN -->
+    <!-- ADMIN PIMPINAN TOTAL KARYAWAN -->
     <script>
         var usersToShow = {!! json_encode($usersToShow) !!};
         var totalPerUser = {!! json_encode(array_values($totalPerUser)) !!};
 
         var currentMonth = "<?php echo $currentMonth; ?>";
 
-        Highcharts.chart('adminP1', {
+        Highcharts.chart('poinKar', {
             chart: {
                 type: 'column'
             },
@@ -551,11 +553,14 @@
             xAxis: {
                 categories: usersToShow,
                 crosshair: true,
+                labels: {
+                    rotation: -60,
+                }
             },
             yAxis: {
                 min: 0,
                 title: {
-                    text: 'Poin'
+                    text: 'Poin',
                 }
             },
             plotOptions: {
@@ -571,30 +576,101 @@
         });
     </script>
 
+    <!-- KARYAWAN TOTAL-->
     <script>
-        var currentMonth = "<?php echo $currentMonth; ?>";
-        var bidangTotals = {!! json_encode($bidangTotals) !!};
+        var monthsToShow = {!! json_encode($monthsToShow) !!};
+        var monthlyTotals = {!! json_encode(array_values($monthlyTotals)) !!};
 
-        Highcharts.chart('adminP2', {
+        Highcharts.chart('totalKar', {
             chart: {
-                type: 'pie'
+                type: 'line'
             },
             title: false,
-            // title: {
-            //     text: 'Rekap Bidang ' + currentMonth,
-            //     align: 'center',
-            //     style: {
-            //         color: '#007bff'
-            //     }
-            // },
+            xAxis: {
+                categories: monthsToShow,
+                crosshair: true
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'Poin'
+                }
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
+                }
+            },
             series: [{
                 name: 'Poin',
-                colorByPoint: true,
-                data: bidangTotals
+                data: monthlyTotals
             }]
         });
     </script>
 
+    <!-- KARYAWAN PERBANDINGAN -->
+    <script>
+        Highcharts.chart('bandingKar', {
+            chart: {
+                type: 'bar'
+            },
+            title: false,
+            // title: {
+            //     text: 'Historic World Population by Region',
+            //     align: 'left'
+            // },
+            xAxis: {
+                categories: ['Poin'],
+                title: {
+                    text: null
+                },
+                gridLineWidth: 1,
+                lineWidth: 0
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'Poin',
+                    align: 'high'
+                },
+                labels: {
+                    overflow: 'justify'
+                },
+                gridLineWidth: 0
+            },
+            plotOptions: {
+                bar: {
+                    borderRadius: '50%',
+                    dataLabels: {
+                        enabled: true
+                    },
+                    groupPadding: 0.1
+                }
+            },
+            legend: {
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'top',
+                x: -40,
+                y: 80,
+                floating: true,
+                borderWidth: 1,
+                backgroundColor: Highcharts.defaultOptions.legend.backgroundColor || '#FFFFFF',
+                shadow: true
+            },
+            credits: {
+                enabled: false
+            },
+            series: [{
+                name: 'Poin Anda',
+                data: [631]
+            }, {
+                name: 'Poin Seluruh Karyawan',
+                data: [814]
+            }]
+        });
+    </script>
 @endsection
 
 <!-- JQuery -->

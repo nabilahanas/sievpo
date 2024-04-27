@@ -145,7 +145,8 @@ class BulananController extends Controller
     
         $data = [];
 
-        $jabatan = Jabatan::groupBy('bagian')
+        $jabatan = Jabatan::whereNotIn('bagian', ['sistem'])
+            ->groupBy('bagian')
             ->select('bagian')
             ->get();
     

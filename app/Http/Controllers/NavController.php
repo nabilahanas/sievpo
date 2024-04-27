@@ -60,32 +60,73 @@ class NavController extends Controller
         // KARYAWAN BULAN
         $currentMonth = Carbon::now()->format('F Y');
         $users = User::where('id_role', '3')->get();
-        $datas = Data::all(); // Assuming Data model is imported
         $usersToShow = [];
-        $totalPerUser = []; 
-        
+        $totalPerUser = [];
+
         foreach ($users as $user) {
             $usersToShow[] = $user->nama_user;
             $totalPerUser[$user->id_user] = 0;
         }
-        
+
         foreach ($datas as $dataItem) {
             $tanggal = Carbon::parse($dataItem->created_at);
             $userId = $dataItem->id_user; // Ensure id_user field exists
             $poin = $dataItem->poin;
-        
+
             if ($tanggal->format('F Y') === $currentMonth) {
                 // Check if $userId exists in $totalPerUser before incrementing
-                if(isset($totalPerUser[$userId])){
+                if (isset($totalPerUser[$userId])) {
                     $totalPerUser[$userId] += $poin;
                 }
             }
         }
         arsort($totalPerUser);
 
-        // PERBANDINGAN KARYAWAN
-        
 
-        return view('layouts.dashboard', compact('totalPerUser', 'usersToShow', 'currentMonth', 'users', 'monthlyTotals', 'monthsToShow', 'month', 'total', 'approved', 'rejected', 'pending', 'berita', 'jmlpengumuman', 'jmluser', 'poin', 'approvedstatus', 'rejectedstatus', 'pendingstatus', 'pengumuman'), ['key' => 'dashboard']);
+        // KARYAWAN TOTAL
+        $karlogin = Auth::user();
+        $datas2 = $karlogin->data;
+        $karTotals = [];
+
+        $monthsKar = [];
+
+        for ($i = 1; $i <= 12; $i++) {
+            $monthName = Carbon::createFromDate($currentYear, $i, 1)->format('F');
+            $monthsKar[] = $monthName;
+
+            if (!isset($karTotals[$monthName])) {
+                $karTotals[$monthName] = 0;
+            }
+        }
+
+        foreach ($datas2 as $dataItem) {
+            $month = $dataItem->created_at->format('F');
+            $karTotals[$month] += $dataItem->poin;
+        }
+
+        // PERBANDINGAN KARYAWAN
+        $currentMonths = now()->month;
+        $karlogin = Auth::user();
+        $poinUser = [];
+        $poinAllUser = [];
+
+        $monthName = now()->format('F');
+        $poinUser[$monthName] = 0;
+        $poinAllUser[$monthName] = 0;
+
+        foreach ($datas2 as $dataItem) {
+            if ($dataItem->created_at->year == $currentYear && $dataItem->created_at->month == $currentMonths) {
+                $poinUser[$monthName] += $dataItem->poin;
+            }
+        }
+
+        foreach ($datas as $dataItem) {
+            if ($dataItem->created_at->year == $currentYear && $dataItem->created_at->month == $currentMonths) {
+                $poinAllUser[$monthName] += $dataItem->poin;
+            }
+        }
+
+
+        return view('layouts.dashboard', compact('poinAllUser', 'poinUser', 'monthsKar', 'karTotals', 'totalPerUser', 'usersToShow', 'currentMonth','currentYear', 'users', 'monthlyTotals', 'monthsToShow', 'month', 'total', 'approved', 'rejected', 'pending', 'berita', 'jmlpengumuman', 'jmluser', 'poin', 'approvedstatus', 'rejectedstatus', 'pendingstatus', 'pengumuman'), ['key' => 'dashboard']);
     }
 }

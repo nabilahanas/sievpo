@@ -298,7 +298,7 @@
                             <div class="card-header">
                                 <div class="d-flex justify-content-between align-items-center">
                                     <h3 class="card-title" style="color: #007bff; font-weight: 600;">
-                                        Total Eviden Poin Tahun <?php echo date('Y'); ?>
+                                        Total Eviden Poin Tahun {{$currentYear}} ?>
                                     </h3>
                                     <button class="btn btn-sm btn-outline-primary mr-2"><i class="bi bi-download"></i>
                                         Download</button>
@@ -318,7 +318,7 @@
                             <div class="card-header">
                                 <div class="d-flex justify-content-between align-items-center">
                                     <h3 class="card-title" style="color: #007bff; font-weight: 600;">
-                                        Rekap Poin Karyawan <?php echo date('M Y'); ?>
+                                        Rekap Poin Karyawan {{$currentMonth}}
                                     </h3>
                                     <button class="btn btn-sm btn-outline-primary mr-2"><i class="bi bi-download"></i>
                                         Download</button>
@@ -407,7 +407,7 @@
                             <div class="card-header">
                                 <div class="d-flex justify-content-between align-items-center">
                                     <h3 class="card-title" style="color: #007bff; font-weight: 600;">
-                                        Total Poin Anda Tahun <?php echo date('Y'); ?>
+                                        Total Poin Anda Tahun {{$currentYear}}
                                     </h3>
                                     <button class="btn btn-sm btn-outline-primary mr-2"><i class="bi bi-download"></i>
                                         Download</button>
@@ -427,7 +427,7 @@
                             <div class="card-header">
                                 <div class="d-flex justify-content-between align-items-center">
                                     <h3 class="card-title" style="color: #007bff; font-weight: 600;">
-                                        Perbandingan Total Poin Anda <?php echo date('M Y'); ?>
+                                        Perbandingan Total Poin Anda {{$currentMonth}}
                                     </h3>
                                     <button class="btn btn-sm btn-outline-primary mr-2"><i class="bi bi-download"></i>
                                         Download</button>
@@ -578,8 +578,8 @@
 
     <!-- KARYAWAN TOTAL-->
     <script>
-        var monthsToShow = {!! json_encode($monthsToShow) !!};
-        var monthlyTotals = {!! json_encode(array_values($monthlyTotals)) !!};
+        var monthsKar = {!! json_encode($monthsKar) !!};
+        var karTotals = {!! json_encode(array_values($karTotals)) !!};
 
         Highcharts.chart('totalKar', {
             chart: {
@@ -587,7 +587,7 @@
             },
             title: false,
             xAxis: {
-                categories: monthsToShow,
+                categories: monthsKar,
                 crosshair: true
             },
             yAxis: {
@@ -604,13 +604,15 @@
             },
             series: [{
                 name: 'Poin',
-                data: monthlyTotals
+                data: karTotals
             }]
         });
     </script>
 
     <!-- KARYAWAN PERBANDINGAN -->
     <script>
+        var poinUser = {!! json_encode(array_values($poinUser)) !!};
+        var poinAllUser = {!! json_encode(array_values($poinAllUser)) !!};
         Highcharts.chart('bandingKar', {
             chart: {
                 type: 'bar'
@@ -664,10 +666,10 @@
             },
             series: [{
                 name: 'Poin Anda',
-                data: [631]
+                data: poinUser
             }, {
                 name: 'Poin Seluruh Karyawan',
-                data: [814]
+                data: poinAllUser
             }]
         });
     </script>

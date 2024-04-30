@@ -38,9 +38,9 @@ class UserController extends Controller
             'nama_user' => 'required',
             'nip' => 'required',
             'no_hp' => 'required',
-            // 'id_role' => 'required',
-            // 'id_jabatan' => 'required',
-            // 'password' => 'password'
+            'id_role' => 'nullable',
+            'id_jabatan' => 'nullable',
+            'password' => ''
         ]);
 
         // Ambil data pengguna berdasarkan ID
@@ -49,6 +49,9 @@ class UserController extends Controller
         // Update nama dan NIP pengguna
         $user->nama_user = $request->nama_user;
         $user->nip = $request->nip;
+        $user->no_hp = $request->no_hp;
+        $user->id_role = $request->input('role');
+        $user->id_jabatan = $request->input('jabatan');
 
         // Periksa apakah password diisi atau tidak
         if ($request->has('password') && $request->password != '') {

@@ -59,7 +59,6 @@ class NavController extends Controller
 
         // KARYAWAN BULAN
         $currentMonth = Carbon::now()->format('F Y');
-        $users = User::where('id_role', '3')->get();
         $usersToShow = [];
         $totalPerUser = [];
 

@@ -8,35 +8,6 @@ $(document).ready(function () {
     });
 });
 
-// Konfirmasi Data
-$(document).ready(function () {
-    $("#konfirm").DataTable({
-        dom:
-            "<'row'<'col-sm-10 col-md-6 carikonfirm'l ><'col-sm-10 col-md-6'f>>" +
-            "<'row'<'col-sm-12'tr>>" +
-            "<'row'<'col-sm-10 col-md-5'i><'col-sm-10 col-md-7'p>>",
-        scrollX: true,
-        scrollCollapse: true,
-        paging: false,
-        columnDefs: [{ orderable: false, targets: [6, 9] }],
-    });
-
-    $(".carikonfirm").append(`
-    <form>
-    <div class="input-group mt-2 mb-4">
-        <select name="search" type="number" class="form-control" placeholder="search" aria-label="search"
-            aria-describedby="button-addon2">
-            <option>Pilih Status</option>
-            <option value="pending">Diproses</option>
-            <option value="approved">Diterima</option>
-            <option value="rejected">Ditolak</option>
-        </select>
-
-        <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Cari</button>
-    </div>
-    </form>
-    `);
-});
 
 // Rekap Harian
 $(document).ready(function () {
@@ -240,14 +211,6 @@ $(document).ready(function () {
         </form>
     `);
 
-    const currentYear = new Date().getFullYear();
-    const yearsOption = [currentYear, currentYear - 1, currentYear - 2];
-    $('select[name="tahun"]').append(
-        yearsOption
-            .map((year) => `<option value="${year}">${year}</option>`)
-            .join("")
-    );
-
     $("#bkaryawan").on("click", "tr.group", function () {
         var currentOrder = table.order()[0];
         if (currentOrder[0] === groupColumn && currentOrder[1] === "asc") {
@@ -296,14 +259,6 @@ $(document).ready(function () {
             </div>
         </form>
     `);
-
-    const currentYear = new Date().getFullYear();
-    const yearsOption = [currentYear, currentYear - 1, currentYear - 2];
-    $('select[name="tahun"]').append(
-        yearsOption
-            .map((year) => `<option value="${year}">${year}</option>`)
-            .join("")
-    );
 
     $("#bbidang").on("click", "tr.group", function () {
         var currentOrder = table.order()[0];
@@ -354,14 +309,6 @@ $(document).ready(function () {
         </form>
     `);
 
-    const currentYear = new Date().getFullYear();
-    const yearsOption = [currentYear, currentYear - 1, currentYear - 2];
-    $('select[name="tahun"]').append(
-        yearsOption
-            .map((year) => `<option value="${year}">${year}</option>`)
-            .join("")
-    );
-
     $("#bbkph").on("click", "tr.group", function () {
         var currentOrder = table.order()[0];
         if (currentOrder[0] === groupColumn && currentOrder[1] === "asc") {
@@ -411,14 +358,6 @@ $(document).ready(function () {
         </form>
     `);
 
-    const currentYear = new Date().getFullYear();
-    const yearsOption = [currentYear, currentYear - 1, currentYear - 2];
-    $('select[name="tahun"]').append(
-        yearsOption
-            .map((year) => `<option value="${year}">${year}</option>`)
-            .join("")
-    );
-
     $("#bkrph").on("click", "tr.group", function () {
         var currentOrder = table.order()[0];
         if (currentOrder[0] === groupColumn && currentOrder[1] === "asc") {
@@ -467,14 +406,6 @@ $(document).ready(function () {
             </div>
         </form>
     `);
-
-    const currentYear = new Date().getFullYear();
-    const yearsOption = [currentYear, currentYear - 1, currentYear - 2];
-    $('select[name="tahun"]').append(
-        yearsOption
-            .map((year) => `<option value="${year}">${year}</option>`)
-            .join("")
-    );
 
     $("#basper").on("click", "tr.group", function () {
         var currentOrder = table.order()[0];
@@ -543,14 +474,6 @@ $(document).ready(function () {
         </form>
         `);
 
-    const currentYear = new Date().getFullYear();
-    const yearsOption = [currentYear, currentYear - 1, currentYear - 2];
-    $('select[name="year"]').append(
-        yearsOption
-            .map((year) => `<option value="${year}">${year}</option>`)
-            .join("")
-    );
-
     $("#tkaryawan").on("click", "tr.group", function () {
         var currentOrder = table.order()[0];
         if (currentOrder[0] === groupColumn && currentOrder[1] === "asc") {
@@ -591,14 +514,6 @@ $(document).ready(function () {
             </div>
         </form>
     `);
-
-    const currentYear = new Date().getFullYear();
-    const yearsOption = [currentYear, currentYear - 1, currentYear - 2];
-    $('select[name="tahun"]').append(
-        yearsOption
-            .map((year) => `<option value="${year}">${year}</option>`)
-            .join("")
-    );
 
     // Order by the grouping
     $("#tbidang").on("click", "tr.group", function () {
@@ -642,14 +557,6 @@ $(document).ready(function () {
         </form>
     `);
 
-    const currentYear = new Date().getFullYear();
-    const yearsOption = [currentYear, currentYear - 1, currentYear - 2];
-    $('select[name="year"]').append(
-        yearsOption
-            .map((year) => `<option value="${year}">${year}</option>`)
-            .join("")
-    );
-
     // Order by the grouping
     $("#tbkph").on("click", "tr.group", function () {
         var currentOrder = table.order()[0];
@@ -691,14 +598,6 @@ $(document).ready(function () {
             </div>
         </form>
     `);
-
-    const currentYear = new Date().getFullYear();
-    const yearsOption = [currentYear, currentYear - 1, currentYear - 2];
-    $('select[name="year"]').append(
-        yearsOption
-            .map((year) => `<option value="${year}">${year}</option>`)
-            .join("")
-    );
     // Order by the grouping
     $("#tkrph").on("click", "tr.group", function () {
         var currentOrder = table.order()[0];
@@ -740,14 +639,6 @@ $(document).ready(function () {
             </div>
         </form>
     `);
-
-    const currentYear = new Date().getFullYear();
-    const yearsOption = [currentYear, currentYear - 1, currentYear - 2];
-    $('select[name="year"]').append(
-        yearsOption
-            .map((year) => `<option value="${year}">${year}</option>`)
-            .join("")
-    );
 
     // Order by the grouping
     $("#tasper").on("click", "tr.group", function () {
@@ -800,14 +691,6 @@ $(document).ready(function () {
         </form>
     `);
 
-    const currentYear = new Date().getFullYear();
-    const yearsOption = [currentYear, currentYear - 1, currentYear - 2];
-    $('select[name="tahun"]').append(
-        yearsOption
-            .map((year) => `<option value="${year}">${year}</option>`)
-            .join("")
-    );
-
     $("#bkaryawanpim").on("click", "tr.group", function () {
         var currentOrder = table.order()[0];
         if (currentOrder[0] === groupColumn && currentOrder[1] === "asc") {
@@ -856,14 +739,6 @@ $(document).ready(function () {
             </div>
         </form>
     `);
-
-    const currentYear = new Date().getFullYear();
-    const yearsOption = [currentYear, currentYear - 1, currentYear - 2];
-    $('select[name="tahun"]').append(
-        yearsOption
-            .map((year) => `<option value="${year}">${year}</option>`)
-            .join("")
-    );
 
     $("#bbidangpim").on("click", "tr.group", function () {
         var currentOrder = table.order()[0];
@@ -914,14 +789,6 @@ $(document).ready(function () {
         </form>
     `);
 
-    const currentYear = new Date().getFullYear();
-    const yearsOption = [currentYear, currentYear - 1, currentYear - 2];
-    $('select[name="tahun"]').append(
-        yearsOption
-            .map((year) => `<option value="${year}">${year}</option>`)
-            .join("")
-    );
-
     $("#bbkphpim").on("click", "tr.group", function () {
         var currentOrder = table.order()[0];
         if (currentOrder[0] === groupColumn && currentOrder[1] === "asc") {
@@ -970,14 +837,6 @@ $(document).ready(function () {
             </div>
         </form>
     `);
-
-    const currentYear = new Date().getFullYear();
-    const yearsOption = [currentYear, currentYear - 1, currentYear - 2];
-    $('select[name="tahun"]').append(
-        yearsOption
-            .map((year) => `<option value="${year}">${year}</option>`)
-            .join("")
-    );
 
     $("#bkrphpim").on("click", "tr.group", function () {
         var currentOrder = table.order()[0];
@@ -1028,14 +887,6 @@ $(document).ready(function () {
         </form>
     `);
 
-    const currentYear = new Date().getFullYear();
-    const yearsOption = [currentYear, currentYear - 1, currentYear - 2];
-    $('select[name="tahun"]').append(
-        yearsOption
-            .map((year) => `<option value="${year}">${year}</option>`)
-            .join("")
-    );
-
     $("#basperpim").on("click", "tr.group", function () {
         var currentOrder = table.order()[0];
         if (currentOrder[0] === groupColumn && currentOrder[1] === "asc") {
@@ -1079,14 +930,6 @@ $(document).ready(function () {
         </form>
         `);
 
-    const currentYear = new Date().getFullYear();
-    const yearsOption = [currentYear, currentYear - 1, currentYear - 2];
-    $('select[name="year"]').append(
-        yearsOption
-            .map((year) => `<option value="${year}">${year}</option>`)
-            .join("")
-    );
-
     $("#tkaryawanpim").on("click", "tr.group", function () {
         var currentOrder = table.order()[0];
         if (currentOrder[0] === groupColumn && currentOrder[1] === "asc") {
@@ -1127,14 +970,6 @@ $(document).ready(function () {
             </div>
         </form>
     `);
-
-    const currentYear = new Date().getFullYear();
-    const yearsOption = [currentYear, currentYear - 1, currentYear - 2];
-    $('select[name="tahun"]').append(
-        yearsOption
-            .map((year) => `<option value="${year}">${year}</option>`)
-            .join("")
-    );
 
     // Order by the grouping
     $("#tbidangpim").on("click", "tr.group", function () {
@@ -1178,14 +1013,6 @@ $(document).ready(function () {
         </form>
     `);
 
-    const currentYear = new Date().getFullYear();
-    const yearsOption = [currentYear, currentYear - 1, currentYear - 2];
-    $('select[name="year"]').append(
-        yearsOption
-            .map((year) => `<option value="${year}">${year}</option>`)
-            .join("")
-    );
-
     // Order by the grouping
     $("#tbkphpim").on("click", "tr.group", function () {
         var currentOrder = table.order()[0];
@@ -1227,14 +1054,6 @@ $(document).ready(function () {
             </div>
         </form>
     `);
-
-    const currentYear = new Date().getFullYear();
-    const yearsOption = [currentYear, currentYear - 1, currentYear - 2];
-    $('select[name="year"]').append(
-        yearsOption
-            .map((year) => `<option value="${year}">${year}</option>`)
-            .join("")
-    );
     // Order by the grouping
     $("#tkrphpim").on("click", "tr.group", function () {
         var currentOrder = table.order()[0];
@@ -1276,14 +1095,6 @@ $(document).ready(function () {
             </div>
         </form>
     `);
-
-    const currentYear = new Date().getFullYear();
-    const yearsOption = [currentYear, currentYear - 1, currentYear - 2];
-    $('select[name="year"]').append(
-        yearsOption
-            .map((year) => `<option value="${year}">${year}</option>`)
-            .join("")
-    );
 
     // Order by the grouping
     $("#tasperpim").on("click", "tr.group", function () {
@@ -1507,3 +1318,19 @@ $(document).ready(function () {
         }
     });
 });
+
+$(document).ready(() => {
+    const currentYear = new Date().getFullYear();
+    const yearsOption = [currentYear, currentYear - 1, currentYear - 2];
+    $('select[name="year"]').append(
+        yearsOption
+            .map((year) => `<option value="${year}">${year}</option>`)
+            .join("")
+    );
+
+    $('select[name="tahun"]').append(
+        yearsOption
+            .map((year) => `<option value="${year}">${year}</option>`)
+            .join("")
+    );
+})

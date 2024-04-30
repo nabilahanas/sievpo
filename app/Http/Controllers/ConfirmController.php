@@ -10,29 +10,38 @@ use Carbon\Carbon;
 use Carbon\CarbonInterface;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Http\Request;
+use Yajra\DataTables\Facades\DataTables;
 
 class ConfirmController extends Controller
 {
     protected $primaryKey = 'id_data';
+
     public function index(Request $request)
     {
-        $bidang = Bidang::all();
-        $shift = Shift::all();
-        $dataQuery = Data::query(); // Inisialisasi query builder
+        $data = Data::with(['bidang', 'shift', 'user']); // Inisialisasi eloquent
 
-        if ($request->has('search')) {
-            $search = $request->input('search');
+        if ($request->has('c_search') && !empty($request->input('c_search'))) {
+            $c_search = $request->input('c_search');
             // Filter data berdasarkan kata kunci pencarian pada kolom 'is_approved'
-            $dataQuery->where('is_approved', $search);
+            $data->where('is_approved', $c_search);
         }
 
         // Urutkan data berdasarkan waktu masuk (created_at) dari terbaru ke terlama
-        $dataQuery->orderBy('created_at', 'desc');
+        // $data->orderBy('created_at', 'desc');
 
-        // Ambil data yang telah difilter dan diurutkan
-        $data = $dataQuery->get();
+        if ($request->ajax() || $request->isXmlHttpRequest() || $request->input('is_ajax') === 'true') {
+            return DataTables::eloquent($data)->toJson();
+        }
 
-        return view('confirm.index', compact('bidang', 'shift', 'data'), ['key' => 'confirm']);
+        return view(
+            'confirm.index',
+            [
+                'data' => []
+            ],
+            [
+                'key' => 'confirm'
+            ]
+        );
     }
 
 
@@ -47,16 +56,15 @@ class ConfirmController extends Controller
         $shift = Shift::find($idShift);
 
         // Mengambil nilai poin dari shift atau mengatur menjadi 0 jika shift tidak ditemukan
-        $poin = $shift ? $shift->poin : 0;
+        $poin = $shift?->poin ?? 0;
 
-        $createdDayOfWeek = Carbon::parse($data->created_at)->dayOfWeek;
+        $isWeekend = Carbon::parse($data->created_at)->isWeekend();
+        $isHoliday = false;
 
         // Pengecekan status
         if ($status === 'approved') {
             // Menambah poin tambahan untuk Sabtu dan Minggu jika status disetujui
-            if ($createdDayOfWeek === CarbonInterface::SATURDAY) {
-                $poin += 1;
-            } elseif ($createdDayOfWeek === CarbonInterface::SUNDAY) {
+            if ($isWeekend) {
                 $poin += 1;
             } else {
                 // Panggil API untuk mendapatkan daftar hari libur nasional
@@ -69,14 +77,15 @@ class ConfirmController extends Controller
 
                     // Periksa apakah tanggal dibuatnya data adalah hari libur nasional
                     $createdDate = Carbon::parse($data->created_at)->toDateString();
-                    if (in_array($createdDate, $nationalHolidays)) {
+                    $isHoliday = count(array_filter($nationalHolidays, fn ($date) => isset($date['holiday_date']) && $date['holiday_date'] === $createdDate)) > 0;
+                    if ($isHoliday) {
                         $poin += 1;
                     }
                 }
             }
 
             // Update data menjadi 'approved' dan menambahkan poin dari shift hanya jika bukan Sabtu, Minggu, atau hari libur nasional
-            if ($createdDayOfWeek !== CarbonInterface::SATURDAY && $createdDayOfWeek !== CarbonInterface::SUNDAY && !in_array($createdDate, $nationalHolidays)) {
+            if (!$isWeekend && !$isHoliday) {
                 $data->update(['is_approved' => 'approved', 'poin' => $data->poin + $poin]);
             } else {
                 $data->update(['is_approved' => 'approved', 'poin' => $data->poin]);
@@ -95,5 +104,4 @@ class ConfirmController extends Controller
 
         return redirect()->route('confirm.index')->with('success', 'Data berhasil dihapus');
     }
-
 }

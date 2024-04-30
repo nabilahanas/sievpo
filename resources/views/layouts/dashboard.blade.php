@@ -20,7 +20,10 @@
                         <h4 class="modal-title" id="pengumumanTitle{{ $index }}" style="font-size: 20px">
                             {{ $item->judul }}</h4>
                         <button type="button" class="close" aria-label="Close" data-dismiss="modal"
-                            data-next-modal="#pengumumanModal{{ $index + 1 }}">
+                            @if (!$loop->first)
+                            data-next-modal="#pengumumanModal{{ $index + 1 }}"
+                            @endif
+                        >
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
@@ -43,7 +46,9 @@
                                 lagi</label>
                         </div>
                         <button type="button" class="btn btn-successv2 close-modal" data-dismiss="modal"
-                            data-next-modal="#pengumumanModal{{ $index + 1 }}">OK</button>
+                        @if (!$loop->first)
+                            data-next-modal="#pengumumanModal{{ $index + 1 }}"
+                        @endif>OK</button>
                     </div>
                 </div>
             </div>
@@ -457,6 +462,7 @@
             @foreach ($pengumuman as $index => $item)
                 var localStorageKey = "hideModal{{ $index }}";
                 if (!localStorage.getItem(localStorageKey)) {
+                    console.log('#pengumumanModal{{ $index }}');
                     $('#pengumumanModal{{ $index }}').modal('show');
                 }
             @endforeach
@@ -466,14 +472,20 @@
         $(document).on('click', '.close-modal', function() {
             var nextModalId = $(this).data('next-modal');
             $(this).closest('.modal').modal('hide');
-            $(nextModalId).modal('show');
+
+            if (nextModalId) {
+                $(nextModalId).modal('show');
+            }
         });
 
-        // Handle close button in modal header
+        // // Handle close button in modal header
         $(document).on('click', '.close', function() {
             var nextModalId = $(this).data('next-modal');
             $(this).closest('.modal').modal('hide');
-            $(nextModalId).modal('show');
+
+            if (nextModalId) {
+                $(nextModalId).modal('show');
+            }
         });
 
         // Handle checkbox click

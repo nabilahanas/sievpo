@@ -17,12 +17,6 @@
                     </div>
                 </div>
 
-                <div class="card mt-4">
-                    <div class="card-body">
-                        <div id="tesbanding" height="60"></div>
-                    </div>
-                </div>
-
                 <div class="table-responsive-lg mt-4">
                     <div class="table-responsive-lg mt-4">
                         @if (request()->has('bulan') && request()->has('tahun'))

@@ -12,7 +12,7 @@ use App\Models\Bidang;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
-class NavController extends Controller
+class DashboardController extends Controller
 {
     public function dashboard()
     {

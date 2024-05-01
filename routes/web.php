@@ -11,7 +11,7 @@ use App\Http\Controllers\TotalController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\NavController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\JabatanController;
 use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\PengumumanController;
@@ -47,8 +47,8 @@ Route::get('/strukturkph', [LandingController::class, 'struktur'])->name('strukt
 
 
 // ALL ROLES
-Route::middleware('check.role:Admin,Karyawan,Pimpinan,Mahasiswa')->group(function () {
-    Route::get('/home', [NavController::class, 'dashboard'])->name('dashboard');
+Route::middleware('check.role:Admin,Karyawan,Pimpinan')->group(function () {
+    Route::get('/home', [DashboardController::class, 'dashboard'])->name('dashboard');
     Route::get('/get_pengumuman', [PengumumanController::class, 'get_pengumuman'])->name('get_pengumuman');
 
 
@@ -69,7 +69,7 @@ Route::middleware('check.role:Admin,Karyawan,Pimpinan,Mahasiswa')->group(functio
 
 
 // ADMIN
-Route::middleware('check.role:Admin,Mahasiswa')->group(function () {
+Route::middleware('check.role:Admin')->group(function () {
     Route::get('/register', [AuthController::class, 'register'])->name('register');
     Route::post('/registered', [AuthController::class, 'registered'])->name('registered');
 
@@ -121,23 +121,15 @@ Route::middleware('check.role:Admin,Mahasiswa')->group(function () {
     });
 
     Route::prefix("bidang")->group(function () {
-        Route::get('add', [BidangController::class, 'create'])->name('bidang.add');
-        Route::post('store', [BidangController::class, 'store'])->name('bidang.store');
         Route::get('/', [BidangController::class, 'index'])->name('bidang.index');
         Route::get('edit/{id}', [BidangController::class, 'edit'])->name('bidang.edit');
         Route::post('update/{id}', [BidangController::class, 'update'])->name('bidang.update');
-        Route::delete('delete/{id}', [BidangController::class, 'delete'])->name('bidang.delete');
-        Route::post('restore/{id}', [BidangController::class, 'restore'])->name('bidang.restore');
     });
 
     Route::prefix("shift")->group(function () {
-        Route::get('add', [ShiftController::class, 'create'])->name('shift.add');
-        Route::post('store', [ShiftController::class, 'store'])->name('shift.store');
         Route::get('/', [ShiftController::class, 'index'])->name('shift.index');
         Route::get('edit/{id}', [ShiftController::class, 'edit'])->name('shift.edit');
         Route::post('update/{id}', [ShiftController::class, 'update'])->name('shift.update');
-        Route::delete('delete/{id}', [ShiftController::class, 'delete'])->name('shift.delete');
-        Route::post('restore/{id}', [ShiftController::class, 'restore'])->name('shift.restore');
     });
 
     Route::prefix("karyawan")->group(function () {
@@ -158,46 +150,17 @@ Route::middleware('check.role:Admin,Mahasiswa')->group(function () {
     Route::prefix("confirm")->group(function () {
         Route::get('/', [ConfirmController::class, 'index'])->name('confirm.index');
         Route::delete('delete/{id}', [ConfirmController::class, 'delete'])->name('confirm.delete');
+        Route::post('proses-approval/{id}/{status}', [ConfirmController::class, 'approval'])->name('approval.process');
     });
 
     Route::prefix("mingguan")->group(function(){
         Route::get('/', [MingguanController::class, 'index'])->name('mingguan.index');
         Route::get('export/{search?}', [MingguanController::class, 'export'])->name('mingguan.export');
     });
-
-    Route::prefix("bulanan")->group(function(){
-        Route::get('karyawan', [BulananController::class, 'karyawan'])->name('bulanan.karyawan');
-        Route::get('bidang', [BulananController::class, 'bidang'])->name('bulanan.bidang');
-        Route::get('bkph', [BulananController::class, 'bkph'])->name('bulanan.bkph');
-        Route::get('krph', [BulananController::class, 'krph'])->name('bulanan.krph');
-        Route::get('asper', [BulananController::class, 'asper'])->name('bulanan.asper');
-
-        Route::get('export/{search?}', [BulananController::class, 'export'])->name('bulanan.exportkaryawan');
-        Route::get('exportbidang/{search?}', [BulananController::class, 'exportbidang'])->name('bulanan.exportbidang');
-        Route::get('exportbkph/{search?}', [BulananController::class, 'exportbkph'])->name('bulanan.exportbkph');
-        Route::get('exportkrph/{search?}', [BulananController::class, 'exportkrph'])->name('bulanan.exportkrph');
-        Route::get('exportasper/{search?}', [BulananController::class, 'exportasper'])->name('bulanan.exportasper');
-    });
-
-    Route::prefix("total")->group(function (){
-        Route::get('karyawan', [TotalController::class, 'karyawan'])->name('total.karyawan');
-        Route::get('bidang', [TotalController::class, 'bidang'])->name('total.bidang');
-        Route::get('bkph', [TotalController::class, 'bkph'])->name('total.bkph');
-        Route::get('krph', [TotalController::class, 'krph'])->name('total.krph');
-        Route::get('asper', [TotalController::class, 'asper'])->name('total.asper');
-
-        Route::get('exportkaryawan/{search?}', [TotalController::class, 'exportkaryawan'])->name('total.exportkaryawan');
-        Route::get('exportbidang/{search?}', [TotalController::class, 'exportbidang'])->name('total.exportbidang');
-        Route::get('exportbkph/{search?}', [TotalController::class, 'exportbkph'])->name('total.exportbkph');
-        Route::get('exportkrph/{search?}', [TotalController::class, 'exportkrph'])->name('total.exportkrph');
-        Route::get('exportasper/{search?}', [TotalController::class, 'exportasper'])->name('total.exportasper');
-    });
-
-    Route::post('proses-approval/{id}/{status}', [ConfirmController::class, 'approval'])->name('approval.process');
 });
 
 //PIMPINAN
-Route::middleware('check.role:Pimpinan,Admin,Mahasiswa')->group(function () {
+Route::middleware('check.role:Pimpinan,Admin')->group(function () {
     Route::prefix("bulanan")->group(function(){
         Route::get('karyawan', [BulananController::class, 'karyawan'])->name('bulanan.karyawan');
         Route::get('bidang', [BulananController::class, 'bidang'])->name('bulanan.bidang');
@@ -226,3 +189,13 @@ Route::middleware('check.role:Pimpinan,Admin,Mahasiswa')->group(function () {
         Route::get('exportasper/{search?}', [TotalController::class, 'exportasper'])->name('total.exportasper');
     });
    });
+
+// KARYAWAN
+Route::middleware('check.role:Karyawan')->group(function () {
+    Route::prefix("data")->group(function () {
+        Route::get('add', [DataController::class, 'create'])->name('data.add');
+        Route::post('store', [DataController::class, 'store'])->name('data.store');
+        Route::get('/', [DataController::class, 'index'])->name('data.index');
+        Route::delete('delete/{id}', [DataController::class, 'delete'])->name('data.delete');
+    });
+});

@@ -17,7 +17,7 @@
     <div class="card">
         <div class="card-body">
             <div class="table-responsive-lg mt-4">
-                <table id="konfirm" class="table table-sm text-nowrap table-hover table-striped" style="width: 100%">
+                <table id="konfirm" class="table table-sm table-hover table-striped" style="width: 100%">
                     <thead class="thead-successv2">
                         <tr>
                             <th>No.</th>
@@ -42,14 +42,14 @@
                                 <td>{{ $item->lokasi }}</td>
                                 <td>{{ $item->created_at }}</td>
                                 <td>
-                                    <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#fotoModal{{$item->id_data}}">
-                                        <img src="{{ $item->foto ? asset('storage/foto-eviden/' . $item->foto) : '' }}"
-                                            alt="Foto Eviden" width="150">
-                                    </button>
+                                    <a href="" data-bs-toggle="modal"
+                                        data-bs-target="#fotoModal{{ $item->id_data }}">
+                                        Lihat Foto
+                                    </a>
 
                                     <!-- Modal -->
-                                    <div class="modal fade" id="fotoModal{{$item->id_data}}" tabindex="-1" aria-labelledby="fotoModalLabel"
-                                        aria-hidden="true">
+                                    <div class="modal fade" id="fotoModal{{ $item->id_data }}" tabindex="-1"
+                                        aria-labelledby="fotoModalLabel" aria-hidden="true">
                                         <div class="modal-dialog modal-dialog-centered">
                                             <div class="modal-content">
                                                 <div class="modal-body">
@@ -79,28 +79,29 @@
                                         action="{{ route('approval.process', ['id' => $item->id_data, 'status' => 'approved']) }}"
                                         method="post">
                                         @csrf
-                                        <button type="submit" class="btn btn-sm btn-success btn-block mb-2" {{ $item->is_approved !== 'pending' ? 'disabled' : '' }}>
+                                        <button type="submit" class="btn btn-sm btn-success btn-block mb-2"
+                                            {{ $item->is_approved !== 'pending' ? 'disabled' : '' }}>
                                             <i class="fas fa-check-circle mr-2"></i>Terima
                                         </button>
                                     </form>
-
                                     <form
                                         action="{{ route('approval.process', ['id' => $item->id_data, 'status' => 'rejected']) }}"
                                         method="post">
                                         @csrf
-                                        <button type="submit" class="btn btn-sm btn-secondary btn-block mb-2" {{ $item->is_approved !== 'pending' ? 'disabled' : '' }}>
+                                        <button type="submit" class="btn btn-sm btn-secondary btn-block mb-2"
+                                            {{ $item->is_approved !== 'pending' ? 'disabled' : '' }}>
                                             <i class="fas fa-times-circle mr-2"></i>Tolak
                                         </button>
                                     </form>
                                     <!-- Button trigger modal -->
                                     <button type="button" class="btn btn-sm btn-danger btn-block mb-2"
-                                        data-bs-toggle="modal" data-bs-target="#hapusModal{{$item->id_data}}">
+                                        data-bs-toggle="modal" data-bs-target="#hapusModal{{ $item->id_data }}">
                                         <i class="fas fa-trash mr-2"></i>Hapus
                                     </button>
 
                                     <!-- Modal -->
-                                    <div class="modal fade" id="hapusModal{{$item->id_data}}" tabindex="-1" aria-labelledby="hapusModalLabel"
-                                        aria-hidden="true">
+                                    <div class="modal fade" id="hapusModal{{ $item->id_data }}" tabindex="-1"
+                                        aria-labelledby="hapusModalLabel" aria-hidden="true">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                                 <div class="modal-header">
@@ -110,7 +111,8 @@
                                                         <span>&times;</span>
                                                     </button>
                                                 </div>
-                                                <form method="POST" action="{{ route('confirm.delete', $item->id_data) }}">
+                                                <form method="POST"
+                                                    action="{{ route('confirm.delete', $item->id_data) }}">
                                                     @csrf
                                                     @method('DELETE')
                                                     <div class="modal-body">
@@ -126,7 +128,7 @@
                                             </div>
                                         </div>
                                     </div>
-
+                                    
                                 </td>
                             </tr>
                         @endforeach --}}
@@ -153,7 +155,7 @@
                     "<'row'<'col-sm-10 col-md-5'i><'col-sm-10 col-md-7'p>>",
                 scrollX: true,
                 scrollCollapse: true,
-                paging: false,
+                // paging: false,
                 pagingType: 'simple_numbers',
                 order: [
                     [0, 'desc']
@@ -196,7 +198,7 @@
                         data: 'lokasi',
                         name: 'lokasi',
                         searchable: true,
-                        orderable: true,
+                        orderable: false,
                     },
                     {
                         data: 'created_at',
@@ -213,10 +215,10 @@
                         searchable: false,
                         orderable: false,
                         render: (data, type, row, meta) => {
-                            return `<button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#fotoModal${row.id_data}">
-                                <img src="${data ? '{{ asset('') }}storage/foto-eviden/' + data : ''}"
-                                    alt="Foto Eviden" width="150">
-                            </button>
+                            return `
+                            <a href="" data-bs-toggle="modal" data-bs-target="#fotoModal${row.id_data}">
+                                        Lihat Foto
+                                    </a>
 
                             <!-- Modal -->
                             <div class="modal fade" id="fotoModal${row.id_data}" tabindex="-1" aria-labelledby="fotoModalLabel"
@@ -225,7 +227,7 @@
                                     <div class="modal-content">
                                         <div class="modal-body">
                                             <img src="${data ? '{{ asset('') }}storage/foto-eviden/' + data : ''}"
-                                                alt="Foto Eviden" width="500">
+                                                alt="Foto Eviden" width="700">
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-sm btn-successv2"
                                                 data-bs-dismiss="modal">Tutup</button>

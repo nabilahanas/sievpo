@@ -8,7 +8,6 @@ $(document).ready(function () {
     });
 });
 
-
 // Rekap Harian
 $(document).ready(function () {
     var groupColumn = 2;
@@ -17,9 +16,9 @@ $(document).ready(function () {
             "<'row'<'col-sm-12 col-md-6 cariharian'l ><'col-sm-12 col-md-6'f>>" +
             "<'row'<'col-sm-12'tr>>" +
             "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
-        // scrollY: 600,
+        scrollY: 700,
         scrollX: true,
-        // scrollCollapse: true,
+        scrollCollapse: true,
         paging: false,
         columnDefs: [
             { visible: false, targets: groupColumn },
@@ -85,7 +84,7 @@ $(document).ready(function () {
             "<'row'<'col-sm-12 col-md-6 carimingguan'l ><'col-sm-12 col-md-6'f>>" +
             "<'row'<'col-sm-12'tr>>" +
             "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
-        scrollY: 600,
+        scrollY: 700,
         scrollX: true,
         scrollCollapse: true,
         paging: false,
@@ -156,7 +155,7 @@ $(document).ready(function () {
             "<'row'<'col-sm-10 col-md-6 caribulanan'l ><'col-sm-10 col-md-6'f>>" +
             "<'row'<'col-sm-12'tr>>" +
             "<'row'<'col-sm-10 col-md-5'i><'col-sm-10 col-md-7'p>>",
-        scrollY: 600,
+        scrollY: 700,
         scrollX: true,
         scrollCollapse: true,
         paging: false,
@@ -228,7 +227,7 @@ $(document).ready(function () {
             "<'row'<'col-sm-10 col-md-6 caribbidang'l ><'col-sm-10 col-md-6'f>>" +
             "<'row'<'col-sm-12'tr>>" +
             "<'row'<'col-sm-10 col-md-5'i><'col-sm-10 col-md-7'p>>",
-        scrollY: 600,
+        scrollY: 700,
         scrollX: true,
         scrollCollapse: true,
         paging: false,
@@ -277,7 +276,7 @@ $(document).ready(function () {
             "<'row'<'col-sm-10 col-md-6 caribbkph'l ><'col-sm-10 col-md-6'f>>" +
             "<'row'<'col-sm-12'tr>>" +
             "<'row'<'col-sm-10 col-md-5'i><'col-sm-10 col-md-7'p>>",
-        scrollY: 600,
+        scrollY: 700,
         scrollX: true,
         scrollCollapse: true,
         paging: false,
@@ -326,7 +325,7 @@ $(document).ready(function () {
             "<'row'<'col-sm-10 col-md-6 caribkrph'l ><'col-sm-10 col-md-6'f>>" +
             "<'row'<'col-sm-12'tr>>" +
             "<'row'<'col-sm-10 col-md-5'i><'col-sm-10 col-md-7'p>>",
-        scrollY: 600,
+        scrollY: 700,
         scrollX: true,
         scrollCollapse: true,
         paging: false,
@@ -375,7 +374,7 @@ $(document).ready(function () {
             "<'row'<'col-sm-10 col-md-6 caribasper'l ><'col-sm-10 col-md-6'f>>" +
             "<'row'<'col-sm-12'tr>>" +
             "<'row'<'col-sm-10 col-md-5'i><'col-sm-10 col-md-7'p>>",
-        scrollY: 600,
+        scrollY: 700,
         scrollX: true,
         scrollCollapse: true,
         paging: false,
@@ -426,7 +425,7 @@ $(document).ready(function () {
             "<'row'<'col-sm-10 col-md-6 caritkaryawan'l ><'col-sm-10 col-md-6'f>>" +
             "<'row'<'col-sm-12'tr>>" +
             "<'row'<'col-sm-10 col-md-5'i><'col-sm-10 col-md-7'p>>",
-        scrollY: 600,
+        scrollY: 700,
         scrollX: true,
         scrollCollapse: true,
         paging: false,
@@ -492,6 +491,7 @@ $(document).ready(function () {
             "<'row'<'col-sm-12'tr>>" +
             "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
         scrollX: true,
+        scrollY: 700,
         scrollCollapse: true,
         paging: false,
     });
@@ -534,6 +534,7 @@ $(document).ready(function () {
             "<'row'<'col-sm-12'tr>>" +
             "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
         scrollX: true,
+        scrollY: 700,
         scrollCollapse: true,
         paging: false,
     });
@@ -576,6 +577,7 @@ $(document).ready(function () {
             "<'row'<'col-sm-12'tr>>" +
             "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
         scrollX: true,
+        scrollY: 700,
         scrollCollapse: true,
         paging: false,
     });
@@ -617,6 +619,7 @@ $(document).ready(function () {
             "<'row'<'col-sm-12'tr>>" +
             "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
         scrollX: true,
+        scrollY: 700,
         scrollCollapse: true,
         paging: false,
     });
@@ -659,7 +662,7 @@ $(document).ready(function () {
             "<'row'<'col-sm-10 col-md-6 caribkaryawanpim'l ><'col-sm-10 col-md-6'f>>" +
             "<'row'<'col-sm-12'tr>>" +
             "<'row'<'col-sm-10 col-md-5'i><'col-sm-10 col-md-7'p>>",
-        scrollY: 600,
+        scrollY: 700,
         scrollX: true,
         scrollCollapse: true,
         paging: false,
@@ -708,7 +711,7 @@ $(document).ready(function () {
             "<'row'<'col-sm-10 col-md-6 caribbidangpim'l ><'col-sm-10 col-md-6'f>>" +
             "<'row'<'col-sm-12'tr>>" +
             "<'row'<'col-sm-10 col-md-5'i><'col-sm-10 col-md-7'p>>",
-        scrollY: 600,
+        scrollY: 700,
         scrollX: true,
         scrollCollapse: true,
         paging: false,
@@ -757,7 +760,7 @@ $(document).ready(function () {
             "<'row'<'col-sm-10 col-md-6 caribbkphpim'l ><'col-sm-10 col-md-6'f>>" +
             "<'row'<'col-sm-12'tr>>" +
             "<'row'<'col-sm-10 col-md-5'i><'col-sm-10 col-md-7'p>>",
-        scrollY: 600,
+        scrollY: 700,
         scrollX: true,
         scrollCollapse: true,
         paging: false,
@@ -806,7 +809,7 @@ $(document).ready(function () {
             "<'row'<'col-sm-10 col-md-6 caribkrphpim'l ><'col-sm-10 col-md-6'f>>" +
             "<'row'<'col-sm-12'tr>>" +
             "<'row'<'col-sm-10 col-md-5'i><'col-sm-10 col-md-7'p>>",
-        scrollY: 600,
+        scrollY: 700,
         scrollX: true,
         scrollCollapse: true,
         paging: false,
@@ -855,7 +858,7 @@ $(document).ready(function () {
             "<'row'<'col-sm-10 col-md-6 caribasperpim'l ><'col-sm-10 col-md-6'f>>" +
             "<'row'<'col-sm-12'tr>>" +
             "<'row'<'col-sm-10 col-md-5'i><'col-sm-10 col-md-7'p>>",
-        scrollY: 600,
+        scrollY: 700,
         scrollX: true,
         scrollCollapse: true,
         paging: false,
@@ -905,7 +908,7 @@ $(document).ready(function () {
             "<'row'<'col-sm-10 col-md-6 caritkaryawanpim'l ><'col-sm-10 col-md-6'f>>" +
             "<'row'<'col-sm-12'tr>>" +
             "<'row'<'col-sm-10 col-md-5'i><'col-sm-10 col-md-7'p>>",
-        scrollY: 600,
+        scrollY: 700,
         scrollX: true,
         scrollCollapse: true,
         paging: false,
@@ -948,6 +951,7 @@ $(document).ready(function () {
             "<'row'<'col-sm-12'tr>>" +
             "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
         scrollX: true,
+        scrollY: 700,
         scrollCollapse: true,
         paging: false,
     });
@@ -990,6 +994,7 @@ $(document).ready(function () {
             "<'row'<'col-sm-12'tr>>" +
             "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
         scrollX: true,
+        scrollY: 700,
         scrollCollapse: true,
         paging: false,
     });
@@ -1032,6 +1037,7 @@ $(document).ready(function () {
             "<'row'<'col-sm-12'tr>>" +
             "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
         scrollX: true,
+        scrollY: 700,
         scrollCollapse: true,
         paging: false,
     });
@@ -1073,6 +1079,7 @@ $(document).ready(function () {
             "<'row'<'col-sm-12'tr>>" +
             "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
         scrollX: true,
+        scrollY: 700,
         scrollCollapse: true,
         paging: false,
     });
@@ -1106,7 +1113,6 @@ $(document).ready(function () {
         }
     });
 });
-
 
 // User
 $(document).ready(function () {

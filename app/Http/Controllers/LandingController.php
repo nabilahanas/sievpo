@@ -44,7 +44,7 @@ class LandingController extends Controller
     public function berita()
     {
         $berita = Berita::all();
-        $beritalanding = Berita::orderBy('created_at', 'desc')->paginate(3);
+        $beritalanding = Berita::orderBy('created_at', 'desc')->paginate(9);
 
         $beritaContent = [];
 

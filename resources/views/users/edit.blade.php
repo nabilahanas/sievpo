@@ -37,7 +37,7 @@
                     <div class="col-sm-9">
                         <input type="text" class="form-control" id="nip" name="nip" value="{{ $users->nip }}"
                             required maxlength="40">
-                        <small class="form-text text-danger">Gunakan kode PHT di awal NIP! Contoh: PHT1234567890</small>
+                        {{-- <small class="form-text text-danger">Gunakan kode PHT di awal NIP! Contoh: PHT1234567890</small> --}}
                     </div>
                 </div>
                 <div class="form-group row col-12 col-md-10">

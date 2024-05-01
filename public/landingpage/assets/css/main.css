@@ -1983,7 +1983,7 @@ section {
 .blog .blog-pagination li {
   margin: 0 5px;
   transition: 0.3s;
-  border-radius: 20px;
+  border-radius: 18px;
   background: #fff;
   border: 1px solid var(--color-primary);
   color: #000;
@@ -2009,6 +2009,16 @@ section {
 .blog .blog-pagination li.active a,
 .blog .blog-pagination li:hover a {
   color: var(--color-white);
+}
+
+.blog-pagination li.disabled {
+  border-color: #999;
+  pointer-events: none;
+  cursor: not-allowed;
+}
+
+.blog-pagination li.disabled a {
+  color: #999;
 }
 
 /*--------------------------------------------------------------
@@ -2046,15 +2056,6 @@ section {
   margin-bottom: 5px;
 }
 
-.blog .posts-list .title a {
-  color: var(--color-default);
-  transition: 0.3s;
-}
-
-.blog .posts-list .title a:hover {
-  color: var(--color-primary);
-}
-
 .blog .posts-list .post-meta a {
   color: var(--color-primary);
   font-weight: 600;
@@ -2082,6 +2083,10 @@ section {
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.blog .posts-list .post-item a:hover {
+  text-decoration: underline;
 }
 
 .posts-list .row {

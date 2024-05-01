@@ -38,10 +38,11 @@ class DataFactory extends Factory
             'id_bidang' => $bidang->id_bidang,
             'id_shift' => $shift->id_shift,
             'lokasi' => $this->faker->address,
-            'tgl_waktu' => $this->faker->dateTimeBetween('2024-01-01', '2024-04-30'),
+            'tgl_waktu' => $this->faker->dateTimeBetween('2024-03-01', '2024-03-31'),
             'foto' => $this->faker->imageUrl(),
             'is_approved' => $approvedStatus,
             'poin' => $shift->poin,
+            'created_at' => $this->faker->dateTimeBetween('2024-01-01', '2024-01-31'),
         ];
     }
 }

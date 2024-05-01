@@ -18,13 +18,7 @@
                         <div id="tKarAd"></div>
                     </div>
                 </div> --}}
-
-                <div class="card mt-4">
-                    <div class="card-body">
-                        <div id="tes" height="60"></div>
-                    </div>
-                </div>
-
+                
                 <div class="table-responsive-lg mt-4" style="overflow-x: auto;">
                     @if (request()->has('semester') && request()->has('year'))
                         <div style="padding: 10px; font-size: 15px; font-weight: bold;">
@@ -223,7 +217,7 @@
                 },
                 title: false,
                 xAxis: {
-                    categories: {!! json_encode($monthsToShow) !!},
+                    categories:
                     crosshair: true,
                 },
                 yAxis: {
@@ -240,7 +234,7 @@
                 },
                 series: [{
                     name: 'Poin',
-                    data: {!! json_encode(array_values($monthlyTotals)) !!}
+                    data: 
                 }]
             });
         </script>

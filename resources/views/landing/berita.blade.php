@@ -47,7 +47,7 @@
                                         </div>
                                         <h2 class="title"
                                             style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;">
-                                            <a href="{{ $item->deskripsi }}" target="_blank">{{ $item->judul }}</a>
+                                            <div>{{ $item->judul }}</div>
                                         </h2>
                                         <div class="post-meta">
                                             <p class="post-date">
@@ -89,8 +89,6 @@
                                             @endphp
                                         </div>
 
-
-
                                         <a href="{{ $item->deskripsi }}" target="_blank">Lihat Selengkapnya</a>
                                     </article>
                                 </div>
@@ -98,12 +96,25 @@
                         </div>
                     @endforeach
                 </div>
-
                 <div class="blog-pagination">
                     <ul class="justify-content-center">
-                        <li><a href="{{ $beritalanding->previousPageUrl() }}"><i class="bi bi-arrow-left"></i></a></li>
-                        <li><a href="">{{ $beritalanding->currentPage() }}</a></li>
-                        <li><a href="{{ $beritalanding->nextPageUrl() }}"><i class="bi bi-arrow-right"></i></a></li>
+                        <li @if (!$beritalanding->previousPageUrl()) class="disabled" @endif>
+                            <a @if ($beritalanding->previousPageUrl()) href="{{ $beritalanding->previousPageUrl() }}" @endif><i
+                                    class="bi bi-arrow-left"></i></a>
+                        </li>
+
+                        @foreach ($beritalanding->links()->elements[0] as $page => $url)
+                            @if ($page == $beritalanding->currentPage())
+                                <li class="active"><a>{{ $page }}</a></li>
+                            @else
+                                <li><a href="{{ $url }}">{{ $page }}</a></li>
+                            @endif
+                        @endforeach
+
+                        <li @if (!$beritalanding->nextPageUrl()) class="disabled" @endif>
+                            <a @if ($beritalanding->nextPageUrl()) href="{{ $beritalanding->nextPageUrl() }}" @endif><i
+                                    class="bi bi-arrow-right"></i></a>
+                        </li>
                     </ul>
                 </div>
             </div>

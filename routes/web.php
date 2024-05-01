@@ -150,13 +150,14 @@ Route::middleware('check.role:Admin')->group(function () {
     Route::prefix("confirm")->group(function () {
         Route::get('/', [ConfirmController::class, 'index'])->name('confirm.index');
         Route::delete('delete/{id}', [ConfirmController::class, 'delete'])->name('confirm.delete');
-        Route::post('proses-approval/{id}/{status}', [ConfirmController::class, 'approval'])->name('approval.process');
     });
 
     Route::prefix("mingguan")->group(function(){
         Route::get('/', [MingguanController::class, 'index'])->name('mingguan.index');
         Route::get('export/{search?}', [MingguanController::class, 'export'])->name('mingguan.export');
     });
+    
+    Route::post('proses-approval/{id}/{status}', [ConfirmController::class, 'approval'])->name('approval.process');
 });
 
 //PIMPINAN

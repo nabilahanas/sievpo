@@ -61,17 +61,17 @@ class DashboardController extends Controller
         $currentMonth = Carbon::now()->format('F Y');
         $usersToShow = [];
         $totalPerUser = [];
-
+        
         foreach ($users as $user) {
             $usersToShow[] = $user->nama_user;
             $totalPerUser[$user->id_user] = 0;
         }
-
+        
         foreach ($datas as $dataItem) {
             $tanggal = Carbon::parse($dataItem->created_at);
             $userId = $dataItem->id_user; // Ensure id_user field exists
             $poin = $dataItem->poin;
-
+        
             if ($tanggal->format('F Y') === $currentMonth) {
                 // Check if $userId exists in $totalPerUser before incrementing
                 if (isset($totalPerUser[$userId])) {
@@ -80,6 +80,19 @@ class DashboardController extends Controller
             }
         }
         arsort($totalPerUser);
+        
+        // Menggabungkan nama pengguna dengan total poin dalam satu array asosiatif
+        $userPoinData = [];
+        foreach ($totalPerUser as $userId => $poin) {
+            $userPoinData[] = [
+                'name' => $users->where('id_user', $userId)->first()->nama_user,
+                'poin' => $poin
+            ];
+        }
+        
+        // Mengonversi array ke dalam format JSON untuk digunakan di JavaScript
+        $userPoinDatas = json_encode($userPoinData);
+        
 
 
         // KARYAWAN TOTAL
@@ -126,6 +139,6 @@ class DashboardController extends Controller
         }
 
 
-        return view('layouts.dashboard', compact('poinAllUser', 'poinUser', 'monthsKar', 'karTotals', 'totalPerUser', 'usersToShow', 'currentMonth','currentYear', 'users', 'monthlyTotals', 'monthsToShow', 'month', 'total', 'approved', 'rejected', 'pending', 'berita', 'jmlpengumuman', 'jmluser', 'poin', 'approvedstatus', 'rejectedstatus', 'pendingstatus', 'pengumuman'), ['key' => 'dashboard']);
+        return view('layouts.dashboard', compact('userPoinDatas', 'poinAllUser', 'poinUser', 'monthsKar', 'karTotals', 'totalPerUser', 'usersToShow', 'currentMonth','currentYear', 'users', 'monthlyTotals', 'monthsToShow', 'month', 'total', 'approved', 'rejected', 'pending', 'berita', 'jmlpengumuman', 'jmluser', 'poin', 'approvedstatus', 'rejectedstatus', 'pendingstatus', 'pengumuman'), ['key' => 'dashboard']);
     }
 }

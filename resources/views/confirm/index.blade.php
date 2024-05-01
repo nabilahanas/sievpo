@@ -165,7 +165,7 @@
                         data: 'id_data',
                         name: 'id_data',
                         searchable: false,
-                        orderable: true,
+                        orderable: false,
                     },
                     {
                         data: 'user.nama_user',
@@ -341,7 +341,7 @@
 
             $(".carikonfirm").append(`
     <form>
-    <div class="input-group mt-2 mb-4">
+    <div class="input-group mb-3">
         <select name="c_search" type="number" class="form-control" placeholder="c_search" aria-label="search"
             aria-describedby="button-addon2">
             <option value="">Pilih Status</option>

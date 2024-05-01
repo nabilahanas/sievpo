@@ -29,7 +29,7 @@
         <section id="blog" class="blog">
             <div class="container" data-aos="fade-up">
 
-                <div class="row gy-4 posts-list">
+                <div class="row gy-4 posts-list mt-2">
                     @foreach ($beritalanding->chunk(3) as $chunk)
                         <div class="row">
                             @foreach ($chunk as $item)
@@ -56,7 +56,6 @@
                                                 </time>
                                             </p>
                                         </div>
-
                                         <div class="article-preview">
                                             @php
                                                 // Mendapatkan HTML dari setiap berita

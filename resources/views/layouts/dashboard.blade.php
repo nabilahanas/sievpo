@@ -172,8 +172,8 @@
                                     <h3 class="card-title" style="color: #007bff; font-weight: 600;">
                                         Total Eviden Poin Tahun <?php echo date('Y'); ?>
                                     </h3>
-                                    <button class="btn btn-sm btn-outline-primary"><i class="bi bi-download"></i>
-                                        Download</button>
+                                    {{-- <button class="btn btn-sm btn-outline-primary"><i class="bi bi-download"></i>
+                                        Download</button> --}}
                                 </div>
                             </div>
                             <div class="card-body">
@@ -192,8 +192,8 @@
                                     <h3 class="card-title" style="color: #007bff; font-weight: 600;">
                                         Rekap Poin Karyawan <?php echo date('M Y'); ?>
                                     </h3>
-                                    <button class="btn btn-sm btn-outline-primary"><i class="bi bi-download"></i>
-                                        Download</button>
+                                    {{-- <button class="btn btn-sm btn-outline-primary"><i class="bi bi-download"></i>
+                                        Download</button> --}}
                                 </div>
                             </div>
                             <div class="card-body">
@@ -245,8 +245,8 @@
                                     <h3 class="card-title" style="color: #007bff; font-weight: 600;">
                                         Total Eviden Poin Tahun {{$currentYear}}
                                     </h3>
-                                    <button class="btn btn-sm btn-outline-primary mr-2"><i class="bi bi-download"></i>
-                                        Download</button>
+                                    {{-- <button class="btn btn-sm btn-outline-primary mr-2"><i class="bi bi-download"></i>
+                                        Download</button> --}}
                                 </div>
                             </div>
                             <div class="card-body">
@@ -265,8 +265,8 @@
                                     <h3 class="card-title" style="color: #007bff; font-weight: 600;">
                                         Rekap Poin Karyawan {{$currentMonth}}
                                     </h3>
-                                    <button class="btn btn-sm btn-outline-primary mr-2"><i class="bi bi-download"></i>
-                                        Download</button>
+                                    {{-- <button class="btn btn-sm btn-outline-primary mr-2"><i class="bi bi-download"></i>
+                                        Download</button> --}}
                                 </div>
                             </div>
                             <div class="card-body">
@@ -488,11 +488,12 @@
 
     <!-- ADMIN PIMPINAN TOTAL KARYAWAN -->
     <script>
-        var usersToShow = {!! json_encode($usersToShow) !!};
-        var totalPerUser = {!! json_encode(array_values($totalPerUser)) !!};
-
+        var userPoinData = {!! $userPoinDatas !!};
+        var usersToShow = userPoinData.map(user => user.name);
+        var totalPerUser = userPoinData.map(user => user.poin);
+    
         var currentMonth = "<?php echo $currentMonth; ?>";
-
+    
         Highcharts.chart('poinKar', {
             chart: {
                 type: 'column'
@@ -526,6 +527,7 @@
             }]
         });
     </script>
+    
 
     <!-- KARYAWAN TOTAL-->
     <script>

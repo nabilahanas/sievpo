@@ -59,22 +59,15 @@ class DataController extends Controller
             $filename = time() . '_' . $image->getClientOriginalName();
             $path = 'foto-eviden/' . $filename;
 
-            // Simpan gambar ke storage
             Storage::disk('public')->put($path, file_get_contents($image));
 
-            // Simpan nama file ke dalam data
             $data['foto'] = $filename;
 
-            // $image = Image::make($image);
-            // $metadata = $image->exif();
-
-            // $data['metadata'] = $metadata;
         } else {
-            // Jika tidak ada gambar, atur 'gambar' menjadi null atau sesuai kebutuhan
             $data['foto'] = null;
         }
 
-        Data::create($data); //data disimpan
+        Data::create($data);
 
         return redirect()->route('data.index')->with('success', 'Data berhasil ditambahkan');
     }

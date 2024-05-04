@@ -7,8 +7,8 @@
             <th rowspan="2">Nama KRPH</th>
             @php
                 $daysInMonth =
-                    $request->has('bulan') && $request->has('tahun')
-                        ? Carbon\Carbon::create($request->tahun, $request->bulan)->daysInMonth
+                    request()->has('bulan') && request()->has('tahun')
+                        ? Carbon\Carbon::create(request()->tahun, request()->bulan)->daysInMonth
                         : Carbon\Carbon::now()->daysInMonth;
                 $colspan = $daysInMonth; // 3 kolom pertama untuk Nama, Jabatan, dan Wilayah
             @endphp
@@ -18,8 +18,8 @@
         <tr>
             @php
                 $daysInMonth =
-                    $request->has('bulan') && $request->has('tahun')
-                        ? Carbon\Carbon::create($request->tahun, $request->bulan)->daysInMonth
+                    request()->has('bulan') && request()->has('tahun')
+                        ? Carbon\Carbon::create(request()->tahun, request()->bulan)->daysInMonth
                         : Carbon\Carbon::now()->daysInMonth;
             @endphp
             @for ($day = 1; $day <= $daysInMonth; $day++)
@@ -45,10 +45,10 @@
                 @for ($day = 1; $day <= $daysInMonth; $day++)
                     @php
                         $tanggal =
-                            isset($request->tahun) && isset($request->bulan)
+                            isset(request()->tahun) && isset(request()->bulan)
                                 ? Carbon\Carbon::createFromDate(
-                                    $request->tahun,
-                                    $request->bulan,
+                                    request()->tahun,
+                                    request()->bulan,
                                     $day,
                                 )->format('d-m-Y')
                                 : Carbon\Carbon::createFromDate(date('Y'), date('m'), $day)->format(

@@ -27,7 +27,7 @@ class ConfirmController extends Controller
         }
 
         // Urutkan data berdasarkan waktu masuk (created_at) dari terbaru ke terlama
-        // $data->orderBy('created_at', 'desc');
+        $data->orderBy('created_at', 'desc');
 
         if ($request->ajax() || $request->isXmlHttpRequest() || $request->input('is_ajax') === 'true') {
             return DataTables::eloquent($data)->toJson();
@@ -85,7 +85,7 @@ class ConfirmController extends Controller
             }
 
             // Update data menjadi 'approved' dan menambahkan poin dari shift hanya jika bukan Sabtu, Minggu, atau hari libur nasional
-            if (!$isWeekend && !$isHoliday) {
+            if ($isWeekend || $isHoliday) {
                 $data->update(['is_approved' => 'approved', 'poin' => $data->poin + $poin]);
             } else {
                 $data->update(['is_approved' => 'approved', 'poin' => $data->poin]);

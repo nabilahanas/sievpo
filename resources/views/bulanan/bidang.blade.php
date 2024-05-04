@@ -258,6 +258,9 @@
                         color: '#007bff'
                     }
                 },
+                credits: {
+                    enabled: false
+                },
                 series: [{
                     name: 'Poin',
                     colorByPoint: true,
@@ -266,6 +269,7 @@
             });
         </script>
     @endif
+
     <!-- PIMPINAN -->
     @if (auth()->user() && auth()->user()->role->nama_role == 'Pimpinan')
         <script>
@@ -280,6 +284,9 @@
                     style: {
                         color: '#007bff'
                     }
+                },
+                credits: {
+                    enabled: false
                 },
                 series: [{
                     name: 'Poin',

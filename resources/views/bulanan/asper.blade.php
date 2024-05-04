@@ -281,6 +281,9 @@
                         text: 'Poin'
                     }
                 },
+                credits: {
+                    enabled: false
+                },
                 plotOptions: {
                     column: {
                         pointPadding: 0.2,
@@ -289,7 +292,7 @@
                 },
                 series: [{
                     name: 'Poin',
-                    data: {!! json_encode(array_values($jabatanTotals)) !!} 
+                    data: {!! json_encode(array_values($jabatanTotals)) !!}
                 }]
             });
         </script>
@@ -309,6 +312,9 @@
                     style: {
                         color: '#007bff'
                     }
+                },
+                credits: {
+                    enabled: false
                 },
                 series: [{
                     name: 'Poin',

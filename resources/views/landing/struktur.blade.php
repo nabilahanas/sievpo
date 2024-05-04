@@ -43,7 +43,7 @@
                         </div> --}}
                         <div class="row gy-4">
                             <div class="col-lg-5">
-                                <img src="landingpage/assets/img/keterangan.jpg" class="img-fluid" style="max-width: 50%">
+                                <img src="landingpage/assets/img/keterangan.jpg" class="img-fluid" style="max-width: 50%" alt="Keterangan">
                             </div>
                         </div>
                     </div>

@@ -281,7 +281,7 @@
                             </form>
 
                             <form
-                                action=""{{ url('/') }}/proses-approval/${row.id_data}/rejected"
+                                action="{{ url('/') }}/proses-approval/${row.id_data}/rejected"
                                 method="post">
                                 @csrf
                                 <button type="submit" class="btn btn-sm btn-secondary btn-block mb-2" ${row.is_approved != 'pending' ? 'disabled' : '' }>

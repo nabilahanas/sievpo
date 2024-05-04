@@ -25,8 +25,7 @@
                                 Hasil Pencarian Tahun {{ $currentYear }}
                             </div>
                         @endif
-                        <table id="tasper" class="table table-sm text-nowrap table-hover table-striped"
-                            style="width: 100%">
+                        <table id="tasper" class="table table-sm text-nowrap table-hover table-striped" style="width: 100%">
                             <thead class="thead-successv2">
                                 <tr>
                                     <th rowspan="2">No.</th>
@@ -215,7 +214,7 @@
 @endsection
 
 @section('script')
-    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <!-- ADMIN-->
     {{-- @if ((auth()->user() && auth()->user()->role->nama_role == 'Admin') || auth()->user()->role->nama_role == 'Mahasiswa')
         <script>
             Highcharts.chart('asperPoin', {
@@ -236,6 +235,9 @@
                         text: 'Poin'
                     }
                 },
+                credits: {
+                    enabled: false
+                },
                 plotOptions: {
                     column: {
                         pointPadding: 0.2,
@@ -250,6 +252,7 @@
         </script>
     @endif --}}
 
+    <!-- PIMPINAN -->
     @if (auth()->user() && auth()->user()->role->nama_role == 'Pimpinan')
         <script>
             var currentYear = "<?php echo $currentYear; ?>";
@@ -263,6 +266,9 @@
                     style: {
                         color: '#007bff'
                     }
+                },
+                credits: {
+                    enabled: false
                 },
                 series: [{
                     name: 'Poin',

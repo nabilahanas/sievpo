@@ -6,11 +6,9 @@
     @if ($errors->any())
         <div class="alert alert-danger fade show alert-dismissible" role="alert">
             <strong><i class="fa fa-warning" aria-hidden="true"></i></strong>
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
@@ -40,7 +38,8 @@
                 <div class="form-group row col-12 col-md-10">
                     <label for="gambar" class="col-sm-3 col-form-label">Gambar</label>
                     <div class="col-sm-9">
-                        <input type="file" class="form-control" id="fileInput" name="gambar" accept="image/jpeg, image/png, image/jpg, image/svg">
+                        <input type="file" class="form-control" id="fileInput" name="gambar"
+                            accept="image/jpeg, image/png, image/jpg, image/svg">
                         <small class="form-text text-muted">Gambar harus bertipe: jpeg, png, jpg, atau svg</small>
                     </div>
                 </div>

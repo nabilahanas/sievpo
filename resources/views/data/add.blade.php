@@ -6,11 +6,9 @@
     @if ($errors->any())
         <div class="alert alert-danger fade show alert-dismissible" role="alert">
             <strong><i class="fa fa-warning" aria-hidden="true"></i></strong>
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
+            @foreach ($errors->all() as $error)
+                {{ $error }}
+            @endforeach
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
@@ -84,16 +82,19 @@
                 <div class="form-group row col-12 col-md-10">
                     <label for="foto" class="col-sm-2 col-form-label required">Bukti Foto</label>
                     <div class="col-sm-10">
-                        <input class="form-control" type="file" id="foto" name="foto" accept="image/*" required>
+                        <input class="form-control" type="file" id="foto" name="foto"
+                            accept="image/jpeg, image/png, image/jpg, image/svg" required>
                         <small class="form-text text-danger">Foto <b>wajib</b> memiliki timestamp!</small>
-                        @if(isset($data['foto'])) <!-- Check if image exists in data -->
-                            <img src="{{ asset('foto-eviden/' . $data['foto']) }}" class="img-fluid" id="previewImage" style="width: 400px;">
+                        @if (isset($data['foto']))
+                            <!-- Check if image exists in data -->
+                            <img src="{{ asset('foto-eviden/' . $data['foto']) }}" class="img-fluid" id="previewImage"
+                                style="width: 400px;">
                         @else
                             <img class="img-fluid" id="previewImage" style="max-width: 400px;">
                         @endif
                     </div>
                 </div>
-                
+
 
                 <div class="text-center">
                     <button type="submit" class="btn btn-primary"><i class="fas fa-save mr-2"></i>Simpan</button>
@@ -106,22 +107,22 @@
     </div>
 
 
-    {{-- PREVIEW FOTO EVIDEN --}}
+    <!-- PREVIEW FOTO EVIDEN -->
     <script>
         document.getElementById('foto').addEventListener('change', function(e) {
             var file = e.target.files[0];
             var reader = new FileReader();
-    
+
             reader.onload = function(e) {
                 document.getElementById('previewImage').setAttribute('src', e.target.result);
             }
-    
+
             reader.readAsDataURL(file);
         });
     </script>
-    
 
-    {{-- GET LOCATION USING API --}}
+
+    <!-- GET LOCATION USING API -->
     <script>
         function getLocation() {
             if (navigator.geolocation) {

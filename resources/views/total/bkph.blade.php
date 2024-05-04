@@ -157,8 +157,7 @@
                                         ? array_sum($bkphTotals[$item->bagian])
                                         : 0;
 
-                                    $pieData[] = ['name' => $item->bagian, 'y' => $bkphTotal,
-                                    ];
+                                    $pieData[] = ['name' => $item->bagian, 'y' => $bkphTotal];
                                 }
                             @endphp
 
@@ -190,6 +189,7 @@
 @endsection
 
 @section('script')
+    <!-- PIMPINAN -->
     @if (auth()->user() && auth()->user()->role->nama_role == 'Pimpinan')
         <script>
             var currentYear = "<?php echo $currentYear; ?>";
@@ -203,6 +203,9 @@
                     style: {
                         color: '#007bff'
                     }
+                },
+                credits: {
+                    enabled: false
                 },
                 series: [{
                     name: 'Poin',

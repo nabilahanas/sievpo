@@ -4,6 +4,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta content="Login" name="description">
+
     <title>Login</title>
 
     <!-- Google Font: Poppins -->
@@ -15,20 +17,6 @@
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('/') }}dist/css/adminlte.css">
 </head>
-
-@if ($errors->any())
-    <div class="alert alert-danger fade show alert-dismissible" role="alert">
-        <strong><i class="fa fa-warning" aria-hidden="true"></i></strong>
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-@endif
 
 <body class="hold-transition login-page">
     <div class="split left">
@@ -46,7 +34,7 @@
             <div class="card-body p-0">
                 <div style="text-align: center"><img
                         src="https://upload.wikimedia.org/wikipedia/id/2/2b/Perhutani_logo.svg" style="padding-top: 2%"
-                        height="80%" width="80%"></div>
+                        height="80%" width="80%" alt="Perhutani"></div>
                 <div class="row justify-content-center">
                     <div class="card card-outline rounded-lg mt-5 card-primary">
                         <div class="card-body">
@@ -59,7 +47,8 @@
                                     Poin
                                 </p>
                                 @if ($message = Session::get('error'))
-                                    <div class="alert alert-danger" role="alert" style="font-size: 13px">{{ $message }}</div>
+                                    <div class="alert alert-danger" role="alert" style="font-size: 13px">
+                                        {{ $message }}</div>
                                 @endif
                                 <div class="input-group mb-3">
                                     <input type="text" name="nip" class="form-control" placeholder="NIP" required
@@ -89,12 +78,6 @@
             </div>
         </div>
     </div>
-
-    {{-- <!-- Bootstrap JavaScript -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-rHyoN1iRsVXV4nD0Jut5XuOVfdIoA01fSkzB7ti7ihFdaLl5+qXaVi0B2A2vcybp" crossorigin="anonymous">
-    </script> --}}
-
 </body>
 
 </html>

@@ -10,13 +10,13 @@
             </a>
         </li>
 
-        <!-- DATA EVIDEN POIN -->
+        <!-- DATA LAPORAN EVIDEN -->
         @if (auth()->user()->role->nama_role == 'Karyawan')
             <li class="nav-item">
                 <a href="/data" class="nav-link {{ $key == 'data' ? 'active' : '' }}">
                     <i class="nav-icon far fa-edit"></i>
                     <p>
-                        Data Eviden Poin
+                        Data Laporan Eviden
                     </p>
                 </a>
             </li>

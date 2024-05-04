@@ -48,7 +48,7 @@ class DataController extends Controller
             'id_shift' => 'required',
             'lokasi' => 'required',
             'tgl_waktu' => 'required|date_format:Y-m-d H:i:s',
-            'foto' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'foto' => 'required|image|mimes:jpeg,png,jpg,svg|max:2048',
         ]);
 
         $data = $request->except('tgl_waktu');

@@ -354,8 +354,8 @@
                                     <h3 class="card-title" style="color: #007bff; font-weight: 600;">
                                         Total Poin Anda Tahun {{$currentYear}}
                                     </h3>
-                                    <button class="btn btn-sm btn-outline-primary mr-2"><i class="bi bi-download"></i>
-                                        Download</button>
+                                    {{-- <button class="btn btn-sm btn-outline-primary mr-2"><i class="bi bi-download"></i>
+                                        Download</button> --}}
                                 </div>
                             </div>
                             <div class="card-body">
@@ -374,8 +374,8 @@
                                     <h3 class="card-title" style="color: #007bff; font-weight: 600;">
                                         Perbandingan Total Poin Anda {{$currentMonth}}
                                     </h3>
-                                    <button class="btn btn-sm btn-outline-primary mr-2"><i class="bi bi-download"></i>
-                                        Download</button>
+                                    {{-- <button class="btn btn-sm btn-outline-primary mr-2"><i class="bi bi-download"></i>
+                                        Download</button> --}}
                                 </div>
                             </div>
                             <div class="card-body">
@@ -527,7 +527,6 @@
             }]
         });
     </script>
-    
 
     <!-- KARYAWAN TOTAL-->
     <script>

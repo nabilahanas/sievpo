@@ -258,27 +258,30 @@
 @section('script')
     <!-- ADMIN -->
     @if ((auth()->user() && auth()->user()->role->nama_role == 'Admin') || auth()->user()->role->nama_role == 'Mahasiswa')
-    <script>
-        var currentMonth = "<?php echo $currentMonth; ?>";
+        <script>
+            var currentMonth = "<?php echo $currentMonth; ?>";
 
-        Highcharts.chart('bBkphAd', {
-            chart: {
-                type: 'pie'
-            },
-            title: {
-                text: 'Rekap BKPH ' + currentMonth,
-                align: 'center',
-                style: {
-                    color: '#007bff'
-                }
-            },
-            series: [{
-                name: 'Poin',
-                colorByPoint: true,
-                data: {!! json_encode($jabatanTotals) !!}
-            }]
-        });
-    </script>
+            Highcharts.chart('bBkphAd', {
+                chart: {
+                    type: 'pie'
+                },
+                title: {
+                    text: 'Rekap BKPH ' + currentMonth,
+                    align: 'center',
+                    style: {
+                        color: '#007bff'
+                    }
+                },
+                credits: {
+                    enabled: false
+                },
+                series: [{
+                    name: 'Poin',
+                    colorByPoint: true,
+                    data: {!! json_encode($jabatanTotals) !!}
+                }]
+            });
+        </script>
     @endif
 
     <!-- PIMPINAN -->
@@ -295,6 +298,9 @@
                     style: {
                         color: '#007bff'
                     }
+                },
+                credits: {
+                    enabled: false
                 },
                 series: [{
                     name: 'Poin',

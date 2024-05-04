@@ -301,6 +301,9 @@
                         text: 'Poin'
                     }
                 },
+                credits: {
+                    enabled: false
+                },
                 plotOptions: {
                     column: {
                         pointPadding: 0.2,
@@ -333,6 +336,9 @@
                     style: {
                         color: '#007bff'
                     }
+                },
+                credits: {
+                    enabled: false
                 },
                 series: [{
                     name: 'Poin',

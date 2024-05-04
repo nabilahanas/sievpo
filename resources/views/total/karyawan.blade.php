@@ -18,7 +18,7 @@
                         <div id="tKarAd"></div>
                     </div>
                 </div> --}}
-                
+
                 <div class="table-responsive-lg mt-4" style="overflow-x: auto;">
                     @if (request()->has('semester') && request()->has('year'))
                         <div style="padding: 10px; font-size: 15px; font-weight: bold;">
@@ -226,6 +226,9 @@
                         text: 'Poin'
                     }
                 },
+                credits: {
+                    enabled: false
+                },
                 plotOptions: {
                     column: {
                         pointPadding: 0.2,
@@ -254,6 +257,9 @@
                     style: {
                         color: '#007bff'
                     }
+                },
+                credits: {
+                    enabled: false
                 },
                 series: [{
                     name: 'Poin',

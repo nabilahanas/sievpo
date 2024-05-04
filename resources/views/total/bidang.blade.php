@@ -187,6 +187,7 @@
 @endsection
 
 @section('script')
+    <!-- PIMPINAN -->
     @if (auth()->user() && auth()->user()->role->nama_role == 'Pimpinan')
         <script>
             var currentYear = "<?php echo $currentYear; ?>";
@@ -200,6 +201,9 @@
                     style: {
                         color: '#007bff'
                     }
+                },
+                credits: {
+                    enabled: false
                 },
                 series: [{
                     name: 'Poin',

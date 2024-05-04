@@ -9,7 +9,6 @@
                 <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center text-center text-lg-start">
                     <h2>Sistem Informasi Eviden Poin Perum Perhutani KPH Semarang</h2>
                     <p>SIEVPO kelola data penilaian karyawan lebih mudah!</p>
-
                 </div>
             </div>
             <div class="row gy-5" data-aos="fade-in">
@@ -20,7 +19,6 @@
                 </div>
             </div>
         </div>
-
         <div class="icon-boxes position-relative">
             <div class="container position-relative">
                 <div class="row gy-4 mt-5">
@@ -75,13 +73,13 @@
         <!-- ======= Call To Action Section ======= -->
         <section id="call-to-action" class="call-to-action">
             <div class="logo d-flex align-items-center justify-content-center" data-aos="fade">
-                <img src="{{ asset('landingpage/assets/img/perhutani-2.png') }}" width="300">
+                <img src="{{ asset('landingpage/assets/img/perhutani-2.png') }}" width="300" alt="Logo Perhutani">
             </div>
             <div class="container" data-aos="zoom-out">
                 <div class="row">
                     <div class="col-md-6 text-justify">
                         <img src="https://i0.wp.com/www.perhutani.co.id/wp-content/uploads/2021/08/WhatsApp-Image-2021-08-03-at-14.35.15-2.jpeg"
-                            class="img-fluid rounded-4 mb-4">
+                        class="img-fluid rounded-4 mb-4" alt="Kantor Perhutani" height="400">                    
                     </div>
                     <div class="col-md-6 text-justify">
                         <h3>Apa itu SIEVPO?</h3>
@@ -424,8 +422,9 @@
                 </div>
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <a href="https://www.tokoperhutani.com/" target=”_blank”><img
-                                src="https://i0.wp.com/www.perhutani.co.id/wp-content/uploads/2024/01/tokophtArtboard-1@300x-50.jpg?fit=1366%2C600&ssl=1"
+                        <a href="https://www.tokoperhutani.com/" target=”_blank”
+                            style="text-decoration: none; color: transparent;">Toko Perhutani<img
+                                src="https://i0.wp.com/www.perhutani.co.id/wp-content/uploads/2024/01/tokophtArtboard-1@300x-50.jpg"
                                 class="d-block w-100" alt="Toko Perhutani">
                     </div>
                     <div class="carousel-item">
@@ -433,7 +432,7 @@
                             class="d-block w-100" alt="Program Kerja">
                     </div>
                     <div class="carousel-item">
-                        <img src="https://i0.wp.com/www.perhutani.co.id/wp-content/uploads/2024/01/SMAP-WEBSITE-1.jpg?fit=1366%2C600&ssl=1"
+                        <img src="https://i0.wp.com/www.perhutani.co.id/wp-content/uploads/2024/01/SMAP-WEBSITE-1.jpg"
                             class="d-block w-100" alt="Kebijakan Anti Penyuapan">
                     </div>
                 </div>

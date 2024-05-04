@@ -104,7 +104,8 @@
                                                     @csrf
                                                     @method('DELETE')
                                                     <div class="modal-body">
-                                                        Apakah Anda yakin ingin menghapus data ini?
+                                                        Data yang dihapus <b>tidak dapat</b> dipulihkan.
+                                                        <br>Apakah Anda yakin ingin menghapus data ini?
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary"

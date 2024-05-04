@@ -6,12 +6,11 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
     <title>SIEVPO</title>
-    <meta content="" name="description">
-    <meta content="" name="keywords">
+    <meta content="Main Asset" name="description">
 
-    <!-- Favicons -->
+    {{-- <!-- Favicons -->
     <link href="{{ asset('landingpage/assets/img/logo.png') }}" rel="icon">
-    <link href="{{ asset('landingpage/assets/img/logo.png') }}" rel="apple-touch-icon">
+    <link href="{{ asset('landingpage/assets/img/logo.png') }}" rel="apple-touch-icon"> --}}
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -21,21 +20,20 @@
         rel="stylesheet">
 
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="{{ asset('/') }}plugins/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="{{ asset('/') }}plugins/fontawesome-free/css/all.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
 
     <!-- Vendor CSS Files -->
-    <link href="{{ asset('landingpage/assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('landingpage/assets/vendor/bootstrap/css/bootstrap.css') }}" rel="stylesheet">
     <link href="{{ asset('landingpage/assets/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
     <link href="{{ asset('landingpage/assets/vendor/aos/aos.css') }}" rel="stylesheet">
-    <link href="{{ asset('landingpage/assets/vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('landingpage/assets/vendor/glightbox/css/glightbox.css') }}" rel="stylesheet">
     <link href="{{ asset('landingpage/assets/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
 
     <!-- Template Main CSS File -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link href="{{ asset('landingpage/assets/css/main.css') }}" rel="stylesheet">
-    {{-- <link rel="stylesheet" href="{{ asset('/') }}dist/css/adminlte.css"> --}}
 </head>
 
 <body>
@@ -82,23 +80,25 @@
         <div class="row gy-4">
             <div class="col-lg-5 col-md-12 footer-info">
                 <a href="/" class="logo d-flex align-items-center">
-                    <img src="{{ asset('landingpage/assets/img/perhutani-putih.png') }}">
-                    <img src="{{ asset('landingpage/assets/img/logo_bumn.png') }}" style="margin-left: 10px">
+                    <img src="{{ asset('landingpage/assets/img/perhutani-putih.png') }}" alt="Perhutani">
+                    <img src="{{ asset('landingpage/assets/img/logo_bumn.png') }}" style="margin-left: 10px"
+                        alt="BUMN">
                 </a>
                 <p>Perhutani adalah Badan Usaha Milik Negara berbentuk Perusahaan Umum (Perum) yang memiliki tugas
                     dan wewenang untuk mengelola sumberdaya hutan negara di pulau Jawa dan Madura.</p>
                 <div class="social-links d-flex mt-4">
-                    <a href="https://www.facebook.com/perumperhutani/" target=”_blank”><i
+                    <a href="https://www.facebook.com/perumperhutani/" target="_blank"><i
                             class="bi bi-facebook"></i></a>
-                    <a href="https://twitter.com/perumperhutani" target=”_blank”><i class="bi bi-twitter-x"></i></a>
-                    <a href="https://www.instagram.com/perumperhutani/?hl=id" target=”_blank”><i
+                    <a href="https://twitter.com/perumperhutani" target="_blank"><i class="bi bi-twitter-x"></i></a>
+                    <a href="https://www.instagram.com/perumperhutani/?hl=id" target="_blank"><i
                             class="bi bi-instagram"></i></a>
-                    <a href="https://www.tiktok.com/@perum.perhutani" target=”_blank”><i class="bi bi-tiktok"></i></a>
-                    <a href="https://www.youtube.com/channel/UCmMvplsIxDZLQeusTWlLE2w" target=”_blank”><i
+                    <a href="https://www.tiktok.com/@perum.perhutani" target="_blank"><i class="bi bi-tiktok"></i></a>
+                    <a href="https://www.youtube.com/channel/UCmMvplsIxDZLQeusTWlLE2w" target="_blank"><i
                             class="bi bi-youtube"></i></a>
-                    <a href="https://www.linkedin.com/company/perum-perhutani/" target=”_blank”><i
+                    <a href="https://www.linkedin.com/company/perum-perhutani/" target="_blank"><i
                             class="bi bi-linkedin"></i></a>
                 </div>
+
             </div>
 
             <div class="col-lg-2 col-6 footer-links">
@@ -133,7 +133,8 @@
         </div>
         <div class="container mt-4">
             <div class="copyright">
-                Copyright &copy; <?php echo date('Y'); ?> <strong><span>Perum Perhutani KPH Semarang</span></strong>. All Rights
+                Copyright &copy; <?php echo date('Y'); ?> <strong><span>Perum Perhutani KPH Semarang</span></strong>. All
+                Rights
                 Reserved.
             </div>
             {{-- <div class="credits">
@@ -165,13 +166,11 @@
 </script>
 
 <!-- Vendor JS Files -->
-<script src="{{ asset('landingpage/assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+<script src="{{ asset('landingpage/assets/vendor/bootstrap/js/bootstrap.bundle.js') }}"></script>
 <script src="{{ asset('landingpage/assets/vendor/aos/aos.js') }}"></script>
-<script src="{{ asset('landingpage/assets/vendor/glightbox/js/glightbox.min.js') }}"></script>
+<script src="{{ asset('landingpage/assets/vendor/glightbox/js/glightbox.js') }}"></script>
 <script src="{{ asset('landingpage/assets/vendor/purecounter/purecounter_vanilla.js') }}"></script>
 <script src="{{ asset('landingpage/assets/vendor/swiper/swiper-bundle.min.js') }}"></script>
-<script src="{{ asset('landingpage/assets/vendor/isotope-layout/isotope.pkgd.min.js') }}"></script>
-<script src="{{ asset('landingpage/assets/vendor/php-email-form/validate.js') }}"></script>
 
 <!-- Template Main JS File -->
 <script src="{{ asset('landingpage/assets/js/main.js') }}"></script>

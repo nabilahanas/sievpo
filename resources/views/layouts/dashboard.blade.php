@@ -8,10 +8,6 @@
 
     <!-- Modal -->
     @foreach ($pengumuman as $index => $item)
-        @php
-            $modalId = "pengumumanModal{$index}";
-            $localStorageKey = "hideModal{$index}";
-        @endphp
         <div class="modal fade" id="pengumumanModal{{ $index }}" data-backdrop="static" data-keyboard="false"
             tabindex="-1" role="dialog" aria-labelledby="pengumumanTitle{{ $index }}" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
@@ -20,9 +16,7 @@
                         <h4 class="modal-title" id="pengumumanTitle{{ $index }}" style="font-size: 20px">
                             {{ $item->judul }}</h4>
                         <button type="button" class="close" aria-label="Close" data-dismiss="modal"
-                            @if (!$loop->first)
                             data-next-modal="#pengumumanModal{{ $index + 1 }}"
-                            @endif
                         >
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -46,9 +40,7 @@
                                 lagi</label>
                         </div>
                         <button type="button" class="btn btn-successv2 close-modal" data-dismiss="modal"
-                        @if (!$loop->first)
-                            data-next-modal="#pengumumanModal{{ $index + 1 }}"
-                        @endif>OK</button>
+                            data-next-modal="#pengumumanModal{{ $index + 1 }}">OK</button>
                     </div>
                 </div>
             </div>
@@ -59,7 +51,7 @@
     @if ((auth()->user() && auth()->user()->role->nama_role == 'Admin') || auth()->user()->role->nama_role == 'Mahasiswa')
         <section class="content">
             <div class="container-fluid">
-                {{-- <button id="showModalAgain">Tampilkan Modal Lagi</button> --}}
+                <button id="showModalAgain">Tampilkan Modal Lagi</button>
 
                 <!-- Small boxes (Stat box) -->
                 <div class="row">
@@ -67,7 +59,7 @@
                         <div class="small-box bg-info">
                             <div class="inner">
                                 <h3>{{ $total }}</h3>
-                                <p>Total Laporan</p>
+                                <p>Total Poin</p>
                             </div>
                             <div class="icon">
                                 <i class="fas fa-chart-pie"></i>
@@ -172,12 +164,12 @@
                                     <h3 class="card-title" style="color: #007bff; font-weight: 600;">
                                         Total Eviden Poin Tahun <?php echo date('Y'); ?>
                                     </h3>
-                                    {{-- <button class="btn btn-sm btn-outline-primary"><i class="bi bi-download"></i>
-                                        Download</button> --}}
+                                    <button class="btn btn-sm btn-outline-primary"><i class="bi bi-download"></i>
+                                        Download</button>
                                 </div>
                             </div>
                             <div class="card-body">
-                                <div id="bulanPoin"></div>
+                                <div id="bulanPoin" height="60"></div>
                             </div>
                         </div>
                     </section>
@@ -192,16 +184,76 @@
                                     <h3 class="card-title" style="color: #007bff; font-weight: 600;">
                                         Rekap Poin Karyawan <?php echo date('M Y'); ?>
                                     </h3>
-                                    {{-- <button class="btn btn-sm btn-outline-primary"><i class="bi bi-download"></i>
-                                        Download</button> --}}
+                                    <button class="btn btn-sm btn-outline-primary"><i class="bi bi-download"></i>
+                                        Download</button>
                                 </div>
                             </div>
                             <div class="card-body">
-                                <div id="poinKar"></div>
+                                <div id="poinKar" height="60"></div>
                             </div>
                         </div>
                     </section>
                 </div>
+
+                {{-- <div class="row">
+                    <section class="col-lg-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <h3 class="card-title" style="color: #007bff; font-weight: 600;">
+                                        Rekap Bidang <?php echo date('M Y'); ?>
+                                    </h3>
+                                    <button class="btn btn-sm btn-outline-primary"><i class="bi bi-download"></i>
+                                        Download</button>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div id="adminP2" height="60"></div>
+                            </div>
+                        </div>
+                    </section>
+                </div> --}}
+
+                {{-- <div class="row">
+                    <!-- KARYAWAN -->
+                    <div class="col-lg-6">
+                        <section>
+                            <div class="card">
+                                <div class="card-header">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <h3 class="card-title" style="color: #007bff; font-weight: 600;">
+                                            Total Poin Karyawan <?php echo date('M Y'); ?>
+                                        </h3>
+                                        <button class="btn btn-sm btn-outline-primary"><i class="bi bi-download"></i>
+                                            Download</button>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <canvas id="adminP" height="60"></canvas>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                    <!-- BIDANG -->
+                    <div class="col-lg-6">
+                        <section>
+                            <div class="card">
+                                <div class="card-header">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <h3 class="card-title" style="color: #007bff; font-weight: 600;">
+                                            Total Poin Bidang <?php echo date('M Y'); ?>
+                                        </h3>
+                                        <button class="btn btn-sm btn-outline-primary"><i class="bi bi-download"></i>
+                                            Download</button>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <canvas id="adminP2" height="60"></canvas>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div> --}}
         </section>
     @endif
 
@@ -215,7 +267,7 @@
                         <div class="small-box bg-info">
                             <div class="inner">
                                 <h3>{{ $total }}</h3>
-                                <p>Total Laporan</p>
+                                <p>Total Poin</p>
                             </div>
                             <div class="icon">
                                 <i class="fas fa-chart-pie"></i>
@@ -243,10 +295,10 @@
                             <div class="card-header">
                                 <div class="d-flex justify-content-between align-items-center">
                                     <h3 class="card-title" style="color: #007bff; font-weight: 600;">
-                                        Total Eviden Poin Tahun {{$currentYear}}
+                                        Total Eviden Poin Tahun {{$currentYear}} ?>
                                     </h3>
-                                    {{-- <button class="btn btn-sm btn-outline-primary mr-2"><i class="bi bi-download"></i>
-                                        Download</button> --}}
+                                    <button class="btn btn-sm btn-outline-primary mr-2"><i class="bi bi-download"></i>
+                                        Download</button>
                                 </div>
                             </div>
                             <div class="card-body">
@@ -265,8 +317,8 @@
                                     <h3 class="card-title" style="color: #007bff; font-weight: 600;">
                                         Rekap Poin Karyawan {{$currentMonth}}
                                     </h3>
-                                    {{-- <button class="btn btn-sm btn-outline-primary mr-2"><i class="bi bi-download"></i>
-                                        Download</button> --}}
+                                    <button class="btn btn-sm btn-outline-primary mr-2"><i class="bi bi-download"></i>
+                                        Download</button>
                                 </div>
                             </div>
                             <div class="card-body">
@@ -290,7 +342,7 @@
                             <div class="inner">
                                 <h3>{{ $poin }}</h3>
 
-                                <p>Total Laporan</p>
+                                <p>Total Poin</p>
                             </div>
                             <div class="icon">
                                 <i class="fas fa-chart-pie"></i>
@@ -354,12 +406,12 @@
                                     <h3 class="card-title" style="color: #007bff; font-weight: 600;">
                                         Total Poin Anda Tahun {{$currentYear}}
                                     </h3>
-                                    {{-- <button class="btn btn-sm btn-outline-primary mr-2"><i class="bi bi-download"></i>
-                                        Download</button> --}}
+                                    <button class="btn btn-sm btn-outline-primary mr-2"><i class="bi bi-download"></i>
+                                        Download</button>
                                 </div>
                             </div>
                             <div class="card-body">
-                                <div id="totalKar"></div>
+                                <div id="totalKar" height="60"></div>
                             </div>
                         </div>
                     </section>
@@ -374,8 +426,8 @@
                                     <h3 class="card-title" style="color: #007bff; font-weight: 600;">
                                         Perbandingan Total Poin Anda {{$currentMonth}}
                                     </h3>
-                                    {{-- <button class="btn btn-sm btn-outline-primary mr-2"><i class="bi bi-download"></i>
-                                        Download</button> --}}
+                                    <button class="btn btn-sm btn-outline-primary mr-2"><i class="bi bi-download"></i>
+                                        Download</button>
                                 </div>
                             </div>
                             <div class="card-body">
@@ -398,46 +450,50 @@
         // });
 
         // Show modal when the page is fully loaded and not hidden by local storage
-        window.addEventListener('load', function() {
-            @foreach ($pengumuman as $index => $item)
-                var localStorageKey = "hideModal{{ $index }}";
-                if (!localStorage.getItem(localStorageKey)) {
-                    console.log('#pengumumanModal{{ $index }}');
-                    $('#pengumumanModal{{ $index }}').modal('show');
-                }
-            @endforeach
-        });
+        $(document).ready(() => {
+            const modalIds = {{ Js::from($pengumuman->map(fn ($q, $i) => '#pengumumanModal' . $i)) }}
+            const hiddenModal = JSON.parse(localStorage.getItem('hiddenModal') ?? '[]');
+
+            console.log(hiddenModal);
+            const shownModal = modalIds.filter((res) => !hiddenModal.includes(res));
+
+            const first = shownModal.find((e) => typeof e !== 'undefined');
+            $(first).modal('show');
+        })
+
+        const nextmodalCB = function() {
+            const hiddenModal = JSON.parse(localStorage.getItem('hiddenModal') ?? '[]');
+            var nextModalId = $(this).data('next-modal');
+            $(this).closest('.modal').modal('hide');
+
+            if (nextModalId && !hiddenModal.includes(nextModalId)) {
+                $(nextModalId).modal('show');
+            }
+        }
 
         // Handle close button click
-        $(document).on('click', '.close-modal', function() {
-            var nextModalId = $(this).data('next-modal');
-            $(this).closest('.modal').modal('hide');
-
-            if (nextModalId) {
-                $(nextModalId).modal('show');
-            }
-        });
+        $(document).on('click', '.close-modal', nextmodalCB);
 
         // // Handle close button in modal header
-        $(document).on('click', '.close', function() {
-            var nextModalId = $(this).data('next-modal');
-            $(this).closest('.modal').modal('hide');
-
-            if (nextModalId) {
-                $(nextModalId).modal('show');
-            }
-        });
+        $(document).on('click', '.close', nextmodalCB);
 
         // Handle checkbox click
         $(document).on('change', '.form-check-input', function() {
-            var modalId = $(this).closest('.modal').attr('id');
-            var index = modalId.substring(15); // Extract the index from modalId
-            var localStorageKey = "hideModal" + index;
+            var modalId = '#' + $(this).closest('.modal').attr('id');
+
+            let modals = JSON.parse(localStorage.getItem('hiddenModal') ?? '[]');
+
             if ($(this).prop('checked')) {
-                localStorage.setItem(localStorageKey, true);
+                const modalUnique = new Set(modals)
+                modalUnique.add(modalId);
+                console.log('check', modalId, modals, modalUnique, Array.from(modalUnique))
+                modals = Array.from(modalUnique)
+                console.log(modals);
             } else {
-                localStorage.removeItem(localStorageKey);
+                modals = modals.filter((ids) => ids !== modalId);
             }
+
+            localStorage.setItem('hiddenModal', JSON.stringify(modals))
         });
 
         // Handle button click to show modal again
@@ -458,9 +514,6 @@
         Highcharts.chart('bulanPoin', {
             chart: {
                 type: 'column'
-            },
-            credits: {
-                enabled: false
             },
             title: false,
             xAxis: {
@@ -488,20 +541,23 @@
 
     <!-- ADMIN PIMPINAN TOTAL KARYAWAN -->
     <script>
-        var userPoinData = {!! $userPoinDatas !!};
-        var usersToShow = userPoinData.map(user => user.name);
-        var totalPerUser = userPoinData.map(user => user.poin);
-    
+        var usersToShow = {!! json_encode($usersToShow) !!};
+        var totalPerUser = {!! json_encode(array_values($totalPerUser)) !!};
+
         var currentMonth = "<?php echo $currentMonth; ?>";
-    
+
         Highcharts.chart('poinKar', {
             chart: {
                 type: 'column'
             },
-            credits: {
-                enabled: false
-            },
             title: false,
+            // title: {
+            //     text: 'Rekap Karyawan ' + currentMonth,
+            //     align: 'center',
+            //     style: {
+            //         color: '#007bff'
+            //     }
+            // },
             xAxis: {
                 categories: usersToShow,
                 crosshair: true,
@@ -537,9 +593,6 @@
             chart: {
                 type: 'line'
             },
-            credits: {
-                enabled: false
-            },
             title: false,
             xAxis: {
                 categories: monthsKar,
@@ -573,6 +626,10 @@
                 type: 'bar'
             },
             title: false,
+            // title: {
+            //     text: 'Historic World Population by Region',
+            //     align: 'left'
+            // },
             xAxis: {
                 categories: ['Poin'],
                 title: {
@@ -594,12 +651,23 @@
             },
             plotOptions: {
                 bar: {
-                    borderRadius: '30%',
+                    borderRadius: '50%',
                     dataLabels: {
                         enabled: true
                     },
                     groupPadding: 0.1
                 }
+            },
+            legend: {
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'top',
+                x: -40,
+                y: 80,
+                floating: true,
+                borderWidth: 1,
+                backgroundColor: Highcharts.defaultOptions.legend.backgroundColor || '#FFFFFF',
+                shadow: true
             },
             credits: {
                 enabled: false
@@ -614,3 +682,13 @@
         });
     </script>
 @endsection
+
+<!-- JQuery -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+</script>
+
+<!-- Dropdown -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+</script>

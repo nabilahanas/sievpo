@@ -40,9 +40,4 @@ class Data extends Model
     {
         return $this->belongsTo(User::class, 'id_user');
     }
-
-    public function poin()
-    {
-        return $this->hasOne(Poin::class, 'id_user');
-    }
 }

@@ -23,7 +23,6 @@ class Berita extends Model
     public function deleteImage()
     {
         if ($this->gambar && file_exists(public_path('gambar-berita/' . $this->gambar))) {
-            // Hapus file gambar dari direktori
             unlink(public_path('gambar-berita/' . $this->gambar));
         }
     }

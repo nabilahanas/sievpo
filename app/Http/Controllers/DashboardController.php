@@ -27,7 +27,7 @@ class DashboardController extends Controller
 
         // USER LOGIN
         $usersauth = Auth::user();
-        $poin = Data::where('id_user', $usersauth->id_user)->count('poin');
+        $poinku = Data::where('id_user', $usersauth->id_user)->sum('poin');
         $approvedstatus = Data::where('is_approved', 'approved')->where('id_user', $usersauth->id_user)->count();
         $rejectedstatus = Data::where('is_approved', 'rejected')->where('id_user', $usersauth->id_user)->count();
         $pendingstatus = Data::where('is_approved', 'pending')->where('id_user', $usersauth->id_user)->count();
@@ -139,6 +139,6 @@ class DashboardController extends Controller
         }
 
 
-        return view('layouts.dashboard', compact('userPoinDatas', 'poinAllUser', 'poinUser', 'monthsKar', 'karTotals', 'totalPerUser', 'usersToShow', 'currentMonth','currentYear', 'users', 'monthlyTotals', 'monthsToShow', 'month', 'total', 'approved', 'rejected', 'pending', 'berita', 'jmlpengumuman', 'jmluser', 'poin', 'approvedstatus', 'rejectedstatus', 'pendingstatus', 'pengumuman'), ['key' => 'dashboard']);
+        return view('layouts.dashboard', compact('userPoinDatas', 'poinAllUser', 'poinUser', 'monthsKar', 'karTotals', 'totalPerUser', 'usersToShow', 'currentMonth','currentYear', 'users', 'monthlyTotals', 'monthsToShow', 'month', 'total', 'approved', 'rejected', 'pending', 'berita', 'jmlpengumuman', 'jmluser', 'poinku', 'approvedstatus', 'rejectedstatus', 'pendingstatus', 'pengumuman'), ['key' => 'dashboard']);
     }
 }

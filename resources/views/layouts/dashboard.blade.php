@@ -17,6 +17,7 @@
                             {{ $item->judul }}</h4>
                         <button type="button" class="close" aria-label="Close" data-dismiss="modal"
                             data-next-modal="#pengumumanModal{{ $index + 1 }}">
+                            data-next-modal="#pengumumanModal{{ $index + 1 }}">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
@@ -58,7 +59,7 @@
                         <div class="small-box bg-info">
                             <div class="inner">
                                 <h3>{{ $total }}</h3>
-                                <p>Total Poin</p>
+                                <p>Total Laporan</p>
                             </div>
                             <div class="icon">
                                 <i class="fas fa-chart-pie"></i>
@@ -158,7 +159,7 @@
                 <div class="row">
                     <section class="col-lg-12">
                         <div class="card">
-                            <div class="card-header">
+                            {{-- <div class="card-header">
                                 <div class="d-flex justify-content-between align-items-center">
                                     <h3 class="card-title" style="color: #007bff; font-weight: 600;">
                                         Total Eviden Poin Tahun <?php echo date('Y'); ?>
@@ -167,9 +168,9 @@
                                             class="bi bi-download"></i>
                                         Download</button>
                                 </div>
-                            </div>
+                            </div> --}}
                             <div class="card-body">
-                                <div id="bulanPoin" height="60"></div>
+                                <div id="bulanPoin"></div>
                             </div>
                         </div>
                     </section>
@@ -179,7 +180,7 @@
                 <div class="row">
                     <section class="col-lg-12">
                         <div class="card">
-                            <div class="card-header">
+                            {{-- <div class="card-header">
                                 <div class="d-flex justify-content-between align-items-center">
                                     <h3 class="card-title" style="color: #007bff; font-weight: 600;">
                                         Rekap Poin Karyawan <?php echo date('M Y'); ?>
@@ -188,73 +189,13 @@
                                             class="bi bi-download"></i>
                                         Download</button>
                                 </div>
-                            </div>
+                            </div> --}}
                             <div class="card-body">
                                 <div id="poinKar" height="60"></div>
                             </div>
                         </div>
                     </section>
                 </div>
-
-                {{-- <div class="row">
-                    <section class="col-lg-12">
-                        <div class="card">
-                            <div class="card-header">
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <h3 class="card-title" style="color: #007bff; font-weight: 600;">
-                                        Rekap Bidang <?php echo date('M Y'); ?>
-                                    </h3>
-                                    <button class="btn btn-sm btn-outline-primary"><i class="bi bi-download"></i>
-                                        Download</button>
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <div id="adminP2" height="60"></div>
-                            </div>
-                        </div>
-                    </section>
-                </div> --}}
-
-                {{-- <div class="row">
-                    <!-- KARYAWAN -->
-                    <div class="col-lg-6">
-                        <section>
-                            <div class="card">
-                                <div class="card-header">
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <h3 class="card-title" style="color: #007bff; font-weight: 600;">
-                                            Total Poin Karyawan <?php echo date('M Y'); ?>
-                                        </h3>
-                                        <button class="btn btn-sm btn-outline-primary"><i class="bi bi-download"></i>
-                                            Download</button>
-                                    </div>
-                                </div>
-                                <div class="card-body">
-                                    <canvas id="adminP" height="60"></canvas>
-                                </div>
-                            </div>
-                        </section>
-                    </div>
-                    <!-- BIDANG -->
-                    <div class="col-lg-6">
-                        <section>
-                            <div class="card">
-                                <div class="card-header">
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <h3 class="card-title" style="color: #007bff; font-weight: 600;">
-                                            Total Poin Bidang <?php echo date('M Y'); ?>
-                                        </h3>
-                                        <button class="btn btn-sm btn-outline-primary"><i class="bi bi-download"></i>
-                                            Download</button>
-                                    </div>
-                                </div>
-                                <div class="card-body">
-                                    <canvas id="adminP2" height="60"></canvas>
-                                </div>
-                            </div>
-                        </section>
-                    </div>
-                </div> --}}
         </section>
     @endif
 
@@ -268,7 +209,7 @@
                         <div class="small-box bg-info">
                             <div class="inner">
                                 <h3>{{ $total }}</h3>
-                                <p>Total Poin</p>
+                                <p>Total Laporan</p>
                             </div>
                             <div class="icon">
                                 <i class="fas fa-chart-pie"></i>
@@ -293,16 +234,16 @@
                 <div class="row">
                     <section class="col-lg-12">
                         <div class="card">
-                            <div class="card-header">
+                            {{-- <div class="card-header">
                                 <div class="d-flex justify-content-between align-items-center">
                                     <h3 class="card-title" style="color: #007bff; font-weight: 600;">
-                                        Total Eviden Poin Tahun {{ $currentYear }} ?>
+                                        Total Eviden Poin Tahun {{ $currentYear }}
                                     </h3>
                                     <button class="btn btn-sm btn-outline-primary mr-2"
                                         onclick="downloadChartbulanPoin()"><i class="bi bi-download"></i>
                                         Download</button>
                                 </div>
-                            </div>
+                            </div> --}}
                             <div class="card-body">
                                 <div id="bulanPoin" height="50"></div>
                             </div>
@@ -314,7 +255,7 @@
                 <div class="row">
                     <section class="col-lg-12">
                         <div class="card">
-                            <div class="card-header">
+                            {{-- <div class="card-header">
                                 <div class="d-flex justify-content-between align-items-center">
                                     <h3 class="card-title" style="color: #007bff; font-weight: 600;">
                                         Rekap Poin Karyawan {{ $currentMonth }}
@@ -323,7 +264,7 @@
                                         onclick="downloadChartpoinKar()"><i class="bi bi-download"></i>
                                         Download</button>
                                 </div>
-                            </div>
+                            </div> --}}
                             <div class="card-body">
                                 <div id="poinKar" height="60"></div>
                             </div>
@@ -403,7 +344,7 @@
                 <div class="row">
                     <section class="col-lg-12">
                         <div class="card">
-                            <div class="card-header">
+                            {{-- <div class="card-header">
                                 <div class="d-flex justify-content-between align-items-center">
                                     <h3 class="card-title" style="color: #007bff; font-weight: 600;">
                                         Total Poin Anda Tahun {{ $currentYear }}
@@ -412,7 +353,7 @@
                                         onclick="downloadCharttotalKar()"><i class="bi bi-download"></i>
                                         Download</button>
                                 </div>
-                            </div>
+                            </div> --}}
                             <div class="card-body">
                                 <div id="totalKar" height="60"></div>
                             </div>
@@ -424,15 +365,16 @@
                 <div class="row">
                     <section class="col-lg-12">
                         <div class="card">
-                            <div class="card-header">
+                            {{-- <div class="card-header">
                                 <div class="d-flex justify-content-between align-items-center">
                                     <h3 class="card-title" style="color: #007bff; font-weight: 600;">
                                         Perbandingan Total Poin Anda {{ $currentMonth }}
                                     </h3>
-                                    <button class="btn btn-sm btn-outline-primary mr-2" onclick="downloadChartbandingKar()"><i class="bi bi-download"></i>
+                                    <button class="btn btn-sm btn-outline-primary mr-2"
+                                        onclick="downloadChartbandingKar()"><i class="bi bi-download"></i>
                                         Download</button>
                                 </div>
-                            </div>
+                            </div> --}}
                             <div class="card-body">
                                 <div id="bandingKar"></div>
                             </div>
@@ -445,6 +387,7 @@
 @endsection
 
 @section('script')
+
     <!-- MODAL PENGUMUMAN -->
     <script>
         // // Show modal when the page is fully loaded
@@ -454,6 +397,7 @@
 
         // Show modal when the page is fully loaded and not hidden by local storage
         $(document).ready(() => {
+            const modalIds = {{ Js::from($pengumuman->map(fn($q, $i) => '#pengumumanModal' . $i)) }}
             const modalIds = {{ Js::from($pengumuman->map(fn($q, $i) => '#pengumumanModal' . $i)) }}
             const hiddenModal = JSON.parse(localStorage.getItem('hiddenModal') ?? '[]');
 
@@ -509,12 +453,11 @@
         });
     </script>
 
-    <!-- ADMIN PIMPINAN TOTAL BULAN -->
-
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <script src="https://code.highcharts.com/modules/exporting.js"></script>
-    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    {{-- <script src="https://code.highcharts.com/modules/export-data.js"></script> --}}
 
+    <!-- ADMIN PIMPINAN TOTAL BULAN -->
     <script>
         var monthsToShow = {!! json_encode($monthsToShow) !!};
         var monthlyTotals = {!! json_encode(array_values($monthlyTotals)) !!};
@@ -524,7 +467,11 @@
                 type: 'column'
             },
             title: {
-                text: null
+                text: 'Total Eviden Poin Tahun ' + {{ $currentYear }},
+                align: 'center',
+                style: {
+                    color: '#007bff'
+                }
             },
             xAxis: {
                 categories: monthsToShow,
@@ -533,8 +480,11 @@
             yAxis: {
                 min: 0,
                 title: {
-                    text: 'Poin'
+                    text: 'Total Poin'
                 }
+            },
+            credits: {
+                enabled: false
             },
             plotOptions: {
                 column: {
@@ -543,7 +493,7 @@
                 }
             },
             series: [{
-                name: 'Poin',
+                name: 'Total Poin',
                 data: monthlyTotals
             }]
         });
@@ -576,8 +526,7 @@
 
     <!-- ADMIN PIMPINAN TOTAL KARYAWAN -->
     <script>
-        var usersToShow = {!! json_encode($usersToShow) !!};
-        var totalPerUser = {!! json_encode(array_values($totalPerUser)) !!};
+        var userPoinDatas = {!! $userPoinDatas !!};
 
         var currentMonth = "<?php echo $currentMonth; ?>";
 
@@ -588,15 +537,17 @@
             title: {
                 text: null
             },
-            // title: {
-            //     text: 'Rekap Karyawan ' + currentMonth,
-            //     align: 'center',
-            //     style: {
-            //         color: '#007bff'
-            //     }
-            // },
+            title: {
+                text: 'Rekap Poin Karyawan ' + currentMonth,
+                align: 'center',
+                style: {
+                    color: '#007bff'
+                }
+            },
             xAxis: {
-                categories: usersToShow,
+                categories: userPoinDatas.map(function(data) {
+                    return data.name; // Ambil nama pengguna dari data
+                }),
                 crosshair: true,
                 labels: {
                     rotation: -60,
@@ -605,8 +556,11 @@
             yAxis: {
                 min: 0,
                 title: {
-                    text: 'Poin',
+                    text: 'Total Poin',
                 }
+            },
+            credits: {
+                enabled: false
             },
             plotOptions: {
                 column: {
@@ -615,8 +569,10 @@
                 }
             },
             series: [{
-                name: 'Poin',
-                data: totalPerUser
+                name: 'Total Poin',
+                data: userPoinDatas.map(function(data) {
+                    return data.poin; // Ambil total poin dari data
+                })
             }]
         });
 
@@ -644,7 +600,6 @@
         }
     </script>
 
-
     <!-- KARYAWAN TOTAL-->
     <script>
         var monthsKar = {!! json_encode($monthsKar) !!};
@@ -655,7 +610,11 @@
                 type: 'line'
             },
             title: {
-                text: null
+                text: 'Total Poin Anda Tahun ' + {{ $currentYear }},
+                align: 'center',
+                style: {
+                    color: '#007bff'
+                }
             },
             xAxis: {
                 categories: monthsKar,
@@ -664,8 +623,11 @@
             yAxis: {
                 min: 0,
                 title: {
-                    text: 'Poin'
+                    text: 'Total Poin'
                 }
+            },
+            credits: {
+                enabled: false
             },
             plotOptions: {
                 column: {
@@ -674,7 +636,7 @@
                 }
             },
             series: [{
-                name: 'Poin',
+                name: 'Total Poin',
                 data: karTotals
             }]
         });
@@ -712,12 +674,12 @@
                 type: 'bar'
             },
             title: {
-                text: null
+                text: 'Perbandingan Total Poin Anda ' + currentMonth,
+                align: 'center',
+                style: {
+                    color: '#007bff'
+                }
             },
-            // title: {
-            //     text: 'Historic World Population by Region',
-            //     align: 'left'
-            // },
             xAxis: {
                 categories: ['Poin'],
                 title: {
@@ -739,23 +701,12 @@
             },
             plotOptions: {
                 bar: {
-                    borderRadius: '50%',
+                    borderRadius: '30%',
                     dataLabels: {
                         enabled: true
                     },
                     groupPadding: 0.1
                 }
-            },
-            legend: {
-                layout: 'vertical',
-                align: 'right',
-                verticalAlign: 'top',
-                x: -40,
-                y: 80,
-                floating: true,
-                borderWidth: 1,
-                backgroundColor: Highcharts.defaultOptions.legend.backgroundColor || '#FFFFFF',
-                shadow: true
             },
             credits: {
                 enabled: false
@@ -768,29 +719,6 @@
                 data: poinAllUser
             }]
         });
-
-        function downloadChartbandingKar() {
-
-            var chart = Highcharts.charts[3];
-
-            if (chart) {
-
-                chart.exportChart({
-                    type: 'image/png',
-                    filename: 'chart',
-                    options: {
-                        chart: {
-                            backgroundColor: '#ffffff'
-                        },
-                        title: {
-                            text: ''
-                        }
-                    }
-                });
-            } else {
-                console.log("Chart tidak ditemukan.");
-            }
-        }
     </script>
 @endsection
 

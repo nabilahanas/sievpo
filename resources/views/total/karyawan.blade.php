@@ -169,15 +169,6 @@
 
                                 // Menginisialisasi peringkat
                                 $ranking = 1;
-
-                                $pieData = [];
-                                foreach ($sortedUsers as $UItem) {
-                                    $userTotal = isset($karyawanTotals[$UItem->id_user])
-                                        ? array_sum($karyawanTotals[$UItem->id_user])
-                                        : 0;
-                                    $pieData[] = ['name' => $UItem->nama_user, 'y' => $userTotal];
-                                }
-
                             @endphp
 
                             @foreach ($sortedUsers as $UItem)
@@ -190,6 +181,7 @@
                                             $userTotal = isset($karyawanTotals[$UItem->id_user])
                                                 ? array_sum($karyawanTotals[$UItem->id_user])
                                                 : 0;
+                                            $UItem->total = $userTotal;
                                         @endphp
                                         {{ $userTotal }}
                                     </td>
@@ -208,6 +200,10 @@
 @endsection
 
 @section('script')
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+
     <!-- ADMIN -->
     {{-- @if ((auth()->user() && auth()->user()->role->nama_role == 'Admin') || auth()->user()->role->nama_role == 'Mahasiswa')
         <script>
@@ -249,22 +245,48 @@
             var currentYear = "<?php echo $currentYear; ?>";
             Highcharts.chart('tKaryawanPim', {
                 chart: {
-                    type: 'pie'
+                    type: 'column'
                 },
                 title: {
-                    text: 'Ranking Karyawan ' + currentYear,
-                    align: 'left',
+                    text: 'Rekap Karyawan ' + currentYear,
+                    align: 'center',
                     style: {
                         color: '#007bff'
+                    }
+                },
+                xAxis: {
+                    categories: [
+                        @foreach ($sortedUsers as $user)
+                            '{{ $user->nama_user }}',
+                        @endforeach
+                    ],
+                    crosshair: true,
+                    labels: {
+                        rotation: -60,
+                    }
+                },
+                yAxis: {
+                    min: 0,
+                    title: {
+                        text: 'Total Poin'
                     }
                 },
                 credits: {
                     enabled: false
                 },
+                plotOptions: {
+                    column: {
+                        pointPadding: 0.2,
+                        borderWidth: 0
+                    }
+                },
                 series: [{
-                    name: 'Poin',
-                    colorByPoint: true,
-                    data: {!! json_encode($pieData) !!}
+                    name: 'Total Poin',
+                    data: [
+                        @foreach ($sortedUsers as $user)
+                            {{ $user->total }},
+                        @endforeach
+                    ]
                 }]
             });
         </script>

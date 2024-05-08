@@ -86,7 +86,7 @@
                 </div>
                 <div class="text-center">
                     <button type="submit" class="btn btn-primary"><i class="fas fa-save mr-2"></i>Simpan</button>
-                    <button type="reset" class="btn btn-secondary"><i class="fas fa-redo mr-2"></i>Reset</button>
+                    {{-- <button type="reset" class="btn btn-secondary"><i class="fas fa-redo mr-2"></i>Reset</button> --}}
                     <button type="button" class="btn btn-danger" onclick="window.location='/users'"><i
                             class="fas fa-reply mr-2"></i>Kembali</button>
                 </div>

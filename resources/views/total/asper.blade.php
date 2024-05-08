@@ -30,7 +30,7 @@
                                 <tr>
                                     <th rowspan="2">No.</th>
                                     <th rowspan="2">Nama Karyawan</th>
-                                    <th rowspan="2">Asper/KBKPH</th>
+                                    <th rowspan="2">Nama BKPH</th>
                                     @php
                                         $monthsToShow = [];
                                         if ($request->has('semester') && $request->has('year')) {
@@ -158,7 +158,7 @@
                             <tr>
                                 <th>No.</th>
                                 <th>Nama Karyawan</th>
-                                <th>Asper/KBKPH</th>
+                                <th>Nama BKPH</th>
                                 <th>Total Poin</th>
                                 <th>Ranking</th>
                             </tr>
@@ -176,14 +176,6 @@
 
                                 // Menginisialisasi peringkat
                                 $ranking = 1;
-
-                                $pieData = [];
-                                foreach ($sortedAsper as $asper) {
-                                    $asperTotal = isset($asperTotals[$asper->id_user])
-                                        ? array_sum($asperTotals[$asper->id_user])
-                                        : 0;
-                                    $pieData[] = ['name' => $asper->nama_user, 'y' => $asperTotal];
-                                }
                             @endphp
 
                             @foreach ($sortedAsper as $asper)
@@ -196,6 +188,7 @@
                                             $asperTotal = isset($asperTotals[$asper->id_user])
                                                 ? array_sum($asperTotals[$asper->id_user])
                                                 : 0;
+                                            $asper->total = $asperTotal;
                                         @endphp
                                         {{ $asperTotal }}
                                     </td>
@@ -214,6 +207,10 @@
 @endsection
 
 @section('script')
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+
     <!-- ADMIN-->
     {{-- @if ((auth()->user() && auth()->user()->role->nama_role == 'Admin') || auth()->user()->role->nama_role == 'Mahasiswa')
         <script>
@@ -258,22 +255,45 @@
             var currentYear = "<?php echo $currentYear; ?>";
             Highcharts.chart('tAsperPim', {
                 chart: {
-                    type: 'pie'
+                    type: 'column'
                 },
                 title: {
-                    text: 'Ranking Asper/KBKPH ' + currentYear,
-                    align: 'left',
+                    text: 'Rekap Asper/KBKPH ' + currentYear,
+                    align: 'center',
                     style: {
                         color: '#007bff'
+                    }
+                },
+                xAxis: {
+                    categories: [
+                        @foreach ($sortedAsper as $user)
+                            '{{ $user->nama_user }}',
+                        @endforeach
+                    ],
+                    crosshair: true,
+                },
+                yAxis: {
+                    min: 0,
+                    title: {
+                        text: 'Total Poin'
                     }
                 },
                 credits: {
                     enabled: false
                 },
+                plotOptions: {
+                    column: {
+                        pointPadding: 0.2,
+                        borderWidth: 0
+                    }
+                },
                 series: [{
-                    name: 'Poin',
-                    colorByPoint: true,
-                    data: {!! json_encode($pieData) !!}
+                    name: 'Total Poin',
+                    data: [
+                        @foreach ($sortedAsper as $user)
+                            {{ $user->total }},
+                        @endforeach
+                    ]
                 }]
             });
         </script>

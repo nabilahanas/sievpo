@@ -164,9 +164,8 @@
     <script src="{{ asset('/') }}script/table.js"></script>
     <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
     <script src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
-    <!-- Chart -->
-    <script src="https://code.highcharts.com/highcharts.js"></script>
-
+    
+    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 
     @yield('script')

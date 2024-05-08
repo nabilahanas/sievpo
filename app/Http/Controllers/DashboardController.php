@@ -58,7 +58,8 @@ class DashboardController extends Controller
         }
 
         // KARYAWAN BULAN
-        $currentMonth = Carbon::now()->format('F Y');
+        // Carbon::setLocale('id');
+        $currentMonth = Carbon::now()->translatedFormat('F Y');
         $usersToShow = [];
         $totalPerUser = [];
         
@@ -93,8 +94,6 @@ class DashboardController extends Controller
         // Mengonversi array ke dalam format JSON untuk digunakan di JavaScript
         $userPoinDatas = json_encode($userPoinData);
         
-
-
         // KARYAWAN TOTAL
         $karlogin = Auth::user();
         $datas2 = $karlogin->data;

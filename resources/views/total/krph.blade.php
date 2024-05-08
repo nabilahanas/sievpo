@@ -29,7 +29,7 @@
                             <tr>
                                 <th rowspan="2">No.</th>
                                 <th rowspan="2">Nama</th>
-                                <th rowspan="2">Nama KRPH</th>
+                                <th rowspan="2">Nama RPH</th>
                                 @php
                                     $monthsToShow = [];
                                     if ($request->has('semester') && $request->has('year')) {
@@ -140,7 +140,7 @@
                             <tr>
                                 <th>No.</th>
                                 <th>Nama Karyawan</th>
-                                <th>Nama KRPH</th>
+                                <th>Nama RPH</th>
                                 <th>Total Poin</th>
                                 <th>Ranking</th>
                             </tr>
@@ -158,14 +158,6 @@
 
                                 // Menginisialisasi peringkat
                                 $ranking = 1;
-
-                                $pieData = [];
-                                foreach ($sortedKRPH as $krph) {
-                                    $krphTotal = isset($krphTotals[$krph->id_user])
-                                        ? array_sum($krphTotals[$krph->id_user])
-                                        : 0;
-                                    $pieData[] = ['name' => $krph->nama_user, 'y' => $krphTotal];
-                                }
                             @endphp
 
                             @foreach ($sortedKRPH as $krph)
@@ -178,6 +170,7 @@
                                             $krphTotal = isset($krphTotals[$krph->id_user])
                                                 ? array_sum($krphTotals[$krph->id_user])
                                                 : 0;
+                                            $krph->total = $krphTotal;
                                         @endphp
                                         {{ $krphTotal }}
                                     </td>
@@ -197,6 +190,10 @@
 @endsection
 
 @section('script')
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+
     <!-- ADMIN -->
     {{-- @if ((auth()->user() && auth()->user()->role->nama_role == 'Admin') || auth()->user()->role->nama_role == 'Mahasiswa')
         <script>
@@ -241,22 +238,45 @@
             var currentYear = "<?php echo $currentYear; ?>";
             Highcharts.chart('tKrphPim', {
                 chart: {
-                    type: 'pie'
+                    type: 'column'
                 },
                 title: {
-                    text: 'Ranking KRPH ' + currentYear,
-                    align: 'left',
+                    text: 'Rekap KRPH ' + currentYear,
+                    align: 'center',
                     style: {
                         color: '#007bff'
+                    }
+                },
+                xAxis: {
+                    categories: [
+                        @foreach ($sortedKRPH as $user)
+                            '{{ $user->nama_user }}',
+                        @endforeach
+                    ],
+                    crosshair: true,
+                },
+                yAxis: {
+                    min: 0,
+                    title: {
+                        text: 'Total Poin'
                     }
                 },
                 credits: {
                     enabled: false
                 },
+                plotOptions: {
+                    column: {
+                        pointPadding: 0.2,
+                        borderWidth: 0
+                    }
+                },
                 series: [{
-                    name: 'Poin',
-                    colorByPoint: true,
-                    data: {!! json_encode($pieData) !!}
+                    name: 'Total Poin',
+                    data: [
+                        @foreach ($sortedKRPH as $user)
+                            {{ $user->total }},
+                        @endforeach
+                    ]
                 }]
             });
         </script>

@@ -46,10 +46,10 @@
                                 <td><a href="{{ $item->deskripsi }}">Lihat Selengkapnya</a></td>
                                 <td>
                                     <a href="{{ route('berita.edit', $item->id_berita) }}" type="button"
-                                        class="btn btn-sm btn-warning"><i class="fas fa-pen mr-2"></i>Ubah</a>
+                                        class="btn btn-sm btn-warning btn-block mb-2"><i class="fas fa-pen mr-2"></i>Ubah</a>
 
                                     <!-- Button trigger modal -->
-                                    <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal"
+                                    <button type="button" class="btn btn-sm btn-danger btn-block mb-2" data-bs-toggle="modal"
                                         data-bs-target="#hapusModal{{ $item->id_berita }}">
                                         <i class="fas fa-trash mr-2"></i>Hapus
                                     </button>

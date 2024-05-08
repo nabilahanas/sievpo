@@ -12,6 +12,7 @@
                 <a class="btn btn-outline-success"
                     href="{{ route('total.exportbkph') }}?{{ request()->has('semester') && request()->has('year') ? 'semester=' . request()->semester . '&year=' . request()->year : 'search=' . '' }}">Download
                     Excel</a>
+                <!-- Table -->
                 <div class="table-responsive-lg mt-4">
                     @if (request()->has('semester') && request()->has('year'))
                         <div style="padding: 10px; font-size: 15px; font-weight: bold;">

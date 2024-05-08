@@ -58,34 +58,35 @@
                                         </div>
                                         <div class="article-preview">
                                             @php
-                                                // Mendapatkan HTML dari setiap berita
-                                                $htmlContent = $beritaContent[$item->id_berita];
-
-                                                // Jika HTML tersedia, lakukan proses parsing
-                                                if ($htmlContent) {
-                                                    // Temukan posisi awal tag <p>
-                                                    $start = strpos($htmlContent, '<p>');
-                                                    if ($start !== false) {
-                                                        // Temukan posisi akhir tag </p> setelah tag <p> pertama
-                                                        $end = strpos($htmlContent, '</p>', $start);
-                                                        if ($end !== false) {
-                                                            // Ambil teks di antara tag <p> dan </p>
-                                                            $preview = substr(
-                                                                $htmlContent,
-                                                                $start + 3,
-                                                                $end - $start - 3,
-                                                            );
-                                                            echo $preview; // Menampilkan preview dari konten HTML
-                                                        } else {
-                                                            echo 'Gagal mengambil konten berita.';
-                                                        }
+                                            // Mendapatkan HTML dari setiap berita
+                                            $htmlContent = $beritaContent[$item->id_berita];
+                                        
+                                            // Jika HTML tersedia, lakukan proses parsing
+                                            if ($htmlContent) {
+                                                // Temukan posisi awal tag <p>
+                                                $start = strpos($htmlContent, '<p>');
+                                                if ($start !== false) {
+                                                    // Temukan posisi akhir tag </p> setelah tag <p> pertama
+                                                    $end = strpos($htmlContent, '</p>', $start);
+                                                    if ($end !== false) {
+                                                        // Ambil teks di antara tag <p> dan </p>
+                                                        $preview = substr(
+                                                            $htmlContent,
+                                                            $start + 3,
+                                                            $end - $start - 3,
+                                                        );
+                                                        echo $preview; // Menampilkan preview dari konten HTML
                                                     } else {
-                                                        echo 'Tidak ada paragraf yang ditemukan dalam konten berita.';
+                                                        echo 'Gagal mengambil konten berita.';
                                                     }
                                                 } else {
-                                                    echo 'Gagal mengambil konten berita.';
+                                                    echo 'Tidak ada paragraf yang ditemukan dalam konten berita.';
                                                 }
-                                            @endphp
+                                            } else {
+                                                echo 'Gagal mengambil konten berita.';
+                                            }
+                                        @endphp
+                                        
                                         </div>
 
                                         <a href="{{ $item->deskripsi }}" target="_blank">Lihat Selengkapnya</a>

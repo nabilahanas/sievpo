@@ -86,9 +86,9 @@ class ConfirmController extends Controller
 
             // Update data menjadi 'approved' dan menambahkan poin dari shift hanya jika bukan Sabtu, Minggu, atau hari libur nasional
             if ($isWeekend || $isHoliday) {
-                $data->update(['is_approved' => 'approved', 'poin' => $data->poin + $poin]);
+                $data->update(['is_approved' => 'approved', 'poin' => $poin]);
             } else {
-                $data->update(['is_approved' => 'approved', 'poin' => $data->poin]);
+                $data->update(['is_approved' => 'approved', 'poin' => $poin]);
             }
         } elseif ($status === 'rejected') {
             $data->update(['is_approved' => 'rejected', 'poin' => 0]);

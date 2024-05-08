@@ -13,13 +13,13 @@
                     href="{{ route('total.exportkaryawan') }}?{{ request()->has('semester') && request()->has('year') ? 'semester=' . request()->semester . '&year=' . request()->year : 'search=' . '' }}">Download
                     Excel</a>
                 <!-- Chart -->
-                {{-- <div class="card mt-4">
+                <div class="card mt-4">
                     <div class="card-body">
                         <div id="tKarAd"></div>
                     </div>
-                </div> --}}
-
-                <div class="table-responsive-lg mt-4" style="overflow-x: auto;">
+                </div>
+                <!-- Table -->
+                <div class="table-responsive-lg mt-4">
                     @if (request()->has('semester') && request()->has('year'))
                         <div style="padding: 10px; font-size: 15px; font-weight: bold;">
                             Hasil Pencarian Tahun {{ $currentYear }}
@@ -108,6 +108,7 @@
                                             $userTotal = isset($karyawanTotals[$UItem->id_user])
                                                 ? array_sum($karyawanTotals[$UItem->id_user])
                                                 : 0;
+                                            $UItem->total = $userTotal;
                                         @endphp
                                         {{ $userTotal }}
                                     </td>
@@ -140,11 +141,13 @@
     @if (auth()->user() && auth()->user()->role->nama_role == 'Pimpinan')
         <div class="card">
             <div class="card-body">
+                <!-- Chart -->
                 <div class="card">
                     <div class="card-body">
                         <div id="tKaryawanPim" height="60"></div>
                     </div>
                 </div>
+                <!-- Table -->
                 <div class="table-responsive mt-4">
                     <table id="tkaryawanpim" class="table table-sm text-nowrap text-hover table-striped"
                         style="width: 100%">
@@ -205,21 +208,35 @@
     <script src="https://code.highcharts.com/modules/export-data.js"></script>
 
     <!-- ADMIN -->
-    {{-- @if ((auth()->user() && auth()->user()->role->nama_role == 'Admin') || auth()->user()->role->nama_role == 'Mahasiswa')
+    @if ((auth()->user() && auth()->user()->role->nama_role == 'Admin') || auth()->user()->role->nama_role == 'Mahasiswa')
         <script>
+            var currentYear = "{{ $currentYear }}";
             Highcharts.chart('tKarAd', {
                 chart: {
                     type: 'column'
                 },
-                title: false,
+                title: {
+                    text: 'Rekap Karyawan ' + currentYear,
+                    align: 'center',
+                    style: {
+                        color: '#007bff'
+                    }
+                },
                 xAxis: {
-                    categories:
+                    categories: [
+                        @foreach ($user as $UItem)
+                            '{{ $UItem->nama_user }}',
+                        @endforeach
+                    ],
                     crosshair: true,
+                    labels: {
+                        rotation: -60,
+                    }
                 },
                 yAxis: {
                     min: 0,
                     title: {
-                        text: 'Poin'
+                        text: 'Total Poin'
                     }
                 },
                 credits: {
@@ -232,12 +249,16 @@
                     }
                 },
                 series: [{
-                    name: 'Poin',
-                    data: 
+                    name: 'Total Poin',
+                    data: [
+                        @foreach ($user as $UItem)
+                            {{ $UItem->total }},
+                        @endforeach
+                    ]
                 }]
             });
         </script>
-    @endif --}}
+    @endif
 
     <!-- PIMPINAN -->
     @if (auth()->user() && auth()->user()->role->nama_role == 'Pimpinan')

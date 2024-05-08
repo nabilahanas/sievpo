@@ -147,11 +147,13 @@
     @if (auth()->user() && auth()->user()->role->nama_role == 'Pimpinan')
         <div class="card">
             <div class="card-body">
+                <!-- Chart -->
                 <div class="card">
                     <div class="card-body">
                         <div id="tAsperPim" height="60"></div>
                     </div>
                 </div>
+                <!-- Table -->
                 <div class="table-responsive-lg mt-4">
                     <table id="tasperpim" class="table table-sm text-nowrap table-hover table-striped" style="width: 100%">
                         <thead class="thead-successv2">

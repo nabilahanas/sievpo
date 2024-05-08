@@ -279,6 +279,9 @@
                         text: 'Total Poin'
                     }
                 },
+                credits: {
+                    enabled: false
+                },
                 plotOptions: {
                     column: {
                         pointPadding: 0.2,

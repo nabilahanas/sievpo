@@ -455,7 +455,7 @@
 
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <script src="https://code.highcharts.com/modules/exporting.js"></script>
-    {{-- <script src="https://code.highcharts.com/modules/export-data.js"></script> --}}
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
 
     <!-- ADMIN PIMPINAN TOTAL BULAN -->
     <script>
@@ -498,30 +498,30 @@
             }]
         });
 
-        function downloadChartbulanPoin() {
-            var currentYear = {!! json_encode($currentYear) !!};
+        // function downloadChartbulanPoin() {
+        //     var currentYear = {!! json_encode($currentYear) !!};
 
-            var chart = Highcharts.charts[
-                0]; // hanya memiliki satu chart di halaman, maka menggunakan indeks 0
+        //     var chart = Highcharts.charts[
+        //         0]; // hanya memiliki satu chart di halaman, maka menggunakan indeks 0
 
-            if (chart) {
+        //     if (chart) {
 
-                chart.exportChart({
-                    type: 'image/png',
-                    filename: 'chart',
-                    options: {
-                        chart: {
-                            backgroundColor: '#ffffff'
-                        },
-                        title: {
-                            text: currentYear
-                        }
-                    }
-                });
-            } else {
-                console.log("Chart tidak ditemukan.");
-            }
-        }
+        //         chart.exportChart({
+        //             type: 'image/png',
+        //             filename: 'chart',
+        //             options: {
+        //                 chart: {
+        //                     backgroundColor: '#ffffff'
+        //                 },
+        //                 title: {
+        //                     text: currentYear
+        //                 }
+        //             }
+        //         });
+        //     } else {
+        //         console.log("Chart tidak ditemukan.");
+        //     }
+        // }
     </script>
 
     <!-- ADMIN PIMPINAN TOTAL KARYAWAN -->
@@ -576,28 +576,28 @@
             }]
         });
 
-        function downloadChartpoinKar() {
+        // function downloadChartpoinKar() {
 
-            var chart = Highcharts.charts[1];
+        //     var chart = Highcharts.charts[1];
 
-            if (chart) {
+        //     if (chart) {
 
-                chart.exportChart({
-                    type: 'image/png',
-                    filename: 'chart',
-                    options: {
-                        chart: {
-                            backgroundColor: '#ffffff'
-                        },
-                        title: {
-                            text: ''
-                        }
-                    }
-                });
-            } else {
-                console.log("Chart tidak ditemukan.");
-            }
-        }
+        //         chart.exportChart({
+        //             type: 'image/png',
+        //             filename: 'chart',
+        //             options: {
+        //                 chart: {
+        //                     backgroundColor: '#ffffff'
+        //                 },
+        //                 title: {
+        //                     text: ''
+        //                 }
+        //             }
+        //         });
+        //     } else {
+        //         console.log("Chart tidak ditemukan.");
+        //     }
+        // }
     </script>
 
     <!-- KARYAWAN TOTAL-->
@@ -641,28 +641,28 @@
             }]
         });
 
-        function downloadCharttotalKar() {
+        // function downloadCharttotalKar() {
 
-            var chart = Highcharts.charts[2];
+        //     var chart = Highcharts.charts[2];
 
-            if (chart) {
+        //     if (chart) {
 
-                chart.exportChart({
-                    type: 'image/png',
-                    filename: 'chart',
-                    options: {
-                        chart: {
-                            backgroundColor: '#ffffff'
-                        },
-                        title: {
-                            text: ''
-                        }
-                    }
-                });
-            } else {
-                console.log("Chart tidak ditemukan.");
-            }
-        }
+        //         chart.exportChart({
+        //             type: 'image/png',
+        //             filename: 'chart',
+        //             options: {
+        //                 chart: {
+        //                     backgroundColor: '#ffffff'
+        //                 },
+        //                 title: {
+        //                     text: ''
+        //                 }
+        //             }
+        //         });
+        //     } else {
+        //         console.log("Chart tidak ditemukan.");
+        //     }
+        // }
     </script>
 
     <!-- KARYAWAN PERBANDINGAN -->
@@ -720,14 +720,14 @@
             }]
         });
     </script>
+
+    <!-- JQuery -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+    </script>
+
+    <!-- Dropdown -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+    </script>
 @endsection
-
-<!-- JQuery -->
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
-</script>
-
-<!-- Dropdown -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
-    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
-</script>

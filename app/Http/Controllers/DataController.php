@@ -67,6 +67,16 @@ class DataController extends Controller
             $data['foto'] = null;
         }
 
+        $existingData = Data::whereDate('tgl_waktu', '=', date('Y-m-d', strtotime($request->tgl_waktu)))
+            ->where('id_shift', $request->id_shift)
+            ->where('id_user', $request->id_user)
+            ->exists();
+
+
+        if ($existingData) {
+            return redirect()->back()->withInput()->withErrors(['tgl_waktu' => 'Data dengan tanggal dan shift yang sama sudah ada.']);
+        }
+
         Data::create($data);
 
         return redirect()->route('data.index')->with('success', 'Data berhasil ditambahkan');

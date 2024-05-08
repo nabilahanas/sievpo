@@ -56,6 +56,13 @@ class KaryawanDBController extends Controller
         ]);
 
         $karyawan = Karyawan::find($id);
+
+        $existingKaryawan = Karyawan::where('nama', $request->nama)->whereNotIn('id_karyawan', [$id])
+        ->exists();
+        if ($existingKaryawan) {
+            return redirect()->back()->withInput()->withErrors(['nama' => 'Nama Karyawan telah terdaftar.']);
+        }
+
         $karyawan->update([
             'nama' => $request->nama,
             'jabatan' => $request->jabatan,

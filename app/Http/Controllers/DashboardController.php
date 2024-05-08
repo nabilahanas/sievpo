@@ -11,6 +11,7 @@ use App\Models\Shift;
 use App\Models\Bidang;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\App;
 
 class DashboardController extends Controller
 {
@@ -33,6 +34,7 @@ class DashboardController extends Controller
         $pendingstatus = Data::where('is_approved', 'pending')->where('id_user', $usersauth->id_user)->count();
 
         $pengumuman = Pengumuman::all();
+        App::setLocale('id');
 
         // KARYAWAN TAHUNAN
         $currentYear = Carbon::now()->year;
@@ -44,7 +46,7 @@ class DashboardController extends Controller
         $monthsToShow = [];
 
         for ($i = 1; $i <= 12; $i++) {
-            $monthName = Carbon::createFromDate($currentYear, $i, 1)->format('F');
+            $monthName = Carbon::createFromDate($currentYear, $i, 1)->translatedFormat('F');
             $monthsToShow[] = $monthName;
 
             if (!isset($monthlyTotals[$monthName])) {
@@ -53,12 +55,11 @@ class DashboardController extends Controller
         }
 
         foreach ($datas as $dataItem) {
-            $month = $dataItem->created_at->format('F');
+            $month = $dataItem->created_at->translatedFormat('F');
             $monthlyTotals[$month] += $dataItem->poin;
         }
 
         // KARYAWAN BULAN
-        // Carbon::setLocale('id');
         $currentMonth = Carbon::now()->translatedFormat('F Y');
         $usersToShow = [];
         $totalPerUser = [];
@@ -73,7 +74,7 @@ class DashboardController extends Controller
             $userId = $dataItem->id_user; // Ensure id_user field exists
             $poin = $dataItem->poin;
         
-            if ($tanggal->format('F Y') === $currentMonth) {
+            if ($tanggal->translatedFormat('F Y') === $currentMonth) {
                 // Check if $userId exists in $totalPerUser before incrementing
                 if (isset($totalPerUser[$userId])) {
                     $totalPerUser[$userId] += $poin;
@@ -102,7 +103,7 @@ class DashboardController extends Controller
         $monthsKar = [];
 
         for ($i = 1; $i <= 12; $i++) {
-            $monthName = Carbon::createFromDate($currentYear, $i, 1)->format('F');
+            $monthName = Carbon::createFromDate($currentYear, $i, 1)->translatedFormat('F');
             $monthsKar[] = $monthName;
 
             if (!isset($karTotals[$monthName])) {
@@ -111,7 +112,7 @@ class DashboardController extends Controller
         }
 
         foreach ($datas2 as $dataItem) {
-            $month = $dataItem->created_at->format('F');
+            $month = $dataItem->created_at->translatedFormat('F');
             $karTotals[$month] += $dataItem->poin;
         }
 
@@ -121,7 +122,7 @@ class DashboardController extends Controller
         $poinUser = [];
         $poinAllUser = [];
 
-        $monthName = now()->format('F');
+        $monthName = now()->translatedFormat('F');
         $poinUser[$monthName] = 0;
         $poinAllUser[$monthName] = 0;
 

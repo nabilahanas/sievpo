@@ -56,6 +56,14 @@ class JabatanController extends Controller
             'klasifikasi' => 'required',
         ]);
         $jabatan = Jabatan::find($id);
+
+        $existingJabatan = Jabatan::where('nama_jabatan', $request->nama_jabatan)
+            ->whereNotIn('id_jabatan', [$id])
+            ->exists();
+        if ($existingJabatan) {
+            return redirect()->back()->withInput()->withErrors(['nama_jabatan' => 'Nama jabatan sudah terdaftar.']);
+        }
+
         $jabatan->update([
             'nama_jabatan' => $request->nama_jabatan,
             'wilayah' => $request->wilayah,

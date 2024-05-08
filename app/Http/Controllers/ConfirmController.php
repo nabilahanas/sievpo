@@ -58,13 +58,18 @@ class ConfirmController extends Controller
         // Mengambil nilai poin dari shift atau mengatur menjadi 0 jika shift tidak ditemukan
         $poin = $shift?->poin ?? 0;
 
-        $isWeekend = Carbon::parse($data->created_at)->isWeekend();
-        $isHoliday = false;
+        // $isWeekend = Carbon::parse($data->created_at)->isWeekend();
+        // $isHoliday = false;
+
+        $createdDayOfWeek = Carbon::parse($data->created_at)->dayOfWeek;
 
         // Pengecekan status
         if ($status === 'approved') {
-            // Menambah poin tambahan untuk Sabtu dan Minggu jika status disetujui
-            if ($isWeekend) {
+            if ($createdDayOfWeek === CarbonInterface::SATURDAY) {
+                $poin += 1;
+            } elseif ($createdDayOfWeek === CarbonInterface::SUNDAY) {
+                // Menambah poin tambahan untuk Sabtu dan Minggu jika status disetujui
+                // if ($isWeekend) {
                 $poin += 1;
             } else {
                 // Panggil API untuk mendapatkan daftar hari libur nasional
@@ -77,16 +82,18 @@ class ConfirmController extends Controller
 
                     // Periksa apakah tanggal dibuatnya data adalah hari libur nasional
                     $createdDate = Carbon::parse($data->created_at)->toDateString();
-                    $isHoliday = count(array_filter($nationalHolidays, fn ($date) => isset($date['holiday_date']) && $date['holiday_date'] === $createdDate)) > 0;
-                    if ($isHoliday) {
+                    if (in_array($createdDate, $nationalHolidays)) {
+                        // $isHoliday = count(array_filter($nationalHolidays, fn ($date) => isset($date['holiday_date']) && $date['holiday_date'] === $createdDate)) > 0;
+                        // if ($isHoliday) {
                         $poin += 1;
                     }
                 }
             }
 
             // Update data menjadi 'approved' dan menambahkan poin dari shift hanya jika bukan Sabtu, Minggu, atau hari libur nasional
-            if ($isWeekend || $isHoliday) {
-                $data->update(['is_approved' => 'approved', 'poin' => $poin]);
+            // if ($isWeekend || $isHoliday) {
+            if ($createdDayOfWeek !== CarbonInterface::SATURDAY && $createdDayOfWeek !== CarbonInterface::SUNDAY && !in_array($createdDate, $nationalHolidays)) {
+                $data->update(['is_approved' => 'approved', 'poin' => $poin += 1]);
             } else {
                 $data->update(['is_approved' => 'approved', 'poin' => $poin]);
             }

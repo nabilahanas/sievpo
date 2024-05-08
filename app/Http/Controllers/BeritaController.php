@@ -109,6 +109,12 @@ class BeritaController extends Controller
             $berita->gambar = $filename;
         }
 
+        $existingBerita = Berita::where('judul', $request->judul)->whereNotIn('id_berita', [$id])
+        ->exists();
+        if ($existingBerita) {
+            return redirect()->back()->withInput()->withErrors(['judul' => 'Judul berita sudah ada.']);
+        }
+
         $berita->save();
 
         return redirect()->route('berita.index')->with('success', 'Data berita berhasil diubah');

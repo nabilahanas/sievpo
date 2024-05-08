@@ -98,6 +98,11 @@ class PengumumanController extends Controller
 
             $pengumuman->gambar = $filename;
         }
+        $existingPengumuman = Pengumuman::where('judul', $request->judul)->whereNotIn('id_pengumuman', [$id])
+        ->exists();
+        if ($existingPengumuman) {
+            return redirect()->back()->withInput()->withErrors(['judul' => 'Judul pengumuman sudah ada.']);
+        }
 
         $pengumuman->save();
 

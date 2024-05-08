@@ -18,34 +18,34 @@ class ShiftController extends Controller
         return view('shift.index', compact('shift'), ['key' => 'shift']);
     }
 
-    public function create()
-    {
-        return view('shift.add', ['key' => 'shift']);
-    }
+    // public function create()
+    // {
+    //     return view('shift.add', ['key' => 'shift']);
+    // }
 
-    public function store(Request $request)
-    {
-        $this->validate($request, [
-            'nama_shift' => 'required',
-            'jam_mulai' => 'required|date_format:H:i:s',
-            'jam_akhir' => 'required|date_format:H:i:s',
-            'poin' => 'required',
-        ]);
+    // public function store(Request $request)
+    // {
+    //     $this->validate($request, [
+    //         'nama_shift' => 'required',
+    //         'jam_mulai' => 'required|date_format:H:i:s',
+    //         'jam_akhir' => 'required|date_format:H:i:s',
+    //         'poin' => 'required',
+    //     ]);
 
-        $existingShift = Shift::where('nama_shift', $request->nama_shift)->exists();
-        if ($existingShift) {
-            return redirect()->back()->withInput()->withErrors(['nama_shift' => 'Shift sudah terdaftar.']);
-        }
+    //     $existingShift = Shift::where('nama_shift', $request->nama_shift)->exists();
+    //     if ($existingShift) {
+    //         return redirect()->back()->withInput()->withErrors(['nama_shift' => 'Shift sudah terdaftar.']);
+    //     }
 
-        $data = $request->all();
+    //     $data = $request->all();
 
-        $data['jam_mulai'] = date('H:i:s', strtotime($data['jam_mulai']));
-        $data['jam_akhir'] = date('H:i:s', strtotime($data['jam_akhir']));
+    //     $data['jam_mulai'] = date('H:i:s', strtotime($data['jam_mulai']));
+    //     $data['jam_akhir'] = date('H:i:s', strtotime($data['jam_akhir']));
 
-        Shift::create($data);
+    //     Shift::create($data);
 
-        return redirect()->route('shift.index')->with('success', 'Data shift berhasil ditambahkan');
-    }
+    //     return redirect()->route('shift.index')->with('success', 'Data shift berhasil ditambahkan');
+    // }
 
     public function edit($id)
     {
@@ -63,6 +63,13 @@ class ShiftController extends Controller
         ]);
 
         $shift = Shift::find($id);
+
+        $existingShift = Shift::where('nama_shift', $request->nama_shift)->whereNotIn('id_shift', [$id])
+        ->exists();
+        if ($existingShift) {
+            return redirect()->back()->withInput()->withErrors(['nama_shift' => 'Nama Shift telah terdaftar.']);
+        }
+
         $shift->update([
             'nama_shift' => $request->nama_shift,
             'jam_mulai' => $request->jam_mulai,
@@ -73,19 +80,19 @@ class ShiftController extends Controller
         return redirect()->route('shift.index')->with('success', 'Data shift berhasil diubah');
     }
     
-    public function restore($id)
-    {
-        $shift=Shift::withTrashed()->find($id);
-        $shift->restore();
+    // public function restore($id)
+    // {
+    //     $shift=Shift::withTrashed()->find($id);
+    //     $shift->restore();
 
-        return redirect()->route('shift.index')->with('success', 'Data shift berhasil diaktifkan');
-    }
+    //     return redirect()->route('shift.index')->with('success', 'Data shift berhasil diaktifkan');
+    // }
 
-    public function delete($id)
-    {
-        $shift = Shift::find($id);
-        $shift -> delete();
+    // public function delete($id)
+    // {
+    //     $shift = Shift::find($id);
+    //     $shift -> delete();
 
-        return redirect()->route('shift.index')->with('success', 'Data shift berhasil dinonaktifkan');
-    }
+    //     return redirect()->route('shift.index')->with('success', 'Data shift berhasil dinonaktifkan');
+    // }
 }

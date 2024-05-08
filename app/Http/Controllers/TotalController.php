@@ -59,9 +59,9 @@ class TotalController extends Controller
 
             if ($semester == 01) {
                 $startMonth = 1;
-                $endMonth = 7;
+                $endMonth = 6;
             } else {
-                $startMonth = 8;
+                $startMonth = 7;
                 $endMonth = 12;
             }
 
@@ -87,6 +87,8 @@ class TotalController extends Controller
             $karyawanTotals[$userId][$month] += $dataItem->poin;
         }
 
+        // dd($karyawanTotals);
+
         return view('total.karyawan', compact('user', 'request', 'bidang', 'currentYear', 'karyawanTotals'), ['key' => 'tkaryawan']);
     }
 
@@ -105,9 +107,9 @@ class TotalController extends Controller
 
             if ($semester == 01) {
                 $startMonth = 1;
-                $endMonth = 7;
+                $endMonth = 6;
             } else {
-                $startMonth = 8;
+                $startMonth = 7;
                 $endMonth = 12;
             }
 
@@ -161,9 +163,9 @@ class TotalController extends Controller
 
             if ($semester == 01) {
                 $startMonth = 1;
-                $endMonth = 7;
+                $endMonth = 6;
             } else {
-                $startMonth = 8;
+                $startMonth = 7;
                 $endMonth = 12;
             }
 
@@ -272,9 +274,9 @@ class TotalController extends Controller
 
             if ($semester == 01) {
                 $startMonth = 1;
-                $endMonth = 7;
+                $endMonth = 6;
             } else {
-                $startMonth = 8;
+                $startMonth = 7;
                 $endMonth = 12;
             }
 

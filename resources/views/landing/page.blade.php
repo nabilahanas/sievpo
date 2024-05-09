@@ -8,10 +8,6 @@
     <title>SIEVPO</title>
     <meta content="Main Asset" name="description">
 
-    {{-- <!-- Favicons -->
-    <link href="{{ asset('landingpage/assets/img/logo.png') }}" rel="icon">
-    <link href="{{ asset('landingpage/assets/img/logo.png') }}" rel="apple-touch-icon"> --}}
-
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -31,8 +27,7 @@
     <link href="{{ asset('landingpage/assets/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
 
     <!-- Template Main CSS File -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
-        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css">
     <link href="{{ asset('landingpage/assets/css/main.css') }}" rel="stylesheet">
 </head>
 

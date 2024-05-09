@@ -266,7 +266,7 @@
                     enabled: false
                 },
                 series: [{
-                    name: 'Poin',
+                    name: 'Total Poin',
                     colorByPoint: true,
                     data: {!! json_encode($bidangTotals) !!}
                 }]
@@ -293,7 +293,7 @@
                     enabled: false
                 },
                 series: [{
-                    name: 'Poin',
+                    name: 'Total Poin',
                     colorByPoint: true,
                     data: {!! json_encode($pieData) !!}
                 }]

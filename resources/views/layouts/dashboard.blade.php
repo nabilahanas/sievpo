@@ -17,7 +17,6 @@
                             {{ $item->judul }}</h4>
                         <button type="button" class="close" aria-label="Close" data-dismiss="modal"
                             data-next-modal="#pengumumanModal{{ $index + 1 }}">
-                            data-next-modal="#pengumumanModal{{ $index + 1 }}">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
@@ -389,14 +388,8 @@
 @section('script')
     <!-- MODAL PENGUMUMAN -->
     <script>
-        // // Show modal when the page is fully loaded
-        // window.addEventListener('load', function() {
-        //     $('#pengumumanModal0').modal('show');
-        // });
-
         // Show modal when the page is fully loaded and not hidden by local storage
         $(document).ready(() => {
-            const modalIds = {{ Js::from($pengumuman->map(fn($q, $i) => '#pengumumanModal' . $i)) }}
             const modalIds = {{ Js::from($pengumuman->map(fn($q, $i) => '#pengumumanModal' . $i)) }}
             const hiddenModal = JSON.parse(localStorage.getItem('hiddenModal') ?? '[]');
 
@@ -455,6 +448,7 @@
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <script src="https://code.highcharts.com/modules/exporting.js"></script>
     <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
 
     <!-- ADMIN PIMPINAN TOTAL BULAN -->
     <script>

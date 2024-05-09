@@ -202,37 +202,36 @@
 
     <!-- ADMIN -->
     @if ((auth()->user() && auth()->user()->role->nama_role == 'Admin') || auth()->user()->role->nama_role == 'Mahasiswa')
-    <script>
-        var currentYear = "{{ $currentYear }}";
-        Highcharts.chart('tBkphAd', {
-            chart: {
-                type: 'pie'
-            },
-            title: {
-                text: 'Ranking BKPH ' + currentYear,
-                align: 'left',
-                style: {
-                    color: '#007bff'
-                }
-            },
-            credits: {
-                enabled: false
-            },
-            series: [{
-                name: 'Total Poin',
-                colorByPoint: true,
-                data: [
-                    @foreach ($jabatan as $item)
-                        {
-                            name: "{{ $item->bagian }}",
-                            y: {{ isset($bkphTotals[$item->bagian]) ? array_sum($bkphTotals[$item->bagian]) : 0 }}
-                        },
-                    @endforeach
-                ]
-            }]
-        });
-    </script>
-    
+        <script>
+            var currentYear = "{{ $currentYear }}";
+            Highcharts.chart('tBkphAd', {
+                chart: {
+                    type: 'pie'
+                },
+                title: {
+                    text: 'Ranking BKPH ' + currentYear,
+                    align: 'left',
+                    style: {
+                        color: '#007bff'
+                    }
+                },
+                credits: {
+                    enabled: false
+                },
+                series: [{
+                    name: 'Total Poin',
+                    colorByPoint: true,
+                    data: [
+                        @foreach ($jabatan as $item)
+                            {
+                                name: "{{ $item->bagian }}",
+                                y: {{ isset($bkphTotals[$item->bagian]) ? array_sum($bkphTotals[$item->bagian]) : 0 }}
+                            },
+                        @endforeach
+                    ]
+                }]
+            });
+        </script>
     @endif
 
     <!-- PIMPINAN -->

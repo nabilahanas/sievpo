@@ -83,7 +83,7 @@
                             @php
                                 $grandTotal = 0;
                                 $monthlyTotals = array_fill_keys($monthsToShow, 0);
-                                $krphTotalsArray = []; // Inisialisasi array untuk menyimpan data $krphTotal
+                                $krphData = [];
                             @endphp
                             @foreach ($jabatan1 as $krph)
                                 <tr>
@@ -94,7 +94,6 @@
                                         $krphTotal = isset($krphTotals[$krph->id_user])
                                             ? array_sum($krphTotals[$krph->id_user])
                                             : 0;
-                                        $krphTotalsArray[] = $krphTotal; // Tambahkan $krphTotal ke dalam array
                                     @endphp
                                     @foreach ($monthsToShow as $month)
                                         @php
@@ -102,6 +101,7 @@
                                                 ? $krphTotals[$krph->id_user][$month]
                                                 : 0;
                                             $monthlyTotals[$month] += $poin;
+                                            $krph->total = $krphTotal;
                                         @endphp
                                         <td>{{ $poin }}</td>
                                     @endforeach
@@ -109,9 +109,13 @@
                                 </tr>
                                 @php
                                     $grandTotal += $krphTotal;
+                                    $krphData[] = ['nama_user' => $krph->nama_user, 'total' => $krphTotal];
                                 @endphp
                             @endforeach
                         </tbody>
+                        @php
+                            $krphData = collect($krphData)->sortByDesc('total')->values();
+                        @endphp
                         <tfoot>
                             <tr>
                                 <th colspan="3" style="text-align:right">Total:</th>
@@ -211,7 +215,11 @@
                     }
                 },
                 xAxis: {
-                    categories: {!! json_encode($categories) !!},
+                    categories: [
+                        @foreach ($krphData as $krph)
+                            '{{ $krph['nama_user'] }}',
+                        @endforeach
+                    ],
                     crosshair: true,
                 },
                 yAxis: {
@@ -231,7 +239,11 @@
                 },
                 series: [{
                     name: 'Total Poin',
-                    data: {!! json_encode($krphTotalsArray) !!} // Gunakan data array yang berisi $krphTotal
+                    data: [
+                        @foreach ($krphData as $krph)
+                            {{ $krph['total'] }},
+                        @endforeach
+                    ]
                 }]
             });
         </script>

@@ -7,7 +7,7 @@
         <div class="alert alert-danger fade show alert-dismissible" role="alert">
             <strong><i class="fa fa-warning" aria-hidden="true"></i></strong>
             @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
+                {{ $error }}
             @endforeach
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>

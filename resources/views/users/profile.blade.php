@@ -10,6 +10,18 @@
             Selamat datang, <b>{{ auth()->user()->nama_user }}</b>!
         </div>
 
+        @if ($errors->any())
+            <div class="alert alert-danger fade show alert-dismissible" role="alert">
+                <strong><i class="fa fa-warning" aria-hidden="true"></i></strong>
+                @foreach ($errors->all() as $error)
+                    {{ $error }}
+                @endforeach
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        @endif
+
         <div class="card">
             <div class="container py-5">
                 <div class="row">
@@ -129,7 +141,8 @@
                                                 <div class="form-group">
                                                     <label>Pilih File Foto</label>
                                                     <input class="form-control" type="file" id="profile_pict"
-                                                        name="profile_pict" accept="image/jpeg, image/png, image/jpg, image/svg">
+                                                        name="profile_pict"
+                                                        accept="image/jpeg, image/png, image/jpg, image/svg">
                                                 </div>
                                                 <div class="form-group mb-2">
                                                     <button type="submit" class="btn btn-sm btn-info2"><i
@@ -145,9 +158,6 @@
 
                                     <!-- EDIT PASSWORD -->
                                     <div class="tab-pane" id="editpass">
-                                        @if (session('error'))
-                                            <div class="alert alert-danger">{{ session('error') }}</div>
-                                        @endif
                                         <form class="form-horizontal" method="post"
                                             action="{{ route('profile.update-password') }}">
                                             @csrf

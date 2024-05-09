@@ -37,6 +37,8 @@ class PengumumanController extends Controller
             'gambar' => 'nullable|image|mimes:jpeg,png,jpg,svg|max:2048',
             'deskripsi' => 'required',
             'tgl_publikasi' => 'required',
+        ], [
+            'gambar.max' => 'Ukuran gambar tidak boleh melebihi 2 MB!',
         ]);
 
         $data = $request->all();
@@ -77,6 +79,8 @@ class PengumumanController extends Controller
             'gambar' => 'nullable|image|mimes:jpeg,png,jpg,svg|max:2048', // Validate image
             'deskripsi' => 'required',
             'tgl_publikasi' => 'required',
+        ], [
+            'gambar.max' => 'Ukuran gambar tidak boleh melebihi 2 MB!',
         ]);
 
         $pengumuman = Pengumuman::find($id);

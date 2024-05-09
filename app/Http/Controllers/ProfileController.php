@@ -25,6 +25,8 @@ class ProfileController extends Controller
     {
         $request->validate([
             'profile_pict' => 'nullable|image|mimes:jpeg,png,jpg,svg|max:2048',
+        ], [
+            'profile_pict.max' => 'Ukuran gambar tidak boleh melebihi 2 MB!',
         ]);
 
         $users = Auth::user();

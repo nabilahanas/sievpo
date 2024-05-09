@@ -263,7 +263,7 @@
                 yAxis: {
                     min: 0,
                     title: {
-                        text: 'Poin'
+                        text: 'Total Poin'
                     }
                 },
                 credits: {
@@ -276,7 +276,7 @@
                     }
                 },
                 series: [{
-                    name: 'Poin',
+                    name: 'Total Poin',
                     data: {!! json_encode(array_values($jabatanTotalsAssoc)) !!}
                 }]
             });

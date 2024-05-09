@@ -33,6 +33,8 @@ class BeritaController extends Controller
             'gambar' => 'nullable|image|mimes:jpeg,png,jpg,svg|max:2048',
             'deskripsi' => 'required',
             'tgl_publikasi' => 'required',
+        ], [
+            'gambar.max' => 'Ukuran gambar tidak boleh melebihi 2 MB!',
         ]);
 
         if ($validator->fails()) {
@@ -79,6 +81,8 @@ class BeritaController extends Controller
             'gambar' => 'nullable|image|mimes:jpeg,png,jpg,svg|max:2048', // Validate image
             'deskripsi' => 'required',
             'tgl_publikasi' => 'required',
+        ], [
+            'gambar.max' => 'Ukuran gambar tidak boleh melebihi 2 MB!',
         ]);
 
         if ($validator->fails()) {

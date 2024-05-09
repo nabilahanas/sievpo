@@ -82,6 +82,7 @@
                             @php
                                 $grandTotal = 0;
                                 $monthlyTotals = array_fill_keys($monthsToShow, 0);
+                                $usersData = [];
                             @endphp
                             @foreach ($user as $UItem)
                                 <tr>
@@ -115,6 +116,7 @@
                                 </tr>
                                 @php
                                     $grandTotal += $userTotal;
+                                    $usersData[] = ['nama_user' => $UItem->nama_user, 'total' => $userTotal];
                                 @endphp
                             @endforeach
                         </tbody>
@@ -122,6 +124,10 @@
                             $totalPoints = isset($karyawanTotals[auth()->user()->id_user])
                                 ? array_values($karyawanTotals[auth()->user()->id_user])
                                 : [];
+                            // Urutkan array pengguna berdasarkan total mereka secara menurun
+                            usort($usersData, function ($a, $b) {
+                                return $b['total'] - $a['total'];
+                            });
                         @endphp
                         <tfoot>
                             <tr>
@@ -224,8 +230,8 @@
                 },
                 xAxis: {
                     categories: [
-                        @foreach ($user as $UItem)
-                            '{{ $UItem->nama_user }}',
+                        @foreach ($usersData as $UItem)
+                            '{{ $UItem['nama_user'] }}',
                         @endforeach
                     ],
                     crosshair: true,
@@ -251,8 +257,8 @@
                 series: [{
                     name: 'Total Poin',
                     data: [
-                        @foreach ($user as $UItem)
-                            {{ $UItem->total }},
+                        @foreach ($usersData as $UItem)
+                            {{ $UItem['total'] }},
                         @endforeach
                     ]
                 }]

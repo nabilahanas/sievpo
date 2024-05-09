@@ -280,7 +280,7 @@
                     enabled: false
                 },
                 series: [{
-                    name: 'Poin',
+                    name: 'Total Poin',
                     colorByPoint: true,
                     data: {!! json_encode($jabatanTotals) !!}
                 }]
@@ -307,7 +307,7 @@
                     enabled: false
                 },
                 series: [{
-                    name: 'Poin',
+                    name: 'Total Poin',
                     colorByPoint: true,
                     data: {!! json_encode($pieData) !!}
                 }]

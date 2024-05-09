@@ -43,7 +43,7 @@
                                         Tidak Ada Gambar
                                     @endif
                                 </td>
-                                <td><a href="{{ $item->deskripsi }}">Lihat Selengkapnya</a></td>
+                                <td><a href="{{ $item->deskripsi }}" target="_blank">Lihat Selengkapnya</a></td>
                                 <td>
                                     <a href="{{ route('berita.edit', $item->id_berita) }}" type="button"
                                         class="btn btn-sm btn-warning btn-block mb-2"><i class="fas fa-pen mr-2"></i>Ubah</a>
@@ -119,7 +119,7 @@
                                         Tidak Ada Gambar
                                     @endif
                                 </td>
-                                <td><a href="{{ $item->deskripsi }}">Lihat Selengkapnya</a></td>
+                                <td><a href="{{ $item->deskripsi }}" target="_blank">Lihat Selengkapnya</a></td>
                                 <td>
                                     <form action="{{ route('berita.restore', $item->id_berita) }}" method="POST"
                                         class="d-inline">

@@ -7,7 +7,6 @@
     <title>Rekap Total Asper/KBKPH</title>
 
     @if ((auth()->user() && auth()->user()->role->nama_role == 'Admin') || auth()->user()->role->nama_role == 'Mahasiswa')
-        <div class="card">
             <div class="card-body">
                 <a class="btn btn-outline-success"
                     href="{{ route('total.exportasper') }}?{{ request()->has('semester') && request()->has('year') ? 'semester=' . request()->semester . '&year=' . request()->year : 'search=' . '' }}">Download
@@ -100,7 +99,7 @@
                                 @php
                                     $grandTotal = 0;
                                     $monthlyTotals = array_fill_keys($monthsToShow, 0);
-                                    $asperTotalsArray = [];
+                                    $asperData = [];
                                 @endphp
                                 @foreach ($jabatan2 as $asper)
                                     <tr>
@@ -121,16 +120,20 @@
                                                 $asperTotal = isset($asperTotals[$asper->id_user])
                                                     ? array_sum($asperTotals[$asper->id_user])
                                                     : 0;
-                                                $asperTotalsArray[] = $asperTotal;
+                                                $asper-> total = $asperTotal;
                                             @endphp
                                             {{ $asperTotal }}
                                         </td>
                                     </tr>
                                     @php
                                         $grandTotal += $asperTotal;
+                                        $asperData[] = ['nama_user' => $asper->nama_user, 'total' => $asperTotal];
                                     @endphp
                                 @endforeach
                             </tbody>
+                            @php
+                                $asperData = collect($asperData)->sortByDesc('total')->values();
+                            @endphp
                             <tfoot>
                                 <tr>
                                     <th colspan="3" style="text-align:right">Total:</th>
@@ -231,7 +234,11 @@
                     }
                 },
                 xAxis: {
-                    categories: {!! json_encode($categories) !!},
+                    categories: [
+                        @foreach ($asperData as $asper)
+                            '{{ $asper['nama_user'] }}',
+                        @endforeach
+                    ],
                     crosshair: true,
                 },
                 yAxis: {
@@ -251,7 +258,11 @@
                 },
                 series: [{
                     name: 'Total Poin',
-                    data: {!! json_encode($asperTotalsArray) !!}
+                    data: [
+                        @foreach ($asperData as $asper)
+                            {{ $asper['total'] }},
+                        @endforeach
+                    ]
                 }]
             });
         </script>

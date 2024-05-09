@@ -49,38 +49,41 @@ class DataController extends Controller
             'lokasi' => 'required',
             'tgl_waktu' => 'required|date_format:Y-m-d H:i:s',
             'foto' => 'required|image|mimes:jpeg,png,jpg,svg|max:2048',
+        ], [
+            'foto.max' => 'Ukuran gambar tidak boleh melebihi 2 MB!',
         ]);
-
+    
         $data = $request->except('tgl_waktu');
         $data['tgl_waktu'] = $request->input('tgl_waktu', now());
-
+    
         if ($request->hasFile('foto')) {
             $image = $request->file('foto');
             $filename = time() . '_' . $image->getClientOriginalName();
             $path = 'foto-eviden/' . $filename;
-
+    
             Storage::disk('public')->put($path, file_get_contents($image));
-
+    
             $data['foto'] = $filename;
-
+    
         } else {
             $data['foto'] = null;
         }
-
+    
         $existingData = Data::whereDate('tgl_waktu', '=', date('Y-m-d', strtotime($request->tgl_waktu)))
             ->where('id_shift', $request->id_shift)
             ->where('id_user', $request->id_user)
             ->exists();
-
-
+    
+    
         if ($existingData) {
             return redirect()->back()->withInput()->withErrors(['tgl_waktu' => 'Data dengan tanggal dan shift yang sama sudah ada.']);
         }
-
+    
         Data::create($data);
-
+    
         return redirect()->route('data.index')->with('success', 'Data berhasil ditambahkan');
     }
+    
 
     public function delete($id)
     {

@@ -224,8 +224,8 @@
                 data: [
                     @foreach($bidang as $BItem)
                     {
-                        name: "{{ $BItem->nama_bidang }}", // Setiap bidang memiliki nama_bidang sebagai label
-                        y: {{ isset($bidangTotals[$BItem->id_bidang]) ? array_sum($bidangTotals[$BItem->id_bidang]) : 0 }} // Total poin bidang
+                        name: "{{ $BItem->nama_bidang }}",
+                        y: {{ isset($bidangTotals[$BItem->id_bidang]) ? array_sum($bidangTotals[$BItem->id_bidang]) : 0 }}
                     },
                     @endforeach
                 ]

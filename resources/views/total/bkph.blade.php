@@ -12,6 +12,12 @@
                 <a class="btn btn-outline-success"
                     href="{{ route('total.exportbkph') }}?{{ request()->has('semester') && request()->has('year') ? 'semester=' . request()->semester . '&year=' . request()->year : 'search=' . '' }}">Download
                     Excel</a>
+                <!-- Chart -->
+                <div class="card mt-4">
+                    <div class="card-body">
+                        <div id="tBkphAd"></div>
+                    </div>
+                </div>
                 <!-- Table -->
                 <div class="table-responsive-lg mt-4">
                     @if (request()->has('semester') && request()->has('year'))
@@ -194,6 +200,41 @@
     <script src="https://code.highcharts.com/modules/exporting.js"></script>
     <script src="https://code.highcharts.com/modules/export-data.js"></script>
 
+    <!-- ADMIN -->
+    @if ((auth()->user() && auth()->user()->role->nama_role == 'Admin') || auth()->user()->role->nama_role == 'Mahasiswa')
+    <script>
+        var currentYear = "{{ $currentYear }}";
+        Highcharts.chart('tBkphAd', {
+            chart: {
+                type: 'pie'
+            },
+            title: {
+                text: 'Ranking BKPH ' + currentYear,
+                align: 'left',
+                style: {
+                    color: '#007bff'
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            series: [{
+                name: 'Total Poin',
+                colorByPoint: true,
+                data: [
+                    @foreach ($jabatan as $item)
+                        {
+                            name: "{{ $item->bagian }}",
+                            y: {{ isset($bkphTotals[$item->bagian]) ? array_sum($bkphTotals[$item->bagian]) : 0 }}
+                        },
+                    @endforeach
+                ]
+            }]
+        });
+    </script>
+    
+    @endif
+
     <!-- PIMPINAN -->
     @if (auth()->user() && auth()->user()->role->nama_role == 'Pimpinan')
         <script>
@@ -213,7 +254,7 @@
                     enabled: false
                 },
                 series: [{
-                    name: 'Poin',
+                    name: 'Total Poin',
                     colorByPoint: true,
                     data: {!! json_encode($pieData) !!}
                 }]

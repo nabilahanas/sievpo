@@ -13,11 +13,12 @@
                     href="{{ route('total.exportkrph') }}?{{ request()->has('semester') && request()->has('year') ? 'semester=' . request()->semester . '&year=' . request()->year : 'search=' . '' }}">Download
                     Excel</a>
                 <!-- Chart -->
-                {{-- <div class="card">
+                <div class="card mt-4">
                     <div class="card-body">
-                        <div id="krphPoin" height="60"></div>
+                        <div id="tKrphAd"></div>
                     </div>
-                </div> --}}
+                </div>
+                <!-- Table -->
                 <div class="table-responsive-lg mt-4">
                     @if (request()->has('semester') && request()->has('year'))
                         <div style="padding: 10px; font-size: 15px; font-weight: bold;">
@@ -195,15 +196,19 @@
     <script src="https://code.highcharts.com/modules/export-data.js"></script>
 
     <!-- ADMIN -->
-    {{-- @if ((auth()->user() && auth()->user()->role->nama_role == 'Admin') || auth()->user()->role->nama_role == 'Mahasiswa')
+    @if ((auth()->user() && auth()->user()->role->nama_role == 'Admin') || auth()->user()->role->nama_role == 'Mahasiswa')
         <script>
-            Highcharts.chart('krphPoin', {
+            var currentYear = "{{ $currentYear }}";
+            Highcharts.chart('tKrphAd', {
                 chart: {
                     type: 'column'
                 },
                 title: {
-                    text: 'Grafik Eviden Poin KRPH',
-                    align: 'center'
+                    text: 'Rekap KRPH ' + currentYear,
+                    align: 'center',
+                    style: {
+                        color: '#007bff'
+                    }
                 },
                 xAxis: {
                     categories: {!! json_encode($categories) !!},
@@ -212,7 +217,7 @@
                 yAxis: {
                     min: 0,
                     title: {
-                        text: 'Poin'
+                        text: 'Total Poin'
                     }
                 },
                 credits: {
@@ -225,12 +230,12 @@
                     }
                 },
                 series: [{
-                    name: 'Poin',
+                    name: 'Total Poin',
                     data: {!! json_encode($krphTotalsArray) !!} // Gunakan data array yang berisi $krphTotal
                 }]
             });
         </script>
-    @endif --}}
+    @endif
 
     <!-- PIMPINAN -->
     @if (auth()->user() && auth()->user()->role->nama_role == 'Pimpinan')

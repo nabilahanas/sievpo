@@ -171,7 +171,7 @@
                         data: 'user.nama_user',
                         name: 'user.nama_user',
                         searchable: true,
-                        orderable: true,
+                        orderable: false,
                         render: (data, type, row, meta) => {
                             return row.user.nama_user ?? '-';
                         }
@@ -180,7 +180,7 @@
                         data: 'bidang.nama_bidang',
                         name: 'bidang.nama_bidang',
                         searchable: true,
-                        orderable: true,
+                        orderable: false,
                         render: (data, type, row, meta) => {
                             return row.bidang.nama_bidang ?? '-';
                         }
@@ -189,7 +189,7 @@
                         data: 'shift.nama_shift',
                         name: 'shift.nama_shift',
                         searchable: true,
-                        orderable: true,
+                        orderable: false,
                         render: (data, type, row, meta) => {
                             return row.shift.nama_shift ?? '-';
                         }
@@ -204,7 +204,7 @@
                         data: 'created_at',
                         name: 'created_at',
                         searchable: false,
-                        orderable: true,
+                        orderable: false,
                         render: (data, type, row, meta) => {
                             return moment(data).format("YYYY-MM-DD hh:mm:ss");
                         }

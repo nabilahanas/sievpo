@@ -387,7 +387,6 @@
 @endsection
 
 @section('script')
-
     <!-- MODAL PENGUMUMAN -->
     <script>
         // // Show modal when the page is fully loaded
@@ -489,7 +488,10 @@
             plotOptions: {
                 column: {
                     pointPadding: 0.2,
-                    borderWidth: 0
+                    borderWidth: 0,
+                    dataLabels: {
+                        enabled: true
+                    },
                 }
             },
             series: [{
@@ -565,7 +567,10 @@
             plotOptions: {
                 column: {
                     pointPadding: 0.2,
-                    borderWidth: 0
+                    borderWidth: 0,
+                    dataLabels: {
+                        enabled: true
+                    },
                 }
             },
             series: [{
@@ -630,9 +635,10 @@
                 enabled: false
             },
             plotOptions: {
-                column: {
-                    pointPadding: 0.2,
-                    borderWidth: 0
+                line: {
+                    dataLabels: {
+                        enabled: true
+                    },
                 }
             },
             series: [{
@@ -720,14 +726,14 @@
             }]
         });
     </script>
-
-    <!-- JQuery -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
-    </script>
-
-    <!-- Dropdown -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
-    </script>
 @endsection
+
+<!-- JQuery -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+</script>
+
+<!-- Dropdown -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+</script>

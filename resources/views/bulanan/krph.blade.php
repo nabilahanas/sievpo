@@ -11,13 +11,13 @@
                 <a class="btn btn-outline-success"
                     href="{{ route('bulanan.exportkrph') }}?{{ request()->has('bulan') && request()->has('tahun') ? 'bulan=' . request()->bulan . '&tahun=' . request()->tahun : '' }}">Download
                     Excel</a>
-
+                <!-- Chart -->
                 <div class="card mt-4">
                     <div class="card-body">
                         <div id="bKrphAd" height="60"></div>
                     </div>
                 </div>
-
+                <!-- Table -->
                 <div class="table-responsive-lg mt-4">
                     <div class="table-responsive-lg mt-4">
                         @if (request()->has('bulan') && request()->has('tahun'))

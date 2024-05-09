@@ -13,11 +13,12 @@
                     href="{{ route('total.exportasper') }}?{{ request()->has('semester') && request()->has('year') ? 'semester=' . request()->semester . '&year=' . request()->year : 'search=' . '' }}">Download
                     Excel</a>
                 <!-- Chart -->
-                {{-- <div class="card">
+                <div class="card mt-4">
                     <div class="card-body">
-                        <div id="asperPoin" height="60"></div>
+                        <div id="tAsperAd"></div>
                     </div>
-                </div> --}}
+                </div>
+                <!-- Table -->
                 <div class="table-responsive-lg mt-4">
                     <div class="table-responsive-lg mt-4">
                         @if (request()->has('semester') && request()->has('year'))
@@ -25,7 +26,8 @@
                                 Hasil Pencarian Tahun {{ $currentYear }}
                             </div>
                         @endif
-                        <table id="tasper" class="table table-sm text-nowrap table-hover table-striped" style="width: 100%">
+                        <table id="tasper" class="table table-sm text-nowrap table-hover table-striped"
+                            style="width: 100%">
                             <thead class="thead-successv2">
                                 <tr>
                                     <th rowspan="2">No.</th>
@@ -214,15 +216,19 @@
     <script src="https://code.highcharts.com/modules/export-data.js"></script>
 
     <!-- ADMIN-->
-    {{-- @if ((auth()->user() && auth()->user()->role->nama_role == 'Admin') || auth()->user()->role->nama_role == 'Mahasiswa')
+    @if ((auth()->user() && auth()->user()->role->nama_role == 'Admin') || auth()->user()->role->nama_role == 'Mahasiswa')
         <script>
-            Highcharts.chart('asperPoin', {
+            var currentYear = "{{ $currentYear }}";
+            Highcharts.chart('tAsperAd', {
                 chart: {
                     type: 'column'
                 },
                 title: {
-                    text: 'Grafik Eviden Poin Asper',
-                    align: 'center'
+                    text: 'Rekap Asper/KBKPH' + currentYear,
+                    align: 'center',
+                    style: {
+                        color: '#007bff'
+                    }
                 },
                 xAxis: {
                     categories: {!! json_encode($categories) !!},
@@ -231,7 +237,7 @@
                 yAxis: {
                     min: 0,
                     title: {
-                        text: 'Poin'
+                        text: 'Total Poin'
                     }
                 },
                 credits: {
@@ -244,12 +250,12 @@
                     }
                 },
                 series: [{
-                    name: 'Poin',
+                    name: 'Total Poin',
                     data: {!! json_encode($asperTotalsArray) !!}
                 }]
             });
         </script>
-    @endif --}}
+    @endif
 
     <!-- PIMPINAN -->
     @if (auth()->user() && auth()->user()->role->nama_role == 'Pimpinan')

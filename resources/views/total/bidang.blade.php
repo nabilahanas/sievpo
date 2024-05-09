@@ -11,6 +11,13 @@
                 <a class="btn btn-outline-success"
                     href="{{ route('total.exportbidang') }}?{{ request()->has('semester') && request()->has('year') ? 'semester=' . request()->semester . '&year=' . request()->year : 'search=' . '' }}">Download
                     Excel</a>
+                <!-- Chart -->
+                <div class="card mt-4">
+                    <div class="card-body">
+                        <div id="tBidangAd"></div>
+                    </div>
+                </div>
+                <!-- Table -->
                 <div class="table-responsive-lg mt-4">
                     @if (request()->has('semester') && request()->has('year'))
                         <div style="padding: 10px; font-size: 15px; font-weight: bold;">
@@ -139,7 +146,7 @@
                             </tr>
                         </thead>
 
-                        <tbody style="overflow-x: auto;">
+                        <tbody>
                             @php
                                 $monthsToShow = [];
                                 // Mengurutkan pengguna berdasarkan total poin
@@ -193,6 +200,40 @@
     <script src="https://code.highcharts.com/modules/exporting.js"></script>
     <script src="https://code.highcharts.com/modules/export-data.js"></script>
 
+    <!-- ADMIN -->
+    @if ((auth()->user() && auth()->user()->role->nama_role == 'Admin') || auth()->user()->role->nama_role == 'Mahasiswa')
+    <script>
+        var currentYear = "{{ $currentYear }}";
+        Highcharts.chart('tBidangAd', {
+            chart: {
+                type: 'pie'
+            },
+            title: {
+                text: 'Ranking Bidang ' + currentYear,
+                align: 'left',
+                style: {
+                    color: '#007bff'
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            series: [{
+                name: 'Total Poin',
+                colorByPoint: true,
+                data: [
+                    @foreach($bidang as $BItem)
+                    {
+                        name: "{{ $BItem->nama_bidang }}", // Setiap bidang memiliki nama_bidang sebagai label
+                        y: {{ isset($bidangTotals[$BItem->id_bidang]) ? array_sum($bidangTotals[$BItem->id_bidang]) : 0 }} // Total poin bidang
+                    },
+                    @endforeach
+                ]
+            }]
+        });
+    </script>
+    @endif
+
     <!-- PIMPINAN -->
     @if (auth()->user() && auth()->user()->role->nama_role == 'Pimpinan')
         <script>
@@ -212,7 +253,7 @@
                     enabled: false
                 },
                 series: [{
-                    name: 'Poin',
+                    name: 'Total Poin',
                     colorByPoint: true,
                     data: {!! json_encode($pieData) !!}
                 }]

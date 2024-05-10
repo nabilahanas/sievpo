@@ -10,18 +10,6 @@
             Selamat datang, <b>{{ auth()->user()->nama_user }}</b>!
         </div>
 
-        @if ($errors->any())
-            <div class="alert alert-danger fade show alert-dismissible" role="alert">
-                <strong><i class="fa fa-warning" aria-hidden="true"></i></strong>
-                @foreach ($errors->all() as $error)
-                    {{ $error }}
-                @endforeach
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-        @endif
-
         <div class="card">
             <div class="container py-5">
                 <div class="row">
@@ -133,6 +121,16 @@
 
                                     <!-- EDIT FOTO PROFILE -->
                                     <div class="tab-pane" id="editfoto">
+                                        @if (session('success'))
+                                            <div class="alert alert-success">{{ session('success') }}</div>
+                                        @endif
+                                        @if ($errors->any())
+                                            <div class="alert alert-danger" role="alert">
+                                                @foreach ($errors->all() as $error)
+                                                    {{ $error }}
+                                                @endforeach
+                                            </div>
+                                        @endif
                                         <form class="form-horizontal" method="post"
                                             action="{{ route('profile.update-profile-picture') }}"
                                             enctype="multipart/form-data">
@@ -158,13 +156,20 @@
 
                                     <!-- EDIT PASSWORD -->
                                     <div class="tab-pane" id="editpass">
+                                        @if (session('success'))
+                                            <div class="alert alert-success">{{ session('success') }}</div>
+                                        @endif
+                                        @if (session('error'))
+                                            <div class="alert alert-danger">{{ session('error') }}</div>
+                                        @endif
                                         <form class="form-horizontal" method="post"
                                             action="{{ route('profile.update-password') }}">
                                             @csrf
                                             <div class="form-group">
                                                 <label for="current_password">Password Saat Ini</label>
-                                                <input type="password" class="form-control" id="current_password"
-                                                    name="current_password" required>
+                                                <input type="password"
+                                                    class="form-control @error('current_password') is-invalid @enderror"
+                                                    id="current_password" name="current_password" required>
                                             </div>
                                             <div class="form-group">
                                                 <label for="new_password">Password Baru</label>
@@ -192,7 +197,7 @@
                                             @if ($errors->has('new_password') && $errors->has('new_password_confirmation'))
                                                 <div class="form-group">
                                                     <div class="invalid-feedback">Password baru dan konfirmasi password
-                                                        harus cocok.</div>
+                                                        harus cocok!</div>
                                                 </div>
                                             @endif
                                             <div class="form-group mb-2">
@@ -200,6 +205,7 @@
                                                         class="fas fa-sync-alt mr-2"></i>Update Password</button>
                                             </div>
                                         </form>
+
                                     </div>
                                 </div>
                             </div>

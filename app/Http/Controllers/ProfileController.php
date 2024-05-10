@@ -56,19 +56,19 @@ class ProfileController extends Controller
         ], [
             'new_password.confirmed' => 'Password baru dan konfirmasi password harus cocok.',
         ]);
-
-        $users = Auth::user();
-
+    
+        $user = Auth::user();
+    
         // Check if the current password is correct
-        if (!Hash::check($request->current_password, $users->password)) {
-            return redirect()->route('profile.index', ['tab' => 'editpass'])->with('error', 'Gagal karena Password lama tidak sesuai.');
+        if (!Hash::check($request->current_password, $user->password)) {
+            return redirect()->route('profile.index', ['tab' => 'editpass'])->with('error', 'Gagal karena password lama tidak sesuai.');
         }
-
+    
         // Update the password
-        $users->update(['password' => bcrypt($request->new_password)]);
-
+        $user->update(['password' => bcrypt($request->new_password)]);
+    
         return redirect()->route('profile.index', ['tab' => 'editpass'])->with('success', 'Password berhasil diubah');
-    }
+    }   
 
 
     public function deleteProfilePicture()

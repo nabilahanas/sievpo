@@ -12,7 +12,7 @@
                     Excel</a>
                 <div class="card mt-4">
                     <div class="card-body">
-                        <div id="bBidangAd" height="60"></div>
+                        <div id="bBidangAd" style="width:100%; height:350px;"></div>
                     </div>
                 </div>
                 <div class="table-responsive-lg mt-4">
@@ -114,7 +114,7 @@
             <div class="card-body">
                 <div class="card">
                     <div class="card-body">
-                        <div id="bBidangPim" height="60"></div>
+                        <div id="bBidangPim" style="width:100%; height:350px;"></div>
                     </div>
                 </div>
 

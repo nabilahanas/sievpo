@@ -14,7 +14,7 @@
 
                 <div class="card mt-4">
                     <div class="card-body">
-                        <div id="bAsperAd" height="60"></div>
+                        <div id="bAsperAd" style="width:100%; height:350px;"></div>
                     </div>
                 </div>
 
@@ -130,7 +130,7 @@
             <div class="card-body">
                 <div class="card">
                     <div class="card-body">
-                        <div id="bAsperPim" height="60"></div>
+                        <div id="bAsperPim" style="width:100%; height:350px;"></div>
                     </div>
                 </div>
                 <div class="table-responsive-lg mt-4">

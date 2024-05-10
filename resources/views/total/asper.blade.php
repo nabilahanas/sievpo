@@ -14,7 +14,7 @@
             <!-- Chart -->
             <div class="card mt-4">
                 <div class="card-body">
-                    <div id="tAsperAd"></div>
+                    <div id="tAsperAd" style="width:100%; height:350px;"></div>
                 </div>
             </div>
             <!-- Table -->
@@ -140,7 +140,7 @@
                 <!-- Chart -->
                 <div class="card">
                     <div class="card-body">
-                        <div id="tAsperPim" height="60"></div>
+                        <div id="tAsperPim" style="width:100%; height:350px;"></div>
                     </div>
                 </div>
                 <!-- Table -->

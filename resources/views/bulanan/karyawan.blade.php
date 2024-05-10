@@ -13,7 +13,7 @@
                     Excel</a>
                 <div class="card mt-4">
                     <div class="card-body">
-                        <div id="bKarAd" height="60"></div>
+                        <div id="bKarAd" style="width:100%; height:350px;"></div>
                     </div>
                 </div>
 
@@ -138,7 +138,7 @@
             <div class="card-body">
                 <div class="card mt-4">
                     <div class="card-body">
-                        <div id="bKaryawanPim"></div>
+                        <div id="bKaryawanPim" style="width:100%; height:350px;"></div>
                     </div>
                 </div>
                 <div class="table-responsive-lg mt-4">

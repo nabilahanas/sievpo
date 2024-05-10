@@ -15,7 +15,7 @@
                 <!-- Chart -->
                 <div class="card mt-4">
                     <div class="card-body">
-                        <div id="tKarAd"></div>
+                        <div id="tKarAd" style="width:100%; height:350px;"></div>
                     </div>
                 </div>
                 <!-- Table -->
@@ -143,7 +143,7 @@
                 <!-- Chart -->
                 <div class="card">
                     <div class="card-body">
-                        <div id="tKaryawanPim" height="60"></div>
+                        <div id="tKaryawanPim" style="width:100%; height:350px;"></div>
                     </div>
                 </div>
                 <!-- Table -->

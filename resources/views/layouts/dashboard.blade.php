@@ -50,7 +50,7 @@
     @if (auth()->user() && auth()->user()->role->nama_role == 'Admin')
         <section class="content">
             <div class="container-fluid">
-                <button id="showModalAgain">Tampilkan Modal Lagi</button>
+                {{-- <button id="showModalAgain">Tampilkan Modal Lagi</button> --}}
 
                 <!-- Small boxes (Stat box) -->
                 <div class="row">
@@ -169,7 +169,7 @@
                                 </div>
                             </div> --}}
                             <div class="card-body">
-                                <div id="bulanPoin"></div>
+                                <div id="bulanPoin" style="width:100%; height:320px;"></div>
                             </div>
                         </div>
                     </section>
@@ -190,7 +190,7 @@
                                 </div>
                             </div> --}}
                             <div class="card-body">
-                                <div id="poinKar" height="60"></div>
+                                <div id="poinKar"  style="width:100%; height:350px;"></div>
                             </div>
                         </div>
                     </section>
@@ -244,7 +244,7 @@
                                 </div>
                             </div> --}}
                             <div class="card-body">
-                                <div id="bulanPoin" height="50"></div>
+                                <div id="bulanPoin" style="width:100%; height:320px;"></div>
                             </div>
                         </div>
                     </section>
@@ -265,7 +265,7 @@
                                 </div>
                             </div> --}}
                             <div class="card-body">
-                                <div id="poinKar" height="60"></div>
+                                <div id="poinKar"style="width:100%; height:350px;"></div>
                             </div>
                         </div>
                     </section>
@@ -354,7 +354,7 @@
                                 </div>
                             </div> --}}
                             <div class="card-body">
-                                <div id="totalKar" height="60"></div>
+                                <div id="totalKar" style="width:100%; height:320px;"></div>
                             </div>
                         </div>
                     </section>
@@ -375,7 +375,7 @@
                                 </div>
                             </div> --}}
                             <div class="card-body">
-                                <div id="bandingKar"></div>
+                                <div id="bandingKar" style="width:100%; height:300px;"></div>
                             </div>
                         </div>
                     </section>

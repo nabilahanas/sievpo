@@ -15,6 +15,7 @@ use App\Exports\TbkphExport;
 use App\Exports\TkrphExport;
 use App\Exports\TasperExport;
 use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\App;
 
 class TotalController extends Controller
 {
@@ -46,6 +47,7 @@ class TotalController extends Controller
     }
     public function karyawan(Request $request)
     {
+        App::setLocale('id');
         $currentYear = Carbon::now()->year;
 
         $user = User::where('id_role', '3')->get();
@@ -57,7 +59,7 @@ class TotalController extends Controller
             $semester = $request->semester;
             $year = $request->year;
 
-            if ($semester == 01) {
+            if ($semester == 1) {
                 $startMonth = 1;
                 $endMonth = 6;
             } else {
@@ -71,13 +73,13 @@ class TotalController extends Controller
 
             $datas = Data::whereBetween('created_at', [$searchStart, $searchEnd])->get();
 
-            $currentYear = $searchStart->format('Y');
+            $currentYear = $searchStart->translatedFormat('Y');
         } else {
             $datas = Data::all();
         }
 
         foreach ($datas as $dataItem) {
-            $month = $dataItem->created_at->format('F');
+            $month = $dataItem->created_at->translatedFormat('F');
 
             $userId = $dataItem->id_user;
 
@@ -94,6 +96,7 @@ class TotalController extends Controller
 
     public function bidang(Request $request)
     {
+        App::setLocale('id');
         $currentYear = Carbon::now()->year;
 
         $user = User::where('id_role', '3')->get();
@@ -105,7 +108,7 @@ class TotalController extends Controller
             $semester = $request->semester;
             $year = $request->year;
 
-            if ($semester == 01) {
+            if ($semester == 1) {
                 $startMonth = 1;
                 $endMonth = 6;
             } else {
@@ -119,13 +122,13 @@ class TotalController extends Controller
 
             $datas = Data::whereBetween('created_at', [$searchStart, $searchEnd])->get();
 
-            $currentYear = $searchStart->format('Y');
+            $currentYear = $searchStart->translatedFormat('Y');
         } else {
             $datas = Data::all();
         }
 
         foreach ($datas as $dataItem) {
-            $month = $dataItem->created_at->format('F');
+            $month = $dataItem->created_at->translatedFormat('F');
 
             $bidangId = $dataItem->id_bidang;
 
@@ -140,6 +143,7 @@ class TotalController extends Controller
 
     public function bkph(Request $request)
     {
+        App::setLocale('id');
         $currentYear = Carbon::now()->year;
 
         $user = User::where('id_role', '3')->get();
@@ -161,7 +165,7 @@ class TotalController extends Controller
             $semester = $request->semester;
             $year = $request->year;
 
-            if ($semester == 01) {
+            if ($semester == 1) {
                 $startMonth = 1;
                 $endMonth = 6;
             } else {
@@ -175,13 +179,13 @@ class TotalController extends Controller
 
             $datas = Data::whereBetween('created_at', [$searchStart, $searchEnd])->get();
 
-            $currentYear = $searchStart->format('Y');
+            $currentYear = $searchStart->translatedFormat('Y');
         } else {
             $datas = Data::all();
         }
 
         foreach ($datas as $dataItem) {
-            $month = $dataItem->created_at->format('F');
+            $month = $dataItem->created_at->translatedFormat('F');
 
             $bkphId = $dataItem->user->jabatan->bagian;
 
@@ -196,6 +200,7 @@ class TotalController extends Controller
 
     public function krph(Request $request)
     {
+        App::setLocale('id');
         $currentYear = Carbon::now()->year;
 
         $user = User::where('id_role', '3')->get();
@@ -212,7 +217,7 @@ class TotalController extends Controller
             $semester = $request->semester;
             $year = $request->year;
 
-            if ($semester == 01) {
+            if ($semester == 1) {
                 $startMonth = 1;
                 $endMonth = 6;
             } else {
@@ -226,13 +231,13 @@ class TotalController extends Controller
 
             $datas = Data::whereBetween('created_at', [$searchStart, $searchEnd])->get();
 
-            $currentYear = $searchStart->format('Y');
+            $currentYear = $searchStart->translatedFormat('Y');
         } else {
             $datas = Data::all();
         }
 
         foreach ($datas as $dataItem) {
-            $month = $dataItem->created_at->format('F');
+            $month = $dataItem->created_at->translatedFormat('F');
 
             $krphId = $dataItem->user->id_user;
 
@@ -256,6 +261,7 @@ class TotalController extends Controller
 
     public function asper(Request $request)
     {
+        App::setLocale('id');
         $currentYear = Carbon::now()->year;
 
         $user = User::where('id_role', '3')->get();
@@ -272,7 +278,7 @@ class TotalController extends Controller
             $semester = $request->semester;
             $year = $request->year;
 
-            if ($semester == 01) {
+            if ($semester == 1) {
                 $startMonth = 1;
                 $endMonth = 6;
             } else {
@@ -286,14 +292,14 @@ class TotalController extends Controller
 
             $datas = Data::whereBetween('created_at', [$searchStart, $searchEnd])->get();
 
-            $currentYear = $searchStart->format('Y');
+            $currentYear = $searchStart->translatedFormat('Y');
         } else {
             $datas = Data::all();
         }
 
 
         foreach ($datas as $dataItem) {
-            $month = $dataItem->created_at->format('F');
+            $month = $dataItem->created_at->translatedFormat('F');
 
             $asperId = $dataItem->user->id_user;
 

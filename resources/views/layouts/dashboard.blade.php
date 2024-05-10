@@ -50,7 +50,7 @@
     @if (auth()->user() && auth()->user()->role->nama_role == 'Admin')
         <section class="content">
             <div class="container-fluid">
-                {{-- <button id="showModalAgain">Tampilkan Modal Lagi</button> --}}
+                <button id="showModalAgain">Tampilkan Modal Lagi</button>
 
                 <!-- Small boxes (Stat box) -->
                 <div class="row">

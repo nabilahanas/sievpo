@@ -23,7 +23,8 @@ class AuthController extends Controller
 
     public function registered(Request $request)
     {
-        $existingUser = User::where('nip', $request->nip)->first();
+        $existingUser = User::where('nip', $request->nip)
+        ->where('nama_user', $request->nama_user)->exists();;
         if ($existingUser) {
             return redirect()->back()->withInput()->withErrors(['nip' => 'Pengguna sudah terdaftar.']);
         }

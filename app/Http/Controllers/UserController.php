@@ -46,6 +46,12 @@ class UserController extends Controller
         // Ambil data pengguna berdasarkan ID
         $user = User::findOrFail($id);
 
+        $existingUser = User::where('nip', $request->nip)->where('nama_user', $request->nama_user)->whereNotIn('id_user', [$id])
+        ->exists();
+        if ($existingUser) {
+            return redirect()->back()->withInput()->withErrors(['nip' => 'Nama dan NIP pengguna telah terdaftar.']);
+        }
+
         // Update nama dan NIP pengguna
         $user->nama_user = $request->nama_user;
         $user->nip = $request->nip;

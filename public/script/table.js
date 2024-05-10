@@ -460,8 +460,8 @@ $(document).ready(function () {
                 <select name="semester" type="number" class="form-control" placeholder="search" aria-label="search"
                     aria-describedby="button-addon2">
                     <option selected disabled value="">Pilih Semester</option>
-                    <option value="01">Semester I (Januari-Juni)</option>
-                    <option value="02">Semester II (Juli-Desember)</option>
+                    <option value="1">Semester I (Januari-Juni)</option>
+                    <option value="2">Semester II (Juli-Desember)</option>
                 </select>
 
                 <select name="year" class="form-control">
@@ -502,8 +502,8 @@ $(document).ready(function () {
                 <select name="semester" type="number" class="form-control" placeholder="search" aria-label="search"
                     aria-describedby="button-addon2">
                     <option selected disabled value="">Pilih Semester</option>
-                    <option value="01">Semester I (Januari-Juni)</option>
-                    <option value="02">Semester II (Juli-Desember)</option>
+                    <option value="1">Semester I (Januari-Juni)</option>
+                    <option value="2">Semester II (Juli-Desember)</option>
                 </select>
 
                 <select name="year" class="form-control">
@@ -545,8 +545,8 @@ $(document).ready(function () {
                 <select name="semester" type="number" class="form-control" placeholder="search" aria-label="search"
                     aria-describedby="button-addon2">
                     <option selected disabled value="">Pilih Semester</option>
-                    <option value="01">Semester I (Januari-Juni)</option>
-                    <option value="02">Semester II (Juli-Desember)</option>
+                    <option value="1">Semester I (Januari-Juni)</option>
+                    <option value="2">Semester II (Juli-Desember)</option>
                 </select>
 
                 <select name="year" class="form-control">
@@ -588,8 +588,8 @@ $(document).ready(function () {
                 <select name="semester" type="number" class="form-control" placeholder="search" aria-label="search"
                     aria-describedby="button-addon2">
                     <option selected disabled value="">Pilih Semester</option>
-                    <option value="01">Semester I (Januari-Juni)</option>
-                    <option value="02">Semester II (Juli-Desember)</option>
+                    <option value="1">Semester I (Januari-Juni)</option>
+                    <option value="2">Semester II (Juli-Desember)</option>
                 </select>
 
                 <select name="year" class="form-control">
@@ -630,8 +630,8 @@ $(document).ready(function () {
                 <select name="semester" type="number" class="form-control" placeholder="search" aria-label="search"
                     aria-describedby="button-addon2">
                     <option selected disabled value="">Pilih Semester</option>
-                    <option value="01">Semester I (Januari-Juni)</option>
-                    <option value="02">Semester II (Juli-Desember)</option>
+                    <option value="1">Semester I (Januari-Juni)</option>
+                    <option value="2">Semester II (Juli-Desember)</option>
                 </select>
 
                 <select name="year" class="form-control">
@@ -920,8 +920,8 @@ $(document).ready(function () {
                 <select name="semester" type="number" class="form-control" placeholder="search" aria-label="search"
                     aria-describedby="button-addon2">
                     <option selected disabled value="">Pilih Semester</option>
-                    <option value="01">Semester I (Januari-Juni)</option>
-                    <option value="02">Semester II (Juli-Desember)</option>
+                    <option value="1">Semester I (Januari-Juni)</option>
+                    <option value="2">Semester II (Juli-Desember)</option>
                 </select>
 
                 <select name="year" class="form-control">
@@ -962,8 +962,8 @@ $(document).ready(function () {
                 <select name="semester" type="number" class="form-control" placeholder="search" aria-label="search"
                     aria-describedby="button-addon2">
                     <option selected disabled value="">Pilih Semester</option>
-                    <option value="01">Semester I (Januari-Juni)</option>
-                    <option value="02">Semester II (Juli-Desember)</option>
+                    <option value="1">Semester I (Januari-Juni)</option>
+                    <option value="2">Semester II (Juli-Desember)</option>
                 </select>
 
                 <select name="year" class="form-control">
@@ -1005,8 +1005,8 @@ $(document).ready(function () {
                 <select name="semester" type="number" class="form-control" placeholder="search" aria-label="search"
                     aria-describedby="button-addon2">
                     <option selected disabled value="">Pilih Semester</option>
-                    <option value="01">Semester I (Januari-Juni)</option>
-                    <option value="02">Semester II (Juli-Desember)</option>
+                    <option value="1">Semester I (Januari-Juni)</option>
+                    <option value="2">Semester II (Juli-Desember)</option>
                 </select>
 
                 <select name="year" class="form-control">
@@ -1048,8 +1048,8 @@ $(document).ready(function () {
                 <select name="semester" type="number" class="form-control" placeholder="search" aria-label="search"
                     aria-describedby="button-addon2">
                     <option selected disabled value="">Pilih Semester</option>
-                    <option value="01">Semester I (Januari-Juni)</option>
-                    <option value="02">Semester II (Juli-Desember)</option>
+                    <option value="1">Semester I (Januari-Juni)</option>
+                    <option value="2">Semester II (Juli-Desember)</option>
                 </select>
 
                 <select name="year" class="form-control">
@@ -1090,8 +1090,8 @@ $(document).ready(function () {
                 <select name="semester" type="number" class="form-control" placeholder="search" aria-label="search"
                     aria-describedby="button-addon2">
                     <option selected disabled value="">Pilih Semester</option>
-                    <option value="01">Semester I (Januari-Juni)</option>
-                    <option value="02">Semester II (Juli-Desember)</option>
+                    <option value="1">Semester I (Januari-Juni)</option>
+                    <option value="2">Semester II (Juli-Desember)</option>
                 </select>
 
                 <select name="year" class="form-control">

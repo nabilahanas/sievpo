@@ -22,9 +22,10 @@
                 <div class="table-responsive-lg mt-4">
                     @if (request()->has('semester') && request()->has('year'))
                         <div style="padding: 10px; font-size: 15px; font-weight: bold;">
-                            Hasil Pencarian Tahun {{ $currentYear }}
+                            Hasil Pencarian Semester {{ $request->semester }} Tahun {{ $currentYear }}
                         </div>
                     @endif
+
                     <table id="tkaryawan" class="table table-sm text-nowrap text-hover table-striped" style="width:100%">
                         <thead class="thead-successv2">
                             <tr>
@@ -32,6 +33,7 @@
                                 <th rowspan="2">Nama</th>
                                 <th rowspan="2">Wilayah</th>
                                 @php
+                                    // Initialize monthsToShow based on semester and year
                                     $monthsToShow = [];
                                     if (request()->has('semester') && request()->has('year')) {
                                         $semester = request()->semester;
@@ -55,29 +57,19 @@
                                             'Desember',
                                         ];
                                     }
+                                    // Store the correct monthsToShow in a separate variable
+                                    $displayMonths = $monthsToShow;
                                 @endphp
                                 <th colspan="{{ count($monthsToShow) }}" style="text-align: center">{{ $currentYear }}</th>
                                 <th rowspan="2">Total</th>
                             </tr>
                             <tr>
-                                @if (request()->has('semester') && request()->has('year'))
-                                    @php
-                                        $semester = request()->semester;
-                                        $monthsToShow =
-                                            $semester == 01
-                                                ? ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni']
-                                                : ['Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
-                                    @endphp
-                                    @foreach ($monthsToShow as $monthName)
-                                        <th>{{ $monthName }}</th>
-                                    @endforeach
-                                @else
-                                    @foreach (['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'] as $monthName)
-                                        <th>{{ $monthName }}</th>
-                                    @endforeach
-                                @endif
+                                @foreach ($displayMonths as $monthName)
+                                    <th>{{ $monthName }}</th>
+                                @endforeach
                             </tr>
                         </thead>
+
                         <tbody>
                             @php
                                 $grandTotal = 0;
@@ -104,6 +96,7 @@
                                         @endphp
                                         <td>{{ $poin }}</td>
                                     @endforeach
+                                    {{-- {{ dd($poin) }} --}}
                                     <td>
                                         @php
                                             $userTotal = isset($karyawanTotals[$UItem->id_user])

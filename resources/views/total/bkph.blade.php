@@ -135,6 +135,11 @@
                     </div>
                 </div>
                 <div class="table-responsive-lg mt-4">
+                    @if (request()->has('semester') && request()->has('year'))
+                        <div style="padding: 10px; font-size: 15px; font-weight: bold;">
+                            Hasil Pencarian Semester {{ $request->semester }} Tahun {{ $currentYear }}
+                        </div>
+                    @endif
                     <table id="tbkphpim" class="table table-sm text-nowrap text-hover table-striped" style="width: 100%">
                         <thead class="thead-successv2">
                             <tr>

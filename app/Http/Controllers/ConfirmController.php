@@ -45,63 +45,47 @@ class ConfirmController extends Controller
     }
 
 
-    public function approval($id, $status)
+    public function approval(Request $request, $id, $status)
     {
-        $data = Data::findOrFail($id);
+        try {
+            $data = Data::findOrFail($id);
 
-        // Mengambil id_shift dari data
-        $idShift = $data->id_shift;
+            $idShift = $data->id_shift;
+            $shift = Shift::find($idShift);
 
-        // Mengambil data shift berdasarkan id_shift
-        $shift = Shift::find($idShift);
+            $poin = $shift?->poin ?? 0;
 
-        // Mengambil nilai poin dari shift atau mengatur menjadi 0 jika shift tidak ditemukan
-        $poin = $shift?->poin ?? 0;
+            $createdDayOfWeek = Carbon::parse($data->created_at)->dayOfWeek;
 
-        // $isWeekend = Carbon::parse($data->created_at)->isWeekend();
-        // $isHoliday = false;
+            if ($status === 'approved') {
+                if ($createdDayOfWeek === CarbonInterface::SATURDAY || $createdDayOfWeek === CarbonInterface::SUNDAY) {
+                    $poin += 1;
+                } else {
+                    $response = Http::get('https://api-harilibur.vercel.app/api');
 
-        $createdDayOfWeek = Carbon::parse($data->created_at)->dayOfWeek;
+                    if ($response->successful()) {
+                        $nationalHolidays = $response->json();
+                        $createdDate = Carbon::parse($data->created_at)->toDateString();
 
-        // Pengecekan status
-        if ($status === 'approved') {
-            if ($createdDayOfWeek === CarbonInterface::SATURDAY) {
-                $poin += 1;
-            } elseif ($createdDayOfWeek === CarbonInterface::SUNDAY) {
-                // Menambah poin tambahan untuk Sabtu dan Minggu jika status disetujui
-                // if ($isWeekend) {
-                $poin += 1;
-            } else {
-                // Panggil API untuk mendapatkan daftar hari libur nasional
-                $response = Http::get('https://api-harilibur.vercel.app/api');
-
-                // Periksa apakah panggilan API berhasil
-                if ($response->successful()) {
-                    // Ambil daftar hari libur nasional dari respons
-                    $nationalHolidays = $response->json();
-
-                    // Periksa apakah tanggal dibuatnya data adalah hari libur nasional
-                    $createdDate = Carbon::parse($data->created_at)->toDateString();
-                    if (in_array($createdDate, $nationalHolidays)) {
-                        // $isHoliday = count(array_filter($nationalHolidays, fn ($date) => isset($date['holiday_date']) && $date['holiday_date'] === $createdDate)) > 0;
-                        // if ($isHoliday) {
-                        $poin += 1;
+                        if (!in_array($createdDate, $nationalHolidays)) {
+                            $poin += 1;
+                        }
+                    } else {
+                        // Handle the case when the request to the external API fails
+                        throw new \Exception('Failed to fetch national holidays data');
                     }
                 }
-            }
 
-            // Update data menjadi 'approved' dan menambahkan poin dari shift hanya jika bukan Sabtu, Minggu, atau hari libur nasional
-            // if ($isWeekend || $isHoliday) {
-            if ($createdDayOfWeek !== CarbonInterface::SATURDAY && $createdDayOfWeek !== CarbonInterface::SUNDAY && !in_array($createdDate, $nationalHolidays)) {
-                $data->update(['is_approved' => 'approved', 'poin' => $poin += 1]);
-            } else {
                 $data->update(['is_approved' => 'approved', 'poin' => $poin]);
+            } elseif ($status === 'rejected') {
+                $data->update(['is_approved' => 'rejected', 'poin' => 0]);
             }
-        } elseif ($status === 'rejected') {
-            $data->update(['is_approved' => 'rejected', 'poin' => 0]);
-        }
 
-        return redirect()->route('confirm.index')->with('success', 'Laporan berhasil dinilai');
+            return response()->json(['message' => 'Laporan berhasil dinilai']);
+        } catch (\Exception $e) {
+            // Handle any exceptions that occur during the process
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
     }
 
     public function delete($id)

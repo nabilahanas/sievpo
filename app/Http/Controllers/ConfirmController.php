@@ -67,19 +67,18 @@ class ConfirmController extends Controller
                         $nationalHolidays = $response->json();
                         $createdDate = Carbon::parse($data->created_at)->toDateString();
 
-                        if (!in_array($createdDate, $nationalHolidays)) {
+                        if (in_array($createdDate, $nationalHolidays)) {
                             $poin += 1;
+                        }else {
+                            $data->update(['is_approved' => 'approved', 'poin' => $poin]);
                         }
-                    } else {
-                        // Handle the case when the request to the external API fails
-                        throw new \Exception('Failed to fetch national holidays data');
-                    }
+                    } 
                 }
 
                 $data->update(['is_approved' => 'approved', 'poin' => $poin]);
             } elseif ($status === 'rejected') {
                 $data->update(['is_approved' => 'rejected', 'poin' => 0]);
-            }
+            } 
 
             return response()->json(['message' => 'Laporan berhasil dinilai']);
         } catch (\Exception $e) {

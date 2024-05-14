@@ -13,7 +13,7 @@ class DataSeeder extends Seeder
      */
     public function run(): void
     {
-        Data::factory()->count(20)->create();
+        Data::factory()->count(5)->create();
 
     }
 }

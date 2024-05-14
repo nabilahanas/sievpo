@@ -25,24 +25,29 @@ class DataFactory extends Factory
      */
     public function definition()
     {
-        // Ambil satu entitas user, bidang, dan shift secara acak
+        // Mendapatkan waktu acak
         $user = User::inRandomOrder()->first();
         $bidang = Bidang::inRandomOrder()->first();
-        $shift = Shift::inRandomOrder()->first();
-
-        // Variasi nilai untuk is_approved
-        $approvedStatus = 'approved';
-
+        $tglWaktu = $this->faker->dateTimeBetween('2024-05-01', '2024-05-02');
+        $jam = $tglWaktu->format('H:i:s'); // Ambil hanya jam
+    
+        // Temukan shift yang sesuai dengan jam yang diberikan
+        $shift = Shift::whereTime('jam_mulai', '<=', $jam)
+                      ->whereTime('jam_akhir', '>=', $jam)
+                      ->first();
+    
+        // Jika shift ditemukan, ambil ID shift-nya. Jika tidak, berikan nilai default.
+        $idShift = $shift ? $shift->id_shift : null;
+        $approvedStatus = 'pending';
+    
         return [
             'id_user' => $user->id_user,
             'id_bidang' => $bidang->id_bidang,
-            'id_shift' => $shift->id_shift,
+            'id_shift' => $idShift,
             'lokasi' => $this->faker->address,
-            'tgl_waktu' => $this->faker->dateTimeBetween('2024-03-01', '2024-03-31'),
+            'created_at' => $tglWaktu,
             'foto' => $this->faker->imageUrl(),
             'is_approved' => $approvedStatus,
-            'poin' => $shift->poin,
-            'created_at' => $this->faker->dateTimeBetween('2024-05-01', '2024-05-01'),
         ];
     }
 }

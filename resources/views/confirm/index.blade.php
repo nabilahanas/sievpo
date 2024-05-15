@@ -174,18 +174,16 @@
                         render: (data, type, row, meta) => {
                             return `
                             <form>
-                @csrf
-                <button type="button" class="btn btn-sm btn-success btn-block mb-2 btn-terima" 
-                    data-id="${row.id_data}" ${row.is_approved != 'pending' ? 'disabled' : ''}>
-                    <i class="fas fa-check-circle mr-2"></i>Terima
-                </button>
-                <button type="button" class="btn btn-sm btn-secondary btn-block mb-2 btn-tolak" 
-                    data-id="${row.id_data}" ${row.is_approved != 'pending' ? 'disabled' : ''}>
-                    <i class="fas fa-times-circle mr-2"></i>Tolak
-                </button>
-            </form>
-
-
+                                @csrf
+                                <button type="button" class="btn btn-sm btn-success btn-block mb-2 btn-terima" 
+                                    data-id="${row.id_data}" ${row.is_approved != 'pending' ? 'disabled' : ''}>
+                                    <i class="fas fa-check-circle mr-2"></i>Terima
+                                </button>
+                                <button type="button" class="btn btn-sm btn-secondary btn-block mb-2 btn-tolak" 
+                                    data-id="${row.id_data}" ${row.is_approved != 'pending' ? 'disabled' : ''}>
+                                    <i class="fas fa-times-circle mr-2"></i>Tolak
+                                </button>
+                            </form>
                             <button type="button" class="btn btn-sm btn-danger btn-block mb-2"
                                 data-bs-toggle="modal" data-bs-target="#hapusModal${row.id_data}">
                                 <i class="fas fa-trash mr-2"></i>Hapus
@@ -236,27 +234,10 @@
                         _token: '{{ csrf_token() }}'
                     },
                     success: function(response) {
-                        // Perbarui status dan poin di tabel
-                        var newData = response.data;
-
-                        // Verifikasi kesesuaian data (opsional)
-                        console.log(newData);
-
-                        // Dapatkan baris yang sesuai dengan ID data yang diperbarui
-                        var row = confirm.DataTable().row($(this).closest('tr'));
-
-                        // Perbarui data dalam baris
-                        row.data().is_approved = newData.is_approved;
-                        row.data().poin = newData.poin;
-
-                        // Perbarui tampilan tabel
-                        confirm.draw();
-
-                        // Tampilkan pesan sukses atau lakukan tindakan lainnya
+                        confirm.ajax.reload();
                         console.log(response);
                     },
                     error: function(xhr, status, error) {
-                        // Tangani kesalahan jika ada
                         console.error(error);
                     }
                 });
@@ -274,24 +255,10 @@
                         _token: '{{ csrf_token() }}'
                     },
                     success: function(response) {
-                        // Perbarui status dan poin di tabel
-                        var newData = response.data;
-
-                        // Dapatkan baris yang sesuai dengan ID data yang diperbarui
-                        var row = confirm.DataTable().row($(this).closest('tr'));
-
-                        // Perbarui data dalam baris
-                        row.data().is_approved = newData.is_approved;
-                        row.data().poin = newData.poin;
-
-                        // Perbarui tampilan tabel
-                        confirm.draw();
-
-                        // Tampilkan pesan sukses atau lakukan tindakan lainnya
+                        confirm.ajax.reload();
                         console.log(response);
                     },
                     error: function(xhr, status, error) {
-                        // Tangani kesalahan jika ada
                         console.error(error);
                     }
                 });
@@ -309,24 +276,20 @@
             });
 
 
-
-
-
             $(".carikonfirm").append(`
-    <form>
-    <div class="input-group mb-3">
-        <select name="c_search" type="number" class="form-control" placeholder="c_search" aria-label="search"
-            aria-describedby="button-addon2">
-            <option value="">Pilih Status</option>
-            <option value="pending" @selected(request('c_search') == 'pending')>Diproses</option>
-            <option value="approved" @selected(request('c_search') == 'approved')>Diterima</option>
-            <option value="rejected" @selected(request('c_search') == 'rejected')>Ditolak</option>
-        </select>
-
-        <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Cari</button>
-    </div>
-    </form>
-    `);
+                <form>
+                    <div class="input-group mb-3">
+                        <select name="c_search" type="number" class="form-control" placeholder="c_search" aria-label="search"
+                            aria-describedby="button-addon2">
+                            <option value="">Pilih Status</option>
+                            <option value="pending" @selected(request('c_search') == 'pending')>Diproses</option>
+                            <option value="approved" @selected(request('c_search') == 'approved')>Diterima</option>
+                            <option value="rejected" @selected(request('c_search') == 'rejected')>Ditolak</option>
+                        </select>
+                        <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Cari</button>
+                    </div>
+                </form>
+            `);
         });
     </script>
 @endsection

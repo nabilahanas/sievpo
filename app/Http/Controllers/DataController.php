@@ -18,13 +18,13 @@ class DataController extends Controller
 
     public function index()
     {
-        $bidang = Bidang::all();
-        $shift = Shift::all();
+        // $bidang = Bidang::all();
+        // $shift = Shift::all();
 
         $user = Auth::user();
-        $data = Data::where('id_user', $user->id_user)->get();
+        $data = Data::where('id_user', $user->id_user)->with('bidang', 'shift')->orderBy('created_at', 'desc')->get();
 
-        return view('data.index', compact('data', 'user', 'bidang', 'shift', 'data'), ['key' => 'data']);
+        return view('data.index', compact('data', 'user'), ['key' => 'data']);
     }
 
     public function create()

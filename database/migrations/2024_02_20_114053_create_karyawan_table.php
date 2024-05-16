@@ -13,9 +13,10 @@ return new class extends Migration
     {
         Schema::create('karyawan', function (Blueprint $table) {
             $table->id('id_karyawan');
-            $table->string('nama', 75);
-            $table->string('jabatan', 225);
+            $table->string('nama');
+            $table->string('jabatan');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

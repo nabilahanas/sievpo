@@ -14,12 +14,12 @@ return new class extends Migration
 
         Schema::create('jabatan', function (Blueprint $table) {
             $table->id('id_jabatan');
-            $table->string('nama_jabatan', 100);
+            $table->string('nama_jabatan');
             $table->boolean('wilayah');
-            $table->string('bagian', 50);
-            $table->string('klasifikasi', 10);
-            $table->boolean('is_active');
+            $table->string('bagian');
+            $table->string('klasifikasi');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

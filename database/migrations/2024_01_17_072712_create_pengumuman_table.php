@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('pengumuman', function (Blueprint $table) {
             $table->id('id_pengumuman');
-            $table->string('judul', 255);
-            $table->binary('gambar')->nullable(); // longblob in MySQL is equivalent to binary in Laravel
-            $table->text('deskripsi');
+            $table->string('judul', 40);
+            $table->text('gambar')->nullable();
+            $table->text('deskripsi')->nullable();
             $table->date('tgl_publikasi');
             $table->timestamps();
-
+            $table->softDeletes();
         });
     }
 

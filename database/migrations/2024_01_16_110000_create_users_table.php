@@ -14,14 +14,15 @@ return new class extends Migration
 
         Schema::create('users', function (Blueprint $table) {
             $table->id('id_user');
-            $table->string('nama_user', 50);
+            $table->string('nama_user');
             $table->string('nip', 20);
-            $table->string('no_hp')->nullable();
+            $table->string('no_hp', 15)->nullable();
             $table->unsignedBigInteger('id_jabatan');
             $table->unsignedBigInteger('id_role');
             $table->string('password', 255);
             $table->text('profile_pict')->nullable();
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('id_jabatan')->references('id_jabatan')->on('jabatan')->onDelete('cascade');
             $table->foreign('id_role')->references('id_role')->on('role')->onDelete('cascade');

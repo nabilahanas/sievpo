@@ -19,14 +19,13 @@ return new class extends Migration
             $table->text('lokasi');
             $table->timestamp('tgl_waktu');
             $table->text('foto');
-            // $table->boolean('is_approved');
+            $table->enum('is_approved', ['pending', 'approved', 'rejected'])->default('pending');
+            $table->integer('poin')->default(0);
             $table->timestamps();
-
 
             $table->foreign('id_user')->references('id_user')->on('users')->onDelete('cascade');
             $table->foreign('id_bidang')->references('id_bidang')->on('bidang')->onDelete('cascade');
             $table->foreign('id_shift')->references('id_shift')->on('shift')->onDelete('cascade');
-            // $table->foreign('id_lokasi')->references('id_lokasi')->on('lokasi')->onDelete('cascade');
         });
     }
 

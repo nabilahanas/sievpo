@@ -50,20 +50,14 @@ class LandingController extends Controller
 
         foreach ($berita as $item) {
             try {
-                // Mendapatkan URL dari setiap berita
                 $url = $item->deskripsi;
 
-                // Mendapatkan konten HTML dari URL menggunakan HtmlDomParser
                 $htmlContent = file_get_contents($url);
 
-                // Simpan konten HTML dalam array
                 $beritaContent[$item->id_berita] = $htmlContent;
             } catch (\Exception $e) {
-                // Tangani kesalahan yang terjadi saat mengambil konten dari URL
-                // Anda dapat menentukan tindakan yang sesuai, seperti menyimpan pesan kesalahan atau memberikan nilai default
                 $beritaContent[$item->id_berita] = null;
             }
-            // dd($beritaContent);
         }
 
         return view('landing.berita', compact('berita', 'beritalanding','beritaContent'), ['key' => 'landing']);

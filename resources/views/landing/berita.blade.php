@@ -69,21 +69,20 @@
                                                     // Temukan posisi akhir tag </p> setelah tag <p> pertama
                                                     $end = strpos($htmlContent, '</p>', $start);
                                                     if ($end !== false) {
-                                                        // Ambil teks di antara tag <p> dan </p>
                                                         $preview = substr(
                                                             $htmlContent,
                                                             $start + 3,
                                                             $end - $start - 3,
                                                         );
-                                                        echo $preview; // Menampilkan preview dari konten HTML
+                                                        echo $preview;
                                                     } else {
-                                                        echo 'Gagal mengambil konten berita.';
+                                                        echo 'Berita dapat dilihat selengkapnya pada link yang tersedia.';
                                                     }
                                                 } else {
-                                                    echo 'Tidak ada paragraf yang ditemukan dalam konten berita.';
+                                                    echo 'Berita dapat dilihat selengkapnya pada link yang tersedia.';
                                                 }
                                             } else {
-                                                echo 'Gagal mengambil konten berita.';
+                                                echo 'Berita dapat dilihat selengkapnya pada link yang tersedia.';
                                             }
                                         @endphp
                                         

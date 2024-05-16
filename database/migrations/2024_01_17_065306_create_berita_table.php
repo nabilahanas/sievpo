@@ -13,13 +13,12 @@ return new class extends Migration
     {
         Schema::create('berita', function (Blueprint $table) {
             $table->id('id_berita');
-            $table->string('judul', 255);
+            $table->string('judul');
             $table->text('gambar')->nullable();
             $table->text('deskripsi');
             $table->date('tgl_publikasi');
             $table->timestamps();
             $table->softDeletes();
-
         });
     }
 

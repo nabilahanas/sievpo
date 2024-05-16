@@ -18,11 +18,8 @@ class DataController extends Controller
 
     public function index()
     {
-        // $bidang = Bidang::all();
-        // $shift = Shift::all();
-
         $user = Auth::user();
-        $data = Data::where('id_user', $user->id_user)->with('bidang', 'shift')->orderBy('created_at', 'desc')->get();
+        $data = Data::orderBy('created_at', 'desc')->where('id_user', $user->id_user)->with('bidang', 'shift')->get();
 
         return view('data.index', compact('data', 'user'), ['key' => 'data']);
     }
@@ -45,7 +42,7 @@ class DataController extends Controller
         $this->validate($request, [
             'id_user' => 'required',
             'id_bidang' => 'required',
-            'id_shift' => 'required',
+            // 'id_shift' => 'required',
             'lokasi' => 'required',
             'tgl_waktu' => 'required|date_format:Y-m-d H:i:s',
             'foto' => 'required|image|mimes:jpeg,png,jpg,svg|max:2048',

@@ -18,15 +18,13 @@ class ConfirmController extends Controller
 
     public function index(Request $request)
     {
-        $data = Data::with(['bidang', 'shift', 'user']); // Inisialisasi eloquent
+        $data = Data::with(['bidang', 'shift', 'user']);
 
         if ($request->has('c_search') && !empty($request->input('c_search'))) {
             $c_search = $request->input('c_search');
-            // Filter data berdasarkan kata kunci pencarian pada kolom 'is_approved'
             $data->where('is_approved', $c_search);
         }
 
-        // Urutkan data berdasarkan waktu masuk (created_at) dari terbaru ke terlama
         $data->orderBy('created_at', 'desc');
 
         if ($request->ajax() || $request->isXmlHttpRequest() || $request->input('is_ajax') === 'true') {

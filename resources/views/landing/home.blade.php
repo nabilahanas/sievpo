@@ -13,9 +13,9 @@
             </div>
             <div class="row gy-5" data-aos="fade-in">
                 <div class="d-flex justify-content-center justify-content-lg-start">
-                    <a href="#call-to-action" class="btn-get-started">Apa itu SIEVPO?</a>
-                    <a href="#services" class="btn-get-started">Fitur SIEVPO</a>
-                    <a href="#testimonials" class="btn-get-started">Keunggulan SIEVPO</a>
+                    <a href="#apaitusievpo" class="btn-get-started">Apa itu SIEVPO?</a>
+                    <a href="#fitursievpo" class="btn-get-started">Fitur SIEVPO</a>
+                    <a href="#keunggulansievpo" class="btn-get-started">Keunggulan SIEVPO</a>
                 </div>
             </div>
         </div>
@@ -71,7 +71,7 @@
 
     <main id="main">
         <!-- ======= Call To Action Section ======= -->
-        <section id="call-to-action" class="call-to-action">
+        <section id="apaitusievpo" class="call-to-action">
             <div class="logo d-flex align-items-center justify-content-center" data-aos="fade">
                 <img src="{{ asset('landingpage/assets/img/perhutani-2.png') }}" width="300" alt="Logo Perhutani">
             </div>
@@ -109,7 +109,7 @@
         </section><!-- End Call To Action Section -->
 
         <!-- ======= Our Services Section ======= -->
-        <section id="services" class="services sections-bg">
+        <section id="fitursievpo" class="services sections-bg">
             <div class="container" data-aos="fade-up">
 
                 <div class="section-header">
@@ -372,7 +372,7 @@
         </section><!-- End Our Services Section -->
 
         <!-- ======= Testimonials Section ======= -->
-        <section id="testimonials" class="testimonials">
+        <section id="keunggulansievpo" class="testimonials">
             <div class="container" data-aos="fade-up">
                 <div class="section-header">
                     <h2>Keunggulan SIEVPO</h2>

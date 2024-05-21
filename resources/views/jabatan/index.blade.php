@@ -51,7 +51,7 @@
                                 <td>
                                     <a href="{{ route('jabatan.edit', $jabatan->id_jabatan) }}" type="button"
                                         class="btn btn-sm btn-warning"><i class="fas fa-pen mr-2"></i>Ubah</a>
-
+{{-- 
                                     <form
                                         action="{{ $jabatan->trashed() ? route('jabatan.restore', $jabatan->id_jabatan) : route('jabatan.delete', $jabatan->id_jabatan) }}"
                                         method="post" class="d-inline">
@@ -63,16 +63,16 @@
                                                 class="{{ $jabatan->trashed() ? 'fas fa-check-circle' : 'fas fa-times-circle' }} mr-1"></i>
                                             {{ $jabatan->trashed() ? 'Aktifkan' : 'Nonaktifkan' }}
                                         </button>
-                                    </form>
+                                    </form> --}}
 
                                     <!-- Button trigger modal -->
-                                    {{-- <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal"
+                                    <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal"
                                         data-bs-target="#hapusModal{{ $jabatan->id_jabatan }}">
                                         <i class="fas fa-trash mr-2"></i>Hapus
-                                    </button> --}}
+                                    </button>
 
                                     <!-- Modal -->
-                                    {{-- <div class="modal fade" id="hapusModal{{ $jabatan->id_jabatan }}" tabindex="-1"
+                                    <div class="modal fade" id="hapusModal{{ $jabatan->id_jabatan }}" tabindex="-1"
                                         aria-labelledby="hapusModalLabel" aria-hidden="true">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
@@ -88,7 +88,8 @@
                                                     @csrf
                                                     @method('DELETE')
                                                     <div class="modal-body">
-                                                        Apakah Anda yakin ingin menghapus data ini?
+                                                        Data jabatan yang dihapus <b>dapat</b> dipulihkan.
+                                                        <br>Apakah Anda yakin ingin menghapus data ini?
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary"
@@ -98,7 +99,7 @@
                                                 </form>
                                             </div>
                                         </div>
-                                    </div> --}}
+                                    </div>
                                 </td>
                             </tr>
                         @endforeach
@@ -107,4 +108,51 @@
             </div>
         </div>
     </div>
+
+    @if (count($jabatanDeleted) > 0)
+        <h3 class="ml-3">Riwayat Data Jabatan</h3>
+        <div class="card mt-3">
+            <div class="card-body table-responsive">
+                <table id="rjabatan" class="table table-sm text-nowrap table-hover table-striped" style="width: 100%">
+                    <thead class="thead-secondary">
+                        <tr>
+                            <th>No.</th>
+                            <th>Nama Jabatan</th>
+                            <th>Wilayah</th>
+                            <th>Bagian</th>
+                            <th>Klasifikasi</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($jabatanDeleted as $jabatan)
+                            <tr>
+                                <td>{{ $loop->iteration }}.</td>
+                                <td>{{ $jabatan->nama_jabatan }}</td>
+                                <td>
+                                    @if ($jabatan->wilayah == 0)
+                                        Wilayah Timur
+                                    @elseif($jabatan->wilayah == 1)
+                                        Wilayah Barat
+                                    @endif
+                                </td>
+                                <td>{{ $jabatan->bagian }}</td>
+                                <td>{{ $jabatan->klasifikasi }}</td>
+                                <td>
+                                    <form action="{{ route('jabatan.restore', $jabatan->id_jabatan) }}" method="POST"
+                                        class="d-inline">
+                                        @csrf
+                                        @method('POST')
+                                        <button type="submit" class="btn btn-success btn-sm">
+                                            <i class="fas fa-trash-restore mr-2"></i>
+                                            Pulihkan</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    @endif
 @endsection

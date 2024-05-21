@@ -12,8 +12,9 @@ class JabatanController extends Controller
 
     public function index()
     {
-        $jabatan = Jabatan::withTrashed()->get();
-        return view('jabatan.index', compact('jabatan'), ['key' => 'jabatan']);
+        $jabatan = Jabatan::all();
+        $jabatanDeleted = Jabatan::onlyTrashed()->get();
+        return view('jabatan.index', compact('jabatan', 'jabatanDeleted'), ['key' => 'jabatan']);
     }
 
     public function create()
@@ -76,7 +77,7 @@ class JabatanController extends Controller
 
     public function restore($id)
     {
-        $jabatan = Jabatan::withTrashed()->find($id);
+        $jabatan = Jabatan::onlyTrashed()->find($id);
         $jabatan->restore();
 
         return redirect()->route('jabatan.index')->with('success', 'Data jabatan berhasil diaktifkan');

@@ -1209,6 +1209,25 @@ $(document).ready(function () {
     });
 });
 
+// Riwayat Jabatan
+$(document).ready(function () {
+    var table = $("#rjabatan").DataTable({
+        scrollCollapse: true,
+        columnDefs: [{ orderable: false, targets: 5 }],
+        displayLength: 25,
+    });
+
+    // Order by the grouping
+    $("#ruser").on("click", "tr.group", function () {
+        var currentOrder = table.order()[0];
+        if (currentOrder[0] === groupColumn && currentOrder[1] === "asc") {
+            table.order([groupColumn, "desc"]).draw();
+        } else {
+            table.order([groupColumn, "asc"]).draw();
+        }
+    });
+});
+
 // Bidang
 $(document).ready(function () {
     var table = $("#bidang").DataTable({

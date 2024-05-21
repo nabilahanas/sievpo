@@ -681,7 +681,7 @@
                 }
             },
             xAxis: {
-                categories: ['Poin'],
+                categories: ['Total Poin'],
                 title: {
                     text: null
                 },
@@ -691,7 +691,7 @@
             yAxis: {
                 min: 0,
                 title: {
-                    text: 'Poin',
+                    text: 'Total Poin',
                     align: 'high'
                 },
                 labels: {

@@ -57,26 +57,35 @@ class ConfirmController extends Controller
 
             if ($status === 'approved') {
                 if ($createdDayOfWeek === CarbonInterface::SATURDAY || $createdDayOfWeek === CarbonInterface::SUNDAY) {
-                    $poin += 1;
+                    $data->update(['is_approved' => 'approved', 'poin' => $poin + 1]);
                 } else {
                     $response = Http::get('https://api-harilibur.vercel.app/api');
 
                     if ($response->successful()) {
-                        $nationalHolidays = $response->json();
+                        $holidays = $response->json();
                         $createdDate = Carbon::parse($data->created_at)->toDateString();
 
+                        // Inisialisasi array untuk menampung tanggal libur nasional
+                        $nationalHolidays = [];
+
+                        // Loop melalui setiap objek dalam array holidays
+                        foreach ($holidays as $holiday) {
+                            if ($holiday['is_national_holiday']) {
+                                $nationalHolidays[] = $holiday['holiday_date'];
+                            }
+                        }
+
                         if (in_array($createdDate, $nationalHolidays)) {
-                            $poin += 1;
-                        }else {
+                            $data->update(['is_approved' => 'approved', 'poin' => $poin + 1]);
+                        } else {
                             $data->update(['is_approved' => 'approved', 'poin' => $poin]);
                         }
-                    } 
+                    }
                 }
 
-                $data->update(['is_approved' => 'approved', 'poin' => $poin]);
             } elseif ($status === 'rejected') {
                 $data->update(['is_approved' => 'rejected', 'poin' => 0]);
-            } 
+            }
 
             return response()->json(['message' => 'Laporan berhasil dinilai']);
         } catch (\Exception $e) {

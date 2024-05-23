@@ -42,7 +42,7 @@ class DataController extends Controller
         $this->validate($request, [
             'id_user' => 'required',
             'id_bidang' => 'required',
-            // 'id_shift' => 'required',
+            'id_shift' => 'required',
             'lokasi' => 'required',
             'tgl_waktu' => 'required|date_format:Y-m-d H:i:s',
             'foto' => 'required|image|mimes:jpeg,png,jpg,svg|max:2048',

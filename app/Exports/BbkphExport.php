@@ -9,6 +9,7 @@ use App\Models\Shift;
 use Carbon\Carbon;
 use App\Models\Data;
 use App\Models\User;
+use App\Models\Jabatan;
 
 class BbkphExport implements FromView
 {
@@ -32,6 +33,11 @@ class BbkphExport implements FromView
 
         $data = [];
 
+        $jabatan = Jabatan::whereNotIn('bagian', ['sistem'])
+            ->groupBy('bagian')
+            ->select('bagian')
+            ->get();
+
         if (request()->has('bulan') && request()->has('tahun')) {
             $searchMonth = Carbon::createFromDate(request()->tahun, request()->bulan, 1);
             $currentMonth = $searchMonth->format('F Y');
@@ -54,6 +60,6 @@ class BbkphExport implements FromView
             $data[$bkphId][$tanggal] += $item->poin;
         }
 
-        return view('exports.rekapbulanan.bbkph', compact('currentMonth','shifts', 'users', 'data', 'bidang'), ['key' => 'bulanan']);
+        return view('exports.rekapbulanan.bbkph', compact('currentMonth', 'jabatan','shifts', 'users', 'data', 'bidang'), ['key' => 'bulanan']);
     }
 }

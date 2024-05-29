@@ -396,7 +396,7 @@ section {
   }
 
   .navbar a:hover,
-  .navbar .active,
+  .navbar a:active,
   .navbar .active:focus,
   .navbar li:hover>a {
     color: var(--color-primary);

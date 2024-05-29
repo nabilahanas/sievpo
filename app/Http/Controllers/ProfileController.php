@@ -24,9 +24,7 @@ class ProfileController extends Controller
     public function updateProfilePicture(Request $request)
     {
         $request->validate([
-            'profile_pict' => 'nullable|image|mimes:jpeg,png,jpg,svg|max:2048',
-        ], [
-            'profile_pict.max' => 'Ukuran gambar tidak boleh melebihi 2 MB!',
+            'profile_pict' => 'nullable|image|mimes:jpeg,png,jpg,svg',
         ]);
 
         $users = Auth::user();

@@ -30,11 +30,9 @@ class BeritaController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'judul' => 'required',
-            'gambar' => 'nullable|image|mimes:jpeg,png,jpg,svg|max:2048',
+            'gambar' => 'nullable|image|mimes:jpeg,png,jpg,svg',
             'deskripsi' => 'required',
             'tgl_publikasi' => 'required',
-        ], [
-            'gambar.max' => 'Ukuran gambar tidak boleh melebihi 2 MB!',
         ]);
 
         if ($validator->fails()) {
@@ -78,11 +76,9 @@ class BeritaController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'judul' => 'required',
-            'gambar' => 'nullable|image|mimes:jpeg,png,jpg,svg|max:2048', // Validate image
+            'gambar' => 'nullable|image|mimes:jpeg,png,jpg,svg', // Validate image
             'deskripsi' => 'required',
             'tgl_publikasi' => 'required',
-        ], [
-            'gambar.max' => 'Ukuran gambar tidak boleh melebihi 2 MB!',
         ]);
 
         if ($validator->fails()) {

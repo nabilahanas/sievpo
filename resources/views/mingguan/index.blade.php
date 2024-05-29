@@ -67,34 +67,28 @@
                                         $jml = 0;
                                     @endphp
                                     @foreach ($shifts as $shift)
-                                        <td>
-                                            @php
-                                                $now = Carbon\Carbon::now();
-                                                $start_date = request()->has('start_date')
-                                                    ? Carbon\Carbon::parse(request()->start_date)->startOfDay()
-                                                    : $now->startOfWeek();
-                                                $end_date = request()->has('end_date')
-                                                    ? Carbon\Carbon::parse(request()->end_date)->endOfDay()
-                                                    : $now->endOfWeek();
+                                    <td>
+                                        @php
+                                            $searchDate = clone $start_date;
+                                    
+                                            $poin = 0;
+                                    
+                                            while ($searchDate <= $end_date) {
+                                                $currentDate = $searchDate->format('Y-m-d');
+                                    
+                                                $poin += isset($data[$user->id_user][$currentDate][$b->id_bidang][$shift->id_shift])
+                                                    ? $data[$user->id_user][$currentDate][$b->id_bidang][$shift->id_shift]
+                                                    : 0;
 
-                                                $searchDate = clone $start_date;
-                                                $poin = 0;
-
-                                                while ($searchDate <= $end_date) {
-                                                    $poin += isset(
-                                                        $data[$user->id_user][$b->id_bidang][$shift->id_shift],
-                                                    )
-                                                        ? $data[$user->id_user][$b->id_bidang][$shift->id_shift]
-                                                        : 0;
-
-                                                    $searchDate->addDay();
-                                                }
-
-                                                $jml += $poin;
-                                                $total += $poin;
-                                            @endphp
-                                            {{ $poin }}
-                                        </td>
+                                                $searchDate->addDay();
+                                            }
+                                    
+                                            $jml += $poin;
+                                            $total += $poin;
+                                        @endphp
+                                        {{ $poin }}
+                                    </td>
+                                    
                                     @endforeach
                                     <td>{{ $jml }}</td>
                                 @endforeach

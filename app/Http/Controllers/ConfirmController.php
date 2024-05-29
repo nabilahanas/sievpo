@@ -65,10 +65,8 @@ class ConfirmController extends Controller
                         $holidays = $response->json();
                         $createdDate = Carbon::parse($data->created_at)->toDateString();
 
-                        // Inisialisasi array untuk menampung tanggal libur nasional
                         $nationalHolidays = [];
 
-                        // Loop melalui setiap objek dalam array holidays
                         foreach ($holidays as $holiday) {
                             if ($holiday['is_national_holiday']) {
                                 $nationalHolidays[] = $holiday['holiday_date'];
@@ -89,7 +87,6 @@ class ConfirmController extends Controller
 
             return response()->json(['message' => 'Laporan berhasil dinilai']);
         } catch (\Exception $e) {
-            // Handle any exceptions that occur during the process
             return response()->json(['error' => $e->getMessage()], 500);
         }
     }

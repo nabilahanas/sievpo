@@ -28,8 +28,7 @@
                     ];
                 }
             @endphp
-            <th colspan="{{ count($monthsToShow) }}" style="text-align: center">
-                {{ request()->input('year', $currentYear) }}</th>
+            <th colspan="{{ count($monthsToShow) }}" style="text-align: center">{{ $currentYear }}</th>
             <th rowspan="2">Total</th>
         </tr>
         <tr>
@@ -73,25 +72,21 @@
                 @endforeach
                 <td>
                     @php
-                        $semesterTotal = 0;
-                        foreach ($monthsToShow as $month) {
-                            $poin = isset($bidangTotals[$BItem->id_bidang][$month])
-                                ? $bidangTotals[$BItem->id_bidang][$month]
-                                : 0;
-                            $semesterTotal += $poin;
-                        }
+                        $bidangTotal = isset($bidangTotals[$BItem->id_bidang])
+                            ? array_sum($bidangTotals[$BItem->id_bidang])
+                            : 0;
                     @endphp
-                    {{ $semesterTotal }}
+                    {{ $bidangTotal }}
                 </td>
             </tr>
             @php
-                $grandTotal += $semesterTotal;
+                $grandTotal += $bidangTotal;
             @endphp
         @endforeach
     </tbody>
     <tfoot>
         <tr>
-            <th colspan="3" style="text-align:right">Total:</th>
+            <th colspan="2" style="text-align:right">Total:</th>
             @foreach ($monthlyTotals as $monthlyTotal)
                 <th>{{ $monthlyTotal }}</th>
             @endforeach

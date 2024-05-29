@@ -5,6 +5,7 @@
             <th rowspan="2">Nama</th>
             <th rowspan="2">Wilayah</th>
             @php
+                // Initialize monthsToShow based on semester and year
                 $monthsToShow = [];
                 if (request()->has('semester') && request()->has('year')) {
                     $semester = request()->semester;
@@ -28,34 +29,24 @@
                         'Desember',
                     ];
                 }
+                // Store the correct monthsToShow in a separate variable
+                $displayMonths = $monthsToShow;
             @endphp
-            <th colspan="{{ count($monthsToShow) }}" style="text-align: center">
-                {{ request()->input('year', $currentYear) }}</th>
+            <th colspan="{{ count($monthsToShow) }}" style="text-align: center">{{ $currentYear }}</th>
             <th rowspan="2">Total</th>
         </tr>
         <tr>
-            @if (request()->has('semester') && request()->has('year'))
-                @php
-                    $semester = request()->semester;
-                    $monthsToShow =
-                        $semester == 01
-                            ? ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni']
-                            : ['Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
-                @endphp
-                @foreach ($monthsToShow as $monthName)
-                    <th>{{ $monthName }}</th>
-                @endforeach
-            @else
-                @foreach (['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'] as $monthName)
-                    <th>{{ $monthName }}</th>
-                @endforeach
-            @endif
+            @foreach ($displayMonths as $monthName)
+                <th>{{ $monthName }}</th>
+            @endforeach
         </tr>
     </thead>
-    <tbody style="overflow-x: auto;">
+
+    <tbody>
         @php
             $grandTotal = 0;
             $monthlyTotals = array_fill_keys($monthsToShow, 0);
+            $usersData = [];
         @endphp
         @foreach ($user as $UItem)
             <tr>
@@ -77,24 +68,32 @@
                     @endphp
                     <td>{{ $poin }}</td>
                 @endforeach
+                {{-- {{ dd($poin) }} --}}
                 <td>
                     @php
-                        $semesterTotal = 0;
-                        foreach ($monthsToShow as $month) {
-                            $poin = isset($karyawanTotals[$UItem->id_user][$month])
-                                ? $karyawanTotals[$UItem->id_user][$month]
-                                : 0;
-                            $semesterTotal += $poin;
-                        }
+                        $userTotal = isset($karyawanTotals[$UItem->id_user])
+                            ? array_sum($karyawanTotals[$UItem->id_user])
+                            : 0;
+                        $UItem->total = $userTotal;
                     @endphp
-                    {{ $semesterTotal }}
+                    {{ $userTotal }}
                 </td>
             </tr>
             @php
-                $grandTotal += $semesterTotal;
+                $grandTotal += $userTotal;
+                $usersData[] = ['nama_user' => $UItem->nama_user, 'total' => $userTotal];
             @endphp
         @endforeach
     </tbody>
+    @php
+        $totalPoints = isset($karyawanTotals[auth()->user()->id_user])
+            ? array_values($karyawanTotals[auth()->user()->id_user])
+            : [];
+        // Urutkan array pengguna berdasarkan total mereka secara menurun
+        usort($usersData, function ($a, $b) {
+            return $b['total'] - $a['total'];
+        });
+    @endphp
     <tfoot>
         <tr>
             <th colspan="3" style="text-align:right">Total:</th>

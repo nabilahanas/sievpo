@@ -3,7 +3,7 @@
         <tr>
             <th rowspan="2">No.</th>
             <th rowspan="2">Nama</th>
-            <th rowspan="2">Nama KRPH</th>
+            <th rowspan="2">Nama RPH</th>
             @php
                 $monthsToShow = [];
                 if (request()->has('semester') && request()->has('year')) {
@@ -29,8 +29,7 @@
                     ];
                 }
             @endphp
-            <th colspan="{{ count($monthsToShow) }}" style="text-align: center">
-                {{ request()->input('year', $currentYear) }}</th>
+            <th colspan="{{ count($monthsToShow) }}" style="text-align: center">{{ $currentYear }}</th>
             <th rowspan="2">Total</th>
         </tr>
         <tr>
@@ -57,37 +56,39 @@
         @php
             $grandTotal = 0;
             $monthlyTotals = array_fill_keys($monthsToShow, 0);
+            $krphData = [];
         @endphp
         @foreach ($jabatan1 as $krph)
             <tr>
-                <td scope="row">{{ $loop->iteration }}</td>
+                <td scope="row">{{ $loop->iteration }}.</td>
                 <td>{{ $krph->nama_user }}</td>
                 <td>{{ $krph->jabatan->nama_jabatan }}</td>
+                @php
+                    $krphTotal = isset($krphTotals[$krph->id_user])
+                        ? array_sum($krphTotals[$krph->id_user])
+                        : 0;
+                @endphp
                 @foreach ($monthsToShow as $month)
                     @php
-                        $poin = isset($krphTotals[$krph->id_user][$month]) ? $krphTotals[$krph->id_user][$month] : 0;
+                        $poin = isset($krphTotals[$krph->id_user][$month])
+                            ? $krphTotals[$krph->id_user][$month]
+                            : 0;
                         $monthlyTotals[$month] += $poin;
+                        $krph->total = $krphTotal;
                     @endphp
                     <td>{{ $poin }}</td>
                 @endforeach
-                <td>
-                    @php
-                        $semesterTotal = 0;
-                        foreach ($monthsToShow as $month) {
-                            $poin = isset($krphTotals[$krph->id_user][$month])
-                                ? $krphTotals[$krph->id_user][$month]
-                                : 0;
-                            $semesterTotal += $poin;
-                        }
-                    @endphp
-                    {{ $semesterTotal }}
-                </td>
+                <td>{{ $krphTotal }}</td>
             </tr>
             @php
-                $grandTotal += $semesterTotal;
+                $grandTotal += $krphTotal;
+                $krphData[] = ['nama_user' => $krph->nama_user, 'total' => $krphTotal];
             @endphp
         @endforeach
     </tbody>
+    @php
+        $krphData = collect($krphData)->sortByDesc('total')->values();
+    @endphp
     <tfoot>
         <tr>
             <th colspan="3" style="text-align:right">Total:</th>

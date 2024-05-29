@@ -45,19 +45,20 @@ class MingguanController extends Controller
         }        
 
         foreach ($datas as $item) {
-                
+            $tanggal = $item->created_at->format('Y-m-d');
                 $userId = $item->id_user;
                 $bidangId = $item->id_bidang;
                 $shiftId = $item->id_shift;
                 $poin = $item->poin;
 
-                if (!isset($data[$userId][$bidangId][$shiftId])) {
-                    $data[$userId][$bidangId][$shiftId] = 0;
+                if (!isset($data[$userId][$tanggal][$bidangId][$shiftId])) {
+                    $data[$userId][$tanggal][$bidangId][$shiftId] = 0;
                 }
 
-                $data[$userId][$bidangId][$shiftId] += $poin;
+                $data[$userId][$tanggal][$bidangId][$shiftId] += $poin;
         }
-// dd($data);
+        // dd($data);
+        
         return view('mingguan.index', compact('shifts', 'users', 'data', 'bidang', 'start_date', 'end_date'), ['key' => 'mingguan']);
     }
 }

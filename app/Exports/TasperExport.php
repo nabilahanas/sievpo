@@ -10,6 +10,7 @@ use App\Models\Data;
 use App\Models\Shift;
 use App\Models\Bidang;
 use app\Models\User;
+use Illuminate\Support\Facades\App;
 
 class TasperExport implements FromView
 {
@@ -24,10 +25,8 @@ class TasperExport implements FromView
 
     public function view(): View
     {
-        $currentSemester = request()->input('semester');
-        $currentYear = request()->input('year', Carbon::now()->year);
-        $datas = Data::whereYear('created_at', $currentYear)->get();
-        
+        App::setLocale('id');
+        $currentYear = Carbon::now()->year;
 
         $user = User::where('id_role', '3')->get();
         $bidang = Bidang::all();
@@ -39,8 +38,32 @@ class TasperExport implements FromView
 
         $asperTotals = [];
 
+        if (request()->has('semester') && request()->has('year')) {
+            $semester = request()->semester;
+            $year = request()->year;
+
+            if ($semester == 1) {
+                $startMonth = 1;
+                $endMonth = 6;
+            } else {
+                $startMonth = 7;
+                $endMonth = 12;
+            }
+
+            $searchStart = Carbon::createFromDate($year, $startMonth, 1);
+
+            $searchEnd = Carbon::createFromDate($year, $endMonth, 1)->endOfMonth();
+
+            $datas = Data::whereBetween('created_at', [$searchStart, $searchEnd])->get();
+
+            $currentYear = $searchStart->translatedFormat('Y');
+        } else {
+            $datas = Data::all();
+        }
+
+
         foreach ($datas as $dataItem) {
-            $month = $dataItem->created_at->format('F');
+            $month = $dataItem->created_at->translatedFormat('F');
 
             $asperId = $dataItem->user->id_user;
 
@@ -50,6 +73,6 @@ class TasperExport implements FromView
             $asperTotals[$asperId][$month] += $dataItem->poin;
         }
 
-        return view('exports.rekaptotal.tasper', compact('user',  'jabatan2', 'bidang', 'currentYear', 'currentSemester','asperTotals'), ['key' => 'tasper']);
+        return view('exports.rekaptotal.tasper', compact('user',  'jabatan2', 'bidang', 'currentYear', 'asperTotals'), ['key' => 'tasper']);
     }
 }

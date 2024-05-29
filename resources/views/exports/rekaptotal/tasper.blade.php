@@ -3,7 +3,7 @@
         <tr>
             <th rowspan="2">No.</th>
             <th rowspan="2">Nama Karyawan</th>
-            <th rowspan="2">Asper/KBKPH</th>
+            <th rowspan="2">Nama BKPH</th>
             @php
                 $monthsToShow = [];
                 if (request()->has('semester') && request()->has('year')) {
@@ -29,10 +29,8 @@
                     ];
                 }
             @endphp
-            <th colspan="{{ count($monthsToShow) }}" style="text-align: center">
-                {{ request()->input('year', $currentYear) }}
+            <th colspan="{{ count($monthsToShow) }}" style="text-align: center">{{ $currentYear }}
             </th>
-
             <th rowspan="2">Total</th>
         </tr>
         <tr>
@@ -59,10 +57,11 @@
         @php
             $grandTotal = 0;
             $monthlyTotals = array_fill_keys($monthsToShow, 0);
+            $asperData = [];
         @endphp
         @foreach ($jabatan2 as $asper)
             <tr>
-                <td scope="row">{{ $loop->iteration }}</td>
+                <td scope="row">{{ $loop->iteration }}.</td>
                 <td>{{ $asper->nama_user }}</td>
                 <td>{{ $asper->jabatan->nama_jabatan }}</td>
                 @foreach ($monthsToShow as $month)
@@ -76,22 +75,23 @@
                 @endforeach
                 <td>
                     @php
-                        $semesterTotal = 0;
-                        foreach ($monthsToShow as $month) {
-                            $poin = isset($asperTotals[$asper->id_user][$month])
-                                ? $asperTotals[$asper->id_user][$month]
-                                : 0;
-                            $semesterTotal += $poin;
-                        }
+                        $asperTotal = isset($asperTotals[$asper->id_user])
+                            ? array_sum($asperTotals[$asper->id_user])
+                            : 0;
+                        $asper->total = $asperTotal;
                     @endphp
-                    {{ $semesterTotal }}
+                    {{ $asperTotal }}
                 </td>
             </tr>
             @php
-                $grandTotal += $semesterTotal;
+                $grandTotal += $asperTotal;
+                $asperData[] = ['nama_user' => $asper->nama_user, 'total' => $asperTotal];
             @endphp
         @endforeach
     </tbody>
+    @php
+        $asperData = collect($asperData)->sortByDesc('total')->values();
+    @endphp
     <tfoot>
         <tr>
             <th colspan="3" style="text-align:right">Total:</th>

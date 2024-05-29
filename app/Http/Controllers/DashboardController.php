@@ -139,6 +139,6 @@ class DashboardController extends Controller
         }
 
 
-        return view('layouts.dashboard', compact('userPoinDatas', 'poinAllUser', 'poinUser', 'monthsKar', 'karTotals', 'totalPerUser', 'usersToShow', 'currentMonth','currentYear', 'users', 'monthlyTotals', 'monthsToShow', 'month', 'total', 'approved', 'rejected', 'pending', 'berita', 'jmlpengumuman', 'jmluser', 'poinku', 'approvedstatus', 'rejectedstatus', 'pendingstatus', 'pengumuman'), ['key' => 'dashboard']);
+        return view('layouts.dashboard', compact('userPoinDatas', 'poinAllUser', 'poinUser', 'monthsKar', 'karTotals', 'totalPerUser', 'usersToShow', 'currentMonth','currentYear', 'users', 'monthlyTotals', 'monthsToShow', 'total', 'approved', 'rejected', 'pending', 'berita', 'jmlpengumuman', 'jmluser', 'poinku', 'approvedstatus', 'rejectedstatus', 'pendingstatus', 'pengumuman'), ['key' => 'dashboard']);
     }
 }

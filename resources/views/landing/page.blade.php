@@ -109,9 +109,9 @@
             <div class="col-lg-2 col-6 footer-links">
                 <h4>Tentang Sistem</h4>
                 <ul>
-                    <li><a href="#call-to-action">Apa itu SIEVPO?</a></li>
-                    <li><a href="#services">Berbagai Fitur SIEVPO</a></li>
-                    <li><a href="#testimonials">Keunggulan SIEVPO</a></li>
+                    <li><a href="#apaitusievpo">Apa itu SIEVPO?</a></li>
+                    <li><a href="#fitursievpo">Berbagai Fitur SIEVPO</a></li>
+                    <li><a href="#keunggulansievpo">Keunggulan SIEVPO</a></li>
                     </p>
             </div>
             <div class="col-lg-3 col-md-12 footer-contact text-md-start">

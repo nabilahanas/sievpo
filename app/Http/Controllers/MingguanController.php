@@ -17,7 +17,7 @@ class MingguanController extends Controller
 {
     protected $primaryKey = 'id_data';
 
-    public function export(Request $request) 
+    public function export(Request $request)
     {
         return Excel::download(new MingguanExport($request->start_date, $request->end_date), 'Rekap Mingguan.xlsx');
     }
@@ -35,30 +35,33 @@ class MingguanController extends Controller
 
         $data = [];
 
+        // Check if request has start_date and end_date
         if ($request->has('start_date') && $request->has('end_date')) {
             $start_date = Carbon::parse($request->start_date)->startOfDay();
             $end_date = Carbon::parse($request->end_date)->endOfDay();
-        
-            $datas = Data::whereBetween('created_at', [$start_date, $end_date])->get();
-        } else {
-            $datas = Data::whereBetween('created_at', [$start_date, $end_date])->get();
-        }        
+
+            // Validate the date range
+            if ($start_date->gt($end_date)) {
+                return redirect()->back()->withErrors(['date_range' => 'Tanggal mulai tidak boleh lebih besar dari tanggal akhir.']);
+            }
+        }
+
+        $datas = Data::whereBetween('created_at', [$start_date, $end_date])->get();
 
         foreach ($datas as $item) {
             $tanggal = $item->created_at->format('Y-m-d');
-                $userId = $item->id_user;
-                $bidangId = $item->id_bidang;
-                $shiftId = $item->id_shift;
-                $poin = $item->poin;
+            $userId = $item->id_user;
+            $bidangId = $item->id_bidang;
+            $shiftId = $item->id_shift;
+            $poin = $item->poin;
 
-                if (!isset($data[$userId][$tanggal][$bidangId][$shiftId])) {
-                    $data[$userId][$tanggal][$bidangId][$shiftId] = 0;
-                }
+            if (!isset($data[$userId][$tanggal][$bidangId][$shiftId])) {
+                $data[$userId][$tanggal][$bidangId][$shiftId] = 0;
+            }
 
-                $data[$userId][$tanggal][$bidangId][$shiftId] += $poin;
+            $data[$userId][$tanggal][$bidangId][$shiftId] += $poin;
         }
-        // dd($data);
-        
+
         return view('mingguan.index', compact('shifts', 'users', 'data', 'bidang', 'start_date', 'end_date'), ['key' => 'mingguan']);
     }
 }

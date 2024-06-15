@@ -7,6 +7,12 @@
 
     <div class="card">
         <div class="card-body">
+            @if ($errors->has('date_range'))
+                <div class="alert alert-danger">
+                    {{ $errors->first('date_range') }}
+                </div>
+            @endif
+
             <a class="btn btn-outline-success"
                 href="{{ route('mingguan.export') }}?{{ request()->has('start_date') && request()->has('end_date') ? 'start_date=' . request()->start_date . '&end_date=' . request()->end_date : '' }}">Download
                 Excel</a>
@@ -67,28 +73,33 @@
                                         $jml = 0;
                                     @endphp
                                     @foreach ($shifts as $shift)
-                                    <td>
-                                        @php
-                                            $searchDate = clone $start_date;
-                                    
-                                            $poin = 0;
-                                    
-                                            while ($searchDate <= $end_date) {
-                                                $currentDate = $searchDate->format('Y-m-d');
-                                    
-                                                $poin += isset($data[$user->id_user][$currentDate][$b->id_bidang][$shift->id_shift])
-                                                    ? $data[$user->id_user][$currentDate][$b->id_bidang][$shift->id_shift]
-                                                    : 0;
+                                        <td>
+                                            @php
+                                                $searchDate = clone $start_date;
 
-                                                $searchDate->addDay();
-                                            }
-                                    
-                                            $jml += $poin;
-                                            $total += $poin;
-                                        @endphp
-                                        {{ $poin }}
-                                    </td>
-                                    
+                                                $poin = 0;
+
+                                                while ($searchDate <= $end_date) {
+                                                    $currentDate = $searchDate->format('Y-m-d');
+
+                                                    $poin += isset(
+                                                        $data[$user->id_user][$currentDate][$b->id_bidang][
+                                                            $shift->id_shift
+                                                        ],
+                                                    )
+                                                        ? $data[$user->id_user][$currentDate][$b->id_bidang][
+                                                            $shift->id_shift
+                                                        ]
+                                                        : 0;
+
+                                                    $searchDate->addDay();
+                                                }
+
+                                                $jml += $poin;
+                                                $total += $poin;
+                                            @endphp
+                                            {{ $poin }}
+                                        </td>
                                     @endforeach
                                     <td>{{ $jml }}</td>
                                 @endforeach

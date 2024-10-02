@@ -1269,23 +1269,23 @@ $(document).ready(function () {
 });
 
 // Berita
-$(document).ready(function () {
-    var table = $("#berita").DataTable({
-        scrollCollapse: true,
-        columnDefs: [{ orderable: false, targets: [2, 3, 4] }],
-        displayLength: 25,
-    });
+// $(document).ready(function () {
+//     var table = $("#berita").DataTable({
+//         scrollCollapse: true,
+//         columnDefs: [{ orderable: false, targets: [2, 3, 4] }],
+//         displayLength: 25,
+//     });
 
-    // Order by the grouping
-    $("#berita").on("click", "tr.group", function () {
-        var currentOrder = table.order()[0];
-        if (currentOrder[0] === groupColumn && currentOrder[1] === "asc") {
-            table.order([groupColumn, "desc"]).draw();
-        } else {
-            table.order([groupColumn, "asc"]).draw();
-        }
-    });
-});
+//     // Order by the grouping
+//     $("#berita").on("click", "tr.group", function () {
+//         var currentOrder = table.order()[0];
+//         if (currentOrder[0] === groupColumn && currentOrder[1] === "asc") {
+//             table.order([groupColumn, "desc"]).draw();
+//         } else {
+//             table.order([groupColumn, "asc"]).draw();
+//         }
+//     });
+// });
 
 // Riwayat Berita
 $(document).ready(function () {

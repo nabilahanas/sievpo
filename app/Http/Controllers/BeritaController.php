@@ -3,22 +3,26 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use App\Models\Berita;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Validator;
-use Carbon\Carbon;
+use App\Http\Requests\BeritaRequest;
+use App\Repository\BeritaRepository;
 
 class BeritaController extends Controller
 {
-    protected $primaryKey = 'id_berita';
+    protected $beritaRepository;
+
+    public function __construct(BeritaRepository $beritaRepository)
+    {
+        $this->beritaRepository = $beritaRepository;
+    }
 
     public function index()
     {
-        $berita = Berita::all();
-        $beritaDeleted = Berita::onlyTrashed()->get();
+        $berita = $this->beritaRepository->getBerita();
+        $beritaDeleted = $this->beritaRepository->getDeletedBerita();
 
-        return view('berita.index', compact('berita', 'beritaDeleted'), ['key' => 'berita']);
+        return request()->ajax()
+            ? $this->beritaRepository->getBerita()
+            : view('berita.index', compact('berita', 'beritaDeleted'), ['key' => 'berita']);
     }
 
     public function create()
@@ -26,123 +30,38 @@ class BeritaController extends Controller
         return view('berita.add', ['key' => 'berita']);
     }
 
-    public function store(Request $request)
+    public function store(BeritaRequest $request)
     {
-        $validator = Validator::make($request->all(), [
-            'judul' => 'required',
-            'gambar' => 'nullable|image|mimes:jpeg,png,jpg,svg',
-            'deskripsi' => 'required',
-            'tgl_publikasi' => 'required',
-        ]);
-
-        if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator)->withInput();
-        }
-
-        $data = $request->all();
-
-        if ($request->hasFile('gambar')) {
-            $gambar = $request->file('gambar');
-            $filename = time() . '_' . $gambar->getClientOriginalName();
-            $path = 'gambar-berita/' . $filename;
-
-            // Simpan gambar ke storage
-            Storage::disk('public')->put($path, file_get_contents($gambar));
-
-            // Simpan nama file ke dalam data
-            $data['gambar'] = $filename;
-        } else {
-            // Jika tidak ada gambar, atur 'gambar' menjadi null atau sesuai kebutuhan
-            $data['gambar'] = null;
-        }
-
-        $existingBerita = Berita::where('judul', $request->judul)->exists();
-        if ($existingBerita) {
-            return redirect()->back()->withInput()->withErrors(['judul' => 'Berita sudah terdata.']);
-        }
-
-        Berita::create($data);
-
-        return redirect()->route('berita.index')->with('success', 'Data berita berhasil ditambahkan');
+        $berita = $this->beritaRepository->getStore($request);
+        return $request->ajax() || $request->wantsJson()
+            ? $this->apiResponseSuccess($berita)
+            : redirect()->route('berita.index')->with('success', 'Data berita berhasil ditambahkan');
     }
 
     public function edit($id)
     {
-        $berita = Berita::find($id);
+        $berita = $this->beritaRepository->getById($id);
         return view('berita.edit', compact('berita'), ['key' => 'berita']);
     }
 
-    public function update(Request $request, $id)
+    public function update(BeritaRequest $request, $id)
     {
-        $validator = Validator::make($request->all(), [
-            'judul' => 'required',
-            'gambar' => 'nullable|image|mimes:jpeg,png,jpg,svg', // Validate image
-            'deskripsi' => 'required',
-            'tgl_publikasi' => 'required',
-        ]);
+        $berita = $this->beritaRepository->getUpdate($request, $id);
 
-        if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator)->withInput();
-        }
-
-        $berita = Berita::find($id);
-
-        // Update other fields
-        $berita->judul = $request->judul;
-        $berita->deskripsi = $request->deskripsi;
-        $berita->tgl_publikasi = $request->tgl_publikasi;
-
-        // Check if a new image is uploaded
-        if ($request->hasFile('gambar') && ($gambar = $request->file('gambar'))) {
-            // Delete the old image if exists
-            if ($berita->gambar) {
-                Storage::disk('public')->delete('gambar-berita/' . $berita->gambar);
-            }
-
-            // Upload the new image
-            $filename = time() . '_' . $gambar->getClientOriginalName();
-            $path = 'gambar-berita/' . $filename;
-
-            Storage::disk('public')->put($path, file_get_contents($gambar));
-
-            // Update the image field in the database
-            $berita->gambar = $filename;
-        }
-
-        $existingBerita = Berita::where('judul', $request->judul)->whereNotIn('id_berita', [$id])
-        ->exists();
-        if ($existingBerita) {
-            return redirect()->back()->withInput()->withErrors(['judul' => 'Judul berita sudah ada.']);
-        }
-
-        $berita->save();
-
-        return redirect()->route('berita.index')->with('success', 'Data berita berhasil diubah');
+        return $request->ajax() || $request->wantsJson()
+            ? $this->apiResponseSuccess($berita)
+            : redirect()->route('berita.index')->with('success', 'Data berita berhasil diubah');
     }
 
     public function restore($id)
     {
-        $berita = Berita::onlyTrashed()->find($id);
-
-        // Hapus gambar terkait sebelum memulihkan
-        $berita->deleteImage();
-
-        // Memulihkan model
-        $berita->restore();
-
+        $this->beritaRepository->getRestore($id);
         return redirect()->route('berita.index')->with('success', 'Data berita berhasil dipulihkan');
     }
 
     public function delete($id)
     {
-        $berita = Berita::find($id);
-
-        // Hapus gambar terkait sebelum menghapus
-        $berita->deleteImage();
-
-        // Menghapus model
-        $berita->delete();
-
+        $this->beritaRepository->getDelete($id);
         return redirect()->route('berita.index')->with('success', 'Data berita berhasil dihapus');
     }
 

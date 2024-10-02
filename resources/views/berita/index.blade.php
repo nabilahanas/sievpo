@@ -9,7 +9,7 @@
         <div class="alert alert-success fade show alert-dismissible" role="alert">
             <strong><i class="fa fa-check-circle mr-2" aria-hidden="true"></i></strong> {{ $message }}
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
+                <span aria-hidden="true">×</span>
             </button>
         </div>
     @endif
@@ -31,110 +31,89 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($berita as $item)
-                            <tr>
-                                <td>{{ \Carbon\Carbon::parse($item->tgl_publikasi)->format('d-m-Y') }}</td>
-                                <td>{{ $item->judul }}</td>
-                                <td>
-                                    @if ($item->gambar)
-                                        <img src="{{ asset('storage/gambar-berita/' . $item->gambar) }}" alt="Gambar Berita"
-                                            width="150">
-                                    @else
-                                        Tidak Ada Gambar
-                                    @endif
-                                </td>
-                                <td><a href="{{ $item->deskripsi }}" target="_blank">Lihat Selengkapnya</a></td>
-                                <td>
-                                    <a href="{{ route('berita.edit', $item->id_berita) }}" type="button"
-                                        class="btn btn-sm btn-warning btn-block mb-2"><i class="fas fa-pen mr-2"></i>Ubah</a>
-
-                                    <!-- Button trigger modal -->
-                                    <button type="button" class="btn btn-sm btn-danger btn-block mb-2" data-bs-toggle="modal"
-                                        data-bs-target="#hapusModal{{ $item->id_berita }}">
-                                        <i class="fas fa-trash mr-2"></i>Hapus
-                                    </button>
-
-                                    <!-- Modal -->
-                                    <div class="modal fade" id="hapusModal{{ $item->id_berita }}" tabindex="-1"
-                                        aria-labelledby="hapusModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="hapusModalLabel">Konfirmasi</h5>
-                                                    <button type="button" class="close" data-bs-dismiss="modal"
-                                                        aria-label="Close">
-                                                        <span>&times;</span>
-                                                    </button>
-                                                </div>
-                                                <form method="POST"
-                                                    action="{{ route('berita.delete', $item->id_berita) }}">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <div class="modal-body">
-                                                        Data karyawan yang dihapus <b>dapat</b> dipulihkan.
-                                                        <br>Apakah Anda yakin ingin menghapus data ini?
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary"
-                                                            data-bs-dismiss="modal">Tutup</button>
-                                                        <button type="submit" class="btn btn-danger">Yakin</button>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                        @endforeach
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
+@endsection
 
-    @if (count($beritaDeleted) > 0)
-        <h3 class="ml-3">Riwayat Berita</h3>
-        <div class="card mt-3">
-            <div class="card-body table-responsive">
-                <table id="rberita" class="table table-sm table-hover table-striped" style="width: 100%">
-                    <thead class="thead-secondary">
-                        <tr>
-                            <th>Tanggal Publikasi</th>
-                            <th>Judul Berita</th>
-                            <th>Gambar</th>
-                            <th>Link Berita</th>
-                            <th>Aksi</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($beritaDeleted as $item)
-                            <tr>
-                                <td>{{ \Carbon\Carbon::parse($item->tgl_publikasi)->format('d-m-Y') }}</td>
-                                <td>{{ $item->judul }}</td>
-                                <td>
-                                    @if ($item->gambar)
-                                        <img src="{{ asset('storage/gambar-berita/' . $item->gambar) }}"
-                                            alt="Gambar Berita" width="150">
-                                    @else
-                                        Tidak Ada Gambar
-                                    @endif
-                                </td>
-                                <td><a href="{{ $item->deskripsi }}" target="_blank">Lihat Selengkapnya</a></td>
-                                <td>
-                                    <form action="{{ route('berita.restore', $item->id_berita) }}" method="POST"
-                                        class="d-inline">
+@section('script')
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+<script>
+    $(document).ready(function () {
+        var table = $("#berita").DataTable({
+            scrollCollapse: true,
+            columnDefs: [{ orderable: false, targets: [2, 3, 4] }],
+            displayLength: 25,
+            // Konfigurasi AJAX
+            ajax: {
+                url: '/berita',
+                type: 'GET',
+                dataSrc: '' // Karena respons JSON adalah array, dataSrc kosong
+            },
+            columns: [
+                { data: 'tgl_publikasi' },
+                { data: 'judul' },
+                { data: 'gambar',
+                    render: function(data) {
+                        return '<img src="/storage/gambar-berita/' + data + '" alt="Gambar Berita" width="150">' }
+                    },
+                { data: 'deskripsi',
+                    render: function(data,type, row){
+                        return '<a href="' + data + '" target="_blank">Lihat Berita</a>'
+                } },
+                {
+                data: null,
+                render: function(data, type, row) {
+                    return `
+                        <a href="/berita/edit/${row.id_berita}" type="button" class="btn btn-sm btn-warning btn-block mb-2">
+                            <i class="fas fa-pen mr-2"></i>Ubah
+                        </a>
+                        <button type="button" class="btn btn-sm btn-danger btn-block mb-2" data-bs-toggle="modal" data-bs-target="#hapusModal${row.id_berita}">
+                            <i class="fas fa-trash mr-2"></i>Hapus
+                        </button>
+                        <div class="modal fade" id="hapusModal${row.id_berita}" tabindex="-1" aria-labelledby="hapusModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="hapusModalLabel">Konfirmasi</h5>
+                                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                            <span>&times;</span>
+                                        </button>
+                                    </div>
+                                    <form method="POST" action="/berita/delete/${row.id_berita}">
                                         @csrf
-                                        @method('POST')
-                                        <button type="submit" class="btn btn-success btn-sm">
-                                            <i class="fas fa-trash-restore mr-2"></i>Pulihkan</button>
+                                        @method('DELETE')
+                                        <div class="modal-body">
+                                            Data karyawan yang dihapus <b>dapat</b> dipulihkan.
+                                            <br>Apakah Anda yakin ingin menghapus data ini?
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                                            <button type="submit" class="btn btn-danger">Yakin</button>
+                                        </div>
                                     </form>
-                                </td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    @endif
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                }
+            }
+            ],
+        });
 
+        // Order by the grouping
+        $("#berita").on("click", "tr.group", function () {
+            var currentOrder = table.order()[0];
+            if (currentOrder[0] === groupColumn && currentOrder[1] === "asc") {
+                table.order([groupColumn, "desc"]).draw();
+            } else {
+                table.order([groupColumn, "asc"]).draw();
+            }
+        });
+    });
+
+</script>
 @endsection
